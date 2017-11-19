@@ -3,7 +3,7 @@
 		<div class="countdown-inner-cont">
 		<div class="countdown-title">
 		<h1 class="uppercase">Welcome to <br> Wallace Hatch</h1>
-		<h4 class="uppercase">@wallachatch</h4>
+		<h4 class="uppercase sans-serif">@wallachatch</h4>
 		</div>
 		<hr class="break-line"></hr>
 		<div class="countdown-body">
@@ -13,7 +13,7 @@
 		</div>
 		<div class="getting-close-cont">
 			<h1 class="uppercase">We're getting close</h1>
-			<h4 class="uppercase">To launching our new site</h4>
+			<h4 class="uppercase sans-serif">To relaunching our new site</h4>
 		</div>
 		<hr class="break-line"></hr>
 		<div class="countdown-box-cont">
@@ -23,6 +23,7 @@
 		</div>
 		</div>
 		<black-info-box></black-info-box>
+		<newsletter></newsletter>
 	</div>
 </template>
 
@@ -31,10 +32,12 @@
 
 <script>
 import BlackInfoBox from '@/components/BlackInfoBox';
+import Newsletter from '@/components/Newsletter';
 export default {
   name: 'Countdown',
   components:{
-  	BlackInfoBox
+  	BlackInfoBox,
+  	Newsletter,
   },
   data () {
     return {

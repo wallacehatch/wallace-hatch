@@ -1,5 +1,7 @@
 <template>
-	<div class="black-info-box-cont"></div>
+	<div class="black-info-box-cont">
+		<div class="black-info-icon"></div>
+	</div>
 </template>
 
 
@@ -18,7 +20,18 @@ export default {
 <style lang="scss">
 .black-info-box-cont{
 	width: 100%;
-	height: 290px;
+	height: 29rem;
 	background-color: #000000;
+
+	.black-info-icon{
+			width: 9.2rem;
+			height: 8.4rem;
+			vertical-align: middle;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
+			background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/wh-icon.svg');
+		
+	}
 }
 </style>

@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Cardo:400,700');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
 
 $primary-color: #00b0ae;
 
 
 $serif-font: 'Cardo', serif;
 $sans-serif-font: 'Montserrat', sans-serif;
+$open-sans: 'Open Sans', sans-serif;
 
 
 @mixin background-opacity($color, $opacity: 0.3) {
@@ -78,7 +80,6 @@ $sans-serif-font: 'Montserrat', sans-serif;
 
 
 /* Text styles */
-
 @mixin h1 {
 	font-family: $serif-font;;
 	  font-size: 32px;
