@@ -1,5 +1,6 @@
 <template>
 	<div class="countdown-cont">
+		<div class="countdown-inner-cont">
 		<div class="countdown-title">
 		<h1 class="uppercase">Welcome to <br> Wallace Hatch</h1>
 		<h4 class="uppercase">@wallachatch</h4>
@@ -16,8 +17,12 @@
 		</div>
 		<hr class="break-line"></hr>
 		<div class="countdown-box-cont">
-			
+			<div>
+				
+			</div>
 		</div>
+		</div>
+		<black-info-box></black-info-box>
 	</div>
 </template>
 
@@ -25,8 +30,12 @@
 
 
 <script>
+import BlackInfoBox from '@/components/BlackInfoBox';
 export default {
   name: 'Countdown',
+  components:{
+  	BlackInfoBox
+  },
   data () {
     return {
       
@@ -40,9 +49,14 @@ export default {
 
 .countdown-cont{
 	text-align: center;
+	
+}
+.countdown-inner-cont{
 	margin-left: auto;
 	margin-right: auto;
-	max-width: 58rem;
+	max-width: 60rem;
+	margin-top: 10rem;
+	margin-bottom: 2rem;
 }
 
 .getting-close-cont{
