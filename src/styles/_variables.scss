@@ -3,5 +3,208 @@
 
 $primary-color: #00b0ae;
 
+
 $serif-font: 'Cardo', serif;
 $sans-serif-font: 'Montserrat', sans-serif;
+
+
+@mixin background-opacity($color, $opacity: 0.3) {
+    background: $color; /* The Fallback */
+    background: rgba($color, $opacity);
+}
+
+@mixin text-opacity($color, $opacity: 0.3) {
+    color: $color; /* The Fallback */
+    color: rgba($color, $opacity);
+}
+
+@mixin v-cont() {
+	padding: 0 3rem;
+	box-sizing: border-box;
+	@include respond-to(md) {padding: 0 2rem;}
+	@include respond-to(sm) {padding: 0 1.5rem;}
+}
+
+@mixin respond-to($media) {
+	@if $media == lg {
+		@media only screen and (max-width: 1440px) { @content; }
+	}
+	@else if $media == md {
+		@media only screen and (max-width: 1024px) { @content; }
+	}
+	@else if $media == sm {
+		@media only screen and (max-width: 767px) { @content; }
+	}
+  @else if $media == 2x {
+    @media only screen and (-o-min-device-pixel-ratio: 5/4),
+
+           only screen and (-webkit-min-device-pixel-ratio: 1.25),
+
+           only screen and (min-device-pixel-ratio: 1.25),
+
+           only screen and (min-resolution: 1.25dppx) {
+
+        @content;
+    }
+  }
+  @else if $media == 3x {
+    @media only screen and (-o-min-device-pixel-ratio: 9/4),
+
+           only screen and (-webkit-min-device-pixel-ratio: 2.25),
+
+           only screen and (min-device-pixel-ratio: 2.25),
+
+           only screen and (min-resolution: 2.25dppx) {
+
+        @content;
+
+    }
+  }
+  @else if $media == 4x {
+  	@media only screen and (-o-min-device-pixel-ratio: 13/4),
+
+         only screen and (-webkit-min-device-pixel-ratio: 3.25),
+
+         only screen and (min-device-pixel-ratio: 3.25),
+
+         only screen and (min-resolution: 3.25dppx) {
+
+      @content;
+
+  	}
+  }
+
+}
+
+
+/* Text styles */
+
+@mixin h1 {
+	font-family: $serif-font;;
+	  font-size: 32px;
+	  line-height: 1.5;
+	  letter-spacing: 10px;
+	  text-align: left;
+	  color: black;
+}
+
+@mixin h2 {
+	font-family: Quicksand;
+	font-size: 48px;
+	font-weight: 300;
+	line-height: 1.12;
+	letter-spacing: 1.5px;
+	text-align: left;
+	color: $vest-dark;
+}
+
+@mixin h3 {
+	font-family: Quicksand;
+	font-size: 42px;
+	font-weight: 300;
+	line-height: 1.14;
+	letter-spacing: 1.2px;
+	text-align: left;
+	color: $vest-dark;
+}
+
+@mixin h4 {
+	font-family: Quicksand;
+	font-size: 32px;
+	font-weight: 300;
+	line-height: 1.19;
+	letter-spacing: 1px;
+	text-align: left;
+	color: $vest-dark;
+}
+
+@mixin h5 {
+	font-family: Quicksand;
+	font-size: 28px;
+	font-weight: 300;
+	line-height: 1.07;
+	letter-spacing: 0.9px;
+	text-align: left;
+	color: $vest-dark;
+}
+
+@mixin h6 {
+	font-family: Quicksand;
+	font-size: 22px;
+	font-weight: 300;
+	line-height: 1.27;
+	letter-spacing: 0.5px;
+	text-align: left;
+	color: $vest-dark;
+}
+
+@mixin intro-text {
+	font-family: Quicksand;
+	font-size: 18px;
+	line-height: 1.33;
+	letter-spacing: 0.2px;
+	color: $vest-dark;
+}
+
+@mixin text-body {
+	font-family: 'Open Sans';
+	font-size: 14px;
+	line-height: 1.71;
+	letter-spacing: 0.2px;
+	color: $vest-dark;
+}
+
+@mixin text-quote {
+	font-family: Zilla Slab;
+	font-size: 28px;
+	font-weight: 300;
+	font-style: italic;
+	line-height: 1.29;
+}
+
+@mixin text-small {
+	font-family: Quicksand;
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 2.4;
+	letter-spacing: 0.2px;
+	text-align: center;
+	color: $vest-white;
+}
+
+@mixin text-button {
+	font-family: Quicksand;
+	font-size: 1.6rem;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+	text-align: center;
+	text-transform: uppercase;
+	color: $vest-white;
+}
+
+@mixin text-disabled-button {
+	font-family: Quicksand;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+	text-align: left;
+	color: $vest-cool-grey;
+}
+
+@mixin text-active-clicked-link {
+	font-family: Quicksand;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+	color: $vest-teal;
+	text-transform: uppercase;
+}
+
+@mixin text-link {
+	font-family: Quicksand;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+	color: $vest-dark;
+	text-transform: uppercase;
+}

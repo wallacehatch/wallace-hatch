@@ -1,4 +1,3 @@
-@import 'mixins';
 @import 'variables';
 
 .no-select {
@@ -31,4 +30,137 @@ input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-size: 62.5%;
+}
+
+h1 {
+    font-family: $serif-font;
+    font-size: 32px;
+    line-height: 1.5;
+    letter-spacing: 10px;
+    color: black;
+}
+
+h3 {
+    font-family: $serif-font;
+    font-size: 32px;
+    line-height: 1.5;
+    letter-spacing: 10px;
+    text-align: center;
+}
+
+h4{
+  font-family: $sans-serif-font;
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: #000000;
+}
+
+p{
+  font-family: $sans-serif-font;
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 0.2px;
+  color: #000000;
+
+}
+
+
+.uppercase{
+
+  text-transform: uppercase;
+}
+
+// h1 {
+//   font-family: $serif-font;;
+//   font-size: 32px;
+//   line-height: 1.5;
+//   letter-spacing: 10px;
+//   text-align: left
+//   color: black;
+// }
+
+// h2 {
+//   font-family: Quicksand;
+//   font-size: 48px;
+//   font-weight: 300;
+//   line-height: 1.12;
+//   letter-spacing: 1.5px;
+//   text-align: left;
+//   color: $vest-dark;
+// }
+
+// h3 {
+//   font-family: Quicksand;
+//   font-size: 42px;
+//   font-weight: 300;
+//   line-height: 1.14;
+//   letter-spacing: 1.2px;
+//   text-align: left;
+//   color: $vest-dark;
+// }
+
+// h4 {
+//   font-family: Quicksand;
+//   font-size: 32px;
+//   font-weight: 300;
+//   line-height: 1.19;
+//   letter-spacing: 1px;
+//   text-align: left;
+//   color: $vest-dark;
+// }
+
+// h5 {
+//   font-family: Quicksand;
+//   font-size: 28px;
+//   font-weight: 300;
+//   line-height: 1.07;
+//   letter-spacing: 0.9px;
+//   text-align: left;
+//   color: $vest-dark;
+// }
+
+// h6 {
+//   font-family: Quicksand;
+//   font-size: 22px;
+//   font-weight: 300;
+//   line-height: 1.27;
+//   letter-spacing: 0.5px;
+//   text-align: left;
+//   color: $vest-dark;
+// }
+
+.sm-only {
+  display: none !important;
+  @include respond-to(sm) { display: initial !important; }
+}
+.md-only {
+  display: none !important;
+  @include respond-to(md) { display: initial !important; }
+}
+.lg-only {
+  display: none !important;
+  @include respond-to(lg) { display: initial !important; }
+}
+
+.hide-sm {
+  @include respond-to(sm) { display: none !important; } 
+}
+.hide-md {
+  @include respond-to(md) { display: none !important; } 
+}
+.hide-lg {
+  @include respond-to(lg) { display: none !important; } 
 }
