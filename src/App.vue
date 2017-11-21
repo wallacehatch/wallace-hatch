@@ -14,6 +14,11 @@ export default {
   components: {
     SiteHeader,
     SiteFooter,
+  },
+  data() {
+    return {
+      
+    }
   }
 }
 </script>
