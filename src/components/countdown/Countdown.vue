@@ -16,11 +16,7 @@
 			<h4 class="uppercase sans-serif">To relaunching our new site</h4>
 		</div>
 		<hr class="break-line"></hr>
-		<div class="countdown-box-cont">
-			<div>
-				
-			</div>
-		</div>
+		<timer date="August 15, 2016"></timer>
 		</div>
 		<black-info-box></black-info-box>
 		<newsletter></newsletter>
@@ -31,13 +27,15 @@
 
 
 <script>
-import BlackInfoBox from '@/components/BlackInfoBox';
-import Newsletter from '@/components/Newsletter';
+import BlackInfoBox from '@/components/common/BlackInfoBox';
+import Newsletter from '@/components/common/Newsletter';
+import Timer from '@/components/countdown/Timer'
 export default {
   name: 'Countdown',
   components:{
   	BlackInfoBox,
   	Newsletter,
+  	Timer,
   },
   data () {
     return {

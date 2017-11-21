@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import SiteHeader from '@/components/SiteHeader';
-import SiteFooter from '@/components/SiteFooter';
+import SiteHeader from '@/components/common/SiteHeader';
+import SiteFooter from '@/components/common/SiteFooter';
 export default {
   name: 'app',
   components: {
