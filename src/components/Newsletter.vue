@@ -4,7 +4,7 @@
 		<div class="logo"></div>
 		<h4 class="uppercase">The Hatch Newsletter</h4>
 		<div class="newsletter-box">
-			<h4>Thank you, for signing up for our newsletter</h4>
+			<h4 class="newsletter-text">Thank you, for signing up for our newsletter</h4>
 		</div>
 		<h2>Contact us</h2>
 		</div>
@@ -31,6 +31,17 @@ export default {
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 38rem;
+	.newsletter-box{
+		width: 380px;
+		height: 50px;
+		background-color:  #000000;
+		.newsletter-text{
+			font-family: OpenSans;
+			font-size: 14px;
+			letter-spacing: 0.5px;
+			color: #ffffff;
+		}
+	}
 	.logo {
 			margin-top: 6rem;
 			height: 4.6rem;
