@@ -4,9 +4,9 @@
 		<div class="logo"></div>
 		<h4 class="uppercase">The Hatch Newsletter</h4>
 		<div class="newsletter-box">
-			<h4 class="newsletter-text">Thank you, for signing up for our newsletter</h4>
+			<h4 class="newsletter-text open-sans">Thank you, for signing up for our newsletter</h4>
 		</div>
-		<h2>Contact us</h2>
+		<h5 class="uppercase">Contact us</h5>
 		</div>
 	</div>
 </template>
@@ -32,13 +32,15 @@ export default {
 	margin-right: auto;
 	max-width: 38rem;
 	.newsletter-box{
-		width: 380px;
-		height: 50px;
+		margin-top: 3.8rem;
+		width: 38rem;
+		height: 5rem;
 		background-color:  #000000;
 		.newsletter-text{
-			font-family: OpenSans;
+			font-weight: 500;
 			font-size: 14px;
 			letter-spacing: 0.5px;
+  			line-height: 5rem;
 			color: #ffffff;
 		}
 	}
@@ -54,6 +56,10 @@ export default {
 			background-position: center;
 			background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/wh-mark.svg');
 		}
+	}
+	h5{
+		margin-top: 4rem;
+
 	}
 
 }

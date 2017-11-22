@@ -1,27 +1,22 @@
 <template>
 	<div class="site-footer-cont">
-
 		<div class="footer-left">
-			<div class="logo color" @click="$router.push('/')"></div>
-		</div>
-		<div class="footer-right">
-			<div class="top">
+			<div class="bottom">
 				<a target="_blank" href="https://www.instagram.com/vestfinancial/?hl=en" class="social-link instagram"></a>
 				<a target="_blank" href="https://www.facebook.com/askvest/" class="social-link facebook"></a>
 				<a target="_blank" href="https://twitter.com/vestfinancial" class="social-link twitter"></a>
 				<a target="_blank" href="https://www.linkedin.com/company/22303643/" class="social-link linkedin"></a>
 			</div>
+		</div>
+		<div class="footer-right">
 			<div class="bottom">
 			  <!-- Desktop Only -->
-				
-				<router-link class="legal-link hide-sm" to="/privacy">Contact Us</router-link>
-				<a target="_blank" href="https://askvest.com/privacy" class="legal-link hide-sm">Privacy policy</a>
-				<a target="_blank" href="https://askvest.com/terms" class="legal-link">Terms & conditions</a>
-				<router-link class="legal-link hide-sm" to="/" disabled>© copyright 2017 VEST Financial Group, Inc.</router-link>
+				<a target="_blank" href="https://wallacehatch.com/terms" class="legal-link">Terms & conditions</a>
+				<a target="_blank" href="https://wallacehatch.com/privacy" class="legal-link hide-sm">Privacy policy</a>
+				<router-link class="legal-link hide-sm" to="/" disabled>© 2017 Wallace Hatch</router-link>
 				<!-- Mobile Only -->
-				<a target="_blank" href="https://askvest.com/privacy" class="legal-link sm-only">Privacy policy</a>
-				<router-link class="legal-link sm-only" to="/privacy">Contact Us</router-link>
-				<router-link class="legal-link block" to="/" disabled>© copyright 2017 VEST Financial Group, Inc.</router-link>
+				<a target="_blank" href="https://wallacehatch.com/privacy" class="legal-link sm-only">Privacy policy</a>
+				<router-link class="legal-link block" to="/" disabled>© 2017 Wallace Hatch</router-link>
 			</div>
 		</div>
 	</div>
@@ -45,25 +40,36 @@
 </script>
 <style lang='scss'>
 	@import '../../styles/variables.scss';
-	/*$footer-mt: 1.5rem;*/
 	.site-footer-cont {
-		overflow: auto;
-		/*background-color: $vest-white;*/
-		/*@include v-cont();*/
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		/*border-top: 1px solid $vest-light-silver;*/
-		.nav-cont {
-			@include respond-to(md) { display: none; }
+     display: inline-block;
+     width: 100%;
+     margin-top: 8.2rem;
 		}
-	}
-	.footer-right .social-link {
+	.footer-left {
+		float: left;
+		display: table;
+		width: 15rem;
+		@include respond-to(sm) {
+			float: none;
+			margin: auto; 
+			height: auto;
+			margin-top: 4rem;
+			margin-bottom: 2rem;
+		}
+		.bottom {
+			float: right;
+			clear: both;
+			@include respond-to(sm) {
+				float: none;
+				text-align: center;
+				margin-bottom: 2rem;
+			}
+		}
+		.social-link {
 		display: inline-block;
 		width: 2.1rem;
 		height: 2.1rem;
-		margin-left: 3.2rem;
+		margin-right: 1rem;
 		background-repeat: no-repeat;
 		background-size: contain;
 		background-position: center;
@@ -87,17 +93,17 @@
 			margin: 0 1.6rem;
 		}
 	}
-	.footer-left {
-		float: left;
-		width: 10rem;
-		display: table;
-		height: 10.2rem;
-		@include respond-to(sm) {
-			float: none;
-			margin: auto; 
-			height: auto;
-			margin-top: 4rem;
-			margin-bottom: 2rem;
+
+		.top {
+			float: right;
+			clear: both;
+			margin-bottom: 1.5rem;
+			padding-top: 3rem;
+			@include respond-to(sm) {
+				float: none;
+				text-align: center;
+				margin-bottom: 4rem;
+			}
 		}
 		.logo {
 			height: 4.6rem;
@@ -142,13 +148,17 @@
 				text-align: center;
 				margin-bottom: 2rem;
 			}
-			.legal-link {
-				@include text-body;
+		}
+		.legal-link {
 				text-decoration: none;
-				/*color: $vest-gun-metal;*/
+				font-family: OpenSans;
+				font-size: 14px;
+				line-height: 1.71;
+				letter-spacing: 0.2px;
 				margin-left: 3.2rem;
 				margin-bottom: 2rem;
 				transition: 0.2s all linear;
+				color: #908f90;
 				&:hover {
 					opacity: 0.5;
 				}
@@ -168,6 +178,6 @@
 				}
 				
 			}
-		}
+
 	}
 </style>
