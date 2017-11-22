@@ -157,7 +157,6 @@ $wh-footer-grey:       #908f90;
 	font-family: 'Open Sans';
 	font-size: 14px;
   line-height: 1.67;
-	color: $wh-black;
 }
 
 @mixin text-quote {
@@ -174,7 +173,7 @@ $wh-footer-grey:       #908f90;
 	line-height: 2.4;
 	letter-spacing: 0.2px;
 	text-align: center;
-	color: $vest-white;
+
 }
 
 // @mixin text-button {

@@ -2,16 +2,20 @@
     <div class="timer-cont">
         <div class="timer-box-cont">
             <div class="timer-digit-box open-sans">
-                <p class="timer-text open-sans">12</p>
-                <p class="timer-text open-sans">:</p>
-                <p class="timer-text open-sans">33</p>
-                <p class="timer-text open-sans">:</p>
-                <p class="timer-text open-sans">19</p>
-            </div>
-            <div class="timer-description-box">
-                <p class="timer-description-text uppercase">days</p>
-                <p class="timer-description-text uppercase">hours</p>
-                <p class="timer-description-text uppercase">minutes</p>
+                <div class="box">
+                    <p class="timer-text open-sans">{{days}}</p>
+                    <p class="timer-description-text uppercase sans-serif">days</p>
+                </div>
+                <span class="colon">:</span>
+                <div class="box">
+                    <p class="timer-text open-sans">{{hours}}</p>
+                    <p class="timer-description-text uppercase sans-serif">hours</p>
+                </div>
+                 <span class="colon">:</span>
+                <div class="box">
+                    <p class="timer-text open-sans">{{minutes}}</p>
+                    <p class="timer-description-text uppercase sans-serif">minutes</p>
+                </div>
             </div>
     </div>
 </div>
@@ -24,26 +28,34 @@ export default {
             this.now = Math.trunc((new Date()).getTime() / 1000);
         },1000);
     },
-    props : {
-        date : {
-            type: Number,
-            coerce: str => Math.trunc(Date.parse(str) / 1000)
-        }
-    },
     data() {
         return {
+            date: Math.trunc((new Date(2017, 11,1)) / 1000),
+            
             now: Math.trunc((new Date()).getTime() / 1000)
         }
     },
     computed: {
         minutes() {
-            return Math.trunc((this.date - this.now) / 60) % 60;
+            var minutes = Math.trunc((this.date - this.now) / 60) % 60; 
+            if (minutes.toString().length == 1){
+                minutes = "0" + minutes.toString() 
+            }
+            return minutes.toString()
         },
         hours() {
-            return Math.trunc((this.date - this.now) / 60 / 60) % 24;
+            var hours = Math.trunc((this.date - this.now) / 60 / 60) % 24;
+            if (hours.toString().length == 1){
+                hours = "0" + hours.toString() 
+            }
+            return hours.toString()
         },
         days() {
-            return Math.trunc((this.date - this.now) / 60 / 60 / 24);
+             var days = Math.trunc((this.date - this.now) / 60 / 60 / 24);
+            if (days.toString().length == 1){
+                days = "0" + days.toString() 
+            }
+            return days.toString()
         }
     }
 }
@@ -57,17 +69,28 @@ export default {
     background-color: #ffffff;
     border: solid 3px #000000;
 
+
     .timer-digit-box{
-        .timer-text{
-        display: inline-block;
-        font-size: 3.6rem;
-        font-weight: 300;
-        letter-spacing: 1rem;
-        // line-height: 0px;
+        margin-right: auto;
+        margin-top: 0.8rem;
+        margin-left: auto;
+        .box{
+            display: inline-block;
+
+            .timer-text{
+                display: inline-block;
+                font-size: 3.6rem;
+                font-weight: 300;
+                letter-spacing: 1rem;
+                }
         }
-    }
-    .timer-description-text{
-        display: inline-block;
+        .colon{
+            position: relative;
+            top: -3.3rem;
+            font-size: 3.6rem;
+            font-weight: 300;
+            letter-spacing: 1rem;
+        }
     }
 
 }
