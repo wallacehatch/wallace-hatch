@@ -35,6 +35,9 @@ export default {
     background-color: transparent;
     overflow: auto;
      border-bottom: 1px solid #d8d8d8;
+     .header-right{
+		float: right;
+	}
 	.header-left{
 	float: left;
 	.header-logo {
@@ -49,9 +52,6 @@ export default {
 		}
 }
 
-.header-right{
-	float: right;
-}
 
 }
 

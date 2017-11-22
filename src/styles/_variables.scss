@@ -96,7 +96,7 @@ $open-sans: 'Open Sans', sans-serif;
 	line-height: 1.12;
 	letter-spacing: 1.5px;
 	text-align: left;
-	color: $vest-dark;
+	
 }
 
 @mixin h3 {
@@ -106,7 +106,7 @@ $open-sans: 'Open Sans', sans-serif;
 	line-height: 1.14;
 	letter-spacing: 1.2px;
 	text-align: left;
-	color: $vest-dark;
+	
 }
 
 @mixin h4 {
@@ -116,7 +116,7 @@ $open-sans: 'Open Sans', sans-serif;
 	line-height: 1.19;
 	letter-spacing: 1px;
 	text-align: left;
-	color: $vest-dark;
+	
 }
 
 @mixin h5 {
@@ -126,7 +126,7 @@ $open-sans: 'Open Sans', sans-serif;
 	line-height: 1.07;
 	letter-spacing: 0.9px;
 	text-align: left;
-	color: $vest-dark;
+	
 }
 
 @mixin h6 {
@@ -144,7 +144,7 @@ $open-sans: 'Open Sans', sans-serif;
 	font-size: 18px;
 	line-height: 1.33;
 	letter-spacing: 0.2px;
-	color: $vest-dark;
+	
 }
 
 @mixin text-body {
@@ -152,7 +152,7 @@ $open-sans: 'Open Sans', sans-serif;
 	font-size: 14px;
 	line-height: 1.71;
 	letter-spacing: 0.2px;
-	color: $vest-dark;
+	
 }
 
 @mixin text-quote {
@@ -170,7 +170,7 @@ $open-sans: 'Open Sans', sans-serif;
 	line-height: 2.4;
 	letter-spacing: 0.2px;
 	text-align: center;
-	color: $vest-white;
+	
 }
 
 @mixin text-button {
@@ -180,7 +180,7 @@ $open-sans: 'Open Sans', sans-serif;
 	letter-spacing: 0.5px;
 	text-align: center;
 	text-transform: uppercase;
-	color: $vest-white;
+	
 }
 
 @mixin text-disabled-button {
@@ -189,7 +189,7 @@ $open-sans: 'Open Sans', sans-serif;
 	font-weight: bold;
 	letter-spacing: 0.5px;
 	text-align: left;
-	color: $vest-cool-grey;
+	
 }
 
 @mixin text-active-clicked-link {
@@ -197,7 +197,7 @@ $open-sans: 'Open Sans', sans-serif;
 	font-size: 14px;
 	font-weight: bold;
 	letter-spacing: 0.5px;
-	color: $vest-teal;
+	
 	text-transform: uppercase;
 }
 
@@ -206,6 +206,6 @@ $open-sans: 'Open Sans', sans-serif;
 	font-size: 14px;
 	font-weight: bold;
 	letter-spacing: 0.5px;
-	color: $vest-dark;
+	
 	text-transform: uppercase;
 }

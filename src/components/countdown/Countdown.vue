@@ -3,7 +3,7 @@
 		<div class="countdown-inner-cont">
 		<div class="countdown-title">
 		<h1 class="uppercase">Welcome to <br> Wallace Hatch</h1>
-		<h4 class="uppercase sans-serif">@wallachatch</h4>
+		<h4 class="twitter-handle uppercase sans-serif">@wallachatch</h4>
 		</div>
 		<hr class="break-line"></hr>
 		<div class="countdown-body">
@@ -13,11 +13,26 @@
 		</div>
 		<div class="getting-close-cont">
 			<h1 class="uppercase">We're getting close</h1>
-			<h4 class="uppercase sans-serif">To relaunching our new site</h4>
+			<h4 class="new-site-text uppercase sans-serif">To relaunching our new site</h4>
 		</div>
 		<hr class="break-line"></hr>
-		<timer date="August 15, 2016"></timer>
+		<timer></timer>
 		</div>
+		<!-- <div class="email-input-cont">
+			<div class="live-cont">
+			<h4 class="uppercase sans-serif">We can Email you once we're live</h4>
+			</div>
+			<std-input
+			iName="email"
+			v-model="email"
+			:iValue="email"
+			iPlaceholder="Enter your email address"
+			iClass="reg-text reg mt4"
+			>asdasdda</std-input>
+			<label for="sendNewsletter">
+				<input type="checkbox" id="sendNewsletter" value="SendNewsletter" v-model="sendNewsletter"> Send newsletter
+			</label>
+		</div> -->
 		<black-info-box></black-info-box>
 		<newsletter></newsletter>
 	</div>
@@ -30,16 +45,19 @@
 import BlackInfoBox from '@/components/common/BlackInfoBox';
 import Newsletter from '@/components/common/Newsletter';
 import Timer from '@/components/countdown/Timer'
+import StdInput from '@/components/common/StdInput'
 export default {
   name: 'Countdown',
   components:{
   	BlackInfoBox,
   	Newsletter,
   	Timer,
+  	StdInput,
   },
   data () {
     return {
-      
+    	email: "" ,
+    	sendNewsletter:null    
     }
   }
 }
@@ -52,6 +70,7 @@ export default {
 	text-align: center;
 	
 }
+
 .countdown-inner-cont{
 	margin-left: auto;
 	margin-right: auto;
@@ -69,7 +88,15 @@ export default {
 	text-align: left;
 
 }
-
+.countdown-body{
+	max-width: 55rem;
+	margin-right: auto;
+	margin-left: auto;
+}
+.twitter-handle{
+	margin-top: 1rem;
+	font-weight: 500;
+}
 .countdown-box-cont {
 	margin-left: auto;
 	margin-right: auto;
@@ -78,7 +105,23 @@ export default {
 	background-color: #ffffff;
 	border: solid 3px #000000;
 }
+.new-site-text{
+	margin-top: 1rem;
+	font-weight: 500;
+}
 
+
+
+.live-cont{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 6rem;
+	width: 24rem;
+	margin-bottom: 3rem;
+	h4{
+		font-weight: 500;
+	}
+}
 .break-line{
 	margin-left: auto;
     margin-right: auto;
