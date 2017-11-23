@@ -22,6 +22,7 @@
 			<div class="live-cont">
 			<h4 class="uppercase sans-serif">We can Email you once we're live</h4>
 			</div>
+			<div class="email-input">
 			<std-input
 			iName="email"
 			v-model="email"
@@ -29,6 +30,7 @@
 			iPlaceholder="Enter your email address"
 			iClass="reg-text reg mt4"
 			>asdasdda</std-input>
+			</div>
 			<!-- <label for="sendNewsletter">
 				<input type="checkbox" id="sendNewsletter" value="SendNewsletter" v-model="sendNewsletter"> Send newsletter
 			</label> -->
