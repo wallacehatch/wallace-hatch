@@ -10,7 +10,7 @@
     <!-- PRODUCT SHOWCASE -->
     <div class="showcase-cont">
       <p class="header">Pre-order now</p>
-      <p class="subtext">We won’t charge you, until we ship</p>
+      <p class="subtext">We won’t charge you,<br class="sm-only"> until we ship</p>
       <hr class="line">
     </div>
   </div>
@@ -96,13 +96,14 @@ export default {
       @include respond-to(sm) { line-height: 2.0 }
     }
     .line {
-
       border: none;
       border-bottom: 4px solid $wh-black;
       width: 4rem;
-      margin: auto;
-      margin-top: 5rem;
-      margin-bottom: 5rem;
+      margin: 5rem auto;
+      @include respond-to(sm) {
+        margin: 1rem auto;
+        margin-top: 3rem;
+      }
     }
   }
 }
