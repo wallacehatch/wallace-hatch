@@ -4,13 +4,15 @@
 		<div class="logo"></div>
 		<h4 class="subtext">The Hatch Newsletter</h4>
 		<!-- INPUT SHOULD GO HERE  -->
+		<div class="email-input">
 		<std-input
 		iName="email"
 		v-model="email"
 		:iValue="email"
-		iPlaceholder="Enter your email address"
-		iClass="reg-text lg mt4"
-		>asdasdda</std-input>
+		iPlaceholder="Enter Your Email Address"
+		iClass="lg"
+		></std-input>
+		</div>
 		<!-- NAV SHOULD GO HERE -->
 		<ul class="footer-site-nav">
 			<li v-for="item in navItems"><router-link to="/">{{item}}</router-link></li>
