@@ -33,8 +33,8 @@
 				<input type="checkbox" id="sendNewsletter" value="SendNewsletter" v-model="sendNewsletter"> Send newsletter
 			</label>
 		</div> -->
-		<black-info-box></black-info-box>
-		<newsletter></newsletter>
+		<!-- <black-info-box></black-info-box> -->
+		<!-- <newsletter></newsletter> -->
 	</div>
 </template>
 
@@ -42,22 +42,22 @@
 
 
 <script>
-import BlackInfoBox from '@/components/common/BlackInfoBox';
-import Newsletter from '@/components/common/Newsletter';
+// import BlackInfoBox from '@/components/common/BlackInfoBox';
+// import Newsletter from '@/components/common/Newsletter';
 import Timer from '@/components/countdown/Timer'
 import StdInput from '@/components/common/StdInput'
 export default {
   name: 'Countdown',
   components:{
-  	BlackInfoBox,
-  	Newsletter,
+  	// BlackInfoBox,
+  	// Newsletter,
   	Timer,
   	StdInput,
   },
   data () {
     return {
     	email: "" ,
-    	sendNewsletter:null    
+    	sendNewsletter:null
     }
   }
 }
@@ -68,7 +68,7 @@ export default {
 
 .countdown-cont{
 	text-align: center;
-	
+
 }
 
 .countdown-inner-cont{

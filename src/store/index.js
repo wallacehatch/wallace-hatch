@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 const state = {
 	mobile: false,
+	navItems: ['Home', 'Watches', 'Our Story', 'Lookbook'],
 }
 const mutations = {
 	[types.SET_MOBILE] (state, val) {
