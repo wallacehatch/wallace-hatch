@@ -41,6 +41,7 @@
 </script>
 <style lang='scss'>
 	@import '../../styles/variables.scss';
+
 	.site-footer-cont {
      display: inline-block;
 		 overflow: auto;

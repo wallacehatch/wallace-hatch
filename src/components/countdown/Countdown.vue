@@ -18,7 +18,7 @@
 		<hr class="break-line"></hr>
 		<timer></timer>
 		</div>
-		<!-- <div class="email-input-cont">
+		<div class="email-input-cont">
 			<div class="live-cont">
 			<h4 class="uppercase sans-serif">We can Email you once we're live</h4>
 			</div>
@@ -29,10 +29,10 @@
 			iPlaceholder="Enter your email address"
 			iClass="reg-text reg mt4"
 			>asdasdda</std-input>
-			<label for="sendNewsletter">
+			<!-- <label for="sendNewsletter">
 				<input type="checkbox" id="sendNewsletter" value="SendNewsletter" v-model="sendNewsletter"> Send newsletter
-			</label>
-		</div> -->
+			</label> -->
+		</div>
 		<!-- <black-info-box></black-info-box> -->
 		<!-- <newsletter></newsletter> -->
 	</div>
@@ -65,6 +65,13 @@ export default {
 
 <style lang="scss">
 
+.email-input{
+	// width: 100%;
+	height: 15rem;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 38rem;
+}
 
 .countdown-cont{
 	text-align: center;

@@ -42,6 +42,13 @@ export default {
 
 <style lang="scss">
 @import '../../styles/variables.scss';
+.email-input{
+	// width: 100%;
+	height: 15rem;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 38rem;
+}
 .newsletter-cont{
 	text-align: center;
 	.subtext{
