@@ -9,7 +9,7 @@
 				{{item}}
 			</nav-item>
 			<div class="active-bar-cont">
-				<div style="{'single-option': items.length === 1}" :id="navKey + '-active-bar'" class="active-bar" :style="optStyle"></div>
+				<div :class="{'single-option': items.length === 1}" :id="navKey + '-active-bar'" class="active-bar" :style="optStyle"></div>
 			</div>
 
 		</ul>
@@ -116,7 +116,8 @@
 		position: relative;
 		opacity: 0.0;
     &.single-option {
-      border-color: transparent;
+      border: none;
+			box-shadow: none;
     }
 	}
 	.active-bar-cont {
