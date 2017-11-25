@@ -13,11 +13,16 @@
       <p class="subtext">We won’t charge you,<br class="sm-only"> until we ship</p>
       <hr class="line">
     </div>
+    <experience-section></experience-section>
   </div>
 </template>
 
 <script>
+import ExperienceSection from './ExperienceSection';
 export default {
+  components: {
+    ExperienceSection,
+  }
 }
 </script>
 

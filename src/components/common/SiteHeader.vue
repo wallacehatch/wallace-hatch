@@ -5,7 +5,7 @@
 		</div>
 		<div class="header-left">
 			<div class="header-logo"></div>
-			<p class="text-mark uppercase hide-sm">wallace hatch</p>
+			<p class="text-mark uppercase hide-md">wallace hatch</p>
 		</div>
 		<div class="header-right">
 			<nav-bar class="wh-site-nav hide-sm" :items="nav.items" :active="nav.active" navKey="siteNav"></nav-bar>
@@ -23,7 +23,7 @@ export default {
   data () {
     return {
 			nav: {
-				items: ['Home', 'Watches', 'Our Story', 'Lookbook'],
+				items: this.$store.state.navItems,
 				// items: ['contact us'],
 				active: 0,
 			},

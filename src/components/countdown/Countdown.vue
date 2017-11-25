@@ -23,20 +23,15 @@
 			<h4 class="uppercase sans-serif">We can Email you once we're live</h4>
 			</div>
 			<div class="email-input">
-			<std-input
-			iName="email"
-			v-model="email"
-			:iValue="email"
-			iPlaceholder="Enter Your Email Address"
-			iClass="lg"
-			></std-input>
+				<std-input
+				iName="email"
+				v-model="email"
+				:iValue="email"
+				iPlaceholder="Enter your email address"
+				iClass="reg-text reg mt4"
+				>asdasdda</std-input>
 			</div>
-			<!-- <label for="sendNewsletter">
-				<input type="checkbox" id="sendNewsletter" value="SendNewsletter" v-model="sendNewsletter"> Send newsletter
-			</label> -->
 		</div>
-		<black-info-box></black-info-box>
-		<newsletter></newsletter>
 	</div>
 </template>
 
@@ -44,22 +39,18 @@
 
 
 <script>
-import BlackInfoBox from '@/components/common/BlackInfoBox';
-import Newsletter from '@/components/common/Newsletter';
 import Timer from '@/components/countdown/Timer'
 import StdInput from '@/components/common/StdInput'
 export default {
   name: 'Countdown',
   components:{
-  	BlackInfoBox,
-  	Newsletter,
   	Timer,
   	StdInput,
   },
   data () {
     return {
     	email: "" ,
-    	sendNewsletter:null    
+    	sendNewsletter:null
     }
   }
 }
@@ -67,10 +58,17 @@ export default {
 
 <style lang="scss">
 
+.email-input{
+	// width: 100%;
+	height: 15rem;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 38rem;
+}
 
 .countdown-cont{
 	text-align: center;
-	
+
 }
 
 .email-input{
