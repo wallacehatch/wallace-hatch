@@ -7,10 +7,14 @@
 		<div class="email-input">
 		<std-input
 		iName="email"
-		v-model="email"
-		:iValue="email"
+		v-model="newsletter.email"
+		:iValue="newsletter.email"
 		iPlaceholder="Enter Your Email Address"
 		iClass="lg"
+		:class="{submitted: newsletter.submitted}"
+		:submitted="newsletter.submitted"
+		:error="newsletter.error"
+		@submitForm="handleFieldSubmit"
 		></std-input>
 		</div>
 		<!-- NAV SHOULD GO HERE -->
@@ -33,24 +37,42 @@ export default {
 	},
   data () {
     return {
-			email: '',
+			newsletter: {
+				email: '',
+				submitted: false,
+				error: null,
+			},
 			navItems: ['Home', 'Our Story', 'Pre-order list', 'contact us'],
     }
-  }
+  },
+	methods: {
+		handleFieldSubmit() {
+			// validate INPUT
+			if (!this.newsletter.email || this.newsletter.submitted) {this.newsletter.error = 'please enter a valid email.'; return;}
+			else {
+				this.newsletter.error = '';
+				this.newsletter.submitted = true;
+				//actually submit to DB
+			}
+		}
+	}
+
 }
 </script>
 
 <style lang="scss">
 @import '../../styles/variables.scss';
 .email-input{
-	// width: 100%;
-	height: 15rem;
-	margin-left: auto;
-	margin-right: auto;
+	margin: auto;
+	overflow: visible;
+	height: 9rem;
 	max-width: 38rem;
 }
 .newsletter-cont{
 	text-align: center;
+	@include respond-to(sm) {
+		padding: 0 2.5rem;
+	}
 	.subtext{
 		@include h4;
 		font-size: 1.4rem;
@@ -73,6 +95,9 @@ export default {
 .footer-site-nav {
 	overflow: auto;
 	margin-bottom: 5rem;
+	@include respond-to(sm) {
+		margin-bottom: 3rem;
+	}
 	li {
 		display: inline-block;
 		padding: 0 1.5rem;
@@ -88,6 +113,10 @@ export default {
 		a {
 			text-decoration: none;
 			color: $wh-black;
+		}
+		@include respond-to(sm) {
+			display: block;
+			padding-bottom: 2rem
 		}
 	}
 

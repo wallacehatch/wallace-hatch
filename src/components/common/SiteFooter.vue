@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<black-info-box></black-info-box>
 		<newsletter-cta></newsletter-cta>
 		<div class="site-footer-cont">
 			<div class="footer-left">
@@ -22,10 +23,12 @@
 </template>
 <script>
 	import NewsletterCta from './NewsletterCta';
+	import BlackInfoBox from './BlackInfoBox';
 	export default {
 		name: 'siteFooter',
 		components: {
 			NewsletterCta,
+			BlackInfoBox,
 		},
 		data() {
 			return {

@@ -2,15 +2,21 @@
   <div class="field-cont">
     <input
     @focus="active = true"
-    @blur="active = false"
+    @blur="shouldBlurField"
     :value="iValue"
     @input="updateModelValue"
     type="text"
     :name="iName"
     class="std-input reg-text open-sans"
-    :class="[iClass]">
-    <label class="std-input-label open-sans"  for="">{{iPlaceholder || ''}}</label>
-    <label :class="{active: active}" class="side-label"><span class="side-label-text">Sign Up</span></label>
+    :class="[{error: error, submitted: submitted}, iClass]">
+    <label class="std-input-label open-sans" for="">{{error ? error : iPlaceholder}}</label>
+    <div class="side-label-cont">
+      <label @click="$emit('submitForm')"
+      :class="{active: active}"
+      class="side-label">
+        <span class="side-label-text">{{submitted ? 'Thank you for signing up for our newsletter' : 'Sign Up'}}</span>
+      </label>
+    </div>
   </div>
 </template>
 
@@ -22,10 +28,13 @@
        active: false,
      }
    },
-   props: ['iName', 'iType', 'iValidate', 'iPlaceholder', 'iClass', 'iMask', 'iValue', 'iMin', 'iMax', 'iStep'],
+   props: ['iName', 'iType', 'iValidate', 'iPlaceholder', 'iClass', 'iMask', 'iValue', 'iMin', 'iMax', 'iStep', 'submitted', 'error'],
    methods: {
     updateModelValue: function(e) {
       this.$emit('input', e.target.value)
+    },
+    shouldBlurField(e) {
+      if (!e.target.value) {this.active = false;}
     },
    }
   }
@@ -33,17 +42,37 @@
 
 <style lang='scss'>
 @import '../../styles/variables.scss';
+.side-label-cont {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
 .field-cont{
   position: relative;
   float: left;
-  overflow: hidden;
+  overflow: visible;
   :hover{
     .std-input-label {
       top: 50px;
     }
-
   }
-
+  @include respond-to(sm) {
+    max-width: calc(100%) !important;
+    box-sizing: border-box;
+  }
+  &.submitted .side-label {
+    transition: 0.4s transform cubic-bezier(.33,.74,.42,.95);
+    transform: translateX(-27.5rem);
+    width: 38.4rem;
+    &:hover {
+      cursor: initial;
+      opacity: 1.0;
+    }
+  }
 }
 .std-input-label {
   font-size: 14px;
@@ -59,9 +88,11 @@
     transform: translateY(2.2rem);
   }
 }
+
 .side-label{
   position: absolute;
   display: inline-block;
+  pointer-events: auto;
   top: 0;
   left: 275px;
   width: 111px;
@@ -69,10 +100,14 @@
   display: flex;
   align-items: center;
   background-color: black;
-  transition: 0.2s all linear;
+  transition: 0.2s all cubic-bezier(.33,.74,.42,.95);
   &:hover {
     cursor: pointer;
     opacity: 0.8;
+  }
+  transform: translateX(111px);
+  &.active {
+    transform: translateX(0);
   }
 
   .side-label-text{
@@ -85,15 +120,15 @@
     font-weight: 500;
     letter-spacing: 2px;
     color: white;
-
-  }
-  transform: translateX(111px);
-  transition: 0.15s transform linear;
-  &.active {
-    transform: translateX(0);
   }
 }
 
+.std-input.error {
+  border-color: red;
+  &+label {
+    color: red;
+  }
+}
 .std-input {
 
   padding: 1.6rem 0;
@@ -122,7 +157,7 @@
   &.sm {
     width: 11.9rem;
   }
-  &:focus {
+  &:focus, &.submitted {
     box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.2);
     border: solid 3px #000000;
     &+label {
