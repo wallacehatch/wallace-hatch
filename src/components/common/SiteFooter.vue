@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="total-footer-cont">
 		<black-info-box></black-info-box>
 		<newsletter-cta></newsletter-cta>
 		<div class="site-footer-cont">
@@ -44,7 +44,10 @@
 </script>
 <style lang='scss'>
 	@import '../../styles/variables.scss';
-
+	.total-footer-cont {
+		position: relative;
+		z-index: 4;
+	}
 	.site-footer-cont {
      display: inline-block;
 		 overflow: auto;

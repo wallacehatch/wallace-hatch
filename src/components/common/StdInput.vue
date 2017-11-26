@@ -41,11 +41,6 @@
 </script>
 
 <style lang='scss'>
-<<<<<<< HEAD
-.field-cont{
-  position: relative;
-  float: left;
-=======
 @import '../../styles/variables.scss';
 .side-label-cont {
   position: absolute;
@@ -60,16 +55,10 @@
   position: relative;
   float: left;
   overflow: visible;
->>>>>>> ian-dev
-  :hover{
+  &:hover{
     .std-input-label {
       top: 50px;
     }
-<<<<<<< HEAD
-
-  }
-
-=======
   }
   @include respond-to(sm) {
     max-width: calc(100%) !important;
@@ -84,7 +73,6 @@
       opacity: 1.0;
     }
   }
->>>>>>> ian-dev
 }
 .std-input-label {
   font-size: 14px;
@@ -100,29 +88,15 @@
     transform: translateY(2.2rem);
   }
 }
-<<<<<<< HEAD
-.side-label{
-  position: absolute;
-  pointer-events: none;
-=======
 
 .side-label{
   position: absolute;
   display: inline-block;
   pointer-events: auto;
->>>>>>> ian-dev
   top: 0;
   left: 275px;
   width: 111px;
   height: 100%;
-<<<<<<< HEAD
-  display: inline-block;
-  background-color: black;
-  .side-label-text{
-    position: relative;
-    display: inline-block;
-    margin-top: 1.6rem;
-=======
   display: flex;
   align-items: center;
   background-color: black;
@@ -141,7 +115,6 @@
     display: inline-block;
     width: 100%;
     text-align: center;
->>>>>>> ian-dev
     font-family: Montserrat;
     font-size: 14px;
     font-weight: 500;
@@ -150,17 +123,14 @@
   }
 }
 
-<<<<<<< HEAD
-=======
 .std-input.error {
   border-color: red;
   &+label {
     color: red;
   }
 }
->>>>>>> ian-dev
-.std-input {
 
+.std-input {
   padding: 1.6rem 0;
   text-indent: 2rem;
   outline: none;
@@ -170,11 +140,8 @@
   background-color: #ffffff;
   box-shadow: 0 17px 20px 0 rgba(0, 0, 0, 0.1), 0 4px 14px 0 rgba(0, 0, 0, 0.2);
   border: solid 2px #d1d1d1;
-<<<<<<< HEAD
-=======
   @include text-body;
   letter-spacing: 0.5px;
->>>>>>> ian-dev
   &.reg{
     width: 28rem;
   }
@@ -190,25 +157,15 @@
   &.sm {
     width: 11.9rem;
   }
-<<<<<<< HEAD
-  &:focus {
-    box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.2);
-  border: solid 3px #000000;
-=======
   &:focus, &.submitted {
     box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.2);
     border: solid 3px #000000;
->>>>>>> ian-dev
     &+label {
       font-size: 10px;
       top: 7px;
       letter-spacing: 0.4px;
       transform: translateY(0);
-<<<<<<< HEAD
-      transition: 0.1s all ease;
-=======
       transition: 0.15s all ease;
->>>>>>> ian-dev
       font-weight: 100;
     }
   }
