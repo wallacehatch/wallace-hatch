@@ -55,7 +55,7 @@
   position: relative;
   float: left;
   overflow: visible;
-  &:hover{
+  :hover{
     .std-input-label {
       top: 50px;
     }
@@ -129,8 +129,8 @@
     color: red;
   }
 }
-
 .std-input {
+
   padding: 1.6rem 0;
   text-indent: 2rem;
   outline: none;
