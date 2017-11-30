@@ -23,14 +23,18 @@
 			<h4 class="uppercase sans-serif">We can Email you once we're live</h4>
 			</div>
 			<div class="email-input">
-				<std-input
-				iName="email"
-				v-model="email"
-				:iValue="email"
-				iPlaceholder="Enter your email address"
-				iClass="reg-text reg mt4"
-				>asdasdda</std-input>
-			</div>
+		<std-input
+		iName="email"
+		v-model="newsletter.email"
+		:iValue="newsletter.email"
+		iPlaceholder="Enter Your Email Address"
+		iClass="lg"
+		:class="{submitted: newsletter.submitted}"
+		:submitted="newsletter.submitted"
+		:error="newsletter.error"
+		@submitForm="handleFieldSubmit"
+		></std-input>
+		</div>
 		</div>
 	</div>
 </template>
@@ -49,8 +53,11 @@ export default {
   },
   data () {
     return {
-    	email: "" ,
-    	sendNewsletter:null
+    	newsletter: {
+				email: '',
+				submitted: false,
+				error: null,
+			},
     }
   }
 }
