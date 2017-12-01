@@ -85,7 +85,20 @@ export default {
   },
 	methods: {
 		handleFieldSubmit() {
-
+			axios({
+			  method: 'post',
+			  url: 'http://localhost:8090/email-signup/',
+			  data: {
+			    email: 'gregm@askvest.coms',
+			 	newsletter: true,
+			  }
+			})
+			  .then(function (response) {
+			    console.log(response);
+			  })
+			  .catch(function (error) {
+			    console.log(error);
+			  });
 		},
 	}
 }
