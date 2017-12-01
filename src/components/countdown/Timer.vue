@@ -38,28 +38,28 @@ export default {
          seconds() {
             var seconds =  (this.date - this.now) % 60;
             if (seconds.toString().length == 1){
-                seconds = "0" + seconds.toString() 
+                seconds = "0" + seconds.toString()
             }
             return seconds.toString()
         },
         minutes() {
-            var minutes = Math.trunc((this.date - this.now) / 60) % 60; 
+            var minutes = Math.trunc((this.date - this.now) / 60) % 60;
             if (minutes.toString().length == 1){
-                minutes = "0" + minutes.toString() 
+                minutes = "0" + minutes.toString()
             }
             return minutes.toString()
         },
         hours() {
             var hours = Math.trunc((this.date - this.now) / 60 / 60) % 24;
             if (hours.toString().length == 1){
-                hours = "0" + hours.toString() 
+                hours = "0" + hours.toString()
             }
             return hours.toString()
         },
         days() {
              var days = Math.trunc((this.date - this.now) / 60 / 60 / 24);
             if (days.toString().length == 1){
-                days = "0" + days.toString() 
+                days = "0" + days.toString()
             }
             return days.toString()
         }
@@ -68,7 +68,7 @@ export default {
         var interval = setInterval(() => {
             this.now = Math.trunc((new Date()).getTime() / 1000)
         }, 1000)
-        
+
     },
 }
 </script>

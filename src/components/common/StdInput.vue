@@ -95,7 +95,7 @@
   display: inline-block;
   pointer-events: auto;
   top: 0;
-  left: 275px;
+  right: 0;
   width: 111px;
   height: 100%;
   display: flex;
@@ -108,7 +108,7 @@
   }
   transform: translateX(111px);
   &.active {
-    transform: translateX(0);
+    transform: translateX(0px);
   }
 
   .side-label-text{
@@ -141,7 +141,7 @@
   background-color: #ffffff;
   box-shadow: 0 17px 20px 0 rgba(0, 0, 0, 0.1), 0 4px 14px 0 rgba(0, 0, 0, 0.2);
   border: solid 2px #d1d1d1;
-
+  box-sizing: border-box;
   @include text-body;
   letter-spacing: 0.5px;
   &.reg{

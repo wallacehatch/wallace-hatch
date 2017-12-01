@@ -16,7 +16,7 @@
 			<div v-else @click="handleLinkClick" class="envelope-icon fa fa-envelope-o sm-only" :class="{countdown: countdownMode}" aria-hidden="true"></div>
 
 		</div>
-		<contact-modal @close="contactModal.active = false" :active="contactModal.active" ></contact-modal>
+		<contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive" ></contact-modal>
 	</div>
 </template>
 
@@ -40,7 +40,7 @@ export default {
   },
 	methods: {
 		handleLinkClick(i, dir) {
-			if (this.countdownMode) {this.contactModal.active = !this.contactModal.active}
+			if (this.countdownMode) {this.$store.commit('SET_CONTACT_ACTIVE', !this.$store.state.contactModalActive)}
 		}
 	},
 	components: {

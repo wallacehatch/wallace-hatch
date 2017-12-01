@@ -10,13 +10,15 @@
          </hr>
          <div class="countdown-body">
             <p class="body-text">The story behind Wallace Hatch is one of collective experience. Our founders have spent years immersed in a world of design, travel, and discovery. This journey led them to develop a sincere appreciation for the avant-garde boroughs they encountered while traveling.</p>
+            <br><br>
             <p class="body-text">From candle-lit cocktail bars in SoHo to eclectic bookstores in the SF Mission, our founders saw these neighborhoods as mavens of truly original style.  Struck by the beautiful tenacity of these places and the individuals who inhabited them, our founders set out to create Wallace Hatch.</p>
+            <br><br>
             <p class="body-text">The Wallace Hatch brand is, at it’s core, a reflection of this inspired lifestyle. Our watches embody uptown style and simplistic elegance.  Designed to be breath-taking yet versatile, they provide the perfect compliment to an empowered self.</p>
          </div>
      </div>
          <div class="getting-close-cont">
-            <h1 class="uppercase">We're getting close</h1>
-            <h4 class="new-site-text uppercase sans-serif">To relaunching our new site</h4>
+            <h1 class="uppercase">We're getting <br class="sm-only">close</h1>
+            <h4 class="new-site-text uppercase sans-serif">To launching our new site</h4>
          </div>
          <hr class="break-line">
          </hr>
@@ -53,7 +55,9 @@
          </hr>
          <div class="countdown-body">
             <p class="body-text">The story behind Wallace Hatch is one of collective experience. Our founders have spent years immersed in a world of design, travel, and discovery. This journey led them to develop a sincere appreciation for the avant-garde boroughs they encountered while traveling.</p>
+            <br><br>
             <p class="body-text">From candle-lit cocktail bars in SoHo to eclectic bookstores in the SF Mission, our founders saw these neighborhoods as mavens of truly original style.  Struck by the beautiful tenacity of these places and the individuals who inhabited them, our founders set out to create Wallace Hatch.</p>
+            <br><br>
             <p class="body-text">The Wallace Hatch brand is, at it’s core, a reflection of this inspired lifestyle. Our watches embody uptown style and simplistic elegance.  Designed to be breath-taking yet versatile, they provide the perfect compliment to an empowered self.</p>
          </div>
      </div>
@@ -103,6 +107,7 @@ export default {
         margin-bottom: 2rem;
         @include respond-to(sm) {
         	margin-top: 4rem;
+          margin-bottom: 0;
         }
 
     }
@@ -130,18 +135,21 @@ export default {
             letter-spacing: 6px;
             line-height: 36px;
         }
-    }
+      }
+
     }
     .countdown-body {
         max-width: 55rem;
+        width: calc(100% - 3rem);
         margin-right: auto;
         margin-left: auto;
-         .body-text {
-        padding: 1rem;
+      .body-text {
+        line-height: 1.9;
+   	    letter-spacing: 0.2px;
         text-align: left;
-         @include respond-to(sm) {
-            font-size: 12px;
-            padding: 1.5rem;
+        @include respond-to(sm) {
+          font-size: 12px;
+          // padding: 1.5rem;
             // letter-spacing: .3rem;
         }
     }
@@ -151,15 +159,13 @@ export default {
     .email-input {
         margin: 0 auto;
         max-width: 38rem;
-         @include respond-to(sm) {
-            max-width: 28rem;
-        }
+        width: calc(100% - 4rem);
     }
     .email-input-cont {
         margin-top: 6rem;
         margin-bottom: 12rem;
         @include respond-to(sm) {
-            margin-bottom: 0rem;
+            margin: 0;
         }
     }
     .getting-close-cont {
@@ -168,6 +174,7 @@ export default {
         	 @include respond-to(sm) {
             font-size: 20px;
             letter-spacing: 6px;
+            line-height: 1.8;
 
         }
         }
@@ -183,6 +190,11 @@ export default {
     .twitter-handle {
         margin-top: 1rem;
         font-weight: 500;
+        @include respond-to(sm) {
+          font-size: 1.2rem;
+          line-height: 2.0;
+	        letter-spacing: 3px;
+        }
     }
     .countdown-box-cont {
         margin-left: auto;
@@ -214,7 +226,7 @@ export default {
                 padding-left: 1rem;
             }
             &:before {
-                transition: 0.2s all linear;
+                transition: 0.1s all linear;
                 pointer-events: initial;
                 border-radius: 2px;
                 content: '';
@@ -230,12 +242,14 @@ export default {
                 background-size: 60%;
                 background-position: center;
                 background-repeat: no-repeat;
+                box-sizing: border-box;
             }
         }
         input:checked+label:before {
             box-shadow: 0 7px 10px 0 rgba(0,0,0,0.1),0 4px 4px 0 rgba(0,0,0,0.2);
             border: solid 3px #000000;
             background-image: url('https://s3-us-east-2.amazonaws.com/vest-client-2-ohio/sm-checkmark-black.svg');
+
         }
     }
     .live-cont {
@@ -252,7 +266,8 @@ export default {
             font-weight: 500;
         	 @include respond-to(sm) {
             font-size: 1.2rem;
-            letter-spacing: .3rem;
+            line-height: 2.0;
+	          letter-spacing: 3px;
         }
 
         }
@@ -266,6 +281,7 @@ export default {
         background-color: black;
         width: 36px;
         height: 4px;
+        @include respond-to(sm) {margin: 3rem auto;}
     }
 }
 
