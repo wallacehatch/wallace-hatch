@@ -41,6 +41,7 @@
                 <textarea
                 v-validate="'required'"
                 maxlength="250"
+                v-model="form.message"
                 @focus="textarea.active = true"
                 @blur="shouldBlurField"
                 @keyup="setCharCount"
@@ -91,7 +92,7 @@ export default {
         // result && // This is where you send this shit to the backend
         axios({
           method: 'post',
-          url: 'http://localhost:8090/contact-form/',
+          url: 'http:///54.208.113.192/contact-form/',
           data: {
             name: this.form.name,
             email: this.form.email,
@@ -105,7 +106,6 @@ export default {
           .catch(function (error) {
             console.log(error);
           });
-
       })
     },
     shouldBlurField(e) {
