@@ -102,7 +102,7 @@ export default {
 			padding: 1.6rem;
 		}
 		margin: 0 auto;
-		width: 38rem;
+		max-width: 38rem;
 		background-color: #000000;
 		margin-bottom: 4rem;
 	}
