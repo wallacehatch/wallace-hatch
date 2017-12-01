@@ -81,15 +81,17 @@ export default {
 	box-sizing: border-box;
 	background-color: #000000;
 	position: relative;
-	padding: 0 1.5rem;
+	// padding: 0 1.5rem;
 	padding-top: 8.7rem;
-	padding-bottom: 1.5rem;
-
+	padding-bottom: 10rem;
+	@include respond-to(sm) {
+		padding-top: 4rem;
+		padding-bottom: 5.6rem;
+	}
 	.black-info-icon{
 		width: 9.2rem;
 		height: 8.4rem;
 		margin: auto;
-		margin-bottom: 12.5rem;
 		@include respond-to(lg) {margin-bottom: 9.5rem;}
 		@include respond-to(md) {margin-bottom: 6.5rem;}
 		@include respond-to(sm) {margin-bottom: 4rem;}

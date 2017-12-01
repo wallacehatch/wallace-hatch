@@ -19,7 +19,8 @@
 		</div>
 		<!-- NAV SHOULD GO HERE -->
 		<ul class="footer-site-nav">
-			<li v-for="item in navItems"><router-link to="/">{{item}}</router-link></li>
+			<!-- <li v-for="item in navItems"><router-link to="/">{{item}}</router-link></li> -->
+			<li v-for="item in navItems" @click="$store.commit('SET_CONTACT_ACTIVE', true)" >{{item}}</li>
 		</ul>
 		</div>
 	</div>
@@ -67,6 +68,7 @@ export default {
 	overflow: visible;
 	height: 9rem;
 	max-width: 38rem;
+	width: calc(100%  -4rem);
 }
 .newsletter-cont{
 	text-align: center;

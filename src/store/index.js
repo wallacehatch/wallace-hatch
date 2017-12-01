@@ -11,10 +11,14 @@ const state = {
 
 	// This is for countdown site
 	navItems: ['Contact Us'],
+	contactModalActive: false,
 }
 const mutations = {
 	[types.SET_MOBILE] (state, val) {
 		state.mobile = val;
+	},
+	[types.SET_CONTACT_ACTIVE] (state, val) {
+		state.contactModalActive = val;
 	},
 }
 
