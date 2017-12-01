@@ -1,0 +1,13 @@
+vue:
+  restart: always
+  build: ./dist
+  expose:
+    - "5000"
+
+nginx:
+  restart: always
+  build: ./nginx
+  ports:
+    - "80:80"
+  links:
+    - vue:vue
