@@ -4,7 +4,10 @@
 		<div class="logo"></div>
 		<h4 class="subtext">The Hatch Newsletter</h4>
 		<!-- INPUT SHOULD GO HERE  -->
-		<div class="email-input">
+		<div class="thank-you-box">
+			<p class="open-sans">Thank you, for signing up for our newsletter</p>
+		</div>
+		<!-- <div class="email-input">
 		<std-input
 		iName="email"
 		v-model="newsletter.email"
@@ -16,11 +19,12 @@
 		:error="newsletter.error"
 		@submitForm="handleFieldSubmit"
 		></std-input>
-		</div>
+		</div> -->
+		<p class="uppercase">Contact us</p>
 		<!-- NAV SHOULD GO HERE -->
-		<ul class="footer-site-nav">
+		<!-- <ul class="footer-site-nav">
 			<li v-for="item in navItems"><router-link to="/">{{item}}</router-link></li>
-		</ul>
+		</ul> -->
 		</div>
 	</div>
 </template>
@@ -70,6 +74,7 @@ export default {
 }
 .newsletter-cont{
 	text-align: center;
+	margin-bottom: 4.8rem;
 	@include respond-to(sm) {
 		padding: 0 2.5rem;
 	}
@@ -90,6 +95,16 @@ export default {
 		background-size: contain;
 		background-position: center;
 		background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/wh-mark.svg');
+	}
+	.thank-you-box{
+		p{
+			color: white;
+			padding: 1.6rem;
+		}
+		margin: 0 auto;
+		width: 38rem;
+		background-color: #000000;
+		margin-bottom: 4rem;
 	}
 }
 .footer-site-nav {

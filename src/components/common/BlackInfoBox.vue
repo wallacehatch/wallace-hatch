@@ -1,10 +1,10 @@
 <template>
 	<div class="black-info-box-cont">
 		<div class="black-info-icon"></div>
-		<div v-for="blurb in blurbs"class="icon-blurb">
+		<!-- <div v-for="blurb in blurbs"class="icon-blurb">
 			<i :class="blurb.icon"></i>
 			<p>{{blurb.text}}</p>
-		</div>
+		</div> -->
 	</div>
 </template>
 

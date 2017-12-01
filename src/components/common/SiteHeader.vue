@@ -9,7 +9,7 @@
 		</div>
 		<div class="header-right">
 			<nav-bar class="wh-site-nav hide-sm" :items="nav.items" :active="nav.active" navKey="siteNav"></nav-bar>
-			<div class="shopping-cart-icon fa fa-shopping-bag" aria-hidden="true"></div>
+			<!-- <div class="shopping-cart-icon fa fa-shopping-bag" aria-hidden="true"></div> -->
 		</div>
 	</div>
 </template>
