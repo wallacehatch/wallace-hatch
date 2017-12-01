@@ -22,7 +22,7 @@
 
 <script>
   export default {
-   name: 'StdInput',
+   name: 'NewsletterInput',
    data() {
      return {
        active: false,
@@ -55,6 +55,7 @@
   position: relative;
   float: left;
   overflow: visible;
+  box-sizing: border-box;
   :hover{
     .std-input-label {
       top: 50px;
@@ -80,7 +81,7 @@
   color: #000000;
   position: absolute;
   pointer-events: none;
-  top: 18px;
+  top: 20px;
   left: 20px;
   pointer-events: none;
   text-transform: initial;
@@ -130,9 +131,9 @@
   }
 }
 .std-input {
-
+  transition: 0.15s all ease;
   padding: 1.6rem 0;
-  text-indent: 2rem;
+  text-indent: 1.5rem;
   outline: none;
   margin: 0 0;
   display: inline-block;
@@ -140,6 +141,7 @@
   background-color: #ffffff;
   box-shadow: 0 17px 20px 0 rgba(0, 0, 0, 0.1), 0 4px 14px 0 rgba(0, 0, 0, 0.2);
   border: solid 2px #d1d1d1;
+
   @include text-body;
   letter-spacing: 0.5px;
   &.reg{
@@ -157,9 +159,9 @@
   &.sm {
     width: 11.9rem;
   }
-  &:focus, &.submitted {
+  &:focus, &.submitted, &.active {
     box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.2);
-    border: solid 3px #000000;
+    border: solid 2px #000000;
     &+label {
       font-size: 10px;
       top: 7px;

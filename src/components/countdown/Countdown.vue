@@ -83,10 +83,11 @@ export default {
 			},
     }
   },
-  methods: {
-    handleFieldSubmit() {
-   },
-}
+	methods: {
+		handleFieldSubmit() {
+
+		},
+	}
 }
 </script>
 
@@ -115,7 +116,7 @@ export default {
         @include respond-to(lg) {
             display: none;
         }
-        
+
     }
     .countdown-info-large {
         @include respond-to(sm) {
@@ -178,7 +179,7 @@ export default {
         }
     }
 
-    
+
     .twitter-handle {
         margin-top: 1rem;
         font-weight: 500;
