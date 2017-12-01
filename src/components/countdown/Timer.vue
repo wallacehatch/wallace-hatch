@@ -73,6 +73,7 @@ export default {
 }
 </script>
 <style lang="scss">
+@import '../../styles/_variables.scss';
 .timer-box-cont {
     margin-left: auto;
     margin-right: auto;
@@ -80,6 +81,10 @@ export default {
     height: 10rem;
     background-color: #ffffff;
     border: solid 3px #000000;
+    @include respond-to(sm) {
+            width: 28rem;
+            // letter-spacing: .3rem;
+        }
 
 
     .timer-digit-box{
