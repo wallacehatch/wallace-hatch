@@ -25,7 +25,6 @@
 	</div>
 </template>
 
-
 <script>
 import NavBar from  './navBar/NavBar';
 import StdInput from './StdInput';
