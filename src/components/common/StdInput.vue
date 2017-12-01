@@ -9,7 +9,7 @@
     :name="iName"
     class="std-input reg-text open-sans"
     :class="[{error: error, submitted: submitted}, iClass]">
-    <label class="std-input-label open-sans" for="">{{error ? error : iPlaceholder}}</label>
+    <label v-if="active === false  || iValue == ''" class="std-input-label open-sans" for="">{{error ? error : iPlaceholder}}</label>
     <div class="side-label-cont">
       <label @click="$emit('submitForm')"
       :class="{active: active}"
@@ -80,7 +80,7 @@
   color: #000000;
   position: absolute;
   pointer-events: none;
-  top: 16px;
+  top: 18px;
   left: 20px;
   pointer-events: none;
   text-transform: initial;

@@ -36,6 +36,11 @@
 		></std-input>
 		</div>
 		</div>
+		<div class="std-checkbox-cont">
+				<input type="checkbox" id="request-demo-cb">
+				<label for="request-demo-cb">Send me the newsletter</label>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -45,6 +50,7 @@
 <script>
 import Timer from '@/components/countdown/Timer'
 import StdInput from '@/components/common/StdInput'
+import axios from 'axios';
 export default {
   name: 'Countdown',
   components:{
@@ -59,12 +65,16 @@ export default {
 				error: null,
 			},
     }
-  }
+  },
+  methods: {
+    handleFieldSubmit() {
+   },
+}
 }
 </script>
 
 <style lang="scss">
-
+@import '../../styles/_variables.scss';
 .email-input{
 	// width: 100%;
 	height: 15rem;
@@ -126,7 +136,47 @@ export default {
 	margin-top: 1rem;
 	font-weight: 500;
 }
+.std-checkbox-cont {
+		clear: both;
+		display: inline-block;
+		position: relative;
+		text-align: left;
+		padding: 3.7rem 0;
+		input {
+			display: none;
+		}
+		label {
+			@include text-body
+			margin-left: 4rem;
+			display: inline-block;
+			pointer-events: none;
+			@include respond-to(sm) {padding-left: 1rem; }
+			&:before {
+				transition: 0.2s all linear;
+				pointer-events: initial;
+				border-radius: 2px;
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 3.3rem;
+				display: block;
+				height: 2.9rem;
+				width: 2.9rem;
+				background-color: #ffffff;
+				box-shadow: 0 17px 20px 0 rgba(0, 0, 0, 0.1), 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+				border: solid 1px #d1d1d1;
+				background-size: 60%;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+		}
 
+		input:checked+label:before {
+			box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+			border: solid 3px #000000;
+			background-image: url('https://s3-us-east-2.amazonaws.com/vest-client-2-ohio/sm-checkmark-black.svg');
+		}
+	}
 
 
 .live-cont{
