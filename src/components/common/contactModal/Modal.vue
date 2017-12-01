@@ -10,6 +10,8 @@
             <form class="contact-form" method="post" @submit.prevent="validateForm">
               <contact-input
               iName="name"
+              :iDisable="submitSuccess"
+              :class="{disabled: submitSuccess}"
           		v-model="form.name"
           		:iValue="form.name"
               iValidate="required"
@@ -19,6 +21,8 @@
 
               <contact-input
               iName="email"
+              :iDisable="submitSuccess"
+              :class="{disabled: submitSuccess}"
           		v-model="form.email"
           		:iValue="form.email"
               iValidate="required"
@@ -29,6 +33,8 @@
 
               <contact-input
               iName="company"
+              :iDisable="submitSuccess"
+              :class="{disabled: submitSuccess}"
               iOptional="true"
           		v-model="form.company"
           		:iValue="form.company"
@@ -37,8 +43,9 @@
           		</contact-input>
 
               <div class="contact-text-area-cont">
-                <span class="remaining-chars">{{textarea.chars}}/250</span>
+                <span :class="{disabled: submitSuccess}" class="remaining-chars">{{textarea.chars}}/250</span>
                 <textarea
+                :disabled="submitSuccess"
                 v-validate="'required'"
                 maxlength="250"
                 v-model="form.message"
@@ -48,9 +55,9 @@
                 :placeholder="errors.has('message') ? errors.first('message') : 'Enter Message'"
                 name="message" id="" cols="30" rows="7"
                 class="contact-text-area"
-                :class="{'is-danger': errors.has('message'), active: textarea.active}"></textarea>
+                :class="{disabled: submitSuccess, 'is-danger': errors.has('message'), active: textarea.active}"></textarea>
               </div>
-              <button type="submit" class="contact-form-btn">Send</button>
+              <button :disabled="submitSuccess" type="submit" class="contact-form-btn">{{buttonText}}</button>
             </form>
           </div>
 
@@ -80,9 +87,11 @@ export default {
         chars: 0,
         active: false,
       },
-
       lActive: false,
+      submitSuccess: false,
+      buttonText: 'Send',
       dur: 500,
+
     }
   },
   methods: {
@@ -100,13 +109,28 @@ export default {
             message: this.form.message,
           }
         })
-          .then(function (response) {
-            console.log(response);
+          .then((response) => {
+            this.submitSuccess = true;
+            this.buttonText = 'Message Sent Successfully';
+            setTimeout(() => {
+              this.$emit('close');
+            }, 1500)
           })
           .catch(function (error) {
             console.log(error);
           });
       })
+    },
+    clearForm() {
+      this.lActive = false;
+      this.submitSuccess = false;
+      this.buttonText = 'Send';
+      this.form.name = null;
+      this.form.email = null;
+      this.form.company = null;
+      this.form.message = null;
+      this.textarea.chars = 0;
+      this.errors.clear();
     },
     shouldBlurField(e) {
       if (!e.target.value) {this.textarea.active = false;}
@@ -148,6 +172,7 @@ export default {
           duration: this.dur,
           easing: 'easeInOutCubic',
           complete: () => {
+            this.clearForm();
             this.lActive = false;
           }
         })
@@ -282,6 +307,16 @@ export default {
       &::-moz-input-placeholder {color: red}
       &::-ms-input-placeholder {color: red}
     }
+    &.disabled {
+      color: #d1d1d1;
+      background-color: #fafafa;
+      border-color: #d1d1d1 !important;
+      &::-webkit-input-placeholder {color: #d1d1d1}
+      &:-moz-input-placeholder {color: #d1d1d1}
+      &::-moz-input-placeholder {color: #d1d1d1}
+      &::-ms-input-placeholder {color: #d1d1d1}
+
+    }
   }
   .contact-text-area-cont {
     position: relative;
@@ -292,6 +327,7 @@ export default {
       right: 1.2rem;
       @include text-body;
       font-size: 1rem;
+      &.disabled {color: #d1d1d1;}
     }
   }
   .contact-form-btn {

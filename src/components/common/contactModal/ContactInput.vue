@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-if="iOptional" for="" class="optional-text">Optional</p>
+    <p v-if="iOptional" for="" :class="{disabled: iDisable}" class="optional-text">Optional</p>
     <div class="field-cont contact">
       <input
       v-if="iValidate"
@@ -11,8 +11,9 @@
       @input="updateModelValue"
       :type="iType || 'text'"
       :name="iName"
+      :disabled="iDisable"
       class="std-input reg-text open-sans"
-      :class="[{active: active, 'is-danger': errors.has(iName)},iClass]">
+      :class="[{disabled: iDisable, active: active, 'is-danger': errors.has(iName)},iClass]">
       <input
       v-if="!iValidate"
       @focus="active = true"
@@ -21,8 +22,9 @@
       @input="updateModelValue"
       :type="iType || 'text'"
       :name="iName"
+      :disabled="iDisable"
       class="std-input reg-text open-sans"
-      :class="[{active: active, 'is-danger': errors.has(iName)},iClass]">
+      :class="[{disabled: iDisable, active: active, 'is-danger': errors.has(iName)},iClass]">
       <label :class="{active: active}" class="std-input-label open-sans" for="">{{errors.has(iName) ? errors.first(iName) : iPlaceholder}}</label>
     </div>
   </div>
@@ -37,7 +39,7 @@
        active: false,
      }
    },
-   props: ['iName', 'iType', 'iValidate', 'iPlaceholder', 'iClass', 'iMask', 'iValue', 'iMin', 'iMax', 'iStep', 'iOptional'],
+   props: ['iName', 'iType', 'iValidate', 'iPlaceholder', 'iClass', 'iMask', 'iValue', 'iMin', 'iMax', 'iStep', 'iOptional', 'iDisable'],
    methods: {
     updateModelValue: function(e) {
       this.$emit('input', e.target.value)
@@ -56,6 +58,7 @@
   padding-bottom: 0.5rem;
   @include text-body;
   font-size: 1rem;
+  &.disabled {color: #d1d1d1;}
 }
 .field-cont.contact {
   float: none;
@@ -67,5 +70,11 @@
   &+label {
     color: red;
   }
+}
+.std-input.disabled {
+  background-color: #fafafa !important;
+  border-color: #d1d1d1 !important;
+  color: #d1d1d1 !important;
+  &+label {color: #d1d1d1 !important}
 }
 </style>
