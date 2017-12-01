@@ -52,7 +52,12 @@ export default {
     	email: "" ,
     	sendNewsletter:null
     }
-  }
+  },
+	methods: {
+		handleFieldSubmit() {
+
+		},
+	}
 }
 </script>
 

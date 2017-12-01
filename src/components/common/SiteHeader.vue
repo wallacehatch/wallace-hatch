@@ -1,23 +1,26 @@
 <template>
 	<div class="header-cont">
-		<div class="mobile-header-left sm-only">
+		<div v-if="!countdownMode" class="mobile-header-left sm-only">
 			MENU
 		</div>
-		<div class="header-left">
+		<div class="header-left" :class="{countdown: countdownMode}">
 			<div class="header-logo"></div>
 			<p class="text-mark uppercase hide-md">wallace hatch</p>
 		</div>
-		<div class="header-right">
-			<nav-bar class="wh-site-nav hide-sm" :items="nav.items" :active="nav.active" navKey="siteNav"></nav-bar>
-			<div class="shopping-cart-icon fa fa-shopping-bag" aria-hidden="true"></div>
+		<div class="header-right" :class="{countdown: countdownMode}">
+			<nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm" :class="{'countdown': countdownMode}" :items="nav.items" :active="nav.active" navKey="siteNav"></nav-bar>
+
+			<div v-if="!countdownMode" class="shopping-cart-icon fa fa-shopping-bag" aria-hidden="true"></div>
+			<div v-else @click="handleLinkClick" class="envelope-icon fa fa-envelope-o sm-only" :class="{countdown: countdownMode}" aria-hidden="true"></div>
+
 		</div>
+		<contact-modal @close="contactModal.active = false" :active="contactModal.active" ></contact-modal>
 	</div>
 </template>
 
-
-
 <script>
 import NavBar from './navBar/NavBar';
+import ContactModal from './contactModal/Modal';
 export default {
   name: 'siteHeader',
   data () {
@@ -27,16 +30,30 @@ export default {
 				// items: ['contact us'],
 				active: 0,
 			},
+			contactModal: {
+				active: false,
+			},
+			countdownMode: true,
     }
   },
+	methods: {
+		handleLinkClick(i, dir) {
+			if (this.countdownMode) {this.contactModal.active = !this.contactModal.active}
+		}
+	},
 	components: {
 		NavBar,
+		ContactModal,
 	}
 }
 </script>
 
 <style lang="scss">
 @import '../../styles/_variables.scss';
+.countdown .v-nav-link {
+	margin-right: 0;
+	padding-right: 0;
+}
 .header-cont{
 		overflow: auto;
     position: fixed;
@@ -49,10 +66,20 @@ export default {
 		@include respond-to(sm) {padding: 0 1rem;}
 		.header-right {
 			float: right;
-			@include respond-to(sm) { float: left; }
+			@include respond-to(sm) {
+				float: left;
+				&.countdown {
+					float: right;
+					padding: 1.3rem 0.9rem 1.7rem 1.9rem;
+					border-left: 1px solid #ececec;
+				}
+			}
 			.wh-site-nav {
 				display: inline-block;
 				margin-right: 3rem;
+				&.countdown {
+					margin-right: 0rem;
+				}
 			}
 			.shopping-cart-icon {
 				font-size: 32px;
@@ -62,6 +89,14 @@ export default {
 					font-size: 2.56rem;
 					padding: 1.3rem 0.9rem 1.7rem 1.9rem;
 					border-left: 1px solid #ececec;
+				}
+			}
+			.envelope-icon {
+				font-size: 32px;
+				font-weight: 300;
+				display: inline-block;
+				@include respond-to(sm) {
+					font-size: 2.56rem;
 				}
 			}
 		}
@@ -81,6 +116,9 @@ export default {
 		@include respond-to(sm) {
 			padding: 1.4rem 0 1.6rem 0;
 			width: calc(100% - 10.74rem);
+			&.countdown {
+				width: initial;
+			}
 		}
 		.header-logo {
 			float: left;
