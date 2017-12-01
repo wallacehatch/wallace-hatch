@@ -5,17 +5,17 @@
 		<div class="site-footer-cont">
 			<div class="footer-left">
 				<a target="_blank" href="https://www.instagram.com/wallaceHatch/" class="social-link fa fa-instagram"></a>
-				<a target="_blank" href="https://www.facebook.com/askvest/" class="social-link fa fa-facebook"></a>
-				<a target="_blank" href="https://twitter.com/vestfinancial" class="social-link fa fa-twitter"></a>
-				<a target="_blank" href="https://www.linkedin.com/company/22303643/" class="social-link fa fa-envelope-o"></a>
+				<a target="_blank" href="https://www.facebook.com/WallaceHatch/" class="social-link fa fa-facebook"></a>
+				<a target="_blank" href="https://twitter.com/WallaceHatch" class="social-link fa fa-twitter"></a>
+				<a href="mailto:hello@wallacehatch.com?Subject=Checked%20Out%20the%20Site" class="social-link fa fa-envelope-o"></a>
 			</div>
 			<div class="footer-right">
 				  <!-- Desktop Only -->
-				<a target="_blank" href="https://wallacehatch.com/terms" class="legal-link">Terms & conditions</a>
-				<a target="_blank" href="https://wallacehatch.com/privacy" class="legal-link hide-sm">Privacy policy</a>
+				<router-link target="_blank" to="/terms" class="legal-link">Terms & conditions</router-link>
+				<router-link target="_blank" to="/privacy" class="legal-link hide-sm">Privacy policy</router-link>
 				<router-link class="legal-link hide-sm" to="/" disabled>© 2017 Wallace Hatch</router-link>
 				<!-- Mobile Only -->
-				<a target="_blank" href="https://wallacehatch.com/privacy" class="legal-link sm-only">Privacy policy</a>
+				<router-link target="_blank" to="/privacy" class="legal-link sm-only">Privacy policy</router-link>
 				<router-link class="legal-link block" to="/" disabled>© 2017 Wallace Hatch</router-link>
 			</div>
 		</div>

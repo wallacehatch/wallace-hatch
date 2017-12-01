@@ -41,6 +41,7 @@
                 <textarea
                 v-validate="'required'"
                 maxlength="250"
+                v-model="form.message"
                 @focus="textarea.active = true"
                 @blur="shouldBlurField"
                 @keyup="setCharCount"
@@ -87,6 +88,7 @@ export default {
     validateForm() {
       this.$validator.validateAll().then((result) => {
         // result && // This is where you send this shit to the backend
+
       })
     },
     shouldBlurField(e) {
