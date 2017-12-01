@@ -61,6 +61,7 @@
 <script>
 import anime from 'animejs';
 import ContactInput from './ContactInput';
+import axios from 'axios';
 export default {
   props: ['active'],
   components: {
@@ -86,7 +87,25 @@ export default {
   methods: {
     validateForm() {
       this.$validator.validateAll().then((result) => {
+        console.log("heres message ",this.form.message )
         // result && // This is where you send this shit to the backend
+        axios({
+          method: 'post',
+          url: 'http://localhost:8090/contact-form/',
+          data: {
+            name: this.form.name,
+            email: this.form.email,
+            company: this.form.company,
+            message: this.form.message,
+          }
+        })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
       })
     },
     shouldBlurField(e) {
