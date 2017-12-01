@@ -35,11 +35,12 @@
 		@submitForm="handleFieldSubmit"
 		></std-input>
 		</div>
-		</div>
 		<div class="std-checkbox-cont">
 				<input type="checkbox" id="request-demo-cb">
 				<label for="request-demo-cb">Send me the newsletter</label>
 			</div>
+		</div>
+		
 		</div>
 	</div>
 </template>
@@ -75,13 +76,6 @@ export default {
 
 <style lang="scss">
 @import '../../styles/_variables.scss';
-.email-input{
-	// width: 100%;
-	height: 15rem;
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 38rem;
-}
 
 .countdown-cont{
 	text-align: center;
@@ -89,20 +83,22 @@ export default {
 }
 
 .email-input{
-	// width: 100%;
-	height: 15rem;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 auto;
 	max-width: 38rem;
 
 
 }
 
+
+.email-input-cont{
+	margin-top: 6rem;
+	margin-bottom: 12rem;
+}
 .countdown-inner-cont{
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 60rem;
-	margin-top: 10rem;
+	margin-top: 15.6rem;
 	margin-bottom: 2rem;
 }
 
@@ -142,6 +138,7 @@ export default {
 		position: relative;
 		text-align: left;
 		padding: 3.7rem 0;
+		margin-top: -6rem;
 		input {
 			display: none;
 		}
