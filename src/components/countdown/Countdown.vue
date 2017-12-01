@@ -89,8 +89,8 @@ export default {
 			  method: 'post',
 			  url: 'http://localhost:8090/email-signup/',
 			  data: {
-			    email: 'gregm@askvest.coms',
-			 	newsletter: true,
+			    email: this.newsletter.email,
+			 	subscribed: false,
 			  }
 			})
 			  .then(function (response) {
