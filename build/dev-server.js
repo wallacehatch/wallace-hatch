@@ -6,6 +6,8 @@ if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
 
+process.env.API_URL = JSON.parse(config.dev.env.API_URL);
+
 const opn = require('opn')
 const path = require('path')
 const express = require('express')
