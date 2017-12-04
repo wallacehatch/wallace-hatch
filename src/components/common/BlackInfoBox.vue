@@ -92,9 +92,10 @@ export default {
 		width: 9.2rem;
 		height: 8.4rem;
 		margin: auto;
-		@include respond-to(lg) {margin-bottom: 9.5rem;}
-		@include respond-to(md) {margin-bottom: 6.5rem;}
-		@include respond-to(sm) {margin-bottom: 4rem;}
+		// TAKE OUT ONCE BLURBS ARE PUT IN
+		// @include respond-to(lg) {margin-bottom: 9.5rem;}
+		// @include respond-to(md) {margin-bottom: 6.5rem;}
+		// @include respond-to(sm) {margin-bottom: 4rem;}
 		background-repeat: no-repeat;
 		background-size: contain;
 		background-position: center;
