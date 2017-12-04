@@ -91,7 +91,7 @@ export default {
 		handleFieldSubmit() {
 			axios({
 			  method: 'post',
-			  url: 'http:///54.208.113.192/email-signup/',
+			  url: process.env.API_URL + '/email-signup/',
 			  data: {
 			    email: this.newsletter.email,
 			 	subscribed: false,

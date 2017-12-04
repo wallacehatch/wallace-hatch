@@ -101,7 +101,7 @@ export default {
         // result && // This is where you send this shit to the backend
         axios({
           method: 'post',
-          url: 'http:///54.208.113.192/contact-form/',
+          url: process.env.API_URL + '/contact-form/',
           data: {
             name: this.form.name,
             email: this.form.email,
