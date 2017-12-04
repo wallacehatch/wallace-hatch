@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      
+
     }
   }
 }
@@ -34,5 +34,11 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
+  }
+  input {
+    border-radius: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 </style>

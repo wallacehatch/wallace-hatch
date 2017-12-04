@@ -17,7 +17,7 @@
          </div>
      </div>
          <div class="getting-close-cont">
-            <h1 class="uppercase">We're getting <br class="sm-only">close</h1>
+            <h1 class="uppercase">We're getting<span class="hide-sm"> close</span><span class="sm-only"><br class="sm-only">close</span></h1>
             <h4 class="new-site-text uppercase sans-serif">To launching our new site</h4>
          </div>
          <hr class="break-line">
@@ -42,14 +42,14 @@
                ></std-input>
          </div>
          <div class="std-checkbox-cont">
-            <input type="checkbox" id="request-demo-cb">
+            <input type="checkbox" checked id="request-demo-cb">
             <label for="request-demo-cb">Send me the newsletter</label>
          </div>
       </div>
       <div class="countdown-info-small">
          <div class="countdown-title">
             <h1 class="uppercase">Welcome to <br> Wallace Hatch</h1>
-            <h4 class="twitter-handle uppercase sans-serif">@wallachatch</h4>
+            <h4 class="twitter-handle uppercase sans-serif"><a href="https://www.instagram.com/wallacehatch/?hl=en">@wallacehatch</a></h4>
          </div>
          <hr class="break-line">
          </hr>
@@ -64,9 +64,6 @@
    </div>
    </div>
 </template>
-
-
-
 
 <script>
 import Timer from '@/components/countdown/Timer'

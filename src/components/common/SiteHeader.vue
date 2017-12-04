@@ -57,7 +57,7 @@ export default {
 	padding-right: 0;
 }
 .header-cont{
-		overflow: auto;
+		overflow: visible;
     position: fixed;
 		z-index: 5;
     top: 0;
