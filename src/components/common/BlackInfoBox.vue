@@ -1,10 +1,10 @@
 <template>
 	<div class="black-info-box-cont">
 		<div class="black-info-icon"></div>
-		<!-- <div v-for="blurb in blurbs"class="icon-blurb">
+		<div v-for="blurb in blurbs"class="icon-blurb">
 			<i :class="blurb.icon"></i>
 			<p>{{blurb.text}}</p>
-		</div> -->
+		</div>
 	</div>
 </template>
 
@@ -35,11 +35,37 @@ export default {
 
 <style lang="scss">
 @import '../../styles/variables.scss';
-.icon-blurb {
+.black-info-box-cont{
+	width: 100%;
+	box-sizing: border-box;
+	background-color: #000000;
+	position: relative;
+	// padding: 0 1.5rem;
+	padding-top: 8.7rem;
+	// padding-bottom: 10rem;
+	@include respond-to(sm) {
+		padding-top: 4rem;
+		padding-bottom: 5.6rem;
+	}
+	.black-info-icon{
+		width: 9.2rem;
+		height: 8.4rem;
+		margin: auto;
+		@include respond-to(lg) {margin-bottom: 9.5rem;}
+		@include respond-to(md) {margin-bottom: 6.5rem;}
+		@include respond-to(sm) {margin-bottom: 4rem;}
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center;
+		background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/wh-icon.svg');
+
+	}
+	.icon-blurb {
 	display: inline-flex;
 	align-items: center;
 	width: 25%;
 	justify-content: center;
+	padding-bottom: 2.5rem;
 	@include respond-to(sm) {
 		display: flex;
 		width: auto;
@@ -76,32 +102,6 @@ export default {
 		}
 	}
 }
-.black-info-box-cont{
-	width: 100%;
-	box-sizing: border-box;
-	background-color: #000000;
-	position: relative;
-	// padding: 0 1.5rem;
-	padding-top: 8.7rem;
-	padding-bottom: 10rem;
-	@include respond-to(sm) {
-		padding-top: 4rem;
-		padding-bottom: 5.6rem;
-	}
-	.black-info-icon{
-		width: 9.2rem;
-		height: 8.4rem;
-		margin: auto;
-		// TAKE OUT ONCE BLURBS ARE PUT IN
-		// @include respond-to(lg) {margin-bottom: 9.5rem;}
-		// @include respond-to(md) {margin-bottom: 6.5rem;}
-		// @include respond-to(sm) {margin-bottom: 4rem;}
-		background-repeat: no-repeat;
-		background-size: contain;
-		background-position: center;
-		background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/wh-icon.svg');
-
-	}
 
 
 }

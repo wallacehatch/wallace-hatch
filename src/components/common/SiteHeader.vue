@@ -12,9 +12,8 @@
 			:class="{'countdown': countdownMode}" :items="nav.items"
 			:active="nav.active" navKey="siteNav">
 			</nav-bar>
-			<div v-if="!countdownMode" class="shopping-cart-icon fa fa-shopping-bag" aria-hidden="true"></div>
-			<div v-else @click="handleLinkClick" class="envelope-icon fa fa-envelope-o sm-only" :class="{countdown: countdownMode}" aria-hidden="true"></div>
-
+			<div class="shopping-cart-icon fa fa-shopping-bag" aria-hidden="true"></div>
+			<div @click="handleLinkClick" class="envelope-icon fa fa-envelope-o sm-only" aria-hidden="true"></div>
 		</div>
 		<contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive" ></contact-modal>
 	</div>
@@ -29,13 +28,12 @@ export default {
     return {
 			nav: {
 				items: this.$store.state.navItems,
-				// items: ['contact us'],
+				items: ['Home', 'Watches', 'Our Story', 'Lookbook'],
 				active: 0,
 			},
 			contactModal: {
 				active: false,
 			},
-			countdownMode: true,
     }
   },
 	methods: {

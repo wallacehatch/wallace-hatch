@@ -19,8 +19,7 @@
 		</div>
 		<!-- NAV SHOULD GO HERE -->
 		<ul class="footer-site-nav">
-			<!-- <li v-for="item in navItems"><router-link to="/">{{item}}</router-link></li> -->
-			<li v-for="item in navItems" @click="$store.commit('SET_CONTACT_ACTIVE', true)" >{{item}}</li>
+			<li v-for="item in navItems"><router-link to="/">{{item}}</router-link></li>
 		</ul>
 		</div>
 	</div>
@@ -42,8 +41,7 @@ export default {
 				submitted: false,
 				error: null,
 			},
-			// navItems: ['Home', 'Our Story', 'Pre-order list', 'contact us'],
-			navItems: ['contact us'],
+			navItems: ['Home', 'Our Story', 'Pre-order list', 'contact us'],
     }
   },
 	methods: {
