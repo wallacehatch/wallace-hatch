@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store';
 import VeeValidate from 'vee-validate';
-import { ApolloClient, createBatchingNetworkInterface } from 'apollo-client'
+import {ApolloClient, createNetworkInterface} from 'apollo-client';
 import VueApollo from 'vue-apollo'
 
 Vue.config.productionTip = false
@@ -14,12 +14,11 @@ Vue.use(VueApollo)
 
 
 const networkInterface = createNetworkInterface({
-  uri: process.env.API_URL + 'graphql',
+  uri: process.env.SHOPIFY_API_URL,
   transportBatching: true,
   mode: 'no-cors',
   connectToDevTools: true,
 });
-
 
 const middleware = {
   applyMiddleware(req, next) {
@@ -32,16 +31,11 @@ const middleware = {
 }
 
 
-// Create the apollo client
-const apolloClient = new ApolloClient({
-  networkInterface: createBatchingNetworkInterface({
-    uri: 'https://wallacehatch.myshopify.com/api/graphql',
-  }),
-  connectToDevTools: true,
-})
-
 networkInterface.use([middleware]);
-networkInterface.useAfter([afterware]);
+
+const apolloClient = new ApolloClient({
+	networkInterface: networkInterface,
+})
 
 const apolloProvider = new VueApollo({
 	defaultClient: apolloClient,

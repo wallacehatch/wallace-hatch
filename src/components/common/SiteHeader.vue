@@ -1,15 +1,12 @@
 <template>
 	<div class="header-cont">
-		<div v-if="!countdownMode" class="mobile-header-left sm-only">
-			MENU
-		</div>
-		<div class="header-left" :class="{countdown: countdownMode}">
+		<div class="header-left">
 			<div class="header-logo"></div>
 			<p class="text-mark uppercase hide-md">wallace hatch</p>
 		</div>
-		<div class="header-right" :class="{countdown: countdownMode}">
+		<div class="header-right" >
 			<nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm"
-			:class="{'countdown': countdownMode}" :items="nav.items"
+			 :items="nav.items"
 			:active="nav.active" navKey="siteNav">
 			</nav-bar>
 			<div class="shopping-cart-icon fa fa-shopping-bag" aria-hidden="true"></div>
@@ -38,7 +35,6 @@ export default {
   },
 	methods: {
 		handleLinkClick(i, dir) {
-			if (this.countdownMode) {this.$store.commit('SET_CONTACT_ACTIVE', !this.$store.state.contactModalActive)}
 		}
 	},
 	components: {

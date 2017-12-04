@@ -7,6 +7,7 @@ if (!process.env.NODE_ENV) {
 }
 
 process.env.API_URL = JSON.parse(config.dev.env.API_URL);
+process.env.SHOPIFY_API_URL = JSON.parse(config.dev.env.SHOPIFY_API_URL);
 
 const opn = require('opn')
 const path = require('path')
