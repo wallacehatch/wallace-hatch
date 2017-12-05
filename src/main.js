@@ -7,10 +7,32 @@ import store from './store';
 import VeeValidate from 'vee-validate';
 import {ApolloClient, createNetworkInterface} from 'apollo-client';
 import VueApollo from 'vue-apollo'
-
+import ShopifyBuy from 'shopify-buy'
 Vue.config.productionTip = false
 Vue.use(VeeValidate);
 Vue.use(VueApollo)
+
+
+// EXAMPLE OF UISNG SHOPIFY SDK
+var shopClient = ShopifyBuy.buildClient({
+  accessToken: process.env.SHOPIFY_ACCESS_TOKEN,
+  domain: process.env.SHOPIFY_DOMAIN,
+  appId: process.env.SHOPIFY_APP_ID,
+});
+
+// fetch a product using resource id
+shopClient.fetchProduct('430086357030')
+  .then(function (product) {
+    console.log(product);
+  })
+  .catch(function () {
+    console.log('Request failed');
+  });
+//END OF SHOPIFY SDK
+
+
+
+
 
 
 const networkInterface = createNetworkInterface({
