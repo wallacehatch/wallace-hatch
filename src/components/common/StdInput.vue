@@ -104,7 +104,7 @@
   transition: 0.2s all cubic-bezier(.33,.74,.42,.95);
   &:hover {
     cursor: pointer;
-    opacity: 0.8;
+    background-color: #262626;
   }
   transform: translateX(111px);
   &.active {

@@ -3,64 +3,68 @@
     <div id="contact_modal_mask" class="contact-modal-mask"></div>
     <div id="contact_modal_cont" @click="$emit('close')" class="contact-modal-cont">
       <div @click.stop id="contact_modal_inner_cont" class="inner-cont">
-          <div @click="$emit('close') "class="fa fa-close close-btn"></div>
-          <div class="contact-form-body">
-            <p class="heading">Need to get in<br> contact with us?</p>
-            <p class="subtext">Interested in working with us or learning more about<br class="hide-sm"> Wallace Hatch? Feel free to send us a message!</p>
-            <form class="contact-form" method="post" @submit.prevent="validateForm">
-              <contact-input
-              iName="name"
-              :iDisable="submitSuccess"
-              :class="{disabled: submitSuccess}"
-          		v-model="form.name"
-          		:iValue="form.name"
-              iValidate="required"
-          		iPlaceholder="Full Name"
-          		iClass="max">
-          		</contact-input>
+        <div @click="$emit('close') " :class="{white: submitSuccess}" class="fa fa-close close-btn"></div>
+        <div class="contact-form-body">
+          <p class="heading">Need to get in<br> contact with us?</p>
+          <p class="subtext">Interested in working with us or learning more about<br class="hide-sm"> Wallace Hatch? Feel free to send us a message!</p>
+          <form class="contact-form" method="post" @submit.prevent="validateForm">
+            <contact-input
+            iName="name"
+            :iDisable="submitSuccess"
+            :class="{disabled: submitSuccess}"
+        		v-model="form.name"
+        		:iValue="form.name"
+            iValidate="required"
+        		iPlaceholder="Full Name"
+        		iClass="max">
+        		</contact-input>
 
-              <contact-input
-              iName="email"
-              :iDisable="submitSuccess"
-              :class="{disabled: submitSuccess}"
-          		v-model="form.email"
-          		:iValue="form.email"
-              iValidate="required"
-          		iPlaceholder="Email"
-              iType="email"
-          		iClass="max">
-          		</contact-input>
+            <contact-input
+            iName="email"
+            :iDisable="submitSuccess"
+            :class="{disabled: submitSuccess}"
+        		v-model="form.email"
+        		:iValue="form.email"
+            iValidate="required"
+        		iPlaceholder="Email"
+            iType="email"
+        		iClass="max">
+        		</contact-input>
 
-              <contact-input
-              iName="company"
-              :iDisable="submitSuccess"
-              :class="{disabled: submitSuccess}"
-              iOptional="true"
-          		v-model="form.company"
-          		:iValue="form.company"
-          		iPlaceholder="Company"
-          		iClass="max">
-          		</contact-input>
+            <contact-input
+            iName="company"
+            :iDisable="submitSuccess"
+            :class="{disabled: submitSuccess}"
+            iOptional="true"
+        		v-model="form.company"
+        		:iValue="form.company"
+        		iPlaceholder="Company"
+        		iClass="max">
+        		</contact-input>
 
-              <div class="contact-text-area-cont">
-                <span :class="{disabled: submitSuccess}" class="remaining-chars">{{textarea.chars}}/250</span>
-                <textarea
-                :disabled="submitSuccess"
-                v-validate="'required'"
-                maxlength="250"
-                v-model="form.message"
-                @focus="textarea.active = true"
-                @blur="shouldBlurField"
-                @keyup="setCharCount"
-                :placeholder="errors.has('message') ? errors.first('message') : 'Enter Message'"
-                name="message" id="" cols="30" rows="7"
-                class="contact-text-area"
-                :class="{disabled: submitSuccess, 'is-danger': errors.has('message'), active: textarea.active}"></textarea>
-              </div>
-              <button :disabled="submitSuccess" type="submit" class="contact-form-btn">{{buttonText}}</button>
-            </form>
-          </div>
-
+            <div class="contact-text-area-cont">
+              <span :class="{disabled: submitSuccess}" class="remaining-chars">{{textarea.chars}}/250</span>
+              <textarea
+              :disabled="submitSuccess"
+              v-validate="'required'"
+              maxlength="250"
+              v-model="form.message"
+              @focus="textarea.active = true"
+              @blur="shouldBlurField"
+              @keyup="setCharCount"
+              :placeholder="errors.has('message') ? errors.first('message') : 'Enter Message'"
+              name="message" id="" cols="30" rows="7"
+              class="contact-text-area"
+              :class="{disabled: submitSuccess, 'is-danger': errors.has('message'), active: textarea.active}"></textarea>
+            </div>
+            <button :disabled="submitSuccess" type="submit" class="contact-form-btn">{{buttonText}}</button>
+          </form>
+        </div>
+        <div v-show="submitSuccess" id="success_overlay" class="success-overlay-cont">
+          <i class="fa fa-envelope-o"></i>
+          <p class="title">Thank You for<span class="hide-sm"> the message.</span><span class="sm-only"><br>the message.</span> </p>
+          <p class="subtext">We are contiously perfecting our timepieces, when we have a moment we’ll get back to you.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -89,6 +93,7 @@ export default {
       },
       lActive: false,
       submitSuccess: false,
+      // submitSuccess: true,
       buttonText: 'Send',
       dur: 500,
 
@@ -97,9 +102,7 @@ export default {
   methods: {
     validateForm() {
       this.$validator.validateAll().then((result) => {
-        console.log("heres message ",this.form.message )
-        // result && // This is where you send this shit to the backend
-        axios({
+        result && axios({
           method: 'post',
           url: process.env.API_URL + '/contact-form/',
           data: {
@@ -109,16 +112,14 @@ export default {
             message: this.form.message,
           }
         })
-          .then((response) => {
-            this.submitSuccess = true;
-            this.buttonText = 'Message Sent Successfully';
-            setTimeout(() => {
-              this.$emit('close');
-            }, 1500)
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        .then((response) => {
+          this.submitSuccess = true;
+          setTimeout(() => {
+            this.$emit('close');
+          }, 2500)
+        }, (error) => {
+          console.log('Submission Error: ', error);
+        })
       })
     },
     clearForm() {
@@ -131,6 +132,7 @@ export default {
       this.form.message = null;
       this.textarea.chars = 0;
       this.errors.clear();
+      document.getElementById('success_overlay').style.opacity = 0.0;
     },
     shouldBlurField(e) {
       if (!e.target.value) {this.textarea.active = false;}
@@ -186,7 +188,14 @@ export default {
   watch: {
     'active' (newState) {
       this.toggleModal(newState);
-
+    },
+    'submitSuccess' (newState) {
+      newState && anime({
+        targets: '#success_overlay',
+        opacity: 1.0,
+        duration: this.dur,
+        easing: 'easeOutCubic',
+      })
     }
   }
 }
@@ -194,6 +203,47 @@ export default {
 
 <style lang="scss">
   @import '../../../styles/_variables.scss';
+  .success-overlay-cont {
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding-top: 33%;
+    opacity: 0.0;
+    i {
+      font-size: 42px;
+      display: block;
+      text-align: center;
+      color: $wh-white;
+    }
+    .title {
+      @include h5;
+      color: $wh-white;
+      font-size: 1.8rem;
+    	line-height: 1.78;
+    	letter-spacing: 5px;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 3.5rem;
+      margin-top: 2rem;
+      @include respond-to(sm) {
+        font-size: 1.6rem;
+        letter-spacing: 3px;
+      }
+    }
+    .subtext {
+      @include text-body;
+      color: $wh-white;
+      padding: 0 10rem;
+      text-align: center;
+      max-width: 40rem;
+      margin: auto;
+      margin-top: 1rem;
+      @include respond-to(sm) {padding: 0 2rem;}
+    }
+  }
   .contact-modal-mask {
     position: fixed;
     top: 0;
@@ -223,6 +273,7 @@ export default {
       right: 0;
       top: 0;
       transform: translateX(101%);
+      -webkit-transform: translateX(101%);
       @include respond-to(sm) {
         width: 94%;
       }
@@ -233,11 +284,14 @@ export default {
       width: 2.4rem;
       height: 3.2rem;
       float: right;
+      position: relative;
+      z-index: 1;
       margin: 2rem 2rem 1.8rem 2rem;
       transition: 0.2s all linear;
+      &.white {color: $wh-white;}
       &:hover {
         cursor: pointer;
-        opacity: 0.8;
+        color: #262626;
       }
       @include respond-to(sm) {
         margin: 1rem 1rem 0 0;
@@ -341,14 +395,12 @@ export default {
     font-weight: bold;
     text-transform: uppercase;
     border-radius: 0;
-    border: 3px solid $wh-black;
     outline: none;
     transition: 0.2s all linear;
     margin-bottom: 3rem;
     &:hover {
       cursor: pointer;
-      background-color: $wh-white;
-      color: $wh-black;
+      background-color: #262626;
     }
     @include respond-to(sm) {
       font-size: 1.4rem;
