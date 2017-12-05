@@ -25,7 +25,6 @@ export default {
     return {
 			nav: {
 				items: this.$store.state.navItems,
-				items: ['Home', 'Watches', 'Our Story', 'Lookbook'],
 				active: 0,
 			},
 			contactModal: {

@@ -10,14 +10,15 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Countdown',
-      component: Countdown
-    },
-    {
-      path: '/Home',
       name: 'Home',
-      component: Home,
+      component: Home
+      // redirect: '/Home'
     },
+    // {
+    //   path: '/Home',
+    //   name: 'Home',
+    //   component: Home,
+    // },
     { path: '/product-page/:id',
     name: 'ProductPage',
     component: ProductPage ,

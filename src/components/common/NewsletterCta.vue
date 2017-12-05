@@ -19,7 +19,7 @@
 		</div>
 		<!-- NAV SHOULD GO HERE -->
 		<ul class="footer-site-nav">
-			<li v-for="item in navItems"><router-link to="/">{{item}}</router-link></li>
+			<li @click="function(){handleNavClick(item)}" v-for="item in navItems">{{item.name}}</li>
 		</ul>
 		</div>
 	</div>
@@ -41,10 +41,42 @@ export default {
 				submitted: false,
 				error: null,
 			},
-			navItems: ['Home', 'Our Story', 'Pre-order list', 'contact us'],
+			// navItems: ['Home', 'Our Story', 'Pre-order list', 'contact us'],
+			navItems: [{
+				name: 'Home',
+				id: 'home'
+			}, {
+				name: 'Our Story',
+				id: 'ourStory',
+			}, {
+				name: 'Pre-Order list',
+				id: 'preOrderList'
+			}, {
+				name: 'Contact Us',
+				id: 'contactUs',
+			}]
     }
   },
 	methods: {
+		handleNavClick(item) {
+			switch (item.id) {
+			case 'home':
+				this.$router.push('/');
+			break;
+			case 'ourStory':
+				console.log('our story clicked');
+			break;
+			case 'preOrderList':
+				console.log('pre-order list clicked');
+			break;
+			case 'contactUs':
+				console.log('contact us clicked');
+				this.$store.commit('SET_CONTACT_ACTIVE', true);
+			break;
+			default:
+			break;
+			}
+		},
 		handleFieldSubmit() {
 			// validate INPUT
 			if (!this.newsletter.email || this.newsletter.submitted) {this.newsletter.error = 'please enter a valid email.'; return;}
