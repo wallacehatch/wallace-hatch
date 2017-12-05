@@ -11,11 +11,11 @@
 			</div>
 			<div class="footer-right">
 				  <!-- Desktop Only -->
-				<router-link target="_blank" to="/terms" class="legal-link">Terms & conditions</router-link>
-				<router-link target="_blank" to="/privacy" class="legal-link hide-sm">Privacy policy</router-link>
+				<router-link to="/terms" class="legal-link">Terms & conditions</router-link>
+				<router-link to="/privacy" class="legal-link hide-sm">Privacy policy</router-link>
 				<router-link class="legal-link hide-sm" to="/" disabled>© 2017 Wallace Hatch</router-link>
 				<!-- Mobile Only -->
-				<router-link target="_blank" to="/privacy" class="legal-link sm-only">Privacy policy</router-link>
+				<router-link to="/privacy" class="legal-link sm-only">Privacy policy</router-link>
 				<router-link class="legal-link block" to="/" disabled>© 2017 Wallace Hatch</router-link>
 			</div>
 		</div>
