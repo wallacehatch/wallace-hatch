@@ -1,10 +1,10 @@
 <template>
    <div class="countdown-cont">
       <div class="countdown-inner-cont">
-      	<div class="countdown-info-large">
+      	<div class="countdown-info-large hide-sm">
          <div class="countdown-title">
             <h1 class="uppercase">Welcome to <br> Wallace Hatch</h1>
-            <h4 class="twitter-handle uppercase sans-serif">@wallachatch</h4>
+            <h4 class="twitter-handle uppercase sans-serif"><a target="_blank" href="https://www.instagram.com/wallacehatch/?hl=en">@wallacehatch</a></h4>
          </div>
          <hr class="break-line">
          </hr>
@@ -46,10 +46,10 @@
             <label for="request-demo-cb">Send me the newsletter</label>
          </div>
       </div>
-      <div class="countdown-info-small">
+      <div class="countdown-info-small sm-only">
          <div class="countdown-title">
             <h1 class="uppercase">Welcome to <br> Wallace Hatch</h1>
-            <h4 class="twitter-handle uppercase sans-serif"><a href="https://www.instagram.com/wallacehatch/?hl=en">@wallacehatch</a></h4>
+            <h4 class="twitter-handle uppercase sans-serif"><a target="_blank" href="https://www.instagram.com/wallacehatch/?hl=en">@wallacehatch</a></h4>
          </div>
          <hr class="break-line">
          </hr>
@@ -200,6 +200,13 @@ export default {
     .twitter-handle {
         margin-top: 1rem;
         font-weight: 500;
+
+        a {
+          text-decoration: none;
+          color: inherit;
+          transition: 0.2s all linear;
+          &:hover { color: #262626; }
+        }
         @include respond-to(sm) {
           font-size: 1.2rem;
           line-height: 2.0;
