@@ -30,7 +30,7 @@ export default {
     name: 'Timer',
     data() {
         return {
-            date: Math.trunc((new Date(2017, 11,10)) / 1000),
+            date: Math.trunc((new Date(2017, 12, 27)) / 1000),
             now: Math.trunc((new Date()).getTime() / 1000),
         }
     },
