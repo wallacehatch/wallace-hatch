@@ -3,24 +3,25 @@ import Router from 'vue-router'
 import Countdown from '@/components/countdown/Countdown'
 import Home from '@/components/home/Home'
 import ProductPage from '@/components/product/ProductPage'
+import Terms from '@/components/legal/Terms'
+import Privacy from '@/components/legal/Privacy'
 
 Vue.use(Router)
-
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/',
-      name: 'Countdown',
-      component: Countdown
-    },
-    {
-      path: '/Home',
       name: 'Home',
-      component: Home,
-    },
-    { path: '/product/:id',
-    name: 'ProductPage',
-    component: ProductPage ,
-  }
-  ]
+      component: Home
+      // redirect: '/Home'
+    }, {
+      path: '/terms',
+      component: Terms,
+    }, {
+      path: '/privacy',
+      component: Privacy,
+    }, {
+      path: '/product-page/:id',
+      name: 'ProductPage',
+      component: ProductPage ,
+    }]
 })

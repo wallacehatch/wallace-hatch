@@ -1,16 +1,16 @@
 <template>
 	<div class="header-cont">
+		<div class="mobile-header-left sm-only">MENU</div>
 		<div class="header-left">
 			<div class="header-logo"></div>
 			<p class="text-mark uppercase hide-md">wallace hatch</p>
 		</div>
-		<div class="header-right" >
+		<div class="header-right">
 			<nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm"
 			 :items="nav.items"
 			:active="nav.active" navKey="siteNav">
 			</nav-bar>
 			<div class="shopping-cart-icon fa fa-shopping-bag" aria-hidden="true"></div>
-			<div @click="handleLinkClick" class="envelope-icon fa fa-envelope-o sm-only" aria-hidden="true"></div>
 		</div>
 		<contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive" ></contact-modal>
 	</div>
@@ -25,7 +25,6 @@ export default {
     return {
 			nav: {
 				items: this.$store.state.navItems,
-				items: ['Home', 'Watches', 'Our Story', 'Lookbook'],
 				active: 0,
 			},
 			contactModal: {
@@ -46,10 +45,10 @@ export default {
 
 <style lang="scss">
 @import '../../styles/_variables.scss';
-.countdown .v-nav-link {
-	margin-right: 0;
-	padding-right: 0;
-}
+// .countdown .v-nav-link {
+// 	margin-right: 0;
+// 	padding-right: 0;
+// }
 .header-cont{
 		overflow: visible;
     position: fixed;
@@ -61,22 +60,33 @@ export default {
     border-bottom: 1px solid #d8d8d8;
 		padding: 0 2rem;
 		@include respond-to(sm) {padding: 0 1rem;}
+		.mobile-menu-left {
+			@include intro-text;
+			font-size: 1.2rem;
+			font-weight: bold;
+			letter-spacing: 1px;
+			text-align: center;
+			padding: 0 1rem;
+			height: 5.5rem;
+			// display: inline-block;
+			float: left;
+		}
 		.header-right {
 			float: right;
 			@include respond-to(sm) {
-				float: left;
-				&.countdown {
-					float: right;
-					padding: 1.3rem 0.9rem 1.7rem 1.9rem;
-					border-left: 1px solid #ececec;
-				}
+				float: right;
+				// &.countdown {
+				// 	float: right;
+				// 	padding: 1.3rem 0.9rem 1.7rem 1.9rem;
+				// 	border-left: 1px solid #ececec;
+				// }
 			}
 			.wh-site-nav {
 				display: inline-block;
 				margin-right: 3rem;
-				&.countdown {
-					margin-right: 0rem;
-				}
+				// &.countdown {
+				// 	margin-right: 0rem;
+				// }
 			}
 			.shopping-cart-icon {
 				font-size: 32px;
@@ -106,16 +116,13 @@ export default {
 			border-right: 1px solid #ececec;
 			float: left;
 		}
-		.header-left{
+	.header-left{
 		float: left;
 		overflow: auto;
 		padding: 1.9rem 0;
 		@include respond-to(sm) {
 			padding: 1.4rem 0 1.6rem 0;
 			width: calc(100% - 10.74rem);
-			&.countdown {
-				width: initial;
-			}
 		}
 		.header-logo {
 			float: left;
@@ -140,11 +147,6 @@ export default {
 			line-height: 3.2rem;
 			padding-left: 1.6rem;
 		}
+	}
 }
-
-
-}
-
-
-
 </style>

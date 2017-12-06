@@ -23,12 +23,10 @@ export default {
     }
   },
   mounted(){
-    svc.checkoutCart(null, (result)=>{
-      var checkoutCartId = result.id
+    svc.checkoutCart((result)=>{
       svc.products((result) =>{
-
-      console.log(result[0].variants[0].id)
-    svc.addToCheckout(result[0].variants[0].id, 5, checkoutCartId,(result)=>{
+      svc.addToCheckout(result[0].variants[0].id, 10,(result)=>{
+        console.log("added to checkout")
       console.log(result)
 
     });

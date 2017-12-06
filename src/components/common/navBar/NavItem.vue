@@ -13,11 +13,10 @@
 		margin: 0 0.8rem;
 		border-bottom: solid 3px transparent;
 		display: inline-block;
-		padding: 2.5rem 1rem calc(3.0rem - 3px) 1rem;
-		padding: 2rem 1rem calc(2rem - 3px) 1rem;
+		padding: 0rem 1rem calc(2rem - 4.5px) 1rem;
 		text-decoration: none;
 		@include text-link;
-		line-height: 3rem;
+		line-height: 7rem;
 		color: $wh-black;
 		transition: 0.2s all linear;
 		&:hover {

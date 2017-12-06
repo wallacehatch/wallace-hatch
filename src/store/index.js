@@ -6,11 +6,8 @@ Vue.use(Vuex);
 
 const state = {
 	mobile: false,
-	// TODO This is for full site
-	// navItems: ['Home', 'Watches', 'Our Story', 'Lookbook'],
-
-	// This is for countdown site
-	navItems: ['Contact Us'],
+	navItems: ['Home', 'Watches', 'Our Story', 'Lookbook'],
+	// navItems: ['Contact Us'],
 	contactModalActive: false,
 }
 const mutations = {

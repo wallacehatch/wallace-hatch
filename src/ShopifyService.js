@@ -52,7 +52,7 @@ function fetchCollection(collectionId, success, fail) {
     });
 }
 
-function checkoutCartId(){
+function getCheckoutCartId(){
 	return localStorage.getItem('checkoutCartId');
 }
 
@@ -61,7 +61,7 @@ function setCheckoutCartId(checkoutCartId){
 }
 
 function fetchCheckoutCart(success, fail) {
-	var checkoutCartId = checkoutCartId();
+	const checkoutCartId = getCheckoutCartId();
 
     if (!checkoutCartId) {
         svc.client.checkout.create().then((checkout) => {
@@ -76,12 +76,13 @@ function fetchCheckoutCart(success, fail) {
     }
 }
 
-function addToCheckout(productVariantId, quantity, checkoutCartId, success, fail) {
+function addToCheckout(productVariantId, quantity, success, fail) {
 
     const lineItemsToAdd = [{
         variantId: productVariantId,
         quantity: quantity
     }];
+    const checkoutCartId = getCheckoutCartId();
     svc.client.checkout.addLineItems(checkoutCartId, lineItemsToAdd).then((checkout) => {
         success && success(checkout)
     }, (error) => {
