@@ -11,6 +11,11 @@
     </div>
     <div class="instagram-feed-cont">
       <div class="instagram-image i0"></div>
+      <div class="instagram-image i1"></div>
+      <div class="instagram-image i2"></div>
+      <div class="instagram-image i3"></div>
+      <div class="instagram-image i4"></div>
+      <div class="instagram-image i5"></div>
     </div>
   </div>
 </template>
@@ -24,8 +29,9 @@ export default {
 <style lang="scss">
   @import '../../styles/_variables.scss';
   .instagram-feed-cont {
-    margin-top: 4rem;
-    padding: 0 2.3rem;
+    // margin-top: 4rem;
+    margin: 4rem 2.3rem 0 2.3rem;
+    box-sizing: border-box;
     @include respond-to(lg) {margin-top: 0rem;}
     @include respond-to(md) {margin-top: 1.5rem;}
     @include respond-to(sm) {margin-top: 2.5rem;}
@@ -33,8 +39,25 @@ export default {
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-
+      width: 16.666%;
+      height: 16.66vw;
+      display: inline-block;
       &.i0 {
+        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
+      }
+      &.i1 {
+        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
+      }
+      &.i2 {
+        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
+      }
+      &.i3 {
+        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
+      }
+      &.i4 {
+        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
+      }
+      &.i5 {
         background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
       }
     }
