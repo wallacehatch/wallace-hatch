@@ -2,7 +2,7 @@
   <div v-show="lActive">
     <div id="contact_modal_mask" class="contact-modal-mask"></div>
     <div id="contact_modal_cont" @click="$emit('close')" class="contact-modal-cont">
-      <div @click.stop id="contact_modal_inner_cont" class="inner-cont">
+      <div @click.stop id="contact_modal_inner_cont" class="inner-cont" style="transform: translateX(101%)">
         <div @click="$emit('close') " :class="{white: submitSuccess}" class="fa fa-close close-btn"></div>
         <div class="contact-form-body">
           <p class="heading">Need to get in<br> contact with us?</p>
@@ -106,6 +106,8 @@ export default {
           method: 'post',
           url: process.env.API_URL + '/contact-form/',
           data: {
+            fname: 'first name here',
+            lname: 'last name here',
             name: this.form.name,
             email: this.form.email,
             company: this.form.company,
@@ -144,21 +146,18 @@ export default {
       if (active) {
         this.lActive = true;
         document.body.style.overflow = 'hidden';
-        setTimeout(() => {
-          anime({
-            targets: '#contact_modal_mask',
-            opacity: 1.0,
-            duration: this.dur,
-            easing: 'easeInOutCubic'
-          })
-          anime({
-            targets: '#contact_modal_inner_cont',
-            translateX: 0,
-            duration: this.dur,
-            easing: 'easeInOutCubic'
-          })
+        anime({
+          targets: '#contact_modal_mask',
+          opacity: 1.0,
+          duration: this.dur,
+          easing: 'easeInOutCubic',
         })
-
+        anime({
+          targets: '#contact_modal_inner_cont',
+          translateX: 0,
+          duration: this.dur,
+          easing: 'easeInOutCubic',
+        })
       }
       else {
         document.body.style.overflow = 'initial';
@@ -184,9 +183,11 @@ export default {
   mounted() {
     // uncomment this to have form always out
     // this.toggleModal(true);
+
   },
   watch: {
     'active' (newState) {
+      console.log('hitting active watch');
       this.toggleModal(newState);
     },
     'submitSuccess' (newState) {
