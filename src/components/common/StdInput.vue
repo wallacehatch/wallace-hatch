@@ -67,7 +67,7 @@
   }
   &.submitted .side-label {
     transition: 0.4s transform cubic-bezier(.33,.74,.42,.95);
-    transform: translateX(-27.5rem);
+    // transform: translateX(-27.5rem);
     width: 38.4rem;
     &:hover {
       cursor: initial;
