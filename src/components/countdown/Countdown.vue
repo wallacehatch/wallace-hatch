@@ -91,7 +91,7 @@ export default {
 			  url: process.env.API_URL + '/email-signup/',
 			  data: {
 			    email: this.newsletter.email,
-			 	subscribed: false,
+			 	subscribed: true,
 			  }
 			})
 			  .then(function (response) {

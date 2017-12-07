@@ -29,6 +29,7 @@
 <script>
 import NavBar from  './navBar/NavBar';
 import StdInput from './StdInput';
+import axios from 'axios';
 export default {
   name: 'NewsletterCta',
 	components: {
@@ -54,6 +55,21 @@ export default {
 				this.newsletter.error = '';
 				this.newsletter.submitted = true;
 				//actually submit to DB
+				axios({
+				  method: 'post',
+				  url: process.env.API_URL + '/email-signup/',
+				  data: {
+				    email: this.newsletter.email,
+				 	subscribed: true,
+				  }
+				})
+				  .then(function (response) {
+				    console.log(response);
+				  })
+				  .catch(function (error) {
+				    console.log(error);
+				  });
+	
 			}
 		}
 	}
