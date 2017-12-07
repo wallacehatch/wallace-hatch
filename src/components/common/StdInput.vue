@@ -14,7 +14,7 @@
       <label @click="$emit('submitForm')"
       :class="{active: active}"
       class="side-label">
-        <span class="side-label-text uppercase">{{submitted ? 'Thank you for signing up for our newsletter' : 'Sign Up'}}</span>
+        <span class="side-label-text uppercase">{{submitted ? 'Thanks! we\'ll keep you posted' : 'Sign Up'}}</span>
       </label>
     </div>
   </div>

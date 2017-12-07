@@ -86,20 +86,28 @@ export default {
   },
 	methods: {
 		handleFieldSubmit() {
-			axios({
-			  method: 'post',
-			  url: process.env.API_URL + '/email-signup/',
-			  data: {
-			    email: this.newsletter.email,
-			 	subscribed: true,
-			  }
-			})
-			  .then(function (response) {
-			    console.log(response);
-			  })
-			  .catch(function (error) {
-			    console.log(error);
-			  });
+      if (!this.newsletter.email || this.newsletter.submitted) {
+				this.newsletter.error = 'please enter a valid email.';
+				return;
+			}
+      else {
+        axios({
+  			  method: 'post',
+  			  url: process.env.API_URL + '/email-signup/',
+  			  data: {
+  			    email: this.newsletter.email,
+  			 	subscribed: true,
+  			  }
+  			})
+  		  .then((response) => {
+  		    console.log(response);
+          this.newsletter.error = '';
+  				this.newsletter.submitted = true;
+  		  })
+  		  .catch(function (error) {
+  		    console.log(error);
+  		  });
+      }
 		},
 	}
 }

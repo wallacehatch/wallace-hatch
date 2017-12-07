@@ -50,26 +50,29 @@ export default {
 	methods: {
 		handleFieldSubmit() {
 			// validate INPUT
-			if (!this.newsletter.email || this.newsletter.submitted) {this.newsletter.error = 'please enter a valid email.'; return;}
+			if (!this.newsletter.email || this.newsletter.submitted) {
+				this.newsletter.error = 'please enter a valid email.';
+				return;
+			}
 			else {
-				this.newsletter.error = '';
-				this.newsletter.submitted = true;
 				//actually submit to DB
 				axios({
 				  method: 'post',
 				  url: process.env.API_URL + '/email-signup/',
 				  data: {
 				    email: this.newsletter.email,
-				 	subscribed: true,
+						subscribed: true,
 				  }
 				})
-				  .then(function (response) {
-				    console.log(response);
-				  })
-				  .catch(function (error) {
-				    console.log(error);
-				  });
-	
+			  .then((response) => {
+			    console.log(response);
+					this.newsletter.error = '';
+					this.newsletter.submitted = true;
+			  })
+			  .catch(function (error) {
+			    console.log(error);
+			  });
+
 			}
 		}
 	}
