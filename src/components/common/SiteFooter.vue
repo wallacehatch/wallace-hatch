@@ -4,10 +4,10 @@
 		<newsletter-cta></newsletter-cta>
 		<div class="site-footer-cont">
 			<div class="footer-left">
-				<a target="_blank" href="https://www.instagram.com/wallaceHatch/" class="social-link fa fa-instagram"></a>
-				<a target="_blank" href="https://www.facebook.com/WallaceHatch/" class="social-link fa fa-facebook"></a>
-				<a target="_blank" href="https://twitter.com/WallaceHatch" class="social-link fa fa-twitter"></a>
-				<a href="mailto:hello@wallacehatch.com?Subject=Checked%20Out%20the%20Site" class="social-link fa fa-envelope-o"></a>
+				<a target="_blank" href="https://www.instagram.com/wallaceHatch/" class="social-link fab fa-instagram"></a>
+				<a target="_blank" href="https://www.facebook.com/WallaceHatch/" class="social-link fab fa-facebook-f"></a>
+				<a target="_blank" href="https://twitter.com/WallaceHatch" class="social-link fab fa-twitter"></a>
+				<a href="mailto:hello@wallacehatch.com?Subject=Checked%20Out%20the%20Site" class="social-link fal fa-envelope"></a>
 			</div>
 			<div class="footer-right">
 				  <!-- Desktop Only -->
@@ -63,7 +63,7 @@
 			text-align: center;
 			margin-bottom: 4.5rem;
 		}
-		.social-link {
+	.social-link {
 		display: inline-block;
 		text-decoration: none;
 		color: $wh-black;
@@ -72,6 +72,7 @@
 		transition: 0.2s all linear;
 		&:hover {
 			opacity: 0.5;
+			cursor: pointer;
 		}
 		@include respond-to(sm) {
 			margin: 0 1.6rem;
@@ -105,7 +106,7 @@
 	}
 	.footer-right {
 		float: left;
-		width: calc(100% - 19.1rem);
+		width: calc(100% - 19.2rem);
 		text-align: right;
 		@include respond-to(sm) {
 			float: none;

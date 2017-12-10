@@ -2,7 +2,7 @@
 	<div class="black-info-box-cont">
 		<div class="black-info-icon"></div>
 		<div v-for="blurb in blurbs"class="icon-blurb">
-			<i :class="blurb.icon"></i>
+			<i class="blurb-icon" :class="blurb.icon"></i>
 			<p>{{blurb.text}}</p>
 		</div>
 	</div>
@@ -17,16 +17,16 @@ export default {
     return {
 			blurbs: [{
 				text: 'Free Worldwide Shipping on orders over $50',
-				icon: 'fa fa-paper-plane-o'
+				icon: 'fal fa-paper-plane'
 			}, {
 				text: 'Free Returns Worldwide on orders over $95',
-				icon: 'fa fa-undo'
+				icon: 'fal fa-undo'
 			}, {
 				text: '24/7 Customer  service support',
-				icon: 'fa fa-life-ring'
+				icon: 'fal fa-life-ring'
 			}, {
 				text: 'Safe and Secure Checkout',
-				icon: 'fa fa-shield'
+				icon: 'fal fa-shield'
 			}]
     }
   }
@@ -76,7 +76,7 @@ export default {
 		justify-content: flex-start;
 		border-top: 1px solid #252525;
 	}
-	i {
+	.blurb-icon {
 		display: inline-block;
 		color: $wh-white;
 		font-size: 3.2rem;

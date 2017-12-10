@@ -121,6 +121,7 @@
     font-weight: 500;
     letter-spacing: 2px;
     color: white;
+    text-transform: uppercase;
   }
 }
 

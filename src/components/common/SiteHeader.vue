@@ -10,7 +10,7 @@
 			 :items="nav.items"
 			:active="nav.active" navKey="siteNav">
 			</nav-bar>
-			<div class="shopping-cart-icon fa fa-shopping-bag" aria-hidden="true"></div>
+			<div class="shopping-cart-icon fal fa-shopping-bag" aria-hidden="true"></div>
 		</div>
 		<contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive" ></contact-modal>
 	</div>
@@ -89,11 +89,12 @@ export default {
 				// }
 			}
 			.shopping-cart-icon {
-				font-size: 32px;
-				font-weight: 300;
+				font-size: 3.2rem;
+				margin-bottom: -0.75rem;
 				display: inline-block;
 				@include respond-to(sm) {
 					font-size: 2.56rem;
+					margin: 0;
 					padding: 1.3rem 0.9rem 1.7rem 1.9rem;
 					border-left: 1px solid #ececec;
 				}
