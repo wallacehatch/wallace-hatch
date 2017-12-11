@@ -6,19 +6,35 @@
     <div class="hover-tile-cont">
       <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0].src + ')'}"></div>
       <p class="product-info"><span class="title">{{product.title}}</span> <span class="price">{{139.99 | currency}}</span></p>
-      <div class="add-cart-btn">Add to cart</div>
+      <div class="add-cart-btn" @click="handleAddCartClick(product.variants[0].id)">Add to cart</div>
     </div>
   </div>
 </template>
 
 <script>
+import ShopifySvc from '@/ShopifyService.js';
 export default {
+  data () {
+    return {
+      nav: {
+        items: this.$store.state.navItems,
+        active: 0,
+      },
+    }
+  },
   props: ['product'],
   methods: {
     handleTileClick() {
       this.$router.push('/watches/' + this.product.id)
     }
-  }
+    handleAddCartClick(productId) {
+      ShopifySvc.checkoutCart((result)=>{
+      ShopifySvc.addToCheckout(productId, 1,(result)=>{
+        this.$store.commit('SET_CART_ACTIVE', true);
+        });
+      });
+    }
+  },
 }
 </script>
 

@@ -1,3 +1,4 @@
 export const SET_APP_LOADING = 'SET_APP_LOADING';
 export const SET_CONTACT_ACTIVE = 'SET_CONTACT_ACTIVE';
 export const SET_MOBILE = 'SET_MOBILE';
+export const SET_CART_ACTIVE = 'SET_CART_ACTIVE';
