@@ -11,8 +11,10 @@
     </div>
     <div class="instagram-feed-cont">
       <div v-for="(post, i) in instagramPosts">
+        <a style="display:block" v-bind:href="'https://www.instagram.com/p/'+ post.code + '/'">
         <div class="instagram-image" v-if="i<4" v-bind:style="{ 'background-image': 'url(' + post.display_src + ')' }"></div>
-         <div class="instagram-image hide-sm" v-if="i>=4" v-bind:style="{ 'background-image': 'url(' + post.display_src + ')' }"></div>
+        <div class="instagram-image" v-if="i>=4" v-bind:style="{ 'background-image': 'url(' + post.display_src + ')' }"></div>
+      </a>
       </div>
       <div class="insta-btn-wrapper">
         <a target="_blank" href="https://www.instagram.com/wallaceHatch/" class="view-insta-btn">View Our Instagram</a>
@@ -32,9 +34,8 @@ export default {
   mounted(){
     fetchInstagramPosts((result)=>{
       this.instagramPosts = result.data.user.media.nodes
- });
+  });
   }
-
 }
 </script>
 
@@ -76,48 +77,19 @@ export default {
       background-position: center;
       background-repeat: no-repeat;
       width: 16.66%;
+      font-size: 30rem;
       height: calc(16.66vw - 0.766rem);
       float: left;
+       text-indent: 100%;
+       &:hover {   
+         transition: .2s;
+          transform: translate(0px, -10px);
+      }
       @include respond-to(lg) {height: calc(16.66vw - 0.333rem);}
       @include respond-to(sm) {
         height: calc(50vw - 1rem);
+
         width: 50%;
-      }
-      &.i0 {
-        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
-      }
-      &.i1 {
-        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
-      }
-      &.i2 {
-        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
-      }
-      &.i3 {
-        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
-      }
-      &.i4 {
-        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
-      }
-      &.i5 {
-        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
-      }
-      &.i6 {
-        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
-      }
-      &.i7 {
-        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
-      }
-      &.i8 {
-        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
-      }
-      &.i9 {
-        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
-      }
-      &.i10 {
-        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
-      }
-      &.i11 {
-        background-image: url('https://instagram.com/p/Bb2qU-4hVvn/media/');
       }
     }
   }
