@@ -14,7 +14,7 @@
       <label @click="$emit('submitForm')"
       :class="{active: active}"
       class="side-label">
-        <span class="side-label-text">{{submitted ? 'Thank you for signing up for our newsletter' : 'Sign Up'}}</span>
+        <span class="side-label-text uppercase">{{submitted ? 'Thanks! we\'ll keep you posted' : 'Sign Up'}}</span>
       </label>
     </div>
   </div>
@@ -66,9 +66,9 @@
     box-sizing: border-box;
   }
   &.submitted .side-label {
-    transition: 0.4s transform cubic-bezier(.33,.74,.42,.95);
-    transform: translateX(-27.5rem);
-    width: 38.4rem;
+    transition: 0.2s width cubic-bezier(.33,.74,.42,.95);
+    max-width: 38rem;
+    width: 100%;
     &:hover {
       cursor: initial;
       opacity: 1.0;
@@ -101,7 +101,7 @@
   display: flex;
   align-items: center;
   background-color: black;
-  transition: 0.2s all cubic-bezier(.33,.74,.42,.95);
+  transition: 0.2s transform cubic-bezier(.33,.74,.42,.95);
   &:hover {
     cursor: pointer;
     background-color: #262626;
@@ -121,7 +121,6 @@
     font-weight: 500;
     letter-spacing: 2px;
     color: white;
-    text-transform: uppercase;
   }
 }
 
