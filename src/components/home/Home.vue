@@ -8,7 +8,7 @@
       <button class="hero-btn">Shop now</button>
     </div>
     <!-- PRODUCT SHOWCASE -->
-    <div class="showcase-cont">
+    <div class="section-heading-cont">
       <p class="header">Pre-order now</p>
       <p class="subtext">We won’t charge you,<br class="sm-only"> until we ship</p>
       <hr class="line">
@@ -81,9 +81,12 @@ export default {
 
 
   // PRODUCT SHOWCASE
-  .showcase-cont {
-    padding: 6rem 0 4rem 0;
+  .section-heading-cont {
+    padding: 8rem 0 3rem 0;
     text-align: center;
+    @include respond-to(lg) { padding: 6rem 0 5rem 0;}
+    @include respond-to(md) { padding: 5rem 0 3rem 0;}
+    @include respond-to(sm) { padding: 3rem 0 1rem 0;}
     .header {
       @include h4;
       line-height: 1.58;

@@ -2,8 +2,8 @@
   <div v-show="lActive">
     <div id="contact_modal_mask" class="contact-modal-mask"></div>
     <div id="contact_modal_cont" @click="$emit('close')" class="contact-modal-cont">
-      <div @click.stop id="contact_modal_inner_cont" class="inner-cont">
-        <div @click="$emit('close') " :class="{white: submitSuccess}" class="fa fa-close close-btn"></div>
+      <div @click.stop id="contact_modal_inner_cont" class="inner-cont" style="transform: translateX(101%)">
+        <div @click="$emit('close')" :class="{white: submitSuccess}" class="fal fa-times close-btn"></div>
         <div class="contact-form-body">
           <p class="heading">Need to get in<br> contact with us?</p>
           <p class="subtext">Interested in working with us or learning more about<br class="hide-sm"> Wallace Hatch? Feel free to send us a message!</p>
@@ -61,7 +61,7 @@
           </form>
         </div>
         <div v-show="submitSuccess" id="success_overlay" class="success-overlay-cont">
-          <i class="fa fa-envelope-o"></i>
+          <i class="fal fa-envelope"></i>
           <p class="title">Thank You for<span class="hide-sm"> the message.</span><span class="sm-only"><br>the message.</span> </p>
           <p class="subtext">We are contiously perfecting our timepieces, when we have a moment we’ll get back to you.</p>
         </div>
