@@ -4189,9 +4189,9 @@ shelljs@^0.7.6:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
-shopify-buy@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/shopify-buy/-/shopify-buy-1.0.0.tgz#06f70a9e5864382e52b735ec1ec0038eca4e7d0d"
+shopify-buy@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/shopify-buy/-/shopify-buy-1.0.1.tgz#79d0cd60c04cbdb084399548779082fdbc4b5c31"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
@@ -4685,6 +4685,10 @@ vue-template-es2015-compiler@^1.6.0:
 vue-the-mask@^0.11.1:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/vue-the-mask/-/vue-the-mask-0.11.1.tgz#91ee01008354ae57bccc79bb61b65f32d971d9d5"
+
+vue2-filters@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/vue2-filters/-/vue2-filters-0.2.2.tgz#4789d7f3bfd3c5f3985fcf5829d3d90d3996e298"
 
 vue@^2.5.2:
   version "2.5.9"

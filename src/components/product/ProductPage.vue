@@ -2,12 +2,11 @@
   <div class="product-page">
     <h3>{{product}}</h3>
 
-    
+
   </div>
 </template>
 
 <script>
-import {productQuery} from '@/apis/shopify';
 export default {
    name: 'ProductPage',
    data () {
@@ -24,7 +23,7 @@ export default {
       this.$apollo.query({
         query: productQuery,
         variables: {
-          productId: this.productId 
+          productId: this.productId
         }
       }).then((result) => {
         console.log("got result " + result.data.node.title)

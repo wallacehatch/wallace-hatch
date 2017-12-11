@@ -64,10 +64,10 @@ function fetchCheckoutCart(success, fail) {
 	const checkoutCartId = getCheckoutCartId();
 
     if (!checkoutCartId) {
-        svc.client.checkout.create().then((checkout) => {
-        	setCheckoutCartId(checkout.id)
-            success && success(checkout)
-        });
+        // svc.client.checkout.create().then((checkout) => {
+        // 	setCheckoutCartId(checkout.id)
+        //     success && success(checkout)
+        // });
     } else {
         svc.client.checkout.fetch(checkoutCartId).then((checkout) => {
             setCheckoutCartId(checkout.id)
@@ -90,8 +90,6 @@ function addToCheckout(productVariantId, quantity, success, fail) {
         fail && fail(err);
     });
 }
-
-
 
 
 export default svc

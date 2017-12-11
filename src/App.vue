@@ -9,7 +9,7 @@
 <script>
 import SiteHeader from '@/components/common/SiteHeader';
 import SiteFooter from '@/components/common/SiteFooter';
-import svc from './ShopifyService'
+import svc from './ShopifyService';
 
 
 export default {

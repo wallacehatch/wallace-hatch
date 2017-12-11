@@ -13,21 +13,49 @@
       <p class="subtext">We won’t charge you,<br class="sm-only"> until we ship</p>
       <hr class="line">
     </div>
-    <experience-section></experience-section>
+    <div class="product-showcase-cont">
+      <product-tile v-for="(product, i) in products" :key="'pTile' + i" :product="product"></product-tile>
+    </div>
+    <div class="experience-section-cont">
+      <experience-section></experience-section>
+    </div>
+
   </div>
 </template>
 
 <script>
+import ProductTile from './ProductTile';
 import ExperienceSection from './ExperienceSection';
+import ShopifySvc from '@/ShopifyService.js';
 export default {
   components: {
     ExperienceSection,
+    ProductTile,
+  },
+  data() {
+    return {
+      products: null,
+    }
+  },
+  mounted() {
+    ShopifySvc.products((result) => {
+      this.products = result;
+    }, (err) => {
+      console.log(err);
+      debugger;
+    })
   }
 }
 </script>
 
 <style lang="scss">
 @import '../../styles/_variables.scss';
+.experience-section-cont {
+  clear: both;
+  padding-top: 6rem;
+  @include respond-to(lg) {padding-top: 4rem}
+  @include respond-to(sm) {padding-top: 3rem}
+}
 .home-cont {
   margin-top: 7rem;
   @include respond-to(sm) { margin-top: 5.5rem; }
@@ -81,12 +109,18 @@ export default {
 
 
   // PRODUCT SHOWCASE
+  .product-showcase-cont {
+    margin: 0 2rem;
+    overflow: visible;
+    @include respond-to(lg) {margin: 0 0.75rem}
+  }
+
   .section-heading-cont {
-    padding: 8rem 0 3rem 0;
+    padding: 8rem 0 0rem 0;
     text-align: center;
-    @include respond-to(lg) { padding: 6rem 0 5rem 0;}
-    @include respond-to(md) { padding: 5rem 0 3rem 0;}
-    @include respond-to(sm) { padding: 3rem 0 1rem 0;}
+    @include respond-to(lg) { padding: 6rem 0 0rem 0;}
+    @include respond-to(md) { padding: 5rem 0 0rem 0;}
+    @include respond-to(sm) { padding: 3rem 0 0rem 0;}
     .header {
       @include h4;
       line-height: 1.58;

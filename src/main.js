@@ -7,9 +7,12 @@ import store from './store';
 import VeeValidate from 'vee-validate';
 import {ApolloClient, createNetworkInterface} from 'apollo-client';
 import VueApollo from 'vue-apollo'
+import Vue2Filters from 'vue2-filters'
+
 Vue.config.productionTip = false
 Vue.use(VeeValidate);
-Vue.use(VueApollo)
+Vue.use(VueApollo);
+Vue.use(Vue2Filters);
 
 
 
