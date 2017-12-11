@@ -5,7 +5,6 @@ export default function fetchInstagramPosts(success, fail) {
 	axios({
 	  method:'get',
 	  url:'https://www.instagram.com/wallacehatch/?__a=1',
-	  responseType:'stream'
 	})
 	  .then(function(response) {
 	  	 success && success(response)

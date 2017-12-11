@@ -86,10 +86,34 @@ function addToCheckout(productVariantId, quantity, success, fail) {
     svc.client.checkout.addLineItems(checkoutCartId, lineItemsToAdd).then((checkout) => {
         success && success(checkout)
     }, (error) => {
-        console.log("Error adding line items " + error)
+        console.log("Error adding line item to checkout " + error)
         fail && fail(err);
     });
 }
+
+
+function removeFromCheckout(lineItemId, success, fail){
+    const checkoutCartId = getCheckoutCartId();
+    const lineItemIdsToRemove = [lineItemId];
+    svc.checkout.removeLineItems(checkoutId, lineItemIdsToRemove).then((checkout) => {
+    success && success(checkout)
+    },(error) => {
+        console.log("Error removing line item from checkout " + error)
+        fail && fail(err);
+    });
+}
+
+function updateCheckout(lineItemId,quantity, success, fail){
+    const checkoutCartId = getCheckoutCartId();
+    const lineItemsToUpdate = [{id: lineItemId, quantity: quantity}];
+    svc.checkout.updateLineItems(checkoutId, lineItemsToUpdate).then((checkout) => {
+        success && success(checkout)  
+    },(error) => {
+        console.log("Error updating line item in checkout " + error)
+        fail && fail(err);
+    });
+}
+
 
 
 export default svc

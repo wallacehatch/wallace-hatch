@@ -5,8 +5,9 @@
       <div @click.stop id="cart_modal_inner_cont" class="inner-cont" style="transform: translateX(101%)">
         <div @click="$emit('close')"  class="fal fa-times close-btn"></div>
         <div class="cart-form-body">
-          <h1>checkout cart</h1>
-          <p>{{cart}}</p>
+          <div v-for="(product, i) in cart.lineItems">
+            <cart-item :product="product"></cart-item>
+          </div>
         </div>
       </div>
     </div>
@@ -17,6 +18,7 @@
 import anime from 'animejs';
 import axios from 'axios';
 import ShopifySvc from '@/ShopifyService.js';
+import CartItem from './CartItem';
 export default {
   props: ['active'],
   data() {
@@ -26,9 +28,12 @@ export default {
       cart: null
     }
   },
+  components: {
+    CartItem,
+  },
   methods: {
     validateForm() {
-     
+
     },
     clearForm() {
     },
@@ -56,7 +61,6 @@ export default {
             easing: 'easeInOutCubic'
           })
         })
-
       }
       else {
         document.body.style.overflow = 'initial';

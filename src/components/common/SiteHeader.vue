@@ -10,8 +10,10 @@
         <div class="header-right">
             <nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm" :items="nav.items" :active="nav.active" navKey="siteNav">
             </nav-bar>
+            <a @click="$store.commit('SET_CART_ACTIVE', true);">
             <div class="shopping-cart-icon fal fa-shopping-bag" aria-hidden="true"></div>
-            <span class="badge" v-if="badgeNumber>0">{{badgeNumber}}</span>
+            <span class="badge open-sans" v-if="badgeNumber>0">{{badgeNumber}}</span>
+        </a>
         </div>
         <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="$store.state.cartModalActive"></cart-modal>
         <contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive"></contact-modal>
@@ -51,11 +53,11 @@ export default {
 		CartModal,
 	},
 	 mounted() {
-	 	ShopifySvc.checkoutCart((result)=>{
+	 	ShopifySvc.checkoutCart((result)=>{ 
+	 		console.log(result)
       		this.badgeNumber = result.lineItems.length
       	});
       }
-
 }
 </script>
 
@@ -107,6 +109,7 @@ export default {
 			.shopping-cart-icon {
 				font-size: 3.2rem;
 				margin-bottom: -0.75rem;
+				cursor: pointer;
 				display: inline-block;
 				@include respond-to(sm) {
 					font-size: 2.56rem;
@@ -118,17 +121,21 @@ export default {
 			}
 			.badge{
 			    position: absolute;
-			    top:5px;
-			    right: 3px;
-			    padding: 3px 9px;
-			    border-radius:100px;
-			    background: black;
-			    box-shadow: 0 1px 2px rgba(0,0,0,.5), 0 1px 4px rgba(0,0,0,.4), 0 0 1px rgba(0,0,0,.7) inset, 0 10px 0px rgba(255,255,255,.11) inset; 
-			    -webkit-background-clip: padding-box;
-			    font:bold 16px/20px "Helvetica Neue", sans-serif; 
+			    top:20px;
+			    right: 13px;
+			    background: #33a383;
+			    font-size: 10px;
 			    color: white;
 			    text-decoration: none;
-			    text-shadow: 0 -1px 0 rgba(0,0,0,.6);
+			    width: 17px;
+  				height: 17px;
+ 				border-radius: 50%;
+  				line-height: 17px;
+  				text-align: center;
+  				@include respond-to(sm) {
+  					top:12px;
+			    	right: 11px;
+  					}
 				}
 			.envelope-icon {
 				font-size: 32px;

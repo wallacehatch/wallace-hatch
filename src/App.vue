@@ -9,6 +9,9 @@
 <script>
 import SiteHeader from '@/components/common/SiteHeader';
 import SiteFooter from '@/components/common/SiteFooter';
+import fetchInstagramPosts from './instagram';
+
+
 export default {
   name: 'app',
   components: {

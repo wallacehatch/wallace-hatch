@@ -31,7 +31,8 @@
 			line-height: 3rem;
 			color: $wh-black;
 		}
-		&.active, &:hover {
+		&.active {
+			font-weight: 600;
 			/*border-bottom: solid 3px $vest-sky-blue;*/
 			/*box-shadow: 0 2px 4px 0 $dark-sky-blue, 0 1px 1px 0 rgba(0, 0, 0, 0.3);*/
 		}
