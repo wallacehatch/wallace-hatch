@@ -1,8 +1,8 @@
 <template lang="html">
-  <div class="product-tile-cont">
+  <div @click="handleTileClick" class="product-tile-cont">
     <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0].src + ')'}"></div>
     <p class="product-title">{{product.title}}</p>
-    <p class="product-price">{{139.99 | currency}}</p>
+    <p class="product-price">{{product.variants[0].price | currency}}</p>
     <div class="hover-tile-cont">
       <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0].src + ')'}"></div>
       <p class="product-info"><span class="title">{{product.title}}</span> <span class="price">{{139.99 | currency}}</span></p>
@@ -14,6 +14,11 @@
 <script>
 export default {
   props: ['product'],
+  methods: {
+    handleTileClick() {
+      this.$router.push('/watches/' + this.product.id)
+    }
+  }
 }
 </script>
 
