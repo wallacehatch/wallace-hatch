@@ -1,24 +1,29 @@
 <template>
-	<div class="header-cont">
-		<div class="mobile-header-left sm-only">MENU</div>
-		<div class="header-left">
-			<div class="header-logo"></div>
-			<p class="text-mark uppercase hide-md">wallace hatch</p>
-		</div>
-		<div class="header-right">
-			<nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm"
-			 :items="nav.items"
-			:active="nav.active" navKey="siteNav">
-			</nav-bar>
-			<div class="shopping-cart-icon fal fa-shopping-bag" aria-hidden="true"></div>
-		</div>
-		<contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive" ></contact-modal>
-	</div>
+    <div class="header-cont">
+        <div class="mobile-header-left sm-only">MENU</div>
+        <div class="header-left">
+            <a style="display:block" href="#">
+                <div class="header-logo"></div>
+                <p class="text-mark uppercase hide-md">wallace hatch</p>
+            </a>
+        </div>
+        <div class="header-right">
+            <nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm" :items="nav.items" :active="nav.active" navKey="siteNav">
+            </nav-bar>
+            <div class="shopping-cart-icon fal fa-shopping-bag" aria-hidden="true"></div>
+            <span class="badge" v-if="badgeNumber>0">{{badgeNumber}}</span>
+        </div>
+        <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="$store.state.cartModalActive"></cart-modal>
+        <contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive"></contact-modal>
+    </div>
 </template>
+
 
 <script>
 import NavBar from './navBar/NavBar';
 import ContactModal from './contactModal/Modal';
+import CartModal from './cartModal/Modal';
+import ShopifySvc from '@/ShopifyService.js';
 export default {
   name: 'siteHeader',
   data () {
@@ -30,6 +35,10 @@ export default {
 			contactModal: {
 				active: false,
 			},
+			cartModal: {
+				active: false,
+			},
+			badgeNumber: null
     }
   },
 	methods: {
@@ -39,7 +48,14 @@ export default {
 	components: {
 		NavBar,
 		ContactModal,
-	}
+		CartModal,
+	},
+	 mounted() {
+	 	ShopifySvc.checkoutCart((result)=>{
+      		this.badgeNumber = result.lineItems.length
+      	});
+      }
+
 }
 </script>
 
@@ -98,7 +114,22 @@ export default {
 					padding: 1.3rem 0.9rem 1.7rem 1.9rem;
 					border-left: 1px solid #ececec;
 				}
+
 			}
+			.badge{
+			    position: absolute;
+			    top:5px;
+			    right: 3px;
+			    padding: 3px 9px;
+			    border-radius:100px;
+			    background: black;
+			    box-shadow: 0 1px 2px rgba(0,0,0,.5), 0 1px 4px rgba(0,0,0,.4), 0 0 1px rgba(0,0,0,.7) inset, 0 10px 0px rgba(255,255,255,.11) inset; 
+			    -webkit-background-clip: padding-box;
+			    font:bold 16px/20px "Helvetica Neue", sans-serif; 
+			    color: white;
+			    text-decoration: none;
+			    text-shadow: 0 -1px 0 rgba(0,0,0,.6);
+				}
 			.envelope-icon {
 				font-size: 32px;
 				font-weight: 300;
