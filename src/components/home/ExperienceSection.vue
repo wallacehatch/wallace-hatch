@@ -10,18 +10,10 @@
       <hr class="line">
     </div>
     <div class="instagram-feed-cont">
-      <div class="instagram-image i0"></div>
-      <div class="instagram-image i1"></div>
-      <div class="instagram-image i2"></div>
-      <div class="instagram-image i3"></div>
-      <div class="instagram-image i4 hide-sm"></div>
-      <div class="instagram-image i5 hide-sm"></div>
-      <div class="instagram-image i6 hide-sm"></div>
-      <div class="instagram-image i7 hide-sm"></div>
-      <div class="instagram-image i8 hide-sm"></div>
-      <div class="instagram-image i9 hide-sm"></div>
-      <div class="instagram-image i10 hide-sm"></div>
-      <div class="instagram-image i11 hide-sm"></div>
+      <div v-for="(post, i) in instagramPosts">
+        <div class="instagram-image" v-if="i<4" v-bind:style="{ 'background-image': 'url(' + post.display_src + ')' }"></div>
+         <div class="instagram-image hide-sm" v-if="i>=4" v-bind:style="{ 'background-image': 'url(' + post.display_src + ')' }"></div>
+      </div>
       <div class="insta-btn-wrapper">
         <a target="_blank" href="https://www.instagram.com/wallaceHatch/" class="view-insta-btn">View Our Instagram</a>
       </div>
@@ -30,7 +22,18 @@
 </template>
 
 <script>
+import fetchInstagramPosts from '@/instagram';
 export default {
+  data() {
+    return {
+      instagramPosts: null
+    }
+  },
+  mounted(){
+    fetchInstagramPosts((result)=>{
+      this.instagramPosts = result.data.user.media.nodes
+ });
+  }
 
 }
 </script>

@@ -9,9 +9,6 @@
 <script>
 import SiteHeader from '@/components/common/SiteHeader';
 import SiteFooter from '@/components/common/SiteFooter';
-import svc from './ShopifyService';
-
-
 export default {
   name: 'app',
   components: {
@@ -22,17 +19,6 @@ export default {
     return {
     }
   },
-  mounted(){
-    svc.checkoutCart((result)=>{
-      svc.products((result) =>{
-      svc.addToCheckout(result[0].variants[0].id, 10,(result)=>{
-        console.log("added to checkout")
-      console.log(result)
-
-    });
-   });
- });
-  }
 }
 </script>
 
