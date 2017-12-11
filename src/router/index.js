@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Countdown from '@/components/countdown/Countdown'
 import Home from '@/components/home/Home'
-import ProductPage from '@/components/product/ProductPage'
+import ProductDetailPage from '@/components/product/ProductDetailPage'
 import Terms from '@/components/legal/Terms'
 import Privacy from '@/components/legal/Privacy'
 
@@ -20,8 +20,8 @@ export default new Router({
       path: '/privacy',
       component: Privacy,
     }, {
-      path: '/product-page/:id',
-      name: 'ProductPage',
-      component: ProductPage ,
+      path: '/watches/:id',
+      name: 'ProductDetailPage',
+      component: ProductDetailPage ,
     }]
 })
