@@ -95,11 +95,19 @@ export default {
       this.cart = result
     });
   },
-  computed: {
-  },
-  watch: {
-    
-  },
+    watch: {
+    'active' (newState) {
+      this.toggleModal(newState);
+    },
+    'submitSuccess' (newState) {
+      newState && anime({
+        targets: '#success_overlay',
+        opacity: 1.0,
+        duration: this.dur,
+        easing: 'easeOutCubic',
+      })
+    }
+  }
 
 }
 </script>
