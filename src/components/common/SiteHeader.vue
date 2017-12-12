@@ -1,11 +1,11 @@
 <template>
     <div class="header-cont">
-        <div class="mobile-header-left sm-only">MENU</div>
+        <div @click="mobileNav.active = true" class="mobile-header-left sm-only">MENU</div>
         <div class="header-left">
-            <a style="display:block" href="#">
+            <router-link style="display:block" to="/">
                 <div class="header-logo"></div>
                 <p class="text-mark uppercase hide-md">wallace hatch</p>
-            </a>
+            </router-link>
         </div>
         <div class="header-right">
             <nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm" :items="nav.items" :active="nav.active" navKey="siteNav">
@@ -15,6 +15,7 @@
         </div>
         <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="$store.state.cartModalActive"></cart-modal>
         <contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive"></contact-modal>
+        <mobile-nav @close="mobileNav.active = false" :activeItem="nav.active" :active="mobileNav.active"></mobile-nav>
     </div>
 </template>
 
@@ -24,6 +25,7 @@ import NavBar from './navBar/NavBar';
 import ContactModal from './contactModal/Modal';
 import CartModal from './cartModal/Modal';
 import ShopifySvc from '@/ShopifyService.js';
+import MobileNav from './navBar/MobileNav';
 export default {
   name: 'siteHeader',
   data () {
@@ -32,7 +34,7 @@ export default {
 				items: this.$store.state.navItems,
 				active: 0,
 			},
-			contactModal: {
+			mobileNav: {
 				active: false,
 			},
 			cartModal: {
@@ -49,6 +51,7 @@ export default {
 		NavBar,
 		ContactModal,
 		CartModal,
+    MobileNav,
 	},
 	 mounted() {
 	 	ShopifySvc.checkoutCart((result)=>{
@@ -123,9 +126,9 @@ export default {
 			    padding: 3px 9px;
 			    border-radius:100px;
 			    background: black;
-			    box-shadow: 0 1px 2px rgba(0,0,0,.5), 0 1px 4px rgba(0,0,0,.4), 0 0 1px rgba(0,0,0,.7) inset, 0 10px 0px rgba(255,255,255,.11) inset; 
+			    box-shadow: 0 1px 2px rgba(0,0,0,.5), 0 1px 4px rgba(0,0,0,.4), 0 0 1px rgba(0,0,0,.7) inset, 0 10px 0px rgba(255,255,255,.11) inset;
 			    -webkit-background-clip: padding-box;
-			    font:bold 16px/20px "Helvetica Neue", sans-serif; 
+			    font:bold 16px/20px "Helvetica Neue", sans-serif;
 			    color: white;
 			    text-decoration: none;
 			    text-shadow: 0 -1px 0 rgba(0,0,0,.6);
