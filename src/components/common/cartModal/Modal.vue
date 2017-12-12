@@ -4,10 +4,14 @@
     <div id="cart_modal_cont" @click="$emit('close')" class="cart-modal-cont">
       <div @click.stop id="cart_modal_inner_cont" class="inner-cont" style="transform: translateX(101%)">
         <div @click="$emit('close')"  class="fal fa-times close-btn"></div>
-        <div class="cart-form-body">
+        <div class="cart-body">
+          <p class="heading">Added to bag!</p>
           <div v-for="(product, i) in cart.lineItems">
+            {{product}}
             <cart-item :product="product"></cart-item>
+            }
           </div>
+          <button  class="cart-btn">Review Bag</button>
         </div>
       </div>
     </div>
@@ -25,18 +29,15 @@ export default {
     return {
       dur: 500,
       lActive: false,
-      cart: null
+      cart: {
+        lineItems: [],
+      }
     }
   },
   components: {
     CartItem,
   },
   methods: {
-    validateForm() {
-
-    },
-    clearForm() {
-    },
     shouldBlurField(e) {
       if (!e.target.value) {this.textarea.active = false;}
     },
@@ -50,7 +51,6 @@ export default {
         setTimeout(() => {
           anime({
             targets: '#cart_modal_mask',
-            opacity: 1.0,
             duration: this.dur,
             easing: 'easeInOutCubic'
           })
@@ -84,9 +84,10 @@ export default {
   },
   mounted() {
     // uncomment this to have form always out
-    // this.toggleModal(true);
-      ShopifySvc.checkoutCart((result)=>{
 
+    this.toggleModal(true);
+      ShopifySvc.checkoutCart((result)=>{
+      console.log(result)
       this.cart = result
     });
   },
@@ -171,9 +172,9 @@ export default {
     .inner-cont {
       background-color: $wh-white;
       box-shadow: -20px 0 20px 0 rgba(0, 0, 0, 0.1), -10px 0 14px 0 rgba(0, 0, 0, 0.2);
-      max-width: 60rem;
-      width: 66%;
-      min-height: 100vh;
+      max-width: 32rem;
+      width: 31.2%;
+      min-height: 30.8rem;
       position: absolute;
       right: 0;
       top: 0;
@@ -184,14 +185,14 @@ export default {
       }
     }
     .close-btn {
-      font-size: 32px;
+      font-size: 20px;
 	    font-weight: 300;
-      width: 2.4rem;
-      height: 3.2rem;
-      float: right;
+      width: 1.5rem;
+      height: 2.1rem;
+      float: left;
       position: relative;
       z-index: 1;
-      margin: 2rem 2rem 1.8rem 2rem;
+      margin: 1.4rem 0rem 0rem 1.6rem;
       transition: 0.2s all linear;
       &.white {color: $wh-white;}
       &:hover {
@@ -202,21 +203,21 @@ export default {
         margin: 1rem 1rem 0 0;
       }
     }
-    .cart-form-body {
+    .cart-body {
+      text-align: center;
       clear: both;
-      padding: 9.3rem 5rem;
+      padding: 9.3rem 1rem;
       padding-top: 0;
       @include respond-to(sm) {
-        padding: 0 2rem 3rem 2rem;
+        
       }
     }
     .heading {
-      @include h5;
-      font-size: 1.8rem;
-      line-height: 1.78;
-	    letter-spacing: 5px;
+      @include intro-text;
+      font-family: Montserrat;
       text-transform: uppercase;
-      padding-bottom: 1rem;
+      // padding-bottom: 1rem;
+      font-weight: 500;
       @include respond-to(sm) {font-size: 1.6rem;}
     }
     .subtext {
@@ -280,20 +281,20 @@ export default {
       &.disabled {color: #d1d1d1;}
     }
   }
-  .cart-form-btn {
+  .cart-btn {
     background-color: $wh-black;
     padding: 1.3rem 5.2rem;
     box-shadow: 0 7px 13px 0 rgba(95, 95, 95, 0.5), 0 1px 3px 0 rgba(149, 149, 149, 0.2);
     @include intro-text;
     color: $wh-white;
     margin-top: 2rem;
-    float: right;
     font-weight: bold;
     text-transform: uppercase;
     border-radius: 0;
     outline: none;
     transition: 0.2s all linear;
     margin-bottom: 3rem;
+
     &:hover {
       cursor: pointer;
       background-color: #262626;

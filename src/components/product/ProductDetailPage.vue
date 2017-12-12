@@ -17,7 +17,7 @@
         <p class="price hide-sm">{{product.variants[0].price | currency}}</p>
         <div class="color-bubble"></div>
         <p class="color-text">Color: black/gold</p>
-        <div class="add-cart-btn pdp">
+        <div @click="handleAddCartClick" class="add-cart-btn pdp">
           <span class="mobile-add">Add to cart</span>
           <span class="mobile-price">{{product.variants[0].price | currency}}</span></div>
       </div>
@@ -43,7 +43,15 @@ export default {
       debugger;
     })
   },
-
+  methods: {
+    handleAddCartClick() {
+      ShopifySvc.checkoutCart((result)=>{
+      ShopifySvc.addToCheckout(this.product.variants[0].id, 1,(result)=>{
+        this.$store.commit('SET_CART_ACTIVE', true);
+        });
+      });
+    }
+  }
 }
 </script>
 
