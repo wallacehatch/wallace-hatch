@@ -12,11 +12,11 @@
             </nav-bar>
             <a @click="$store.commit('SET_CART_ACTIVE', true);">
             <div class="shopping-cart-icon fal fa-shopping-bag" aria-hidden="true"></div>
-            <span class="badge open-sans" v-if="badgeNumber>0">{{badgeNumber}}</span>
+            <span class="badge open-sans"  v-if="$store.state.badgeNumber>0">{{$store.state.badgeNumber}}</span>
         </a>
         </div>
-        <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="$store.state.cartModalActive"></cart-modal>
-        <contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive"></contact-modal>
+        <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="$store.state.cartModalActive" ></cart-modal>
+        <contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive" ></contact-modal>
     </div>
 </template>
 
@@ -40,11 +40,15 @@ export default {
 			cartModal: {
 				active: false,
 			},
-			badgeNumber: null
     }
   },
 	methods: {
 		handleLinkClick(i, dir) {
+		},
+		refreshBadge(){
+			ShopifySvc.checkoutCart((result)=>{ 
+      		this.badgeNumber = result.lineItems.length
+      	});
 		}
 	},
 	components: {
@@ -52,11 +56,14 @@ export default {
 		ContactModal,
 		CartModal,
 	},
-
+	 watch: {
+	 	badgeNumber: function (newVal) {
+	 		console.log("watching.... "+ this.$store.state.badgeNumber )
+      		return this.$store.state.badgeNumber; 
+    }
+  },
 	 mounted() {
-	 	ShopifySvc.checkoutCart((result)=>{ 
-      		this.badgeNumber = result.lineItems.length
-      	});
+	 	console.log("mounted... " + this.$store.state.badgeNumber)
       }
 }
 </script>

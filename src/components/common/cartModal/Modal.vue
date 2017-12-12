@@ -29,7 +29,7 @@ export default {
       lActive: false,
       cart: {
         lineItems: [],
-      }
+      },
     }
   },
   components: {
@@ -41,6 +41,16 @@ export default {
     },
     setCharCount(e) {
       this.textarea.chars = e.target.value.length
+    },
+
+    refreshCart(){
+      ShopifySvc.checkoutCart((result)=>{
+      this.cart = result
+      this.$store.commit('SET_BADGE_NUMBER', 20);
+
+      console.log("refreshed cart... "+ this.$store.state.badgeNumber)
+    });
+      return this.cart
     },
     toggleModal(active) {
       if (active) {
@@ -84,30 +94,19 @@ export default {
         this.cart = result
       });
     }
-
-
-
   },
-  beforeMount() {
+  mounted() {
+    this.refreshCart();
     // uncomment this to have form always out
     // this.toggleModal(true);
-      ShopifySvc.checkoutCart((result)=>{
-      this.cart = result
-    });
+      
   },
     watch: {
     'active' (newState) {
       this.toggleModal(newState);
+      this.refreshCart();
     },
-    'submitSuccess' (newState) {
-      newState && anime({
-        targets: '#success_overlay',
-        opacity: 1.0,
-        duration: this.dur,
-        easing: 'easeOutCubic',
-      })
-    }
-  }
+  },
 
 }
 </script>

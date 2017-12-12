@@ -10,6 +10,8 @@ const state = {
 	// navItems: ['Contact Us'],
 	contactModalActive: false,
 	cartModalActive: false,
+	badgeNumber: 5
+
 }
 const mutations = {
 	[types.SET_MOBILE] (state, val) {
@@ -20,6 +22,9 @@ const mutations = {
 	},
 	[types.SET_CART_ACTIVE] (state, val) {
 		state.cartModalActive = val;
+	},
+	[types.SET_BADGE_NUMBER] (state, val) {
+		state.badgeNumber = val;
 	},
 }
 
