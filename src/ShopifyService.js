@@ -13,6 +13,8 @@ svc.collections = fetchAllCollections;
 svc.collection = fetchCollection;
 svc.checkoutCart = fetchCheckoutCart;
 svc.addToCheckout = addToCheckout;
+svc.removeFromCheckout = removeFromCheckout;
+svc.updateCheckout = updateCheckout;
 
 function fetchAllProducts(success, fail) {
     svc.client.product.fetchAll().then((products) => {
@@ -95,7 +97,7 @@ function addToCheckout(productVariantId, quantity, success, fail) {
 function removeFromCheckout(lineItemId, success, fail){
     const checkoutCartId = getCheckoutCartId();
     const lineItemIdsToRemove = [lineItemId];
-    svc.checkout.removeLineItems(checkoutId, lineItemIdsToRemove).then((checkout) => {
+    svc.client.checkout.removeLineItems(checkoutCartId, lineItemIdsToRemove).then((checkout) => {
     success && success(checkout)
     },(error) => {
         console.log("Error removing line item from checkout " + error)
@@ -106,7 +108,9 @@ function removeFromCheckout(lineItemId, success, fail){
 function updateCheckout(lineItemId,quantity, success, fail){
     const checkoutCartId = getCheckoutCartId();
     const lineItemsToUpdate = [{id: lineItemId, quantity: quantity}];
-    svc.checkout.updateLineItems(checkoutId, lineItemsToUpdate).then((checkout) => {
+    console.log("updating line items")
+    console.log(lineItemsToUpdate)
+    svc.client.checkout.updateLineItems(checkoutCartId, lineItemsToUpdate).then((checkout) => {
         success && success(checkout)  
     },(error) => {
         console.log("Error updating line item in checkout " + error)

@@ -6,7 +6,7 @@
     <div class="hover-tile-cont">
       <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0].src + ')'}"></div>
       <p class="product-info"><span class="title">{{product.title}}</span> <span class="price">{{139.99 | currency}}</span></p>
-      <div class="add-cart-btn" @click="handleAddCartClick">Add to cart</div>
+      <div class="add-cart-btn" @click="handleAddCartClick(product.variants[0].id)">Add to cart</div>
     </div>
   </div>
 </template>
@@ -27,9 +27,9 @@ export default {
     handleTileClick() {
       this.$router.push('/watches/' + this.product.id)
     },
-    handleAddCartClick() {
+    handleAddCartClick(productId) {
       ShopifySvc.checkoutCart((result)=>{
-      ShopifySvc.addToCheckout(product.variants[0].id, 1,(result)=>{
+      ShopifySvc.addToCheckout(productId, 1,(result)=>{
         this.$store.commit('SET_CART_ACTIVE', true);
         });
       });
@@ -88,7 +88,7 @@ export default {
     }
     .add-cart-btn {
       background-color: $wh-black;
-	    box-shadow: 0 12px 24px 0 rgba(95, 95, 95, 0.5), 0 2px 6px 0 rgba(149, 149, 149, 0.2);
+      box-shadow: 0 12px 24px 0 rgba(95, 95, 95, 0.5), 0 2px 6px 0 rgba(149, 149, 149, 0.2);
       @include intro-text;
       font-size: 1.4rem;
       text-transform: uppercase;

@@ -7,7 +7,7 @@
         <div class="cart-body">
           <p class="heading">Added to bag!</p>
           <div v-for="(product, i) in cart.lineItems">
-            <cart-item :product="product"></cart-item>
+            <cart-item :product="product"  @clicked="modifyCart"></cart-item>
           </div>
           <button  class="cart-btn">Review Bag<span class="total-price">$ 199.00</span></button>
         </div>
@@ -78,12 +78,20 @@ export default {
           }
         })
       }
+    },
+    modifyCart(product, quantity) {
+      ShopifySvc.updateCheckout(product.id, quantity,(result)=>{
+        this.cart = result
+      });
     }
+
+
+
   },
   mounted() {
     // uncomment this to have form always out
 
-    this.toggleModal(true);
+    // this.toggleModal(true);
       ShopifySvc.checkoutCart((result)=>{
       console.log(result)
       this.cart = result

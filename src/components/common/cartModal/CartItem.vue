@@ -9,10 +9,10 @@
             </div>
         </div>
         <div class="cart-item-bottom">
-            <button class="remove-button">remove</button>
-            <button class="increment-button">-</button>
+            <button class="remove-button" @click="handleIncrement(-1 *product.quantity)">remove</button>
+            <button class="increment-button" @click="handleIncrement(-1 + product.quantity)">-</button>
             <p class="quantity">{{product.quantity}}</p>
-            <button class="increment-button">+</button>
+            <button class="increment-button" @click="handleIncrement(1 + product.quantity)">+</button>
         </div>
     </div>
 </template>
@@ -25,18 +25,16 @@ export default {
   props: ['product'],
   data() {
     return {
+    	add: null,
+    	remove: null,
     }
   },
   methods: {
-
+  	handleIncrement(quantity){
+  		this.$emit('clicked',this.product, quantity)
   },
-  mounted() {
-  	
+}
 
-  },
-  watch: {
-
-  }
 }
 </script>
 

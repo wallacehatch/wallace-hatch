@@ -23,6 +23,19 @@ const networkInterface = createNetworkInterface({
   connectToDevTools: true,
 });
 
+// 
+// {
+//   "dialColor": "black",
+//   "size": "40",
+//   "caseThickness": "6",
+//   "caseColor": "Black",
+//   "movement": "Japenese Quartz Movement",
+//   "bandWidth": "20",
+//   "band": "Leather Strap",
+//   "bandColor": "black",
+//   "interchangableBands": "Yes",
+// }
+
 
 
 const apolloClient = new ApolloClient({
