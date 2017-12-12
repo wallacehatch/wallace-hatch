@@ -12,8 +12,8 @@
     <div class="instagram-feed-cont">
       <div v-for="(post, i) in instagramPosts">
         <a style="display:block" v-bind:href="'https://www.instagram.com/p/'+ post.code + '/'">
-        <div class="instagram-image" v-if="i<4" v-bind:style="{ 'background-image': 'url(' + post.display_src + ')' }"></div>
-        <div class="instagram-image" v-if="i>=4" v-bind:style="{ 'background-image': 'url(' + post.display_src + ')' }"></div>
+        <div class="instagram-image" v-if="i<4" :style="{ 'background-image': 'url(' + post.display_src + ')' }"></div>
+        <div class="instagram-image hide-sm" v-if="i>=4" :style="{ 'background-image': 'url(' + post.display_src + ')' }"></div>
       </a>
       </div>
       <div class="insta-btn-wrapper">
@@ -81,7 +81,7 @@ export default {
       height: calc(16.66vw - 0.766rem);
       float: left;
        text-indent: 100%;
-       &:hover {   
+       &:hover {
          transition: .2s;
           transform: translate(0px, -10px);
       }
