@@ -52,17 +52,6 @@ export default {
 		ContactModal,
 		CartModal,
 	},
-	watch: {
-    // whenever question changes, this function will run
-  //   badgeNumber: function () {
-  //   	console.log("watching")
-  //     ShopifySvc.checkoutCart((result)=>{ 
-  //     		this.badgeNumber = result.lineItems.length
-  //     	});
-     
-  //   }
-  },
-
 
 	 mounted() {
 	 	ShopifySvc.checkoutCart((result)=>{ 

@@ -77,6 +77,7 @@ export default {
   methods: {
     handleAddCartClick() {
       ShopifySvc.addToCheckout(this.product.variants[0].id, 1,(result)=>{
+        console.log("setting active")
         this.$store.commit('SET_CART_ACTIVE', true);
         });
     }
