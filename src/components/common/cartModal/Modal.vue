@@ -7,9 +7,7 @@
         <div class="cart-body">
           <p class="heading">Added to bag!</p>
           <div v-for="(product, i) in cart.lineItems">
-            {{product}}
             <cart-item :product="product"></cart-item>
-            }
           </div>
           <button  class="cart-btn">Review Bag</button>
         </div>

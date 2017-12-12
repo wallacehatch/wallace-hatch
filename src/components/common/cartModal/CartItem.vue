@@ -1,14 +1,42 @@
 <template lang="html">
 	<div class="cart-item-cont">
-		<!-- {{realProduct}} -->
-		<!-- <div class="product-image" :style="{backgroundImage: 'url(' + realProduct.images[0].src + ')'}"></div>
+<div class="cart-item-inner-cont">
+	<div class="product-image" :style="{backgroundImage: 'url(' + product.variant.image.src + ')'}"></div>
+   <div class="product-info"> 
+		<h4 class="cart-item-heading">40 MM</h4>
+		<h4 class="cart-item-heading">Soho hatch</h4>
+		<p>1 X 179.99</p>
+		</div>
+		
+</div>
+<!-- <div class="cart-item-bottom">
+			<button class="remove-button">remove</button>
+			<button class="minus-button">-</button>
+			<p>{{product.quantity}}</p>
+			<button class="plux-button">+</button>
+</div> -->
+    
+</div>  
+    
+
+	<!-- <div class="cart-item-cont">
+		<div class="product-cont">
+		<div class="product-image" :style="{backgroundImage: 'url(' + product.variant.image.src + ')'}"></div>
+		
+		<div class="product-info"> 
+		<h4 class="cart-item-heading">{{product.variant.title}}</h4>
+		<h4 class="cart-item-heading">{{product.title}}</h4>
+		<p>{{product.quantity}} X $ {{product.variant.price}}</p>
+		</div>
+	</div> -->
+<!-- 
 		<div class="cart-item-bottom">
 			<button class="remove-button">remove</button>
 			<button class="minus-button">-</button>
-			<p>1</p>
+			<p>{{product.quantity}}</p>
 			<button class="plux-button">+</button>
 		</div> -->
-	</div>
+	<!-- </div> -->
 </template>
 
 <script>
@@ -19,19 +47,13 @@ export default {
   props: ['product'],
   data() {
     return {
-    	realProduct: null
     }
   },
   methods: {
 
   },
   mounted() {
-  	ShopifySvc.product(this.$route.params.id, (result) => {
-      this.realProduct = result;
-      console.log(result)
-    }, (err) => {
-      debugger;
-    })
+  	
 
   },
   watch: {
@@ -42,18 +64,45 @@ export default {
 
 <style lang="scss">
   @import '../../../styles/_variables.scss';
-  
-  .cart-item-cont{
-  		.product-image {
-      // background-position: center;
-      // background-size: contain;
-      // background-repeat: no-repeat;
-      // width: 100%;
-      // height: 38.3rem;
+.cart-item-cont{
+	margin: 2rem 2rem;
+	.cart-item-inner-cont:before,
+	.cart-item-inner-cont:after {
+	 	content: " ";
+		display: table;
+		}
+	.cart-item-inner-cont:after {
+		    clear: both;
+		}
+		.product-image {
+	      background-position: center;
+	      background-size: contain;
+	      background-repeat: no-repeat;
+	      width: 6rem;
+	      height: 10.3rem;
+	      margin: 0;
+    	}
+		.cart-item-inner-cont > * {
+		    float:left;
+	
+		}
+		.product-info{
+			text-transform: uppercase;
+			padding: 2rem;
+			text-align: left;
+			line-height: 2rem;
+		   	.cart-item-heading{
+
+    		@include intro-text;
+    		font-size: 14px;
+			letter-spacing: 3px;
+			font-weight: 500;
+    	}
     }
 
-  	.cart-item-bottom{
-  		display: inline-block;
-  	}
-  }
+    .cart-item-bottom{
+
+    }
+}
+
 </style>
