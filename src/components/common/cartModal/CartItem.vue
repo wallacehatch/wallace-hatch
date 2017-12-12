@@ -3,9 +3,9 @@
         <div class="cart-item-inner-cont">
             <div class="product-image" :style="{backgroundImage: 'url(' + product.variant.image.src + ')'}"></div>
             <div class="product-info">
-                <h4 class="cart-item-heading">40 MM</h4>
-                <h4 class="cart-item-heading">Soho hatch</h4>
-                <p>1 X 179.99</p>
+                <h4 class="cart-item-heading">{{productInfo.size}} MM</h4>
+                <h4 class="cart-item-heading">{{product.title}}</h4>
+                <p>{{product.quantity}} X {{product.variant.price | currency}}</p>
             </div>
         </div>
         <div class="cart-item-bottom">
@@ -25,15 +25,18 @@ export default {
   props: ['product'],
   data() {
     return {
-    	add: null,
-    	remove: null,
+    	productInfo: null,
     }
   },
   methods: {
   	handleIncrement(quantity){
   		this.$emit('clicked',this.product, quantity)
   },
-}
+},
+beforeMount() {
+	 const tmp = JSON.parse(this.product.variant.title);
+      this.productInfo = tmp; 
+  },
 
 }
 </script>

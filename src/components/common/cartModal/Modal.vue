@@ -9,7 +9,7 @@
           <div v-for="(product, i) in cart.lineItems">
             <cart-item :product="product"  @clicked="modifyCart"></cart-item>
           </div>
-          <button  class="cart-btn">Review Bag<span class="total-price">$ 199.00</span></button>
+          <button  class="cart-btn">Review Bag<span class="total-price">{{cart.totalPrice | currency}}</span></button>
         </div>
       </div>
     </div>
@@ -88,28 +88,19 @@ export default {
 
 
   },
-  mounted() {
+  beforeMount() {
     // uncomment this to have form always out
-
     // this.toggleModal(true);
       ShopifySvc.checkoutCart((result)=>{
-      console.log(result)
       this.cart = result
     });
   },
+  computed: {
+  },
   watch: {
-    'active' (newState) {
-      this.toggleModal(newState);
-    },
-    'submitSuccess' (newState) {
-      newState && anime({
-        targets: '#success_overlay',
-        opacity: 1.0,
-        duration: this.dur,
-        easing: 'easeOutCubic',
-      })
-    }
-  }
+    
+  },
+
 }
 </script>
 

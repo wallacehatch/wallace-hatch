@@ -18,7 +18,7 @@
         <div class="color-bubble"></div>
         <p class="color-text">Color: {{productInfo.dialColor}}/{{productInfo.caseColor}}</p>
         <div class="add-cart-btn pdp">
-          <span class="mobile-add">Add to cart</span>
+          <span class="mobile-add" @click="handleAddCartClick">Add to cart</span>
           <span class="mobile-price">{{product.variants[0].price | currency}}</span></div>
       </div>
       <hr class="pdp-divider">
@@ -73,6 +73,13 @@ export default {
     }, (err) => {
       debugger;
     })
+  },
+  methods: {
+    handleAddCartClick() {
+      ShopifySvc.addToCheckout(this.product.variants[0].id, 1,(result)=>{
+        this.$store.commit('SET_CART_ACTIVE', true);
+        });
+    }
   },
 
 }

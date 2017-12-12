@@ -52,9 +52,20 @@ export default {
 		ContactModal,
 		CartModal,
 	},
+	watch: {
+    // whenever question changes, this function will run
+  //   badgeNumber: function () {
+  //   	console.log("watching")
+  //     ShopifySvc.checkoutCart((result)=>{ 
+  //     		this.badgeNumber = result.lineItems.length
+  //     	});
+     
+  //   }
+  },
+
+
 	 mounted() {
 	 	ShopifySvc.checkoutCart((result)=>{ 
-	 		console.log(result)
       		this.badgeNumber = result.lineItems.length
       	});
       }
@@ -134,8 +145,8 @@ export default {
   				text-align: center;
   				@include respond-to(sm) {
   					top:12px;
-			    	right: 11px;
-  					}
+			    	right: 12px;
+  				}
 				}
 			.envelope-icon {
 				font-size: 32px;
