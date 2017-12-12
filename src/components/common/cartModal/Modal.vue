@@ -9,7 +9,7 @@
           <div v-for="(product, i) in cart.lineItems">
             <cart-item :product="product"></cart-item>
           </div>
-          <button  class="cart-btn">Review Bag</button>
+          <button  class="cart-btn">Review Bag<span class="total-price">$ 199.00</span></button>
         </div>
       </div>
     </div>
@@ -204,7 +204,7 @@ export default {
     .cart-body {
       text-align: center;
       clear: both;
-      padding: 9.3rem 1rem;
+      padding: 1rem 1rem;
       padding-top: 0;
       @include respond-to(sm) {
         
@@ -281,9 +281,10 @@ export default {
   }
   .cart-btn {
     background-color: $wh-black;
-    padding: 1.3rem 5.2rem;
+    padding: 1.6rem 2rem;
     box-shadow: 0 7px 13px 0 rgba(95, 95, 95, 0.5), 0 1px 3px 0 rgba(149, 149, 149, 0.2);
     @include intro-text;
+    font-size: 1.4rem;
     color: $wh-white;
     margin-top: 2rem;
     font-weight: bold;
@@ -291,8 +292,6 @@ export default {
     border-radius: 0;
     outline: none;
     transition: 0.2s all linear;
-    margin-bottom: 3rem;
-
     &:hover {
       cursor: pointer;
       background-color: #262626;
@@ -300,6 +299,12 @@ export default {
     @include respond-to(sm) {
       font-size: 1.4rem;
       width: 100%;
+    }
+
+    .total-price{
+      margin-left: 2rem;
+      color: white;
+      font-weight: 300;
     }
   }
 
