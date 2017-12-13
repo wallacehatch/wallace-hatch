@@ -45,10 +45,8 @@ export default {
 
     refreshCart(){
       ShopifySvc.checkoutCart((result)=>{
-      this.cart = result
-      this.$store.commit('SET_BADGE_NUMBER', 20);
-
-      console.log("refreshed cart... "+ this.$store.state.badgeNumber)
+      this.cart = result;
+      this.$store.commit('SET_BADGE_NUMBER', result.lineItems.length);
     });
       return this.cart
     },
@@ -96,10 +94,9 @@ export default {
     }
   },
   mounted() {
-    this.refreshCart();
     // uncomment this to have form always out
     // this.toggleModal(true);
-      
+    this.refreshCart();
   },
     watch: {
     'active' (newState) {

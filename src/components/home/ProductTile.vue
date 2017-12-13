@@ -29,8 +29,6 @@ export default {
     },
     handleAddCartClick() {
       ShopifySvc.addToCheckout(this.product.variants[0].id, 1,(result)=>{
-        console.log("added to cart")
-        // this.$store.commit('SET_CART_ACTIVE', true);
         });
     }
   },

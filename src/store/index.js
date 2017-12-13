@@ -10,7 +10,10 @@ const state = {
 	// navItems: ['Contact Us'],
 	contactModalActive: false,
 	cartModalActive: false,
-	badgeNumber: 5
+	bag: {
+		items: 5,
+	},
+	badgeNumber: 0
 
 }
 const mutations = {
