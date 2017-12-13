@@ -4,15 +4,15 @@
             <div class="product-image" :style="{backgroundImage: 'url(' + product.variant.image.src + ')'}"></div>
             <div class="product-info">
                 <h4 class="cart-item-heading">{{productInfo.size}} MM</h4>
-                <h4 class="cart-item-heading">{{product.title}}</h4>
+                <h4 class="cart-item-heading name">{{product.title}}</h4>
                 <p>{{product.quantity}} X {{product.variant.price | currency}}</p>
             </div>
         </div>
         <div class="cart-item-bottom">
-            <button class="remove-button" @click="handleIncrement(-1 *product.quantity)">remove</button>
-            <button class="increment-button" @click="handleIncrement(-1 + product.quantity)">-</button>
+            <button class="remove-button" @click="handleIncrement(-1 *product.quantity)">Remove</button>
+            <button class="increment-button" @click="handleIncrement(-1 + product.quantity)"><i class="fal fa-minus"></i></button>
             <p class="quantity">{{product.quantity}}</p>
-            <button class="increment-button" @click="handleIncrement(1 + product.quantity)">+</button>
+            <button class="increment-button" @click="handleIncrement(1 + product.quantity)"><i class="fal fa-plus"></i></button>
         </div>
     </div>
 </template>
@@ -44,8 +44,12 @@ beforeMount() {
 <style lang="scss">
   @import '../../../styles/_variables.scss';
 .cart-item-cont{
-	margin: 2rem 1rem 3rem 1rem;
-	.cart-item-inner-cont:before,
+	// margin: 2rem 2rem 3rem 1rem;
+    margin-top: 2rem;
+    // margin-right: 4rem;
+    // margin-bottom: 3rem;
+    margin-left: 2rem;
+	.cart-itm-inner-cont:before,
 	.cart-item-inner-cont:after {
 		display: table;
 		}
@@ -76,6 +80,9 @@ beforeMount() {
 			letter-spacing: 3px;
 			font-weight: 500;
     	}
+        .name{
+            margin-bottom: 1.5rem;
+        }
 
     }
 

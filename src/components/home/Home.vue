@@ -2,6 +2,7 @@
   <div class="home-cont">
     <!-- SITE HERO -->
     <div class="hero-cont">
+      <div class="hero-image"></div>
       <p class="hero-1">The New</p>
       <h2 class="hero-2">SOHO Hatch</h2>
       <p class="hero-3">Worn by Kendall Jenner</p>
@@ -66,9 +67,21 @@ export default {
     min-height: 40rem;
     padding-left: 11rem;
     padding-top: 20rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/watch-hero.png");
     @include respond-to(lg) { padding-top: 16.6rem; padding-left: 8rem; }
     @include respond-to(md) { padding-top: 10.6rem; padding-left: 7rem; }
     @include respond-to(md) { padding-top: 9.2rem; padding-left: 2rem; }
+  }
+  .hero-image{
+    //  position: absolute;
+    //   width: 100%;
+    // // height: 10rem;
+    // background-position: center;
+    // background-size: contain;
+    // background-repeat: no-repeat;
+    // background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/watch-hero.jpg");
   }
   .hero-btn {
     background-color: rgba(0, 0, 0, 0.7);
