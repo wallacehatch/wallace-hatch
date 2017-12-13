@@ -6,7 +6,7 @@
     <div class="hover-tile-cont">
       <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0].src + ')'}"></div>
       <p class="product-info"><span class="title">{{product.title}}</span> <span class="price">{{139.99 | currency}}</span></p>
-      <div class="add-cart-btn" @click="handleAddCartClick">Add to cart</div>
+      <div class="add-cart-btn" @click.stop="handleAddCartClick">Add to bag</div>
     </div>
   </div>
 </template>
@@ -29,6 +29,7 @@ export default {
     },
     handleAddCartClick() {
       ShopifySvc.addToCheckout(this.product.variants[0].id, 1,(result)=>{
+         this.$store.commit('SET_CART_ACTIVE', true);
         });
     }
   },
