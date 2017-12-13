@@ -1,13 +1,11 @@
 <template>
   <div class="bag-page-cont">
   	<div class="bag-upper-cont">
-  		<div class="bag-upper-inner-cont">
   		<h1 class="heading">You have</h1>
   		<p class="items-description">1 item in your cart</p>
-  		<button  class="checkout-btn" @click="handleReviewBag">Checkout</button>
+  		<button  class="checkout-btn" @click="handleCheckoutBagClick">Checkout</button>
   		<p class="subtext">Free worldwide Shipping &</p>
   		<p class="subtext">Returns on orders over $95</p>
-  	</div>
   	</div>
   </div>
 </template>
@@ -28,7 +26,9 @@ export default {
     
   },
   methods: {
-    
+     handleCheckoutBag(){
+      this.$router.push('/checkout/')
+    },
   },
 
 }
@@ -38,22 +38,21 @@ export default {
   @import '../../styles/_variables.scss';
 
   .bag-page-cont{
-  	padding: 7.5rem 10.2rem 0 10.2rem;
-    max-width: 114rem;
+  	padding: 7.5rem 0rem 10.2rem 0rem;
+    // max-width: 114rem;
     margin: auto;
-    @include respond-to(lg) {padding: 7.5rem 4rem 0 4rem; }
-    @include respond-to(md) {padding: 7.5rem 0rem 0 0rem; }
-    @include respond-to(sm) {padding: 7.5rem 0rem 0 0rem; }
+    // @include respond-to(lg) {padding: 7.5rem 4rem 0 4rem; }
+    // @include respond-to(md) {padding: 7.5rem 0rem 0 0rem; }
+    // @include respond-to(sm) {padding: 7.5rem 0rem 0 0rem; }
     .bag-upper-cont{
     	padding: 6rem 0 6.6rem 0;
     	text-align: center;
     	background-color: #f6f6f6;
+    	
     	.heading{
     	@include h1;
     	text-align: center;
     	text-transform: uppercase;
-    	// line-height: 1.19;
-	// letter-spacing: 10px;
 
     }
     .items-description{

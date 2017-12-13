@@ -3,13 +3,13 @@
     <div id="cart_modal_mask" class="cart-modal-mask"></div>
     <div id="cart_modal_cont" @click="$emit('close')" class="cart-modal-cont">
       <div @click.stop id="cart_modal_inner_cont" class="inner-cont" style="transform: translateX(101%)">
-        <div @click="$emit('close')"  class="fal fa-times close-btn"></div>
+        <div @click="$emit('close')"  class="close-btn"><i class="fal fa-times"></i></div>
         <div class="cart-body">
           <p class="heading">Added to bag!</p>
           <div v-for="(product, i) in cart.lineItems">
             <cart-item :product="product"  @clicked="modifyCart"></cart-item>
           </div>
-          <button  class="cart-btn" @click="handleReviewBag">Review Bag<span class="total-price">{{cart.totalPrice | currency}}</span></button>
+          <button  class="cart-btn" @click="handleReviewBagClick">Review Bag<span class="total-price">{{cart.totalPrice | currency}}</span></button>
         </div>
       </div>
     </div>
@@ -85,7 +85,7 @@ export default {
         this.cart = result
       });
     },
-    handleReviewBag(){
+    handleReviewBagClick(){
       this.$router.push('/bag/')
     },
   },

@@ -51,7 +51,7 @@ export default {
 			ShopifySvc.checkoutCart((result)=>{ 
       		this.badgeNumber = result.lineItems.length
       	});
-		}
+		},
 	},
 	components: {
 		NavBar,
