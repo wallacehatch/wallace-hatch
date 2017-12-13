@@ -36,13 +36,6 @@ export default {
     CartItem,
   },
   methods: {
-    shouldBlurField(e) {
-      if (!e.target.value) {this.textarea.active = false;}
-    },
-    setCharCount(e) {
-      this.textarea.chars = e.target.value.length
-    },
-
     refreshCart(){
       ShopifySvc.checkoutCart((result)=>{
       this.cart = result;

@@ -1,11 +1,11 @@
 <template>
     <div class="header-cont">
-        <div class="mobile-header-left sm-only">MENU</div>
+        <div @click="mobileNav.active = true" class="mobile-header-left sm-only">MENU</div>
         <div class="header-left">
-            <a style="display:block" href="#">
+            <router-link style="display:block" to="/">
                 <div class="header-logo"></div>
                 <p class="text-mark uppercase hide-md">wallace hatch</p>
-            </a>
+            </router-link>
         </div>
         <div class="header-right">
             <nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm" :items="nav.items" :active="nav.active" navKey="siteNav">
@@ -15,8 +15,9 @@
             <span class="badge open-sans"  v-if="$store.state.badgeNumber>0">{{$store.state.badgeNumber}}</span>
         </a>
         </div>
-        <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="$store.state.cartModalActive" ></cart-modal>
-        <contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive" ></contact-modal>
+        <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="$store.state.cartModalActive"></cart-modal>
+        <contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive"></contact-modal>
+        <mobile-nav @close="mobileNav.active = false" :activeItem="nav.active" :active="mobileNav.active"></mobile-nav>
     </div>
 </template>
 
@@ -26,6 +27,7 @@ import NavBar from './navBar/NavBar';
 import ContactModal from './contactModal/Modal';
 import CartModal from './cartModal/Modal';
 import ShopifySvc from '@/ShopifyService.js';
+import MobileNav from './navBar/MobileNav';
 export default {
   name: 'siteHeader',
   data () {
@@ -34,7 +36,7 @@ export default {
 				items: this.$store.state.navItems,
 				active: 0,
 			},
-			contactModal: {
+			mobileNav: {
 				active: false,
 			},
 			cartModal: {
@@ -55,15 +57,15 @@ export default {
 		NavBar,
 		ContactModal,
 		CartModal,
+    MobileNav,
 	},
 	 watch: {
 	 	badgeNumber: function (newVal) {
-	 		console.log("watching.... "+ this.$store.state.badgeNumber )
       		return this.$store.state.badgeNumber; 
     }
   },
 	 mounted() {
-	 	console.log("mounted... " + this.$store.state.badgeNumber)
+	 	this.refreshBadge();
       }
 }
 </script>

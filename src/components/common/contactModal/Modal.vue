@@ -3,7 +3,7 @@
     <div id="contact_modal_mask" class="contact-modal-mask"></div>
     <div id="contact_modal_cont" @click="$emit('close')" class="contact-modal-cont">
       <div @click.stop id="contact_modal_inner_cont" class="inner-cont" style="transform: translateX(101%)">
-        <div @click="$emit('close')" :class="{white: submitSuccess}" class="fal fa-times close-btn"></div>
+        <div @click="$emit('close')" :class="{white: submitSuccess}" class="close-btn"><i class="fal fa-times"></i></div>
         <div class="contact-form-body">
           <p class="heading">Need to get in<br> contact with us?</p>
           <p class="subtext">Interested in working with us or learning more about<br class="hide-sm"> Wallace Hatch? Feel free to send us a message!</p>
