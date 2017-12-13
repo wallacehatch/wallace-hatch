@@ -2,14 +2,13 @@
   <div class="home-cont">
     <!-- SITE HERO -->
     <div class="hero-cont">
-      <div class="hero-image"></div>
       <p class="hero-1">The New</p>
       <h2 class="hero-2">SOHO Hatch</h2>
       <p class="hero-3">Worn by Kendall Jenner</p>
-      <button class="hero-btn">Shop now</button>
+      <button class="hero-btn" v-scroll-to="'#product-showcase'">Shop now</button>
     </div>
     <!-- PRODUCT SHOWCASE -->
-    <div class="section-heading-cont">
+    <div class="section-heading-cont" id="product-showcase">
       <p class="header">Pre-order now</p>
       <p class="subtext">We won’t charge you,<br class="sm-only"> until we ship</p>
       <hr class="line">
@@ -36,6 +35,11 @@ export default {
   data() {
     return {
       products: null,
+    }
+  },
+  methods: {
+    handleShopNowClick(){
+
     }
   },
   mounted() {
@@ -74,15 +78,7 @@ export default {
     @include respond-to(md) { padding-top: 10.6rem; padding-left: 7rem; }
     @include respond-to(md) { padding-top: 9.2rem; padding-left: 2rem; }
   }
-  .hero-image{
-    //  position: absolute;
-    //   width: 100%;
-    // // height: 10rem;
-    // background-position: center;
-    // background-size: contain;
-    // background-repeat: no-repeat;
-    // background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/watch-hero.jpg");
-  }
+
   .hero-btn {
     background-color: rgba(0, 0, 0, 0.7);
   	box-shadow: 0 17px 20px 15px rgba(0, 0, 0, 0.5), 0 4px 4px 0 rgba(0, 0, 0, 0.2);
