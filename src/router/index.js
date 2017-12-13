@@ -5,6 +5,7 @@ import Home from '@/components/home/Home'
 import ProductDetailPage from '@/components/product/ProductDetailPage'
 import Terms from '@/components/legal/Terms'
 import Privacy from '@/components/legal/Privacy'
+import BagPage from '@/components/bag/BagPage'
 
 Vue.use(Router)
 export default new Router({
@@ -16,7 +17,6 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
-      // redirect: '/Home'
     }, {
       path: '/terms',
       component: Terms,
@@ -27,5 +27,10 @@ export default new Router({
       path: '/watches/:id',
       name: 'ProductDetailPage',
       component: ProductDetailPage ,
+    },
+    {
+      path: '/bag/',
+      name: 'BagPage',
+      component: BagPage ,
     }]
 })

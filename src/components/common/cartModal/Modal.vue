@@ -9,7 +9,7 @@
           <div v-for="(product, i) in cart.lineItems">
             <cart-item :product="product"  @clicked="modifyCart"></cart-item>
           </div>
-          <button  class="cart-btn">Review Bag<span class="total-price">{{cart.totalPrice | currency}}</span></button>
+          <button  class="cart-btn" @click="handleReviewBag">Review Bag<span class="total-price">{{cart.totalPrice | currency}}</span></button>
         </div>
       </div>
     </div>
@@ -84,7 +84,10 @@ export default {
       ShopifySvc.updateCheckout(product.id, quantity,(result)=>{
         this.cart = result
       });
-    }
+    },
+    handleReviewBag(){
+      this.$router.push('/bag/')
+    },
   },
   mounted() {
     // uncomment this to have form always out
