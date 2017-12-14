@@ -127,18 +127,25 @@ beforeMount() {
       border-radius: 4px;
       border: solid 1px #cccccc;
       // margin-right: 8.4rem;
+      transition: 0.2s linear;
+            &:hover{
+                box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+
+            }
       }
 
     .product-line-right{
       // background-color: red;
       margin-top: 3rem;
       margin-bottom: 4rem;
+
       text-align: center;
       width: 20%;
+      height: 10rem;
       display: inline-block;
       .quantity{
         display: inline-block;
-        padding: 1rem;
+        padding: 2.5rem 1rem 1rem 1rem;
 
       }
       .right-heading{
@@ -146,10 +153,11 @@ beforeMount() {
         font-size: 10px;
         font-weight: 300;
         letter-spacing: 2.9px;
+        text-transform: uppercase;
       }
       .price{
-         margin-top: rem;
-        font-weight: 300;
+         margin-top: 2rem;
+          font-weight: 300;
           font-size: 18px;
           font-weight: 300;
           letter-spacing: 2.2px;
@@ -160,6 +168,11 @@ beforeMount() {
       height: 32px;
       border-radius: 4px;
       border: solid 1px #cccccc;
+      transition: 0.2s linear;
+            &:hover{
+                box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+
+            }
 
       }
       

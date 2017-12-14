@@ -101,12 +101,22 @@ beforeMount() {
 			border-radius: 4px;
 			border: solid 1px #cccccc;
 			margin-right: 8.4rem;
+            transition: 0.2s linear;
+            &:hover{
+                box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+
+            }
     	}
     	.increment-button{
     		width: 32px;
 			height: 32px;
 			border-radius: 4px;
 			border: solid 1px #cccccc;
+            transition: 0.2s linear;
+            &:hover{
+                box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+
+            }
 
     	}
     	

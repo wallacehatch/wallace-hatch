@@ -148,6 +148,7 @@ export default {
     &:hover {
       cursor: pointer;
       background-color: #262626;
+      color: $wh-white;
     }
     @include respond-to(sm) {
       font-size: 1.4rem;
