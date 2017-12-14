@@ -1,19 +1,30 @@
 <template lang="html">
-    <div class="cart-item-cont">
-        <div class="cart-item-inner-cont">
+    <div class="product-line-cont">
+        <div class="product-line-inner-cont">
+          <div class="product-box">
             <div class="product-image" :style="{backgroundImage: 'url(' + product.variant.image.src + ')'}"></div>
             <div class="product-info">
-                <h4 class="cart-item-heading">{{productInfo.size}} MM</h4>
-                <h4 class="cart-item-heading name">{{product.title}}</h4>
-                <p>{{product.quantity}} X {{product.variant.price | currency}}</p>
+                <h4 class="product-line-heading">{{productInfo.size}} MM</h4>
+                <h4 class="product-line-heading name">{{product.title}}</h4>
+                <p>Color: Black/Gold</p>
             </div>
+            <div class="product-line-right">
+              <p>QTY</p>
+              <button class="increment-button" @click="handleIncrement(-1 + product.quantity)"><i class="fal fa-minus"></i></button>
+              <p class="quantity">{{product.quantity}}</p>
+              <button class="increment-button" @click="handleIncrement(1 + product.quantity)"><i class="fal fa-plus"></i></button>
+           </div>
+           <div class="product-line-right">
+              <p>Price</p>
+              <p>$199.00</p>
+           </div>
+           <div class="product-line-bottom">
+             <button class="remove-button" @click="handleIncrement(-1 *product.quantity)">Remove</button>
+             <div class="additional-message-cont"><p>Includes leather band and tool to use when changing bands.</p></div>
+           </div>
         </div>
-        <div class="cart-item-bottom">
-            <button class="remove-button" @click="handleIncrement(-1 *product.quantity)">Remove</button>
-            <button class="increment-button" @click="handleIncrement(-1 + product.quantity)"><i class="fal fa-minus"></i></button>
-            <p class="quantity">{{product.quantity}}</p>
-            <button class="increment-button" @click="handleIncrement(1 + product.quantity)"><i class="fal fa-plus"></i></button>
-        </div>
+      </div>
+        
     </div>
 </template>
 
@@ -43,37 +54,38 @@ beforeMount() {
 
 <style lang="scss">
   @import '../../styles/_variables.scss';
-.cart-item-cont{
-  // margin: 2rem 2rem 3rem 1rem;
-    margin-top: 2rem;
-    // margin-right: 4rem;
-    // margin-bottom: 3rem;
-    margin-left: 2rem;
-  .cart-itm-inner-cont:before,
-  .cart-item-inner-cont:after {
-    display: table;
-    }
-  .cart-item-inner-cont:after {
-        clear: both;
+.product-line-cont{
+  margin-bottom: 2rem;
+    .product-line-inner-cont{
+      max-width: 1140px;
+      margin: 0 auto;
+      border-bottom: solid 1px #d8d8d8;
+      overflow: auto;
+
     }
     .product-image {
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
-        width: 6rem;
-        height: 10.3rem;
+        width: 18.4rem;
+        height: 26.3em;
         margin: 0;
       }
-    .cart-item-inner-cont > * {
+      .product-box {
+        overflow: auto;
+        padding: 5.2rem 0rem 5.3rem 10rem;
+      }
+    .product-box > * {
         float:left;
   
     }
+    
     .product-info{
       text-transform: uppercase;
-      padding: 2rem;
+      margin-top: 3rem;
       text-align: left;
       line-height: 2rem;
-        .cart-item-heading{
+        .product-line-heading{
 
         @include intro-text;
         font-size: 14px;
@@ -86,22 +98,44 @@ beforeMount() {
 
     }
 
-    .cart-item-bottom{
-      text-align: left;
-      width: 100%;
+    .product-line-bottom{
+      background-color: green;
+      
+      .additional-message-cont{
+      border-radius: 2px;
+      background-color: #f6f6f6;
+      display: inline-block;
+
+      p{
+        font-size: 12px;
+        text-transform: none;
+        letter-spacing: 0.2px;
+        text-align: left;
+        color: #5c5c5c;
+      } 
+    }
+    }
+    .remove-button{
+        width: 80px;
+      height: 32px;
+      border-radius: 4px;
+      border: solid 1px #cccccc;
+      // margin-right: 8.4rem;
+      }
+
+    .product-line-right{
+      background-color: red;
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      width: 20%;
       display: inline-block;
       .quantity{
         display: inline-block;
         padding: 1rem;
 
       }
-      .remove-button{
-        width: 80px;
-      height: 32px;
-      border-radius: 4px;
-      border: solid 1px #cccccc;
-      margin-right: 8.4rem;
-      }
+      
       .increment-button{
         width: 32px;
       height: 32px;

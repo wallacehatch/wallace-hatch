@@ -85,11 +85,12 @@ export default {
   	border: solid 3px $wh-white;
     padding: 1.6rem 3.5rem;
     @include intro-text;
+    font-weight: bold;
     font-size: 1.4rem;
     margin-top: 4rem;
     color: $wh-white;
     text-transform: uppercase;
-    transition: 0.2s all linear;
+    transition: 0.3s all linear;
     box-sizing: border-box;
     @include respond-to(md) { font-size: 1.2rem;}
     @include respond-to(sm) { width: calc(100% - 2rem); }
