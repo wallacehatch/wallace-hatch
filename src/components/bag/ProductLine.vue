@@ -85,6 +85,7 @@ beforeMount() {
       margin-top: 4rem;
       text-align: left;
       line-height: 2rem;
+      min-width: 30rem;
         .product-line-heading{
             @include intro-text;
             font-size: 14px;
