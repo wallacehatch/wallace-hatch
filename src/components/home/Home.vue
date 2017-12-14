@@ -80,6 +80,8 @@ export default {
   }
 
   .hero-btn {
+    border-radius: 0;
+    outline: none;
     background-color: rgba(0, 0, 0, 0.7);
   	box-shadow: 0 17px 20px 15px rgba(0, 0, 0, 0.5), 0 4px 4px 0 rgba(0, 0, 0, 0.2);
   	border: solid 3px $wh-white;
