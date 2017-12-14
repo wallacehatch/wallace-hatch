@@ -89,9 +89,17 @@ export default {
     margin-top: 4rem;
     color: $wh-white;
     text-transform: uppercase;
+    transition: 0.2s all linear;
     box-sizing: border-box;
     @include respond-to(md) { font-size: 1.2rem;}
     @include respond-to(sm) { width: calc(100% - 2rem); }
+    &:hover {
+        background-color: #ffffff;
+        box-shadow: 0 27px 20px 0 rgba(0, 0, 0, 0.1), 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+        color: #000000;
+
+      }
+
   }
   .hero-1 {
     @include intro-text;
