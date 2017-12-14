@@ -54,7 +54,7 @@ export default {
 		margin-bottom: 9.5rem;
 		@include respond-to(lg) {margin-bottom: 9.5rem;}
 		@include respond-to(md) {margin-bottom: 6.5rem;}
-		@include respond-to(sm) {margin-bottom: 4rem;}
+		@include respond-to(sm) {margin-bottom: 4rem; width: 7.2rem;}
 		background-repeat: no-repeat;
 		background-size: contain;
 		background-position: center;
@@ -65,15 +65,18 @@ export default {
 	display: inline-flex;
 	align-items: center;
 	text-transform: uppercase;
-	width: 25%;
+	width: calc(25% - 1px);
 	justify-content: center;
+	border-right: 1px solid #3f3f3f;
 	padding-bottom: 2.5rem;
 	@include respond-to(sm) {
 		display: flex;
 		width: auto;
-		padding: 2rem 2.5rem;
+		padding: 2rem 0rem;
+		margin: 0 2.5rem;
 		box-sizing: border-box;
 		justify-content: flex-start;
+		border: none;
 		border-top: 1px solid #252525;
 	}
 	.blurb-icon {

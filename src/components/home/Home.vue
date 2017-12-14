@@ -141,7 +141,13 @@ export default {
       border: none;
       border-bottom: 4px solid $wh-black;
       width: 4rem;
-      margin: 5rem auto;
+      margin: 3rem auto;
+      @include respond-to(lg) {
+        margin: 5rem auto;
+      }
+      @include respond-to(md) {
+        margin: 3rem auto;
+      }
       @include respond-to(sm) {
         margin: 1rem auto;
         margin-top: 3rem;

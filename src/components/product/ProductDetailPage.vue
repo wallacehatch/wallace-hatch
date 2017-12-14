@@ -33,12 +33,12 @@
           <p class="hashtag"><i class="fab fa-instagram"></i> #mywally</p>
         </div>
         <div class="how-to-wear-images-cont">
-          <div class="how-to-wear-image"></div>
-          <div class="how-to-wear-image"></div>
-          <div class="how-to-wear-image"></div>
-          <div class="how-to-wear-image"></div>
-          <div class="how-to-wear-image"></div>
-          <div class="how-to-wear-image"></div>
+          <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
+          <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
+          <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
+          <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
+          <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
+          <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
         </div>
       </div>
       <div class="pdp-lr">
@@ -88,15 +88,22 @@ export default {
 <style lang="scss">
   @import '../../styles/_variables.scss';
   .how-to-wear-images-cont {
-    margin-top: 2rem;
-    overflow: auto;
+    margin: -0.3rem;
+    margin-top: 1.7rem;
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
   }
   .how-to-wear-image {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     background-image: url('https://instagram.com/p/Bbdd0u3FdB6/media/');
-    width: 33.33%;
+    margin: 0.3rem;
+    width: calc(33.33% - 6px);
+    transition: .2s all cubic-bezier(.55,.15,.41,.84);
     &:after {
       content: "";
       display: block;
@@ -104,9 +111,30 @@ export default {
     }
     float: left;
     box-sizing: border-box;
-
-    &:nth-of-type(3n + 1) {
-      padding-left: 0;
+    &:hover {
+      box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), 0 12px 24px 0 rgba(95,95,95,0.70);
+      transform: translateY(-8px);
+      z-index: 0;
+    }
+    &:nth-of-type(n + 4):hover {
+      transform: translateY(8px);
+      box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), 0 -12px 24px 0 rgba(95,95,95,0.70);
+    }
+    &:first-of-type:hover {
+      transform: translate(-8px, -8px);
+      box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), 12px 12px 24px 0 rgba(95,95,95,0.70);
+    }
+    &:last-of-type:hover {
+      transform: translate(8px, 8px);
+      box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), -12px -12px 24px 0 rgba(95,95,95,0.70);
+    }
+    &:nth-of-type(3):hover {
+      transform: translate(8px, -8px);
+      box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), -12px 12px 24px 0 rgba(95,95,95,0.70);
+    }
+    &:nth-of-type(4):hover {
+      transform: translate(-8px, 8px);
+      box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), 12px -12px 24px 0 rgba(95,95,95,0.70);
     }
   }
   .pdp-lower-cont {
