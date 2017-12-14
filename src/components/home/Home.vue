@@ -130,9 +130,11 @@ export default {
 
   // PRODUCT SHOWCASE
   .product-showcase-cont {
-    margin: 0 2rem;
+    padding: 0 2rem;
+    margin: auto;
     overflow: visible;
-    @include respond-to(lg) {margin: 0 0.75rem}
+    @include respond-to(lg) {padding: 0 0.75rem}
+    max-width: 144rem;
   }
 
   .section-heading-cont {

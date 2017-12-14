@@ -94,7 +94,6 @@ export default {
       text-transform: uppercase;
       text-align: center;
       width: 28.2rem;
-      width: 1px;
       margin: auto;
       margin-top: 3rem;
       color: $wh-white;
