@@ -99,8 +99,6 @@ beforeMount() {
     }
 
     .product-line-bottom{
-      background-color: green;
-      
       .additional-message-cont{
       border-radius: 2px;
       background-color: #f6f6f6;
