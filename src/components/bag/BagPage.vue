@@ -10,7 +10,7 @@
   		<p class="subtext">Returns on orders over $95</p>
   	</div>
   	<div class="product-section">
-      <product-line v-for="(product, i) in cart.lineItems" :key="'pTile' + i" :product="product"></product-line>
+      <product-line v-for="(product, i) in cart.lineItems" :key="'pTile' + i" :product="product" @clicked="modifyCart"></product-line>
     </div>
   </div>
 </template>
@@ -42,18 +42,28 @@ export default {
     handleShoppingClick(){
       this.$router.push('/')
     },
+    modifyCart(product, quantity) {
+      ShopifySvc.updateCheckout(product.id, quantity,(result)=>{
+        this.refreshCart();
+      });
+    },
 
     refreshCart(){
       ShopifySvc.checkoutCart((result)=>{
       this.cart = result;
-  		if (this.cart.lineItems.length === 0) {
+      var badgeNumber = 0
+      for (var i = 0; i < result.lineItems.length; i++) { 
+        badgeNumber = badgeNumber + result.lineItems[i].quantity
+        }
+      this.$store.commit('SET_BADGE_NUMBER', badgeNumber)
+  		if (this.$store.state.badgeNumber === 0) {
   			this.message = "Nothing in your bag, start shopping to fill it up."
   		}
-  		else if (this.cart.lineItems.length == 1) {
-  			this.message = this.cart.lineItems.length + " item in your cart"
+  		else if (this.$store.state.badgeNumber == 1) {
+  			this.message = this.$store.state.badgeNumber + " item in your cart"
   		}
   		else{
-  			this.message = this.cart.lineItems.length + " items in your cart"
+  			this.message = this.$store.state.badgeNumber + " items in your cart"
   		}
     });
       return this.cart

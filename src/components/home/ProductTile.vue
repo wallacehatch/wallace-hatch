@@ -7,7 +7,7 @@
       <div class="inner-tile">
         <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0].src + ')'}"></div>
         <p class="product-info"><span class="title">{{product.title}}</span> <span class="price">{{product.variants[0].price | currency}}</span></p>
-        <div class="add-cart-btn" @click="handleAddCartClick">Add to bag</div>
+        <div class="add-cart-btn" @click.stop="handleAddCartClick">Add to bag</div>
       </div>
     </div>
   </div>

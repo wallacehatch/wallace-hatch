@@ -39,7 +39,11 @@ export default {
     refreshCart(){
       ShopifySvc.checkoutCart((result)=>{
       this.cart = result;
-      this.$store.commit('SET_BADGE_NUMBER', result.lineItems.length);
+      var badgeNumber = 0
+      for (var i = 0; i < result.lineItems.length; i++) { 
+        badgeNumber = badgeNumber + result.lineItems[i].quantity
+        }
+      this.$store.commit('SET_BADGE_NUMBER', badgeNumber)
     });
       return this.cart
     },
