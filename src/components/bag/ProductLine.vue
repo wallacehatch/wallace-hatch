@@ -9,14 +9,14 @@
                 <p>Color: Black/Gold</p>
             </div>
             <div class="product-line-right">
-              <p>QTY</p>
+              <p class="right-heading">QTY</p>
               <button class="increment-button" @click="handleIncrement(-1 + product.quantity)"><i class="fal fa-minus"></i></button>
               <p class="quantity">{{product.quantity}}</p>
               <button class="increment-button" @click="handleIncrement(1 + product.quantity)"><i class="fal fa-plus"></i></button>
            </div>
            <div class="product-line-right">
-              <p>Price</p>
-              <p>$199.00</p>
+              <p class="right-heading">Price</p>
+              <p class="price">{{product.variant.price * product.quantity| currency}}</p>
            </div>
            <div class="product-line-bottom">
              <button class="remove-button" @click="handleIncrement(-1 *product.quantity)">Remove</button>
@@ -82,29 +82,36 @@ beforeMount() {
     
     .product-info{
       text-transform: uppercase;
-      margin-top: 3rem;
+      margin-top: 4rem;
       text-align: left;
       line-height: 2rem;
         .product-line-heading{
-
-        @include intro-text;
-        font-size: 14px;
-      letter-spacing: 3px;
-      font-weight: 500;
+            @include intro-text;
+            font-size: 14px;
+            letter-spacing: 3px;
+            font-weight: 500;
       }
         .name{
+            margin-top: 1rem;
             margin-bottom: 1.5rem;
+            font-size: 24px;
+            letter-spacing: 6px;
         }
 
     }
 
     .product-line-bottom{
+      
+      
       .additional-message-cont{
-      border-radius: 2px;
-      background-color: #f6f6f6;
-      display: inline-block;
+        margin-top: 3rem;
+        margin-left: 2rem;
+        border-radius: 2px;
+        background-color: #f6f6f6;
+        display: inline-block;
 
       p{
+        padding: .7rem 1.5rem;
         font-size: 12px;
         text-transform: none;
         letter-spacing: 0.2px;
@@ -122,9 +129,9 @@ beforeMount() {
       }
 
     .product-line-right{
-      background-color: red;
+      // background-color: red;
       margin-top: 3rem;
-      margin-bottom: 2rem;
+      margin-bottom: 4rem;
       text-align: center;
       width: 20%;
       display: inline-block;
@@ -132,6 +139,19 @@ beforeMount() {
         display: inline-block;
         padding: 1rem;
 
+      }
+      .right-heading{
+        @include text-body;
+        font-size: 10px;
+        font-weight: 300;
+        letter-spacing: 2.9px;
+      }
+      .price{
+         margin-top: rem;
+        font-weight: 300;
+          font-size: 18px;
+          font-weight: 300;
+          letter-spacing: 2.2px;
       }
       
       .increment-button{
