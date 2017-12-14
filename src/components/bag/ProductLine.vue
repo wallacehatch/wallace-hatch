@@ -25,16 +25,16 @@ export default {
   props: ['product'],
   data() {
     return {
-    	productInfo: null,
+      productInfo: null,
     }
   },
   methods: {
-  	handleIncrement(quantity){
-  		this.$emit('clicked',this.product, quantity)
+    handleIncrement(quantity){
+      this.$emit('clicked',this.product, quantity)
   },
 },
 beforeMount() {
-	 const tmp = JSON.parse(this.product.variant.title);
+   const tmp = JSON.parse(this.product.variant.title);
       this.productInfo = tmp; 
   },
 
@@ -42,44 +42,44 @@ beforeMount() {
 </script>
 
 <style lang="scss">
-  @import '../../../styles/_variables.scss';
+  @import '../../styles/_variables.scss';
 .cart-item-cont{
-	// margin: 2rem 2rem 3rem 1rem;
+  // margin: 2rem 2rem 3rem 1rem;
     margin-top: 2rem;
     // margin-right: 4rem;
     // margin-bottom: 3rem;
     margin-left: 2rem;
-	.cart-itm-inner-cont:before,
-	.cart-item-inner-cont:after {
-		display: table;
-		}
-	.cart-item-inner-cont:after {
-		    clear: both;
-		}
-		.product-image {
-	      background-position: center;
-	      background-size: contain;
-	      background-repeat: no-repeat;
-	      width: 6rem;
-	      height: 10.3rem;
-	      margin: 0;
-    	}
-		.cart-item-inner-cont > * {
-		    float:left;
-	
-		}
-		.product-info{
-			text-transform: uppercase;
-			padding: 2rem;
-			text-align: left;
-			line-height: 2rem;
-		   	.cart-item-heading{
+  .cart-itm-inner-cont:before,
+  .cart-item-inner-cont:after {
+    display: table;
+    }
+  .cart-item-inner-cont:after {
+        clear: both;
+    }
+    .product-image {
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 6rem;
+        height: 10.3rem;
+        margin: 0;
+      }
+    .cart-item-inner-cont > * {
+        float:left;
+  
+    }
+    .product-info{
+      text-transform: uppercase;
+      padding: 2rem;
+      text-align: left;
+      line-height: 2rem;
+        .cart-item-heading{
 
-    		@include intro-text;
-    		font-size: 14px;
-			letter-spacing: 3px;
-			font-weight: 500;
-    	}
+        @include intro-text;
+        font-size: 14px;
+      letter-spacing: 3px;
+      font-weight: 500;
+      }
         .name{
             margin-bottom: 1.5rem;
         }
@@ -87,29 +87,29 @@ beforeMount() {
     }
 
     .cart-item-bottom{
-    	text-align: left;
-    	width: 100%;
-    	display: inline-block;
-    	.quantity{
-    		display: inline-block;
-    		padding: 1rem;
+      text-align: left;
+      width: 100%;
+      display: inline-block;
+      .quantity{
+        display: inline-block;
+        padding: 1rem;
 
-    	}
-    	.remove-button{
-    		width: 80px;
-			height: 32px;
-			border-radius: 4px;
-			border: solid 1px #cccccc;
-			margin-right: 8.4rem;
-    	}
-    	.increment-button{
-    		width: 32px;
-			height: 32px;
-			border-radius: 4px;
-			border: solid 1px #cccccc;
+      }
+      .remove-button{
+        width: 80px;
+      height: 32px;
+      border-radius: 4px;
+      border: solid 1px #cccccc;
+      margin-right: 8.4rem;
+      }
+      .increment-button{
+        width: 32px;
+      height: 32px;
+      border-radius: 4px;
+      border: solid 1px #cccccc;
 
-    	}
-    	
+      }
+      
     }
 }
 

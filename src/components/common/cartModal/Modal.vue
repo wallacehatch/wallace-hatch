@@ -280,7 +280,8 @@ export default {
   }
   .cart-btn {
     background-color: $wh-black;
-    padding: 1.6rem 2rem;
+    padding: 1.6rem 0rem;
+    width:  300px;
     box-shadow: 0 7px 13px 0 rgba(95, 95, 95, 0.5), 0 1px 3px 0 rgba(149, 149, 149, 0.2);
     @include intro-text;
     font-size: 1.4rem;

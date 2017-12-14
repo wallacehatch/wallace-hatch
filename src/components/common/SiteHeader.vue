@@ -10,7 +10,7 @@
         <div class="header-right">
             <nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm" :items="nav.items" :active="nav.active" navKey="siteNav">
             </nav-bar>
-            <a @click="$store.commit('SET_CART_ACTIVE', true);">
+            <a @click="handleBagClick">
             <div class="shopping-cart-icon fal fa-shopping-bag" aria-hidden="true"></div>
             <span class="badge open-sans"  v-if="$store.state.badgeNumber>0">{{$store.state.badgeNumber}}</span>
         </a>
@@ -46,6 +46,10 @@ export default {
   },
 	methods: {
 		handleLinkClick(i, dir) {
+
+		},
+		handleBagClick(){
+			this.$router.push('bag')
 		},
 		refreshBadge(){
 			ShopifySvc.checkoutCart((result)=>{ 

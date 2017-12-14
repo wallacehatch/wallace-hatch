@@ -2,33 +2,63 @@
   <div class="bag-page-cont">
   	<div class="bag-upper-cont">
   		<h1 class="heading">You have</h1>
-  		<p class="items-description">1 item in your cart</p>
-  		<button  class="checkout-btn" @click="handleCheckoutBagClick">Checkout</button>
+  		<p class="items-description">{{message}}</p>
+
+  		<button  class="checkout-btn" @click="handleCheckoutClick" v-if="this.cart.lineItems.length > 0">Checkout</button>
+  		<button  class="shopping-btn" @click="handleShoppingClick" v-if="this.cart.lineItems.length == 0">Start Shopping</button>
   		<p class="subtext">Free worldwide Shipping &</p>
   		<p class="subtext">Returns on orders over $95</p>
   	</div>
+  	<div class="product-section">
+      <product-line v-for="(product, i) in cart.lineItems" :key="'pTile' + i" :product="product"></product-line>
+    </div>
   </div>
 </template>
 
 <script>
 import ShopifySvc from '@/ShopifyService';
+import ProductLine from '@/components/bag/ProductLine'
 export default {
    name: 'BagPage',
    components: {
+   	ProductLine
    },
    data () {
     return {
-      product: null,
-      productInfo: null,
+      cart: {
+        lineItems: [],
+      },
+      message:null,
+      
     }
   },
   beforeMount() {
-    
+  	this.refreshCart()
   },
   methods: {
-     handleCheckoutBag(){
+     handleCheckoutClick(){
       this.$router.push('/checkout/')
     },
+    handleShoppingClick(){
+      this.$router.push('/')
+    },
+
+    refreshCart(){
+      ShopifySvc.checkoutCart((result)=>{
+      this.cart = result;
+  		if (this.cart.lineItems.length === 0) {
+  			this.message = "Nothing in your bag, start shopping to fill it up."
+  		}
+  		else if (this.cart.lineItems.length == 1) {
+  			this.message = this.cart.lineItems.length + " item in your cart"
+  		}
+  		else{
+  			this.message = this.cart.lineItems.length + " items in your cart"
+  		}
+    });
+      return this.cart
+    },
+
   },
 
 }
@@ -38,7 +68,7 @@ export default {
   @import '../../styles/_variables.scss';
 
   .bag-page-cont{
-  	padding: 7.5rem 0rem 10.2rem 0rem;
+  	padding: 7rem 0rem 0rem 0rem;
     // max-width: 114rem;
     margin: auto;
     // @include respond-to(lg) {padding: 7.5rem 4rem 0 4rem; }
@@ -59,11 +89,16 @@ export default {
     	@include intro-text;
     	text-transform: uppercase;
     	font-size: 14px;
+    	margin-top: 1rem;
     	
     }
      .subtext{
      	@include text-small;
   		text-transform: uppercase;
+  		line-height: 2.0;
+		letter-spacing: 2px;
+		color: #717171;
+
   }
     
     .checkout-btn {
@@ -73,7 +108,7 @@ export default {
     @include intro-text;
     font-size: 1.4rem;
     color: $wh-white;
-    margin-top: 2rem;
+    margin: 3rem 0 2rem 0;
     font-weight: bold;
     text-transform: uppercase;
     border-radius: 0;
@@ -87,6 +122,30 @@ export default {
       font-size: 1.4rem;
       width: 100%;
     }
+  }
+  .shopping-btn{
+
+  	background-color: $wh-black;
+    padding: 2rem 5.9rem;
+    @include intro-text;
+    font-size: 1.4rem;
+    margin: 3rem 0 2rem 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 0;
+    outline: none;
+    transition: 0.2s all linear;
+    &:hover {
+      cursor: pointer;
+      background-color: #262626;
+    }
+    @include respond-to(sm) {
+      font-size: 1.4rem;
+      width: 100%;
+    }
+  	background-color: #ffffff;
+	box-shadow: 0 12px 24px 0 rgba(95, 95, 95, 0.3), 0 2px 6px 0 rgba(149, 149, 149, 0.2);
+	border: solid 2px #000000;
   }
 
 
