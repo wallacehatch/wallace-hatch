@@ -4,9 +4,11 @@
     <p class="product-title">{{product.title}}</p>
     <p class="product-price">{{product.variants[0].price | currency}}</p>
     <div class="hover-tile-cont">
-      <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0].src + ')'}"></div>
-      <p class="product-info"><span class="title">{{product.title}}</span> <span class="price">{{139.99 | currency}}</span></p>
-      <div class="add-cart-btn" @click.stop="handleAddCartClick">Add to bag</div>
+      <div class="inner-tile">
+        <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0].src + ')'}"></div>
+        <p class="product-info"><span class="title">{{product.title}}</span> <span class="price">{{product.variants[0].price | currency}}</span></p>
+        <div class="add-cart-btn" @click="handleAddCartClick">Add to bag</div>
+      </div>
     </div>
   </div>
 </template>
@@ -92,12 +94,15 @@ export default {
       text-transform: uppercase;
       text-align: center;
       width: 28.2rem;
+      width: 1px;
       margin: auto;
       margin-top: 3rem;
       color: $wh-white;
       font-weight: bold;
+      // overflow: hidden;
+      white-space: nowrap;
       padding: 2.2rem 0;
-      transition: 0.2s all linear;
+      transition: 0.3s all cubic-bezier(.28,.56,.32,1);
       @include respond-to(lg) {
         margin-top: 2rem;
         padding: 1.5rem 0;
@@ -115,19 +120,20 @@ export default {
       left: 0;
       right: 0;
       bottom: 0;
-      padding: 5rem 0;
       background-color: $wh-white;
       opacity: 0;
-      transition: 0.3s all linear;
-      @include respond-to(lg) {
-        padding: 3rem 0;
-      }
-      @include respond-to(md) {
-        padding: 2.5rem 0;
-      }
+      transition: 0.35s all cubic-bezier(.69,.16,.32,1);
+      transition-delay: 0.1s;
+      // padding: 5rem 0;
+      // @include respond-to(lg) {
+      //   padding: 3rem 0;
+      // }
+      // @include respond-to(md) {
+      //   padding: 2.5rem 0;
+      // }
       @include respond-to(sm) {
         opacity: 1.0;
-        padding-bottom: 3rem;
+        // padding-bottom: 3rem;
         // box-shadow: 0 12px 24px 0 rgba(95, 95, 95, 0.3), 0 2px 6px 0 rgba(149, 149, 149, 0.2);
       }
       .product-info {
@@ -154,6 +160,25 @@ export default {
       .hover-tile-cont {
         opacity: 1;
       }
+    }
+    .inner-tile {
+      padding: 5rem 0;
+      @include respond-to(lg) {
+        padding: 3rem 0;
+      }
+      @include respond-to(md) {
+        padding: 2.5rem 0;
+      }
+      @include respond-to(sm) {
+        padding-bottom: 3rem;
+      }
+      &:hover {
+        opacity: 1;
+        .add-cart-btn {
+          opacity: 1.0;
+        }
+      }
+
     }
   }
 

@@ -10,12 +10,10 @@
       <hr class="line">
     </div>
     <div class="instagram-feed-cont">
-      <div v-for="(post, i) in instagramPosts">
-        <a style="display:block" v-bind:href="'https://www.instagram.com/p/'+ post.code + '/'">
-        <div class="instagram-image" v-if="i<4" :style="{ 'background-image': 'url(' + post.display_src + ')' }"></div>
-        <div class="instagram-image hide-sm" v-if="i>=4" :style="{ 'background-image': 'url(' + post.display_src + ')' }"></div>
-      </a>
-      </div>
+        <a class="instagram-image" v-for="(post, i) in instagramPosts"
+        target="_blank" :href="'https://www.instagram.com/p/'+ post.code + '/'"
+        :style="{ 'background-image': 'url(' + post.display_src + ')' }">
+        </a>
       <div class="insta-btn-wrapper">
         <a target="_blank" href="https://www.instagram.com/wallaceHatch/" class="view-insta-btn">View Our Instagram</a>
       </div>
@@ -48,10 +46,15 @@ export default {
     margin: 4rem 2.3rem 0 2.3rem;
     padding-bottom: 0.9rem;
     box-sizing: border-box;
-    overflow: auto;
+    // overflow: auto;
     @include respond-to(lg) {margin: 0rem 1rem;}
     @include respond-to(md) {margin-top: 1.5rem;}
     @include respond-to(sm) {margin-top: 2.5rem;}
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 33.33%;
+    }
 
     .insta-btn-wrapper {
       clear: both;
@@ -73,23 +76,62 @@ export default {
       font-weight: bold;
     }
     .instagram-image {
+      display: inline-block;
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-      width: 16.66%;
+      width: calc(16.66% - 2px);
       font-size: 30rem;
-      height: calc(16.66vw - 0.766rem);
       float: left;
-       text-indent: 100%;
-       &:hover {
-         transition: .2s;
-          transform: translate(0px, -10px);
+      margin: 0 0.1rem 0.2rem 0.1rem;
+      text-indent: 100%;
+      transition: .2s;
+      position: relative;
+      z-index: 1;
+      &:after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
       }
-      @include respond-to(lg) {height: calc(16.66vw - 0.333rem);}
-      @include respond-to(sm) {
-        height: calc(50vw - 1rem);
+      &:hover {
+        box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), 0 12px 24px 0 rgba(95,95,95,0.70);
+        transform: translateY(-8px);
+        z-index: 0;
+      }
+      &:nth-of-type(n + 6):hover {
+        transform: translateY(8px);
+        box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), 0 -12px 24px 0 rgba(95,95,95,0.70);
+      }
+      &:first-of-type:hover {
+        transform: translate(-8px, -8px);
+        box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), 12px 12px 24px 0 rgba(95,95,95,0.70);
+      }
+      &:last-of-type:hover {
+        transform: translate(8px, 8px);
+        box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), -12px -12px 24px 0 rgba(95,95,95,0.70);
+      }
+      &:nth-of-type(6):hover {
+        transform: translate(8px, -8px);
+        box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), -12px 12px 24px 0 rgba(95,95,95,0.70);
+      }
+      &:nth-of-type(7):hover {
+        transform: translate(-8px, 8px);
+        box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), 12px -12px 24px 0 rgba(95,95,95,0.70);
+      }
 
-        width: 50%;
+      @include respond-to(sm) {
+        width: calc(50% - 2px);
+        &:nth-of-type(2):hover {
+          transform: translate(8px, -8px);
+          box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), -12px 12px 24px 0 rgba(95,95,95,0.70);
+        }
+        &:nth-of-type(3):hover {
+          transform: translate(-8px, 8px);
+          box-shadow: 0 2px 6px 0 rgba(149,149,149,0.30), 12px -12px 24px 0 rgba(95,95,95,0.70);
+        }
+        &:nth-of-type(n + 5){
+          display: none;
+        }
       }
     }
   }
