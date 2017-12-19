@@ -173,8 +173,7 @@ export default {
     .inner-cont {
       background-color: $wh-white;
       box-shadow: -20px 0 20px 0 rgba(0, 0, 0, 0.1), -10px 0 14px 0 rgba(0, 0, 0, 0.2);
-      max-width: 32rem;
-      width: 31.2%;
+      min-width: 32rem;
       min-height: 30.8rem;
       position: absolute;
       right: 0;
@@ -182,7 +181,7 @@ export default {
       transform: translateX(101%);
       -webkit-transform: translateX(101%);
       @include respond-to(sm) {
-        width: 94%;
+        // width: 94%;
       }
     }
     .close-btn {
@@ -199,9 +198,6 @@ export default {
       &:hover {
         cursor: pointer;
         color: #262626;
-      }
-      @include respond-to(sm) {
-        margin: 1rem 1rem 0 0;
       }
     }
     .cart-body {
