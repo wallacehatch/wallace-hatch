@@ -19,8 +19,9 @@
               <p class="price">{{product.variant.price * product.quantity| currency}}</p>
            </div>
            <div class="product-line-bottom">
-             <button class="remove-button" @click="handleIncrement(-1 *product.quantity)">Remove</button>
+             <button class="remove-button desktop" @click="handleIncrement(-1 *product.quantity)">Remove</button>
              <div class="additional-message-cont"><p>Includes leather band and tool to use when changing bands.</p></div>
+             <button class="remove-button mobile" @click="handleIncrement(-1 *product.quantity)">Remove</button>
            </div>
         </div>
       </div>
@@ -74,10 +75,16 @@ beforeMount() {
         width: 18.4rem;
         height: 26.3em;
         margin: 0;
+        @include respond-to(sm) {
+          width: 7rem;
+        height: 10rem;
+        }
       }
       .product-box {
         overflow: auto;
         padding: 5.2rem 0rem 5.3rem 10rem;
+        @include respond-to(md) {padding: 3rem 0rem 3rem 3rem;}
+        @include respond-to(sm) {padding: 3rem 4rem 3rem 4rem;}
       }
     .product-box > * {
         float:left;
@@ -86,11 +93,14 @@ beforeMount() {
     
     .product-info{
       text-transform: uppercase;
-      margin-top: 4rem;
+      margin: 4rem 10rem 0 0;
       text-align: left;
       line-height: 2rem;
-      min-width: 30rem;
-        .product-line-heading{
+      @include respond-to(md) {
+        margin: 2rem 0rem 0 1rem;
+
+      }
+      .product-line-heading{
             @include intro-text;
             font-size: 14px;
             letter-spacing: 3px;
@@ -101,11 +111,16 @@ beforeMount() {
             margin-bottom: 1.5rem;
             font-size: 24px;
             letter-spacing: 6px;
+            @include respond-to(md) {
+              font-size: 20px;
+      }
+
         }
 
     }
 
     .product-line-bottom{
+      text-align: center;
       
       
       .additional-message-cont{
@@ -114,6 +129,11 @@ beforeMount() {
         border-radius: 2px;
         background-color: #f6f6f6;
         display: inline-block;
+         @include respond-to(sm){
+          width: 100%;
+          margin-left: 0;
+
+      }
 
       p{
         padding: .7rem 1.5rem;
@@ -125,8 +145,27 @@ beforeMount() {
       } 
     }
     }
+    .desktop{
+      @include respond-to(sm){
+        display: none;
+      }
+    }
+    .mobile{
+      @include respond-to(lg){
+        display: none;
+        }
+       @include respond-to(md){
+        display: none;
+        }
+      @include respond-to(sm){
+        display: inline-block;
+        width: 100% !important;
+        margin-top: 1.7rem;
+        }
+      }
     .remove-button{
-        width: 80px;
+
+     width: 80px;
       height: 32px;
       border-radius: 4px;
       border: solid 1px #cccccc;
@@ -139,14 +178,19 @@ beforeMount() {
       }
 
     .product-line-right{
-      // background-color: red;
-      margin-top: 3rem;
-      margin-bottom: 4rem;
-
+      margin: 3rem 4rem 4rem 4rem;
+      width: 15rem;
       text-align: center;
-      width: 20%;
       height: 10rem;
       display: inline-block;
+      @include respond-to(md) {
+        margin: 2rem 1rem 4rem 1rem;
+      
+      }
+        @include respond-to(sm) {
+          margin: 1.5rem 4rem 1rem 0.5rem;
+          width: 10rem;
+        }
       .quantity{
         display: inline-block;
         padding: 2.5rem 1rem 1rem 1rem;

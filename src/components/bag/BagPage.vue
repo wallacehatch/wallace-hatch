@@ -83,7 +83,7 @@ export default {
     margin: auto;
     // @include respond-to(lg) {padding: 7.5rem 4rem 0 4rem; }
     // @include respond-to(md) {padding: 7.5rem 0rem 0 0rem; }
-    // @include respond-to(sm) {padding: 7.5rem 0rem 0 0rem; }
+    @include respond-to(sm) {padding: 4rem 0rem 0 0rem; }
     .bag-upper-cont{
     	padding: 6rem 0 6.6rem 0;
     	text-align: center;
@@ -93,6 +93,9 @@ export default {
     	@include h1;
     	text-align: center;
     	text-transform: uppercase;
+    	@include respond-to(sm) {
+      // font-size: 1.rem;
+    }
 
     }
     .items-description{
@@ -123,6 +126,7 @@ export default {
     text-transform: uppercase;
     border-radius: 0;
     outline: none;
+
     transition: 0.2s all linear;
     &:hover {
       cursor: pointer;
@@ -130,7 +134,7 @@ export default {
     }
     @include respond-to(sm) {
       font-size: 1.4rem;
-      width: 100%;
+      min-width: 30rem;
     }
   }
   .shopping-btn{
