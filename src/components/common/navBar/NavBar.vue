@@ -112,7 +112,7 @@
 		border-bottom: solid 2px $wh-black;
 		box-sizing: border-box;
 		height: 2px;
-		margin-top: -2rem;
+		margin: -2rem 0 -1rem 0;
 		position: relative;
 		opacity: 0.0;
     &.single-option {
