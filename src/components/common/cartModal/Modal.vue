@@ -90,7 +90,7 @@ export default {
       });
     },
     handleReviewBagClick(){
-      this.$router.push('/bag/')
+      this.$router.replace('/bag/')
     },
   },
   mounted() {

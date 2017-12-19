@@ -65,7 +65,8 @@ export default {
     }
   },
   beforeMount() {
-    ShopifySvc.product(this.$route.params.id, (result) => {
+
+    ShopifySvc.productByHandle(this.$route.params.handle, (result) => {
       const tmp = JSON.parse(result.variants[0].title);
       tmp.waterResistant = "Up to 3 ATM (Rain resistant)";
       this.productInfo = tmp;

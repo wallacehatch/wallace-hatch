@@ -27,7 +27,7 @@ export default {
   props: ['product'],
   methods: {
     handleTileClick() {
-      this.$router.push('/watches/' + this.product.id)
+      this.$router.push('/watches/' + this.product.handle)
     },
     handleAddCartClick() {
       ShopifySvc.addToCheckout(this.product.variants[0].id, 1,(result)=>{

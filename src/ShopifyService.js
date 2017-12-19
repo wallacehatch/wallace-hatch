@@ -9,6 +9,7 @@ var svc = {};
 svc.client = client;
 svc.products = fetchAllProducts;
 svc.product = fetchProduct;
+svc.productByHandle = fetchProductByHandle;
 svc.collections = fetchAllCollections;
 svc.collection = fetchCollection;
 svc.checkoutCart = fetchCheckoutCart;
@@ -30,9 +31,19 @@ function fetchProduct(productId, success, fail) {
         success && success(product)
     }, (error) => {
         console.log("Error fetching product " + error)
-        fail && fail(err);
+        fail && fail(error);
     });
 }
+function fetchProductByHandle(productHandle, success, fail) {
+    productHandle = productHandle.replace(/\s+/g, '-').toLowerCase();
+    svc.client.product.fetchByHandle(productHandle).then((product) => {
+        success && success(product)
+    }, (error) => {
+        console.log("Error fetching product " + error)
+        fail && fail(error);
+    });
+}
+
 
 
 function fetchAllCollections(success, fail) {
@@ -108,8 +119,6 @@ function removeFromCheckout(lineItemId, success, fail){
 function updateCheckout(lineItemId,quantity, success, fail){
     const checkoutCartId = getCheckoutCartId();
     const lineItemsToUpdate = [{id: lineItemId, quantity: quantity}];
-    console.log("updating line items")
-    console.log(lineItemsToUpdate)
     svc.client.checkout.updateLineItems(checkoutCartId, lineItemsToUpdate).then((checkout) => {
         success && success(checkout)  
     },(error) => {

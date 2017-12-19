@@ -49,7 +49,7 @@ export default {
 
 		},
 		handleBagClick(){
-			this.$router.push('bag')
+      		this.$router.replace('/bag/')
 		},
 		refreshBadge(){
 			ShopifySvc.checkoutCart((result)=>{ 

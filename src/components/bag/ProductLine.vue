@@ -2,7 +2,7 @@
     <div class="product-line-cont">
         <div class="product-line-inner-cont">
           <div class="product-box">
-            <div class="product-image" :style="{backgroundImage: 'url(' + product.variant.image.src + ')'}"></div>
+            <div class="product-image" @click="handleImageClick" :style="{backgroundImage: 'url(' + product.variant.image.src + ')'}"></div>
             <div class="product-info">
                 <h4 class="product-line-heading">{{productInfo.size}} MM</h4>
                 <h4 class="product-line-heading name">{{product.title}}</h4>
@@ -43,6 +43,10 @@ export default {
     handleIncrement(quantity){
       this.$emit('clicked',this.product, quantity)
   },
+  handleImageClick() {
+      var productHandle = this.product.title.replace(/\s+/g, '-').toLowerCase();
+      this.$router.replace('/watches/' + productHandle)
+    },
 },
 beforeMount() {
    const tmp = JSON.parse(this.product.variant.title);

@@ -24,7 +24,7 @@ export default new Router({
       path: '/privacy',
       component: Privacy,
     }, {
-      path: '/watches/:id',
+      path: '/watches/:handle',
       name: 'ProductDetailPage',
       component: ProductDetailPage ,
     },
