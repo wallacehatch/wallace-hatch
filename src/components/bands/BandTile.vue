@@ -43,10 +43,10 @@ export default {
     float: left;
     position: relative;
     box-sizing: border-box;
-    padding: 7rem 0.25rem 5.5rem 0.25rem;
+    padding: 9rem 0.25rem 6.25rem 0.25rem;
     width: 33.33%;
     transition: 0.3s all linear;
-    @include respond-to(lg) { padding: 5rem 0.35rem 4rem 0.35rem;}
+    @include respond-to(lg) { padding: 6.2rem 0.35rem 4rem 0.35rem;}
     @include respond-to(md) { padding: 4.5rem 0.3rem 4rem 0.3rem;}
     @include respond-to(sm) {
       padding: 5rem 0.25rem 5rem 0.25rem;
