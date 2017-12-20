@@ -12,6 +12,7 @@ svc.product = fetchProduct;
 svc.productByHandle = fetchProductByHandle;
 svc.collections = fetchAllCollections;
 svc.collection = fetchCollection;
+svc.collectionByHandle = fetchCollectionByHandle;
 svc.checkoutCart = fetchCheckoutCart;
 svc.addToCheckout = addToCheckout;
 svc.removeFromCheckout = removeFromCheckout;
@@ -55,6 +56,16 @@ function fetchAllCollections(success, fail) {
     });
 }
 
+function fetchCollectionByHandle(collectionHandle, success, fail) {
+    svc.client.collection.fetchByHandle(collectionHandle).then((collection) => {
+        console.log("got collection")
+        console.log(collection)
+        success && success(collection)
+    }, (error) => {
+        console.log("Error fetching collection " + error)
+        fail && fail(err);
+    });
+}
 
 function fetchCollection(collectionId, success, fail) {
     svc.client.collection.fetchWithProducts(collectionId).then((collection) => {

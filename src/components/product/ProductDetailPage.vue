@@ -45,6 +45,8 @@
         <hr class="line">
         <product-info-table :productInfo="productInfo"></product-info-table>
       </div>
+      <hr class="pdp-divider">
+    <band-section></band-section>
     </div>
   </div>
 </template>
@@ -52,10 +54,12 @@
 <script>
 import ShopifySvc from '@/ShopifyService';
 import ProductInfoTable from './ProductInfoTable';
+import BandSection from '@/components/bands/BandSection';
 export default {
    name: 'ProductPage',
    components: {
      ProductInfoTable,
+     BandSection
    },
    data () {
     return {
@@ -65,7 +69,6 @@ export default {
     }
   },
   beforeMount() {
-
     ShopifySvc.productByHandle(this.$route.params.handle, (result) => {
       const tmp = JSON.parse(result.variants[0].title);
       tmp.waterResistant = "Up to 3 ATM (Rain resistant)";

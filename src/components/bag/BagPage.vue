@@ -12,16 +12,19 @@
   	<div class="product-section">
       <product-line v-for="(product, i) in cart.lineItems" :key="'pTile' + i" :product="product" @clicked="modifyCart"></product-line>
     </div>
+    <!-- <band-section v-if="this.cart.lineItems.length > 0"></band-section> -->
   </div>
 </template>
 
 <script>
 import ShopifySvc from '@/ShopifyService';
 import ProductLine from '@/components/bag/ProductLine'
+import BandSection from '@/components/bands/BandSection';
 export default {
    name: 'BagPage',
    components: {
-   	ProductLine
+   	ProductLine,
+    BandSection,
    },
    data () {
     return {

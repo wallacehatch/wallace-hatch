@@ -43,10 +43,9 @@ export default {
     }
   },
   mounted() {
-    ShopifySvc.products((result) => {
-      this.products = result;
+    ShopifySvc.collectionByHandle('frontpage', (result) => {
+     this.products = result.products;
     }, (err) => {
-      console.log(err);
       debugger;
     })
   }

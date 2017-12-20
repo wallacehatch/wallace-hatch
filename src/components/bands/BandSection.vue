@@ -1,0 +1,75 @@
+<template lang="html">
+  <div class="band-section-cont">
+
+    <div class="band-section-inner-cont"></div>
+    <h1 class="uppercase">Additional Bands</h1>
+    <p class="uppercase">Customers who baught this item also bought</p>
+    <hr class="line">
+    <div class="band-showcase-cont">
+      <!-- {{bands[0]}} -->
+     <band-tile v-for="(band, i) in bands" :key="'bTile' + i" :band="band"></band-tile>
+      
+    
+   </div>
+  </div>
+</template>
+
+<script>
+import ShopifySvc from '@/ShopifyService.js';
+import BandTile from './BandTile'
+export default {
+  data () {
+    return {
+      bands: null
+    }
+  },
+  components: {
+    BandTile,
+  },
+  methods: {
+  },
+  mounted() {
+    ShopifySvc.collectionByHandle('bands', (result) => {
+     this.bands = result.products;
+    }, (err) => {
+      debugger;
+    })
+  }
+}
+</script>
+
+<style lang="scss">
+  @import '../../styles/_variables.scss';
+  .band-section-cont{
+    text-align: center;
+    margin-top: 11rem;
+    .band-section-inner-cont{
+
+      width: 90%;
+      border-top: 2px black;
+
+    }
+    .line {
+      margin: 5rem auto 4rem auto;
+      border: none;
+      border-bottom: 4px solid $wh-black;
+      width: 4rem;
+      margin-bottom: 3rem;
+      @include respond-to(sm) {
+        margin-bottom: 2rem;
+      }
+    }
+      .band-showcase-cont {
+
+    padding: 0 2rem;
+    margin: 0 auto;
+    overflow: visible;
+    @include respond-to(lg) {padding: 0 0.75rem}
+    max-width: 144rem;
+  }
+
+
+  }
+  
+
+</style>
