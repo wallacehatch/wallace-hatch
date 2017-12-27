@@ -98,6 +98,7 @@ export default {
       content: "";
       display: block;
       padding-bottom: 100%;
+      @include respond-to(sm) {padding-bottom: 66.66%;}
     }
   }
   .how-to-wear-image {

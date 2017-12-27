@@ -69,6 +69,9 @@ export default {
 	justify-content: center;
 	border-right: 1px solid #3f3f3f;
 	padding-bottom: 2.5rem;
+	&:last-of-type {
+		border-right: none;
+	}
 	@include respond-to(sm) {
 		display: flex;
 		width: auto;
