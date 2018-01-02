@@ -12,7 +12,7 @@
   	<div class="product-section">
       <product-line v-for="(product, i) in cart.lineItems" :key="'pTile' + i" :product="product" @clicked="modifyCart"></product-line>
     </div>
-    <!-- <band-section v-if="this.cart.lineItems.length > 0"></band-section> -->
+    <band-section v-if="this.cart.lineItems.length > 0"></band-section>
   </div>
 </template>
 
@@ -83,6 +83,7 @@ export default {
   .bag-page-cont{
   	padding: 7rem 0rem 0rem 0rem;
     // max-width: 114rem;
+    overflow: auto;
     margin: auto;
     // @include respond-to(lg) {padding: 7.5rem 4rem 0 4rem; }
     // @include respond-to(md) {padding: 7.5rem 0rem 0 0rem; }

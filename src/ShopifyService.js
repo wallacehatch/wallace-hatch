@@ -77,6 +77,7 @@ function fetchCollection(collectionId, success, fail) {
 }
 
 function getCheckoutCartId(){
+
 	return localStorage.getItem('checkoutCartId');
 }
 
@@ -86,12 +87,11 @@ function setCheckoutCartId(checkoutCartId){
 
 function fetchCheckoutCart(success, fail) {
 	const checkoutCartId = getCheckoutCartId();
-
     if (!checkoutCartId) {
-        // svc.client.checkout.create().then((checkout) => {
-        // 	setCheckoutCartId(checkout.id)
-        //     success && success(checkout)
-        // });
+        svc.client.checkout.create().then((checkout) => {
+        	setCheckoutCartId(checkout.id)
+            success && success(checkout)
+        });
     } else {
         svc.client.checkout.fetch(checkoutCartId).then((checkout) => {
             setCheckoutCartId(checkout.id)

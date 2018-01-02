@@ -65,13 +65,18 @@ beforeMount() {
 	      height: 10.3rem;
 	      margin: 1rem 1rem 0 1rem;
     	}
+      .cart-item-inner-cont{
+        
+
+      }
 		.cart-item-inner-cont > * {
 		    float:left;
+
 	
 		}
 		.product-info{
 			text-transform: uppercase;
-			padding: 2rem;
+			padding: 3rem 2rem 2rem 0rem;
 			text-align: left;
 			line-height: 2rem;
 		   	.cart-item-heading{
@@ -83,8 +88,9 @@ beforeMount() {
     	}
         .cart-item-text{
             @include text-small;
+            // text-decoration: none;
             text-align: left;
-            font-weight: 300;
+            font-weight: 500;
 
         }
 

@@ -1,15 +1,10 @@
 <template lang="html">
   <div class="band-section-cont">
-
-    <div class="band-section-inner-cont"></div>
     <h1 class="uppercase">Additional Bands</h1>
     <p class="uppercase">Customers who baught this item also bought</p>
     <hr class="line">
     <div class="band-showcase-cont">
-      <!-- {{bands[0]}} -->
      <band-tile v-for="(band, i) in bands" :key="'bTile' + i" :band="band"></band-tile>
-      
-    
    </div>
   </div>
 </template>
@@ -42,13 +37,8 @@ export default {
   @import '../../styles/_variables.scss';
   .band-section-cont{
     text-align: center;
-    margin-top: 11rem;
-    .band-section-inner-cont{
-
-      width: 90%;
-      border-top: 2px black;
-
-    }
+    padding: 11rem 0 3rem 0;
+    overflow: auto;
     .line {
       margin: 5rem auto 4rem auto;
       border: none;

@@ -6,6 +6,7 @@
         <div @click="$emit('close')"  class="close-btn"><i class="fal fa-times"></i></div>
         <div class="cart-body">
           <p class="heading">Added to bag!</p>
+          <cart-notification></cart-notification>
           <div v-for="(product, i) in cart.lineItems">
             <cart-item :product="product"  @clicked="modifyCart"></cart-item>
           </div>
@@ -21,6 +22,7 @@ import anime from 'animejs';
 import axios from 'axios';
 import ShopifySvc from '@/ShopifyService.js';
 import CartItem from './CartItem';
+import CartNotification from './CartNotification';
 export default {
   props: ['active'],
   data() {
@@ -34,6 +36,7 @@ export default {
   },
   components: {
     CartItem,
+    CartNotification,
   },
   methods: {
     refreshCart(){
