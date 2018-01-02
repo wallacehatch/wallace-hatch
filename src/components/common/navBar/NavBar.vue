@@ -34,6 +34,7 @@
 		},
 		methods: {
 			animateActiveBar(pos) {
+				if (this.$store.state.navLayout) return;
 				setTimeout(() => {
 					var timeline = anime.timeline();
 					timeline.add({
@@ -54,6 +55,7 @@
 				})
 			},
 			positionActiveBar() {
+				if (this.$store.state.navLayout) return;
 				setTimeout(() => {
 					var startPos = document.getElementById(this.navKey + '0').getBoundingClientRect().left - document.getElementById(this.navKey).getBoundingClientRect().left - 8;
 					this.keyPoints = this.items.map((item, i) => {

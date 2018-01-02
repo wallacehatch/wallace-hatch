@@ -1,24 +1,46 @@
 <template lang="html">
-  <div class="checkout-field-wrapper">
+  <div class="checkout-field-wrapper" :class="{active: fieldState.active}">
     <div class="checkout-field-cont">
-      <input @blur="shouldBlurField"
+
+      <input v-if="!iMask"
+      @blur="shouldBlurField"
       class="checkout-input"
-      :class="[iClass, {active: fieldState.active, error: errors.has(iName)}]"
+      :class="[iClass, {active: fieldState.active, valid: fieldState.valid, error: errors.has(iName)}]"
+      :id="iId"
       :type="iType || 'text'"
       :name="iName || ''"
-      type="text"
+      :value="iValue"
+      @input="updateModelValue"
       v-validate="iValidate || ''"
       @focus="fieldState.active = true">
+
+      <input v-if="iMask"
+      @blur="shouldBlurField"
+      class="checkout-input"
+      :class="[iClass, {active: fieldState.active, valid: fieldState.valid, error: errors.has(iName)}]"
+      :id="iId"
+      :type="iType || 'text'"
+      :name="iName || ''"
+      :value="iValue"
+      @input="updateModelValue"
+      v-validate="iValidate || ''"
+      v-mask="iMask"
+      @focus="fieldState.active = true">
+
       <label for="" class="placeholder-label">{{iPlaceholder}}</label>
-      <div class="status-bubble" :class="{ valid: fields[iName].valid, invalid: errors.has(iName) }"></div>
+      <slot name="cardIcon"></slot>
+      <div v-if="iValidate" class="status-bubble" :class="{ valid: fields[iName].valid, invalid: errors.has(iName) }"></div>
     </div>
+    <slot name="cardAuth"></slot>
     <span v-show="errors.has(iName)" class="error-label">{{errors.first(iName)}}</span>
   </div>
 </template>
 
 <script>
+import {mask} from 'vue-the-mask';
 export default {
-  props: ['iValidate', 'iPlaceholder', 'iClass', 'iType', 'iName'],
+  props: ['iValidate', 'iPlaceholder', 'iClass', 'iId', 'iType', 'iName', 'iMask', 'iValue'],
+  directives: {mask},
   data() {
     return {
       fieldState: {
@@ -29,10 +51,13 @@ export default {
     }
   },
   methods: {
+    updateModelValue: function(e) {
+      this.$emit('input', e.target.value)
+    },
     shouldBlurField(e) {
       console.log(e.target.value);
       if (!e.target.value) {this.fieldState.active = false}
-    }
+    },
   }
 }
 </script>
@@ -64,7 +89,7 @@ export default {
     display: block;
     width: 100%;
     box-sizing: border-box;
-    &.active {
+    &.active, &[value] {
       box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.2);
 	    border: solid 2px #000000;
       padding-bottom: 0.8rem;
@@ -87,6 +112,7 @@ export default {
     top: 1.5rem;
     left: 1.5rem;
     color: #676767;
+    pointer-events: none;
     transition: 0.2s all cubic-bezier(.51,.11,.53,.77);
   }
   .status-bubble {

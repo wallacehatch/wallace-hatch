@@ -7,7 +7,7 @@ Vue.use(Vuex);
 const state = {
 	mobile: false,
 	navItems: ['Home', 'Watches', 'Our Story', 'Lookbook'],
-	navLayout: 1, // 0 is default, 1 is checkout
+	navLayout: 0, // 0 is default, 1 is checkout
 	contactModalActive: false,
 	cartModalActive: false,
 	bag: {
@@ -17,6 +17,9 @@ const state = {
 
 }
 const mutations = {
+	[types.SET_NAV_LAYOUT] (state, val) {
+		state.navLayout = val;
+	},
 	[types.SET_MOBILE] (state, val) {
 		state.mobile = val;
 	},

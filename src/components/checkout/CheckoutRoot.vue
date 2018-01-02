@@ -16,7 +16,12 @@ export default {
       sections: ['Information', 'Review'],
     }
   },
-
+  mounted() {
+    this.$store.commit('SET_NAV_LAYOUT', 1);
+  },
+  beforeDestroy() {
+    this.$store.commit('SET_NAV_LAYOUT', 0);
+  }
 }
 </script>
 
