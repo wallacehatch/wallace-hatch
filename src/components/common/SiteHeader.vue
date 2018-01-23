@@ -1,19 +1,24 @@
 <template>
     <div class="header-cont">
-        <div @click="mobileNav.active = true" class="mobile-header-left sm-only">MENU</div>
-        <div class="header-left">
-            <router-link style="display:block" to="/">
-                <div class="header-logo"></div>
-                <p class="text-mark uppercase hide-md">wallace hatch</p>
-            </router-link>
+        <div v-if="$store.state.navLayout === 0">
+          <div @click="mobileNav.active = true" class="mobile-header-left sm-only">MENU</div>
+          <div class="header-left">
+              <router-link style="display:block" to="/">
+                  <div class="header-logo"></div>
+                  <p class="text-mark uppercase hide-md">wallace hatch</p>
+              </router-link>
+          </div>
+          <div class="header-right">
+              <nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm" :items="nav.items" :active="nav.active" navKey="siteNav">
+              </nav-bar>
+              <a @click="handleBagClick">
+              <div class="shopping-cart-icon fal fa-shopping-bag" aria-hidden="true"></div>
+              <span class="badge open-sans"  v-if="$store.state.badgeNumber>0">{{$store.state.badgeNumber}}</span>
+          </a>
+          </div>
         </div>
-        <div class="header-right">
-            <nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm" :items="nav.items" :active="nav.active" navKey="siteNav">
-            </nav-bar>
-            <a @click="handleBagClick">
-            <div class="shopping-cart-icon fal fa-shopping-bag" aria-hidden="true"></div>
-            <span class="badge open-sans"  v-if="$store.state.badgeNumber>0">{{$store.state.badgeNumber}}</span>
-        </a>
+        <div v-if="$store.state.navLayout === 1">
+          <div class="header-logo checkout"></div>
         </div>
         <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="$store.state.cartModalActive"></cart-modal>
         <contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive"></contact-modal>
@@ -52,7 +57,7 @@ export default {
       		this.$router.replace('/bag/')
 		},
 		refreshBadge(){
-			ShopifySvc.checkoutCart((result)=>{ 
+			ShopifySvc.checkoutCart((result)=>{
       		this.badgeNumber = result.lineItems.length
       	});
 		},
@@ -65,7 +70,7 @@ export default {
 	},
 	 watch: {
 	 	badgeNumber: function (newVal) {
-      		return this.$store.state.badgeNumber; 
+      		return this.$store.state.badgeNumber;
     }
   },
 	 mounted() {
@@ -76,10 +81,29 @@ export default {
 
 <style lang="scss">
 @import '../../styles/_variables.scss';
-// .countdown .v-nav-link {
-// 	margin-right: 0;
-// 	padding-right: 0;
-// }
+
+.header-logo {
+  float: left;
+  width: 3.8rem;
+  height: 3.2rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/wh-mark.svg');
+  &.checkout {
+    float: none;
+    width: 4.7rem;
+    height: 4rem;
+    margin: 1.7rem auto;
+    @include respond-to(sm) {width: 2.9rem; height: 2.5rem;}
+  }
+  @include respond-to(sm) {
+    width: 2.9rem;
+    height: 2.5rem;
+    float: none;
+    margin: auto;
+  }
+}
 .header-cont{
 		overflow: visible;
     position: fixed;
@@ -175,21 +199,6 @@ export default {
 		@include respond-to(sm) {
 			padding: 1.4rem 0 1.6rem 0;
 			width: calc(100% - 10.74rem);
-		}
-		.header-logo {
-			float: left;
-			width: 3.8rem;
-			height: 3.2rem;
-			background-repeat: no-repeat;
-			background-size: contain;
-			background-position: center;
-			background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/wh-mark.svg');
-			@include respond-to(sm) {
-				width: 2.9rem;
-				height: 2.5rem;
-				float: none;
-				margin: auto;
-			}
 		}
 		.text-mark {
 			float: left;

@@ -9,12 +9,20 @@ import {ApolloClient, createNetworkInterface} from 'apollo-client';
 import VueApollo from 'vue-apollo'
 import Vue2Filters from 'vue2-filters'
 import VueScrollTo from 'vue-scrollto'
+import VueTheMask from 'vue-the-mask'
 
 Vue.config.productionTip = false
 Vue.use(VeeValidate);
 Vue.use(VueApollo);
 Vue.use(VueScrollTo)
 Vue.use(Vue2Filters);
+
+const config = {
+  strict: false,
+  classes: true,
+}
+
+Vue.use(VueTheMask, config);
 
 
 const networkInterface = createNetworkInterface({

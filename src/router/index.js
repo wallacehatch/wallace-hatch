@@ -6,6 +6,8 @@ import ProductDetailPage from '@/components/product/ProductDetailPage'
 import Terms from '@/components/legal/Terms'
 import Privacy from '@/components/legal/Privacy'
 import BagPage from '@/components/bag/BagPage'
+import CheckoutRoot from '@/components/checkout/CheckoutRoot'
+import CheckoutInfo from '@/components/checkout/CheckoutInfo'
 
 Vue.use(Router)
 export default new Router({
@@ -27,10 +29,17 @@ export default new Router({
       path: '/watches/:handle',
       name: 'ProductDetailPage',
       component: ProductDetailPage ,
-    },
-    {
+    }, {
       path: '/bag/',
       name: 'BagPage',
       component: BagPage ,
+    }, {
+      path: '/checkout',
+      name: 'Checkout',
+      component: CheckoutRoot,
+      children: [{
+        path: 'info',
+        component: CheckoutInfo,
+      }]
     }]
 })
