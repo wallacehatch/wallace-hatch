@@ -3,6 +3,7 @@
         <div class="product-line-inner-cont">
           <div class="product-box">
             <div class="product-image" @click="handleImageClick" :style="{backgroundImage: 'url(' + product.variant.image.src + ')'}"></div>
+            <div class="product-info-wrapper">
             <div class="product-info">
                 <h4 class="product-line-heading">{{productInfo.size}} MM</h4>
                 <h4 class="product-line-heading name">{{product.title}}</h4>
@@ -23,9 +24,9 @@
              <div class="additional-message-cont"><p>Includes leather band and tool to use when changing bands.</p></div>
              <button class="remove-button mobile" @click="handleIncrement(-1 *product.quantity)">Remove</button>
            </div>
+         </div>
         </div>
       </div>
-        
     </div>
 </template>
 
@@ -62,7 +63,7 @@ beforeMount() {
 .product-line-cont{
   margin-bottom: 2rem;
     .product-line-inner-cont{
-      max-width: 1140px;
+      max-width: 90%;
       margin: 0 auto;
       border-bottom: solid 1px #d8d8d8;
       overflow: auto;
@@ -72,8 +73,8 @@ beforeMount() {
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
-        width: 18.4rem;
-        height: 26.3em;
+        width: 14.4rem;
+        height: 24.7em;
         margin: 0;
         @include respond-to(sm) {
           width: 7rem;
@@ -83,9 +84,17 @@ beforeMount() {
       .product-box {
         overflow: auto;
         padding: 5.2rem 0rem 5.3rem 10rem;
-        @include respond-to(md) {padding: 3rem 0rem 3rem 3rem;}
+        @include respond-to(md) {padding: 0rem 0rem 0rem 0rem;}
         @include respond-to(sm) {padding: 3rem 4rem 3rem 4rem;}
       }
+      .product-info-wrapper{
+        padding: 5.7rem 6rem;
+        @include respond-to(lg) {padding: 4rem 3rem}
+        @include respond-to(md) {padding: 4rem 0rem}
+        @include respond-to(sm) {padding: 0rem 0rem 0rem 0rem;}
+
+      }
+
     .product-box > * {
         float:left;
   
@@ -93,13 +102,11 @@ beforeMount() {
     
     .product-info{
       text-transform: uppercase;
-      margin: 4rem 10rem 0 0;
+      display: inline-block;
       text-align: left;
       line-height: 2rem;
-      @include respond-to(md) {
-        margin: 2rem 0rem 0 1rem;
-
-      }
+      padding: 0 10.5rem 0 0;
+      @include respond-to(md) {padding: 0rem 4.9rem 0 0rem;}
       .product-line-heading{
             @include intro-text;
             font-size: 14px;
@@ -120,9 +127,7 @@ beforeMount() {
     }
 
     .product-line-bottom{
-      text-align: center;
-      
-      
+          
       .additional-message-cont{
         margin-top: 3rem;
         margin-left: 2rem;
@@ -169,7 +174,6 @@ beforeMount() {
       height: 32px;
       border-radius: 4px;
       border: solid 1px #cccccc;
-      // margin-right: 8.4rem;
       transition: 0.2s linear;
             &:hover{
                 box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
@@ -178,19 +182,12 @@ beforeMount() {
       }
 
     .product-line-right{
-      margin: 3rem 4rem 4rem 4rem;
-      width: 15rem;
+      vertical-align: top;
+      padding: 0 8.4rem 0 0;
       text-align: center;
-      height: 10rem;
       display: inline-block;
-      @include respond-to(md) {
-        margin: 2rem 1rem 4rem 1rem;
-      
-      }
-        @include respond-to(sm) {
-          margin: 1.5rem 4rem 1rem 0.5rem;
-          width: 10rem;
-        }
+      @include respond-to(md) {padding: 0 5rem 0 0;}
+      @include respond-to(sm) {padding: 0 0rem 0 0;}
       .quantity{
         display: inline-block;
         padding: 2.5rem 1rem 1rem 1rem;

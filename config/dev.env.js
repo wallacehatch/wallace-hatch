@@ -9,3 +9,8 @@ module.exports = merge(prodEnv, {
   SHOPIFY_DOMAIN: '"wallacehatch.myshopify.com"',
   SHOPIFY_APP_ID: "11028430886",
 })
+
+
+dae889c6dcc6ded81b5232a9ae866ef1 - key
+
+7fda7925e78efe4a63698ab0c7105d25 - secret

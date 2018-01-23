@@ -14,7 +14,6 @@ name: 'cartNotification',
   data() {
     return {
     	notification: "Add any watch band to your order and get 10% off, shop now!",
-
     }
   },
   methods: {

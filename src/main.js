@@ -17,8 +17,6 @@ Vue.use(VueScrollTo)
 Vue.use(Vue2Filters);
 
 
-
-
 const networkInterface = createNetworkInterface({
   uri: process.env.SHOPIFY_API_URL,
   transportBatching: true,
