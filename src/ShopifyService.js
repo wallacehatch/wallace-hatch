@@ -76,8 +76,9 @@ function fetchCollection(collectionId, success, fail) {
     });
 }
 
+// https://wallacehatch.myshopify.com/admin/checkouts/Z2lkOi8vc2hvcGlmeS9DaGVja291dC9jYjE4YTM5OTMzMDk2NzEwM2RiMWIyMWEwZDM4N2Y1YT9rZXk9NTBkYzQ5MDIyYmUyMzVmN2Q1NmM0YmY0NWIyZDc1Yzc=.json
 function getCheckoutCartId(){
-
+    
 	return localStorage.getItem('checkoutCartId');
 }
 
@@ -89,11 +90,15 @@ function fetchCheckoutCart(success, fail) {
 	const checkoutCartId = getCheckoutCartId();
     if (!checkoutCartId) {
         svc.client.checkout.create().then((checkout) => {
+            console.log("creating checkout")
+            console.log(checkout)
         	setCheckoutCartId(checkout.id)
             success && success(checkout)
         });
     } else {
         svc.client.checkout.fetch(checkoutCartId).then((checkout) => {
+            console.log("heres checkout")
+            console.log(checkout)
             setCheckoutCartId(checkout.id)
             success && success(checkout)
         });
