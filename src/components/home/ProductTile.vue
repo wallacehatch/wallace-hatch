@@ -1,12 +1,12 @@
 <template lang="html">
   <div @click="handleTileClick" class="product-tile-cont">
-    <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0].src + ')'}"></div>
-    <p class="product-title">{{product.title}}</p>
-    <p class="product-price">{{product.variants[0].price | currency}}</p>
+    <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0] + ')'}"></div>
+    <p class="product-title">{{product.name}}</p>
+    <p class="product-price">{{product.skus.data[0].price / 100 | currency }}</p>
     <div class="hover-tile-cont">
       <div class="inner-tile">
-        <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0].src + ')'}"></div>
-        <p class="product-info"><span class="title">{{product.title}}</span> <span class="price">{{product.variants[0].price | currency}}</span></p>
+        <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0] + ')'}"></div>
+        <p class="product-info"><span class="title">{{product.name}}</span> <span class="price">{{product.skus.data[0].price / 100 | currency }}</span></p>
         <div class="add-cart-btn" @click.stop="handleAddCartClick">Add to bag</div>
       </div>
     </div>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import ShopifySvc from '@/ShopifyService.js';
+// import ShopifySvc from '@/ShopifyService.js';
 export default {
   data () {
     return {
@@ -27,12 +27,12 @@ export default {
   props: ['product'],
   methods: {
     handleTileClick() {
-      this.$router.push('/watches/' + this.product.handle)
+      this.$router.push('/watches/' + this.product.id)
     },
     handleAddCartClick() {
-      ShopifySvc.addToCheckout(this.product.variants[0].id, 1,(result)=>{
-         this.$store.commit('SET_CART_ACTIVE', true);
-        });
+      // ShopifySvc.addToCheckout(this.product.id, 1,(result)=>{
+      //    this.$store.commit('SET_CART_ACTIVE', true);
+      //   });
     }
   },
 }

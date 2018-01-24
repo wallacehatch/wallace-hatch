@@ -2,24 +2,24 @@
   <div v-if="product" class="pdp-cont">
     <div class="pdp-upper-cont">
       <div class="pdp-ul">
-        <div class="active-image" :style="{backgroundImage: 'url(' + product.images[activeImageIndex].src + ')'}"></div>
+        <div class="active-image" :style="{backgroundImage: 'url(' + product.images[activeImageIndex] + ')'}"></div>
         <div class="additional-images-cont">
           <div v-for="(image, i) in product.images" class="additional-image"
           :class="{active: activeImageIndex === i}"
           @click="activeImageIndex = i"
-          :style="{backgroundImage: 'url(' + product.images[i].src + ')'}"></div>
+          :style="{backgroundImage: 'url(' + product.images[i] + ')'}"></div>
         </div>
       </div>
       <div class="pdp-ur">
-        <p class="size">{{productInfo.size}}MM</p>
+        <p class="size">{{product.metadata.size}}MM</p>
         <hr class="line">
-        <p class="title">{{product.title}}</p>
-        <p class="price hide-sm">{{product.variants[0].price | currency }}</p>
+        <p class="title">{{product.name}}</p>
+        <p class="price hide-sm">{{product.skus.data[0].price / 100 | currency }}</p>
         <div class="color-bubble"></div>
-        <p class="color-text">Color: {{productInfo.dialColor}}/{{productInfo.caseColor}}</p>
+        <p class="color-text">Color: {{product.metadata.dialColor}}/{{product.metadata.caseColor}}</p>
         <div class="add-cart-btn pdp">
           <span class="mobile-add" @click="handleAddCartClick">Add to bag</span>
-          <span class="mobile-price">{{product.variants[0].price | currency}}</span></div>
+          <span class="mobile-price">{{product.skus.data[0].price / 100 | currency}}</span></div>
       </div>
       <hr class="pdp-divider">
     </div>
@@ -43,7 +43,7 @@
       </div>
       <div class="pdp-lr">
         <hr class="line">
-        <product-info-table :productInfo="productInfo"></product-info-table>
+        <product-info-table :productInfo="product.metadata"></product-info-table>
       </div>
       <hr class="pdp-divider">
     <band-section></band-section>
@@ -52,7 +52,8 @@
 </template>
 
 <script>
-import ShopifySvc from '@/ShopifyService';
+// import ShopifySvc from '@/ShopifyService';
+import StripeService from '@/StripeService';
 import ProductInfoTable from './ProductInfoTable';
 import BandSection from '@/components/bands/BandSection';
 export default {
@@ -69,14 +70,20 @@ export default {
     }
   },
   beforeMount() {
-    ShopifySvc.productByHandle(this.$route.params.handle, (result) => {
-      const tmp = JSON.parse(result.variants[0].title);
-      tmp.waterResistant = "Up to 3 ATM (Rain resistant)";
-      this.productInfo = tmp;
-      this.product = result;
+    console.log('before mount pdp');
+    StripeService.getProduct(this.$route.params.handle).then((result) => {
+      this.product = result.data;
     }, (err) => {
       debugger;
     })
+    // ShopifySvc.productByHandle(this.$route.params.handle, (result) => {
+    //   const tmp = JSON.parse(result.variants[0].title);
+    //   tmp.waterResistant = "Up to 3 ATM (Rain resistant)";
+    //   this.productInfo = tmp;
+    //   this.product = result;
+    // }, (err) => {
+    //   debugger;
+    // })
   },
   methods: {
     handleAddCartClick() {
