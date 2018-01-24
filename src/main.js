@@ -25,8 +25,6 @@ const config = {
 Vue.use(VueTheMask, config);
 
 
-
-
 const networkInterface = createNetworkInterface({
   uri: process.env.SHOPIFY_API_URL,
   transportBatching: true,

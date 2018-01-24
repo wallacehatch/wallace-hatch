@@ -152,7 +152,7 @@ export default {
   .pdp-lower-cont {
     overflow: auto;
     padding: 11rem 1.3rem;
-    @include respond-to(lg) {padding: 8rem 0;}
+    @include respond-to(lg) {padding: 8rem 0 0 0;}
     @include respond-to(md) {padding: 6.2rem 4.4rem;}
     @include respond-to(sm) {padding: 4rem 0;}
     .how-to-wear-header {
