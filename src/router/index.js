@@ -8,6 +8,7 @@ import Privacy from '@/components/legal/Privacy'
 import BagPage from '@/components/bag/BagPage'
 import CheckoutRoot from '@/components/checkout/CheckoutRoot'
 import CheckoutInfo from '@/components/checkout/CheckoutInfo'
+import CheckoutReview from '@/components/checkout/CheckoutReview'
 
 Vue.use(Router)
 export default new Router({
@@ -40,6 +41,9 @@ export default new Router({
       children: [{
         path: 'info',
         component: CheckoutInfo,
+      }, {
+        path: 'review',
+        component: CheckoutReview,
       }]
     }]
 })

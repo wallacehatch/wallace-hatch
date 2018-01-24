@@ -1,7 +1,7 @@
 <template>
 	<div class="total-footer-cont">
-		<black-info-box></black-info-box>
-		<newsletter-cta></newsletter-cta>
+		<black-info-box v-if="$store.state.navLayout !== 1"></black-info-box>
+		<newsletter-cta v-if="$store.state.navLayout !== 1"></newsletter-cta>
 		<div class="site-footer-cont">
 			<div class="footer-left">
 				<a target="_blank" href="https://www.instagram.com/wallaceHatch/" class="social-link fab fa-instagram"></a>

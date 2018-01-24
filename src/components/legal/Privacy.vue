@@ -39,4 +39,39 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../../styles/variables.scss';
+.legal-cont {
+  width: calc(100% - 8rem);
+  max-width: 75rem;
+  margin: 7rem auto;
+  @include respond-to(sm) {
+    width: calc(100% - 3rem);
+    margin: 5.5rem auto;
+  }
+  .section-title {
+    @include h4;
+    font-size: 2.8rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 8rem 0 1rem 0;
+    @include respond-to(sm) {
+      padding: 3rem 0 0 0;
+      font-size: 2.4rem;
+      letter-spacing: 5px;
+    }
+  }
+  .body-section-title {
+    @include intro-text;
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 1rem;
+    padding-top: 2rem;
+  }
+  .body-info {
+    @include text-body;
+  }
+}
 </style>

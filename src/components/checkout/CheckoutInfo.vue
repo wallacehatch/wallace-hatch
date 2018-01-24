@@ -1,12 +1,12 @@
 <template lang="html">
   <div class="checkout-info-cont">
-
     <h2 class="info-section-title">Your Details</h2>
     <checkout-input iPlaceholder="First and Last Name"
       iType="text"
       class="info-field-cont"
       iName="name"
       v-model="form.account.name"
+      :iValue="form.account.name"
       iValidate="required">
     </checkout-input>
     <checkout-input iPlaceholder="Email"
@@ -14,6 +14,7 @@
       class="info-field-cont"
       iName="email"
       v-model="form.account.email"
+      :iValue="form.account.email"
       iValidate="required|email">
     </checkout-input>
     <checkout-input iPlaceholder="Password"
@@ -21,6 +22,7 @@
       class="info-field-cont"
       iName="password"
       v-model="form.account.password"
+      :iValue="form.account.password"
       iValidate="required">
     </checkout-input>
     <checkout-input iPlaceholder="Phone"
@@ -29,11 +31,13 @@
       iName="phone"
       iValidate="required"
       v-model="form.account.phone"
+      :iValue="form.account.phone"
       iMask="(###) ###-####">
     </checkout-input>
     <checkout-checkbox
       class="info-field-cont"
       v-model="form.account.acceptTerms"
+      :iValue="form.account.acceptTerms"
       cKey="0">
     </checkout-checkbox>
     <hr class="info-section-divider">
@@ -44,6 +48,7 @@
       class="info-field-cont"
       iName="name"
       v-model="form.shipping.name"
+      :iValue="form.shipping.name"
       iValidate="required">
     </checkout-input>
     <checkout-input iPlaceholder="Street Address"
@@ -51,6 +56,7 @@
       class="info-field-cont"
       iName="address"
       v-model="form.shipping.address"
+      :iValue="form.shipping.address"
       iClass="address"
       iId="address_ac"
       iValidate="required">
@@ -60,27 +66,27 @@
       <checkout-input iPlaceholder="Apt/Suite"
         iType="text"
         class="info-field-cont col-2"
-        :iValue="form.shipping.aptSuite"
         iName="aptSuite"
         v-model="form.shipping.aptSuite"
+        :iValue="form.shipping.aptSuite"
         iValidate="">
       </checkout-input>
       <checkout-input iPlaceholder="Company"
         iType="text"
         class="info-field-cont col-2"
         iClass="nbl"
-        :iValue="form.shipping.company"
         iName="company"
         v-model="form.shipping.company"
+        :iValue="form.shipping.company"
         iValidate="">
       </checkout-input>
       <checkout-input iPlaceholder="City"
         iType="text"
         class="info-field-cont col-3"
         :iClass="[ {'active': form.shipping.city}]"
-        :iValue="form.shipping.city"
         iName="city"
         v-model="form.shipping.city"
+        :iValue="form.shipping.city"
         iValidate="required"
         initValidate="true">
       </checkout-input>
@@ -88,9 +94,9 @@
         iType="text"
         class="info-field-cont col-3"
         :iClass="['nbl', {'active': form.shipping.state}]"
-        :iValue="form.shipping.state"
         iName="state"
         v-model="form.shipping.state"
+        :iValue="form.shipping.state"
         iValidate="required"
         initValidate="true">
       </checkout-input>
@@ -98,18 +104,17 @@
         iType="text"
         class="info-field-cont col-3"
         :iClass="['nbl', {'active': form.shipping.zip}]"
-        :iValue="form.shipping.zip"
         iName="zip"
         v-model="form.shipping.zip"
+        :iValue="form.shipping.zip"
         iValidate="required">
       </checkout-input>
     </div>
     <hr class="info-section-divider">
 
     <h2 class="info-section-title">Bill to</h2>
-    <card-input v-model="form.billing.cardNumber" class="info-field-cont">
-
-    </card-input>
+    <card-input v-model="form.billing" class="info-field-cont"></card-input>
+    <order-summary buttonText="Review Your Order"  @buttonClick="$router.push('/checkout/review')"></order-summary>
   </div>
 </template>
 
@@ -117,11 +122,14 @@
 import CheckoutInput from './CheckoutInput';
 import CardInput from './CardInput';
 import CheckoutCheckbox from './CheckoutCheckbox';
+import OrderSummary from './OrderSummary';
 export default {
+  props: ['form'],
   components: {
     CheckoutInput,
     CheckoutCheckbox,
     CardInput,
+    OrderSummary,
   },
   methods: {
     assignAddressComponent(c) {
@@ -130,7 +138,7 @@ export default {
           this.form.shipping.streetNumber = c.long_name;
           break;
         case 'route':
-          this.form.shipping.steetName = c.long_name;
+          this.form.shipping.streetName = c.long_name;
           break;
         case 'locality':
           this.form.shipping.city = c.long_name;
@@ -148,43 +156,18 @@ export default {
     }
   },
   mounted() {
+    this.$emit('setSection', 0);
     var input = document.getElementById('address_ac');
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
       this.form.addressSelected = true;
-      place.address_components.map((component) => {
-        this.assignAddressComponent(component)
-      })
+      place.address_components.map(this.assignAddressComponent);
     })
   },
   data() {
     return {
-      form: {
-        addressSelected: false,
-        account: {
-          name: '',
-          email: '',
-          password: '',
-          phone: '',
-          acceptTerms: false,
-        },
-        shipping: {
-          name: '',
-          address: '',
-          streetNumber: '',
-          streetName: '',
-          aptSuite: '',
-          company: '',
-          city: '',
-          state: '',
-          country: '',
-          zip: '',
-        },
-        billing: {
-          cardNumber: 0,
-        }
-      }
+
     }
   }
 }
@@ -193,10 +176,16 @@ export default {
 <style lang="scss">
   @import '../../styles/_variables.scss';
   .checkout-info-cont {
+    .info-field-cont.summary {
+      margin-bottom: 0;
+    }
     .info-section-divider {
       padding-top: 3rem;
       width: calc(100% - 30rem);
-      @include respond-to(md) {width: calc(100% - 25rem);}
+      @include respond-to(md) {
+        width: calc(100% - 25rem);
+        max-width: 50rem;
+      }
       @include respond-to(sm) {width: calc(100% - 4rem);}
       margin: auto;
       margin-bottom: 3rem;
