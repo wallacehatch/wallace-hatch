@@ -82,10 +82,10 @@ export default {
   data() {
     return {
       form: {
-        name: null,
-        email: null,
-        company: null,
-        message: null,
+        name: '',
+        email: '',
+        company: '',
+        message: '',
       },
       textarea: {
         chars: 0,

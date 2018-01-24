@@ -5,30 +5,30 @@
       class="card-field"
       iClass="card-details"
       iName="card number"
-      :iValue="cardNumber"
-      v-model="cardNumber"
+      :iValue="cardInfo.cardNumber"
+      v-model="cardInfo.cardNumber"
       iValidate="required|credit_card">
       <div slot="cardIcon" class="card-icon"
-        :class="cardType">
+        :class="cardInfo.cardType">
       </div>
       <div slot="cardAuth" class="card-auth-cont">
         <checkout-input iPlaceholder="MM/YY"
           iType="text"
           class="info-field-cont col-2"
-          :iClass="[{'active': exp.raw}]"
-          :iValue="exp.raw"
+          :iClass="[{'active': cardInfo.exp}]"
+          :iValue="cardInfo.exp"
           iName="expiration date"
           iMask="##/##"
-          v-model="exp.raw"
+          v-model="cardInfo.exp"
           iValidate="required">
         </checkout-input>
         <checkout-input iPlaceholder="cvc"
           iType="text"
           class="info-field-cont col-2"
-          :iClass="['nbl', {'active': cvc}]"
-          :iValue="cvc"
+          :iClass="['nbl', {'active': cardInfo.cvc}]"
+          :iValue="cardInfo.cvc"
           iName="cvc"
-          v-model="cvc"
+          v-model="cardInfo.cvc"
           iValidate="required">
         </checkout-input>
       </div>
@@ -51,43 +51,46 @@ export default {
        UNKNOWN: 'UNKNOWN',
      }
      return {
-       cardNumber: null,
        cardTypes,
-       cardType: cardTypes.UNKNOWN,
-       exp: {
-         raw: '',
-         month: '',
-         year: '',
-       },
-       cvc: '',
+       cardInfo: {
+         cardNumber: null,
+         cardType: cardTypes.UNKNOWN,
+         exp: '',
+         cvc: '',
+       }
      }
    },
    methods: {
      detectCardType(num) {
        switch (num.split('')[0]) {
          case '3':
-         this.cardType = this.cardTypes.AMEX;
+         this.cardInfo.cardType = this.cardTypes.AMEX;
          break;
          case '4':
-         this.cardType = this.cardTypes.VISA;
+         this.cardInfo.cardType = this.cardTypes.VISA;
          break;
          case '5':
-         this.cardType = this.cardTypes.MASTERCARD;
+         this.cardInfo.cardType = this.cardTypes.MASTERCARD;
          break;
          case '6':
-         this.cardType = this.cardTypes.DISCOVER;
+         this.cardInfo.cardType = this.cardTypes.DISCOVER;
          break;
          default:
-         this.cardType = this.cardTypes.UNKNOWN;
+         this.cardInfo.cardType = this.cardTypes.UNKNOWN;
          break;
        }
      }
    },
    watch: {
-     'cardNumber' (newNum) {
+     'cardInfo.cardNumber' (newNum) {
        if (newNum.length === 1) { this.detectCardType(newNum) }
-       this.$emit('input', newNum);
-
+       this.$emit('input', this.cardInfo);
+     },
+     'cardInfo.exp' (newNum) {
+       this.$emit('input', this.cardInfo);
+     },
+     'cardInfo.cvc' (newNum) {
+       this.$emit('input', this.cardInfo);
      }
    }
 }

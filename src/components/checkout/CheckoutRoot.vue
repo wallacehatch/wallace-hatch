@@ -3,17 +3,51 @@
     <div class="section-header-cont">
       <div v-for="(section, i) in sections" :class="{active: currentSection === i}" class="section-header">{{section}}</div>
     </div>
-    <router-view/>
+    <router-view :form="form" @setSection="setCurrentSection"/>
+    <help-footer></help-footer>
   </div>
 
 </template>
 
 <script>
+import HelpFooter from './CheckoutHelpFooter';
 export default {
+  components: {
+    HelpFooter,
+  },
+  methods: {
+    setCurrentSection(i) {
+      this.currentSection = i
+    }
+  },
   data() {
     return {
       currentSection: 0,
       sections: ['Information', 'Review'],
+      form: {
+        addressSelected: false,
+        account: {
+          name: '',
+          email: '',
+          password: '',
+          phone: '',
+          acceptTerms: false,
+        },
+        shipping: {
+          name: '',
+          address: '',
+          streetNumber: '',
+          streetName: '',
+          aptSuite: '',
+          company: '',
+          city: '',
+          state: '',
+          country: '',
+          zip: '',
+        },
+        billing: {
+        }
+      }
     }
   },
   mounted() {
