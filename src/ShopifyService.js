@@ -18,6 +18,8 @@ svc.addToCheckout = addToCheckout;
 svc.removeFromCheckout = removeFromCheckout;
 svc.updateCheckout = updateCheckout;
 
+
+
 function fetchAllProducts(success, fail) {
     svc.client.product.fetchAll().then((products) => {
         success && success(products)
@@ -75,8 +77,6 @@ function fetchCollection(collectionId, success, fail) {
         fail && fail(err);
     });
 }
-
-// https://wallacehatch.myshopify.com/admin/checkouts/Z2lkOi8vc2hvcGlmeS9DaGVja291dC9jYjE4YTM5OTMzMDk2NzEwM2RiMWIyMWEwZDM4N2Y1YT9rZXk9NTBkYzQ5MDIyYmUyMzVmN2Q1NmM0YmY0NWIyZDc1Yzc=.json
 function getCheckoutCartId(){
     
 	return localStorage.getItem('checkoutCartId');
@@ -98,7 +98,7 @@ function fetchCheckoutCart(success, fail) {
     } else {
         svc.client.checkout.fetch(checkoutCartId).then((checkout) => {
             console.log("heres checkout")
-            console.log(checkout)
+            console.log()
             setCheckoutCartId(checkout.id)
             success && success(checkout)
         });
