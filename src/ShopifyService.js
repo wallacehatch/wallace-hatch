@@ -19,7 +19,6 @@ svc.removeFromCheckout = removeFromCheckout;
 svc.updateCheckout = updateCheckout;
 
 
-
 function fetchAllProducts(success, fail) {
     svc.client.product.fetchAll().then((products) => {
         success && success(products)

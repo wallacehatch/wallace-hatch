@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <site-header></site-header>
-    <router-view/>
-    <site-footer></site-footer>
+    <!-- <site-header></site-header> -->
+    <!-- <router-view/> -->
+    <button @click="login">LOGIN</button>
+    <button @click="test">TEST</button>
+    <button @click="logout">LOGOUT</button>
+    <!-- <site-footer></site-footer> -->
   </div>
 </template>
 
@@ -10,7 +13,7 @@
 import SiteHeader from '@/components/common/SiteHeader';
 import SiteFooter from '@/components/common/SiteFooter';
 import fetchInstagramPosts from './instagram';
-
+import axios from 'axios';
 
 export default {
   name: 'app',
@@ -22,6 +25,10 @@ export default {
     return {
     }
   },
+  methods: {
+},
+  mounted() {
+  }
 }
 </script>
 
