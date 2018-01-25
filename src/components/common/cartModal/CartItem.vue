@@ -47,8 +47,8 @@ export default {
     },
 },
 beforeMount() {
-	 const tmp = JSON.parse(this.product.variant.title);
-      this.productInfo = tmp; 
+	 // const tmp = JSON.parse(this.product.variant.title);
+      // this.productInfo = tmp; 
   },
 
 }
@@ -66,13 +66,13 @@ beforeMount() {
 	      margin: 1rem 1rem 0 1rem;
     	}
       .cart-item-inner-cont{
-        
+
 
       }
 		.cart-item-inner-cont > * {
 		    float:left;
 
-	
+
 		}
 		.product-info{
 			text-transform: uppercase;
@@ -100,7 +100,7 @@ beforeMount() {
     	display: inline-block;
 
     .product-line{
-      
+
       text-align: center;
       display: inline-block;
         margin: 0 2rem;
@@ -113,7 +113,7 @@ beforeMount() {
           font-weight: 300;
           letter-spacing: 2.2px;
       }
-       
+
       .right-heading{
         @include text-body;
         font-size: 10px;
@@ -121,7 +121,7 @@ beforeMount() {
         letter-spacing: 2.9px;
         text-transform: uppercase;
       }
-      
+
             .increment-button{
             width: 32px;
             height: 32px;
@@ -134,7 +134,7 @@ beforeMount() {
             }
 
         }
-      
+
     }
     .remove-button{
         width: 300px;
@@ -143,7 +143,7 @@ beforeMount() {
     border: solid 1px #cccccc;
     margin-top: 1rem;
 
-    	
+
     }
     }
 }

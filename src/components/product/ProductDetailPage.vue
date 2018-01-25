@@ -16,7 +16,7 @@
         <p class="title">{{product.name}}</p>
         <p class="price hide-sm">{{product.skus.data[0].price / 100 | currency }}</p>
         <div class="color-bubble"></div>
-        <p class="color-text">Color: {{product.metadata.dialColor}}/{{product.metadata.caseColor}}</p>
+        <p class="color-text">Color: {{product.metadata.dialColor}} / {{product.metadata.caseColor}}</p>
         <div class="add-cart-btn pdp">
           <span class="mobile-add" @click="handleAddCartClick">Add to bag</span>
           <span class="mobile-price">{{product.skus.data[0].price / 100 | currency}}</span></div>
@@ -72,7 +72,9 @@ export default {
   beforeMount() {
     console.log('before mount pdp');
     StripeService.getProduct(this.$route.params.handle).then((result) => {
+      console.log(result.data);
       this.product = result.data;
+      this.product.metadata.sku = this.product.skus.data[0].id;
     }, (err) => {
       debugger;
     })
@@ -87,9 +89,9 @@ export default {
   },
   methods: {
     handleAddCartClick() {
-      ShopifySvc.addToCheckout(this.product.variants[0].id, 1,(result)=>{
-        this.$store.commit('SET_CART_ACTIVE', true);
-        });
+      // ShopifySvc.addToCheckout(this.product.variants[0].id, 1,(result)=>{
+      //   this.$store.commit('SET_CART_ACTIVE', true);
+      //   });
     }
   },
 
