@@ -23,7 +23,7 @@
       </div>
       <hr class="pdp-divider">
     </div>
-    <div class="pdp-lower-cont">
+    <div class="pdp-lower-cont clearfix">
       <div class="pdp-ll">
         <hr class="line">
         <p class="description">{{product.description}}</p>
@@ -46,7 +46,7 @@
         <product-info-table :productInfo="product.metadata"></product-info-table>
       </div>
       <hr class="pdp-divider">
-    <band-section></band-section>
+    <!-- <band-section></band-section> -->
     </div>
   </div>
 </template>
@@ -143,7 +143,7 @@ export default {
     }
   }
   .pdp-lower-cont {
-    overflow: auto;
+    overflow: hidden;
     padding: 11rem 1.3rem;
     @include respond-to(lg) {padding: 8rem 0 0 0;}
     @include respond-to(md) {padding: 6.2rem 4.4rem;}

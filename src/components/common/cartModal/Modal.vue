@@ -6,9 +6,10 @@
         <div @click="$emit('close')"  class="close-btn"><i class="fal fa-times"></i></div>
         <div class="cart-body">
           <p class="heading">Added to bag!</p>
-          <cart-notification></cart-notification>
-          <div v-for="(product, i) in cart.lineItems">
-            <cart-item :product="product"  @clicked="modifyCart"></cart-item>
+          <cart-notification v-if="showNoty"></cart-notification>
+
+          <div v-for="(item, i) in cart.items">
+            <cart-item v-if="item.quantity > 0" :item="item"  @qtyChange="refreshCart"></cart-item>
           </div>
           <button  class="cart-btn" @click="handleReviewBagClick">Review Bag<span class="total-price">{{cart.totalPrice | currency}}</span></button>
         </div>
@@ -20,7 +21,8 @@
 <script>
 import anime from 'animejs';
 import axios from 'axios';
-import ShopifySvc from '@/ShopifyService.js';
+// import ShopifySvc from '@/ShopifyService.js';
+import BagService from '@/BagService';
 import CartItem from './CartItem';
 import CartNotification from './CartNotification';
 export default {
@@ -31,8 +33,7 @@ export default {
       lActive: false,
       showNoty: false,
       cart: {
-
-        lineItems: [],
+        items: [],
       },
     }
   },
@@ -42,20 +43,12 @@ export default {
   },
   methods: {
     refreshCart(){
-      ShopifySvc.checkoutCart((result)=>{
-      this.cart = result;
-      var badgeNumber = 0
-      for (var i = 0; i < result.lineItems.length; i++) {
-        badgeNumber = badgeNumber + result.lineItems[i].quantity
-        }
-      // this.$store.commit('SET_BADGE_NUMBER', badgeNumber)
-    });
-      return this.cart
+      this.cart = BagService.getBag();
     },
     toggleModal(active) {
       if (active) {
         this.lActive = true;
-        document.body.style.overflow = 'hidden';
+        // document.body.style.overflow = 'hidden';
         setTimeout(() => {
           anime({
             targets: '#cart_modal_mask',
@@ -71,7 +64,7 @@ export default {
         })
       }
       else {
-        document.body.style.overflow = 'initial';
+        // document.body.style.overflow = 'initial';
         anime({
           targets: '#cart_modal_mask',
           opacity: 0,
@@ -99,14 +92,14 @@ export default {
     },
   },
   mounted() {
+    this.refreshCart();
     // uncomment this to have form always out
     // this.toggleModal(true);
-    this.refreshCart();
   },
     watch: {
     'active' (newState) {
-      this.toggleModal(newState);
       this.refreshCart();
+      this.toggleModal(newState);
     },
   },
 
@@ -158,6 +151,7 @@ export default {
   }
   .cart-modal-mask {
     position: fixed;
+    pointer-events: none;
     top: 0;
     bottom: 0;
     left: 0;
