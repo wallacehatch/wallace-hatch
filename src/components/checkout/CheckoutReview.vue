@@ -36,12 +36,11 @@ export default {
   },
   methods: {
     submitOrder() {
-      StripeService.submitOrder(this.form, ).then((result) => {
-        }, (err) => {
-          debugger;
-        })
-
-
+      //  UNCOMMENT TO ACTUALLY SUBMIT THIS BITCH
+      // StripeService.submitOrder(this.form, bag).then((result) => {
+      //   }, (err) => {
+      //     debugger;
+      //   })
     }
   },
   mounted() {
