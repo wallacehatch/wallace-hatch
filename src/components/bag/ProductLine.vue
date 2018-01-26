@@ -2,27 +2,27 @@
     <div class="product-line-cont">
         <div class="product-line-inner-cont">
           <div class="product-box">
-            <div class="product-image" @click="handleImageClick" :style="{backgroundImage: 'url(' + product.variant.image.src + ')'}"></div>
+            <div class="product-image" @click="handleImageClick" :style="{backgroundImage: 'url(' + item.product.images[0] + ')'}"></div>
             <div class="product-info-wrapper">
             <div class="product-info">
-                <h4 class="product-line-heading">{{productInfo.size}} MM</h4>
-                <h4 class="product-line-heading name">{{product.title}}</h4>
-                <p>Color: Black/Gold</p>
+                <h4 class="product-line-heading">{{item.product.metadata.size}} MM</h4>
+                <h4 class="product-line-heading name">{{item.product.name}}</h4>
+                <p>Color: {{item.product.metadata.dialColor}}/{{item.product.metadata.caseColor}}</p>
             </div>
             <div class="product-line-right">
               <p class="right-heading">QTY</p>
-              <button class="increment-button" @click="handleIncrement(-1 + product.quantity)"><i class="fal fa-minus"></i></button>
-              <p class="quantity">{{product.quantity}}</p>
-              <button class="increment-button" @click="handleIncrement(1 + product.quantity)"><i class="fal fa-plus"></i></button>
+              <button class="increment-button" @click="decreaseQuantity"><i class="fal fa-minus"></i></button>
+              <p class="quantity">{{item.quantity}}</p>
+              <button class="increment-button" @click="increaseQuantity"><i class="fal fa-plus"></i></button>
            </div>
            <div class="product-line-right">
               <p class="right-heading">Price</p>
-              <p class="price">{{product.variant.price * product.quantity| currency}}</p>
+              <p class="price">{{item.product.skus.data[0].price / 100 * item.quantity | currency}}</p>
            </div>
            <div class="product-line-bottom">
-             <button class="remove-button desktop" @click="handleIncrement(-1 *product.quantity)">Remove</button>
+             <button class="remove-button desktop" @click="removeItem">Remove</button>
              <div class="additional-message-cont"><p>Includes leather band and tool to use when changing bands.</p></div>
-             <button class="remove-button mobile" @click="handleIncrement(-1 *product.quantity)">Remove</button>
+             <button class="remove-button mobile" @click="removeItem">Remove</button>
            </div>
          </div>
         </div>
@@ -31,30 +31,27 @@
 </template>
 
 <script>
-import anime from 'animejs';
-import axios from 'axios';
-import ShopifySvc from '@/ShopifyService.js';
+import BagService from '@/BagService';
 export default {
-  props: ['product'],
-  data() {
-    return {
-      productInfo: null,
-    }
-  },
+  props: ['item'],
   methods: {
-    handleIncrement(quantity){
-      this.$emit('clicked',this.product, quantity)
-  },
-  handleImageClick() {
-      var productHandle = this.product.title.replace(/\s+/g, '-').toLowerCase();
-      this.$router.replace('/watches/' + productHandle)
+    increaseQuantity(){
+      BagService.addItem(this.item.product, 1);
+      this.$emit('qtyChange');
     },
-},
-beforeMount() {
-   // const tmp = JSON.parse(this.product.variant.title);
-   //    this.productInfo = tmp;
+    decreaseQuantity(){
+      BagService.removeItem(this.item.product, 1);
+      this.$emit('qtyChange');
+    },
+    removeItem(){
+      BagService.removeItem(this.item.product, this.item.quantity);
+      this.$emit('qtyChange');
+    },
+    handleImageClick() {
+      // var productHandle = this.product.title.replace(/\s+/g, '-').toLowerCase();
+      this.$router.push('/watches/' + this.item.product.id);
+    },
   },
-
 }
 </script>
 
@@ -97,7 +94,6 @@ beforeMount() {
 
     .product-box > * {
         float:left;
-
     }
 
     .product-info{
@@ -126,9 +122,9 @@ beforeMount() {
 
     }
 
-    .product-line-bottom{
+    .product-line-bottom {
 
-      .additional-message-cont{
+      .additional-message-cont {
         margin-top: 3rem;
         margin-left: 2rem;
         border-radius: 2px;
@@ -169,16 +165,16 @@ beforeMount() {
         }
       }
     .remove-button{
-
-     width: 80px;
+      width: 80px;
       height: 32px;
       border-radius: 4px;
       border: solid 1px #cccccc;
       transition: 0.2s linear;
-            &:hover{
-                box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-
-            }
+      outline: none !important;
+      &:hover{
+        box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+      }
       }
 
     .product-line-right{
@@ -201,26 +197,24 @@ beforeMount() {
         text-transform: uppercase;
       }
       .price{
-         margin-top: 2rem;
-          font-weight: 300;
-          font-size: 18px;
-          font-weight: 300;
-          letter-spacing: 2.2px;
+        margin-top: 2rem;
+        font-weight: 300;
+        font-size: 18px;
+        font-weight: 300;
+        letter-spacing: 2.2px;
       }
-
-      .increment-button{
+      .increment-button {
         width: 32px;
-      height: 32px;
-      border-radius: 4px;
-      border: solid 1px #cccccc;
-      transition: 0.2s linear;
-            &:hover{
-                box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-
-            }
-
+        height: 32px;
+        border-radius: 4px;
+        border: solid 1px #cccccc;
+        transition: 0.2s linear;
+        outline: none !important;
+        &:hover{
+          cursor: pointer;
+          box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+        }
       }
-
     }
 }
 

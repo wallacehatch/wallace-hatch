@@ -10,7 +10,7 @@
 import SiteHeader from '@/components/common/SiteHeader';
 import SiteFooter from '@/components/common/SiteFooter';
 import fetchInstagramPosts from './instagram';
-
+import BagService from '@/BagService';
 
 export default {
   name: 'app',
@@ -22,6 +22,12 @@ export default {
     return {
     }
   },
+  beforeMount() {
+    const bn = BagService.getBag().items.reduce((total, item) => {return total + item.quantity},0);
+    console.log('mounting');
+    console.log(bn);
+    this.$store.commit('SET_BADGE_NUMBER', bn);
+  }
 }
 </script>
 

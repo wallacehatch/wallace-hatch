@@ -1,7 +1,6 @@
 <template lang="html">
     <div class="cart-notification-cont">
     	<p class="notification-text">Add any watch band to your order <br> and get 10% off, shop now!</p>
-
     </div>
 </template>
 

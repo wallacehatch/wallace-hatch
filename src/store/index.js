@@ -32,6 +32,12 @@ const mutations = {
 	[types.SET_BADGE_NUMBER] (state, val) {
 		state.badgeNumber = val;
 	},
+	[types.INC_BADGE_NUMBER] (state) {
+		state.badgeNumber += 1;
+	},
+	[types.DEC_BADGE_NUMBER] (state) {
+		state.badgeNumber -= 1;
+	},
 }
 
 

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-// import ShopifySvc from '@/ShopifyService.js';
+import BagService from '@/BagService';
 export default {
   data () {
     return {
@@ -30,9 +30,8 @@ export default {
       this.$router.push('/watches/' + this.product.id)
     },
     handleAddCartClick() {
-      // ShopifySvc.addToCheckout(this.product.id, 1,(result)=>{
-      //    this.$store.commit('SET_CART_ACTIVE', true);
-      //   });
+      BagService.addItem(this.product, 1);
+      this.$store.commit('INC_BADGE_NUMBER');
     }
   },
 }

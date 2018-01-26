@@ -4,20 +4,23 @@
   		<h1 class="heading">You have</h1>
   		<p class="items-description">{{message}}</p>
 
-  		<button  class="checkout-btn" @click="handleCheckoutClick" v-if="this.cart.lineItems.length > 0">Checkout</button>
-  		<button  class="shopping-btn" @click="handleShoppingClick" v-if="this.cart.lineItems.length == 0">Start Shopping</button>
+  		<button  class="checkout-btn" @click="$router.push('/checkout/info')" v-if="this.totalQuantity > 0">Checkout</button>
+  		<button  class="shopping-btn" @click="$router.push('/')" v-if="this.totalQuantity == 0">Start Shopping</button>
   		<p class="subtext">Free worldwide Shipping &</p>
   		<p class="subtext">Returns on orders over $95</p>
   	</div>
   	<div class="product-section">
-      <product-line v-for="(product, i) in cart.lineItems" :key="'pTile' + i" :product="product" @clicked="modifyCart"></product-line>
+      <div v-for="(item, i) in cart.items">
+        <product-line v-if="item.quantity > 0" :key="'pTile' + i" :item="item" @qtyChange="refreshCart"></product-line>
+      </div>
     </div>
-    <band-section v-if="this.cart.lineItems.length > 0"></band-section>
+    <band-section v-if="this.cart.items.length > 0"></band-section>
   </div>
 </template>
 
 <script>
-import ShopifySvc from '@/ShopifyService';
+import BagService from '@/BagService';
+import StripeService from '@/StripeService';
 import ProductLine from '@/components/bag/ProductLine'
 import BandSection from '@/components/bands/BandSection';
 export default {
@@ -29,47 +32,35 @@ export default {
    data () {
     return {
       cart: {
-        lineItems: [],
+        items: [],
       },
+      totalQuantity: 0,
       message:null,
-      
+
     }
   },
   beforeMount() {
   	this.refreshCart()
   },
   methods: {
-     handleCheckoutClick(){
-      this.$router.push('/checkout/')
-    },
-    handleShoppingClick(){
-      this.$router.push('/')
-    },
     modifyCart(product, quantity) {
-      ShopifySvc.updateCheckout(product.id, quantity,(result)=>{
-        this.refreshCart();
-      });
+      //
+      // ShopifySvc.updateCheckout(product.id, quantity,(result)=>{
+      //   this.refreshCart();
+      // });
     },
-
     refreshCart(){
-      ShopifySvc.checkoutCart((result)=>{
-      this.cart = result;
-      var badgeNumber = 0
-      for (var i = 0; i < result.lineItems.length; i++) { 
-        badgeNumber = badgeNumber + result.lineItems[i].quantity
-        }
-      this.$store.commit('SET_BADGE_NUMBER', badgeNumber)
-  		if (this.$store.state.badgeNumber === 0) {
-  			this.message = "Nothing in your bag, start shopping to fill it up."
-  		}
-  		else if (this.$store.state.badgeNumber == 1) {
-  			this.message = this.$store.state.badgeNumber + " item in your cart"
-  		}
-  		else{
-  			this.message = this.$store.state.badgeNumber + " items in your cart"
-  		}
-    });
-      return this.cart
+      this.cart = BagService.getBag();
+      this.totalQuantity = this.cart.items.reduce((total, item) => { return total + item.quantity }, 0);
+      this.$store.commit('SET_BADGE_NUMBER', this.totalQuantity);
+      switch (this.$store.state.badgeNumber) {
+      case 0:
+      this.message = "Nothing in your bag, start shopping to fill it up."; break;
+      case 1:
+      this.message = this.$store.state.badgeNumber + " item in your cart"; break;
+      default:
+      this.message = this.$store.state.badgeNumber + " items in your cart"; break;
+      }
     },
 
   },
@@ -92,7 +83,7 @@ export default {
     	padding: 6rem 0 6.6rem 0;
     	text-align: center;
     	background-color: #f6f6f6;
-    	
+
     	.heading{
     	@include h1;
     	text-align: center;
@@ -107,7 +98,7 @@ export default {
     	text-transform: uppercase;
     	font-size: 14px;
     	margin-top: 1rem;
-    	
+
     }
      .subtext{
      	@include text-small;
@@ -117,7 +108,7 @@ export default {
 		color: #717171;
 
   }
-    
+
     .checkout-btn {
     background-color: $wh-black;
     padding: 2rem 9.3rem;
