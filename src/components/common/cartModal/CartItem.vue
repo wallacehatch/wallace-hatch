@@ -1,54 +1,60 @@
 <template lang="html">
     <div class="cart-item-cont">
         <div class="cart-item-inner-cont">
-            <div class="product-image" @click="handleImageClick" :style="{backgroundImage: 'url(' + product.variant.image.src + ')'}"></div>
+            <div class="product-image" @click="handleImageClick" :style="{backgroundImage: 'url(' + item.product.images[0] + ')'}"></div>
             <div class="product-info">
-                <h4 class="cart-item-text">{{productInfo.size}} MM</h4>
-                <h4 class="cart-item-heading">{{product.title}}</h4>
-               <p>Color: Black/Gold</p>
+                <h4 class="cart-item-text">{{item.product.metadata.size}} MM</h4>
+                <h4 class="cart-item-heading">{{item.product.name}}</h4>
+               <p>Color: {{item.product.metadata.dialColor}}/{{item.product.metadata.caseColor}}</p>
             </div>
         </div>
         <div class="cart-item-bottom">
             <div class="product-line">
               <p class="right-heading">QTY</p>
-              <button class="increment-button" @click="handleIncrement(-1 + product.quantity)"><i class="fal fa-minus"></i></button>
-              <p class="product-line-text">{{product.quantity}}</p>
-              <button class="increment-button" @click="handleIncrement(1 + product.quantity)"><i class="fal fa-plus"></i></button>
+              <button class="increment-button" @click="decreaseQuantity"><i class="fal fa-minus"></i></button>
+              <p class="product-line-text">{{item.quantity}}</p>
+              <button class="increment-button" @click="increaseQuantity"><i class="fal fa-plus"></i></button>
            </div>
            <div class="product-line">
               <p class="right-heading">Price</p>
-              <p class="product-line-text">{{product.variant.price * product.quantity| currency}}</p>
+              <p class="product-line-text">{{item.product.skus.data[0].price / 100 * item.quantity | currency}}</p>
            </div>
            <div class="product-line-bottom">
-             <button class="remove-button" @click="handleIncrement(-1 *product.quantity)">Remove</button>
+             <slot></slot>
+             <button class="remove-button" @click="removeItem">Remove</button>
            </div>
         </div>
     </div>
 </template>
 
 <script>
-import anime from 'animejs';
-import axios from 'axios';
-import ShopifySvc from '@/ShopifyService.js';
+import BagService from '@/BagService';
 export default {
-  props: ['product'],
+  props: ['item'],
   data() {
     return {
-    	productInfo: null,
     }
   },
   methods: {
-  	handleIncrement(quantity){
-  		this.$emit('clicked',this.product, quantity)
-  },
-  handleImageClick() {
-      var productHandle = this.product.title.replace(/\s+/g, '-').toLowerCase();
-      this.$router.replace('/watches/' + productHandle)
+    increaseQuantity(){
+      BagService.addItem(this.item.product, 1);
+      this.$emit('qtyChange');
     },
-},
+    decreaseQuantity(){
+      BagService.removeItem(this.item.product, 1);
+      this.$emit('qtyChange');
+    },
+    removeItem(){
+      BagService.removeItem(this.item.product, this.item.quantity);
+      this.$emit('qtyChange');
+    },
+    handleImageClick() {
+      this.$router.push('/watches/' + this.item.product.id);
+    },
+  },
 beforeMount() {
 	 // const tmp = JSON.parse(this.product.variant.title);
-      // this.productInfo = tmp; 
+      // this.productInfo = tmp;
   },
 
 }
@@ -57,64 +63,55 @@ beforeMount() {
 <style lang="scss">
   @import '../../../styles/_variables.scss';
 .cart-item-cont{
+    button {
+      background-color: #fff;
+    }
 		.product-image {
-	      background-position: center;
-	      background-size: contain;
-	      background-repeat: no-repeat;
-	      width: 6rem;
-	      height: 10.3rem;
-	      margin: 1rem 1rem 0 1rem;
-    	}
-      .cart-item-inner-cont{
-
-
-      }
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 6rem;
+      height: 10.3rem;
+      margin: 1rem 1rem 0 1rem;
+    }
 		.cart-item-inner-cont > * {
-		    float:left;
-
-
+      float:left;
 		}
-		.product-info{
+		.product-info {
 			text-transform: uppercase;
 			padding: 3rem 2rem 2rem 0rem;
 			text-align: left;
 			line-height: 2rem;
-		   	.cart-item-heading{
-
+      p {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+      }
+	   	.cart-item-heading{
     		@include intro-text;
-    		font-size: 14px;
-			letter-spacing: 3px;
-			font-weight: 500;
-    	}
-        .cart-item-text{
-            @include text-small;
-            // text-decoration: none;
-            text-align: left;
-            font-weight: 500;
-
-        }
-
+  			letter-spacing: 3px;
+  			font-weight: 500;
+  	  }
+      .cart-item-text{
+        @include text-small;
+        text-align: left;
+        font-weight: 500;
+      }
     }
 
-    .cart-item-bottom{
-    	display: inline-block;
-
-    .product-line{
-
+    .cart-item-bottom {
+    .product-line {
       text-align: center;
       display: inline-block;
-        margin: 0 2rem;
-      .product-line-text{
+      margin: 0 2rem;
+      .product-line-text {
         display: inline-block;
-         // margin-top: 2rem;
-         padding: 1rem 1rem;
-          font-weight: 300;
-          font-size: 18px;
-          font-weight: 300;
-          letter-spacing: 2.2px;
+        padding: 1rem 1rem;
+        font-weight: 300;
+        font-size: 18px;
+        font-weight: 300;
+        letter-spacing: 2.2px;
       }
-
-      .right-heading{
+      .right-heading {
         @include text-body;
         font-size: 10px;
         font-weight: 300;
@@ -122,30 +119,26 @@ beforeMount() {
         text-transform: uppercase;
       }
 
-            .increment-button{
-            width: 32px;
-            height: 32px;
-            border-radius: 4px;
-            border: solid 1px #cccccc;
-            transition: 0.2s linear;
-            &:hover{
-                box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-
-            }
-
+      .increment-button {
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        border: solid 1px #cccccc;
+        transition: 0.2s linear;
+        &:hover{
+          box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
         }
-
+      }
     }
     .remove-button{
-        width: 300px;
-    height: 32px;
-    border-radius: 4px;
-    border: solid 1px #cccccc;
-    margin-top: 1rem;
-
-
+      height: 32px;
+      border-radius: 4px;
+      border: solid 1px #cccccc;
+      margin-top: 1rem;
+      width: 100%;
+      @include text-body;
     }
-    }
+  }
 }
 
 </style>

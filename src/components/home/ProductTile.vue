@@ -38,6 +38,7 @@ export default {
       //   });
       BagService.addItem(this.product, 1);
       this.$store.commit('INC_BADGE_NUMBER');
+      this.$store.commit('SET_CART_ACTIVE', true);
     }
   },
 }

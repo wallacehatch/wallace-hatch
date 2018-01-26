@@ -24,11 +24,11 @@ export default {
   methods: {
   },
   mounted() {
-    ShopifySvc.collectionByHandle('bands', (result) => {
-     this.bands = result.products;
-    }, (err) => {
-      debugger;
-    })
+    // ShopifySvc.collectionByHandle('bands', (result) => {
+    //  this.bands = result.products;
+    // }, (err) => {
+    //   debugger;
+    // })
   }
 }
 </script>
@@ -60,6 +60,6 @@ export default {
 
 
   }
-  
+
 
 </style>

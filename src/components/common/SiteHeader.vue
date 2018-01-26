@@ -20,7 +20,7 @@
         <div v-if="$store.state.navLayout === 1">
           <div class="header-logo checkout"></div>
         </div>
-        <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="true"></cart-modal>
+        <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="$store.state.cartModalActive"></cart-modal>
         <contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive"></contact-modal>
         <mobile-nav @close="mobileNav.active = false" :activeItem="nav.active" :active="mobileNav.active"></mobile-nav>
     </div>

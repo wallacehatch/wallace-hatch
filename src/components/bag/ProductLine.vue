@@ -22,7 +22,7 @@
            <div class="product-line-bottom">
              <button class="remove-button desktop" @click="removeItem">Remove</button>
              <div class="additional-message-cont"><p>Includes leather band and tool to use when changing bands.</p></div>
-             <button class="remove-button mobile" @click="removeItem">Remove</button>
+             <button class="remove-button mobile sm-only" @click="removeItem">Remove</button>
            </div>
          </div>
         </div>
@@ -60,33 +60,28 @@ export default {
 .product-line-cont{
   margin-bottom: 2rem;
     .product-line-inner-cont{
-      max-width: 90%;
-      margin: 0 auto;
+      max-width: 114rem;
+      width: calc(100% - 4rem);
+      margin: auto;
       border-bottom: solid 1px #d8d8d8;
       overflow: auto;
-
+      text-align: center;
     }
     .product-image {
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
-        width: 14.4rem;
-        height: 24.7em;
+        width: 18.4rem;
+        height: 26.3rem;
         margin: 0;
-        @include respond-to(sm) {
-          width: 7rem;
-        height: 10rem;
-        }
       }
       .product-box {
-        overflow: auto;
-        padding: 5.2rem 0rem 5.3rem 10rem;
-        @include respond-to(md) {padding: 0rem 0rem 0rem 0rem;}
-        @include respond-to(sm) {padding: 3rem 4rem 3rem 4rem;}
+        display: inline-block;
+        padding: 5.2rem 0;
       }
       .product-info-wrapper{
-        padding: 5.7rem 6rem;
-        @include respond-to(lg) {padding: 4rem 3rem}
+        padding: 5.7rem 0 5.7rem 6rem;
+        @include respond-to(lg) {padding: 4rem 0 4rem 3rem;}
         @include respond-to(md) {padding: 4rem 0rem}
         @include respond-to(sm) {padding: 0rem 0rem 0rem 0rem;}
 
@@ -123,7 +118,7 @@ export default {
     }
 
     .product-line-bottom {
-
+      text-align: left;
       .additional-message-cont {
         margin-top: 3rem;
         margin-left: 2rem;
@@ -152,12 +147,6 @@ export default {
       }
     }
     .mobile{
-      @include respond-to(lg){
-        display: none;
-        }
-       @include respond-to(md){
-        display: none;
-        }
       @include respond-to(sm){
         display: inline-block;
         width: 100% !important;
@@ -175,7 +164,7 @@ export default {
         box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
         cursor: pointer;
       }
-      }
+    }
 
     .product-line-right{
       vertical-align: top;
@@ -186,7 +175,8 @@ export default {
       @include respond-to(sm) {padding: 0 0rem 0 0;}
       .quantity{
         display: inline-block;
-        padding: 2.5rem 1rem 1rem 1rem;
+        padding: 2.5rem 0rem 1rem 0rem;
+        min-width: 3rem;
 
       }
       .right-heading{

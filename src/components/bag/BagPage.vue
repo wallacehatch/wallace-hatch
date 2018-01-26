@@ -10,11 +10,17 @@
   		<p class="subtext">Returns on orders over $95</p>
   	</div>
   	<div class="product-section">
-      <div v-for="(item, i) in cart.items">
+      <div class="hide-sm" v-for="(item, i) in cart.items">
         <product-line v-if="item.quantity > 0" :key="'pTile' + i" :item="item" @qtyChange="refreshCart"></product-line>
       </div>
+      <div class="sm-only" v-for="(item, i) in cart.items">
+        <cart-item v-if="item.quantity > 0" class="mobile-bag-item" :key="'pTile' + i" :item="item" @qtyChange="refreshCart">
+          <p class="additional-message-cont">Includes leather band and tool to use when changing bands.</p>
+        </cart-item>
+        <hr class="mobile-bag-divider">
+      </div>
     </div>
-    <band-section v-if="this.cart.items.length > 0"></band-section>
+    <!-- <band-section v-if="this.cart.items.length > 0"></band-section> -->
   </div>
 </template>
 
@@ -22,12 +28,14 @@
 import BagService from '@/BagService';
 import StripeService from '@/StripeService';
 import ProductLine from '@/components/bag/ProductLine'
+import CartItem from '@/components/common/cartModal/CartItem';
 import BandSection from '@/components/bands/BandSection';
 export default {
    name: 'BagPage',
    components: {
    	ProductLine,
     BandSection,
+    CartItem,
    },
    data () {
     return {
@@ -43,12 +51,6 @@ export default {
   	this.refreshCart()
   },
   methods: {
-    modifyCart(product, quantity) {
-      //
-      // ShopifySvc.updateCheckout(product.id, quantity,(result)=>{
-      //   this.refreshCart();
-      // });
-    },
     refreshCart(){
       this.cart = BagService.getBag();
       this.totalQuantity = this.cart.items.reduce((total, item) => { return total + item.quantity }, 0);
@@ -62,14 +64,65 @@ export default {
       this.message = this.$store.state.badgeNumber + " items in your cart"; break;
       }
     },
-
   },
-
 }
 </script>
 
 <style lang="scss">
   @import '../../styles/_variables.scss';
+  .mobile-bag-divider {
+    border: none;
+    border-bottom: solid 1px #d8d8d8;
+    width: calc(100% - 4rem);
+    margin: auto;
+    margin-top: 4rem;
+  }
+  .mobile-bag-item {
+    text-align: center;
+    button {
+      background-color: #fff;
+    }
+    .additional-message-cont {
+      @include text-body;
+      font-size: 1.2rem;
+      background-color: #f6f6f6;
+      padding: 0.7rem 1.5rem;
+      text-align: left;
+      box-sizing: border-box;
+      margin: auto;
+      width: calc(100% - 2rem);
+      margin-top: 2rem;
+      border-radius: 2px;
+    }
+    .cart-item-inner-cont {
+      display: inline-block;
+      .cart-item-text {
+        padding-top: 1.9rem;
+        letter-spacing: 2.9px !important;
+      }
+      .cart-item-heading {
+        letter-spacing: 4px !important;
+        font-size: 1.8rem !important;
+      }
+      .product-info p {
+        font-size: 1.2rem;
+        margin-top: 0.4rem;
+        letter-spacing: 2px;
+      }
+      .product-image {
+        width: 6.8rem;
+        height: 11.9rem;
+        margin-top: 3rem;
+      }
+    }
+    .cart-item-bottom {
+      width: 100%;
+    }
+    .remove-button {
+      width: calc(100% - 2rem) !important;
+      @include text-body;
+    }
+  }
 
   .bag-page-cont{
   	padding: 7rem 0rem 0rem 0rem;
@@ -83,31 +136,32 @@ export default {
     	padding: 6rem 0 6.6rem 0;
     	text-align: center;
     	background-color: #f6f6f6;
-
-    	.heading{
-    	@include h1;
-    	text-align: center;
-    	text-transform: uppercase;
-    	@include respond-to(sm) {
-      // font-size: 1.rem;
-    }
-
-    }
+      @include respond-to(sm) {padding: 5rem 0;}
+    	.heading {
+      	@include h1;
+      	text-align: center;
+      	text-transform: uppercase;
+      	@include respond-to(sm) {
+          font-size: 1.8rem;
+        }
+      }
     .items-description{
     	@include intro-text;
     	text-transform: uppercase;
     	font-size: 14px;
     	margin-top: 1rem;
+      @include respond-to(sm) {
+        font-size: 1.2rem;
+      }
 
     }
      .subtext{
-     	@include text-small;
-  		text-transform: uppercase;
-  		line-height: 2.0;
-		letter-spacing: 2px;
-		color: #717171;
-
-  }
+       	@include text-small;
+    		text-transform: uppercase;
+    		line-height: 2.0;
+    		letter-spacing: 2px;
+    		color: #717171;
+      }
 
     .checkout-btn {
     background-color: $wh-black;
@@ -129,7 +183,7 @@ export default {
     }
     @include respond-to(sm) {
       font-size: 1.4rem;
-      min-width: 30rem;
+      width: calc(100% - 2rem);
     }
   }
   .shopping-btn{
