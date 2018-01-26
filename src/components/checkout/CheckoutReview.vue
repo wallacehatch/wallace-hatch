@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="right-cont">
-      <order-summary buttonText="Place Your Order" class="review" ></order-summary>
+      <order-summary buttonText="Place Your Order" class="review" @buttonClick="submitOrder"></order-summary>
       <p class="terms-statement">By placing this order, you agree to the <router-link target="_blank" to="/terms">Terms of Use</router-link> and <router-link target="_blank" to="/privacy">Privacy Policy</router-link>.</p>
     </div>
   </div>
@@ -27,10 +27,22 @@
 
 <script>
 import OrderSummary from './OrderSummary';
+import StripeService from '@/StripeService.js';
+import BagService from '@/BagService.js';
 export default {
   props: ['form'],
   components: {
     OrderSummary,
+  },
+  methods: {
+    submitOrder() {
+      StripeService.submitOrder(this.form, ).then((result) => {
+        }, (err) => {
+          debugger;
+        })
+
+
+    }
   },
   mounted() {
     this.$emit('setSection', 1);

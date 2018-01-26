@@ -17,7 +17,7 @@
         <p class="price hide-sm">{{product.skus.data[0].price / 100 | currency }}</p>
         <div class="color-bubble"></div>
         <p class="color-text">Color: {{product.metadata.dialColor}} / {{product.metadata.caseColor}}</p>
-        <div class="add-cart-btn pdp">
+        <div class="add-cart-btn pdp" @click="handleAddCartClick">
           <span class="mobile-add" @click="handleAddCartClick">Add to bag</span>
           <span class="mobile-price">{{product.skus.data[0].price / 100 | currency}}</span></div>
       </div>
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-// import ShopifySvc from '@/ShopifyService';
+import BagService from '@/BagService';
 import StripeService from '@/StripeService';
 import ProductInfoTable from './ProductInfoTable';
 import BandSection from '@/components/bands/BandSection';
@@ -78,20 +78,11 @@ export default {
     }, (err) => {
       debugger;
     })
-    // ShopifySvc.productByHandle(this.$route.params.handle, (result) => {
-    //   const tmp = JSON.parse(result.variants[0].title);
-    //   tmp.waterResistant = "Up to 3 ATM (Rain resistant)";
-    //   this.productInfo = tmp;
-    //   this.product = result;
-    // }, (err) => {
-    //   debugger;
-    // })
   },
   methods: {
     handleAddCartClick() {
-      // ShopifySvc.addToCheckout(this.product.variants[0].id, 1,(result)=>{
-      //   this.$store.commit('SET_CART_ACTIVE', true);
-      //   });
+      BagService.addItem(this.product, 1);
+      this.$store.commit('INC_BADGE_NUMBER');
     }
   },
 

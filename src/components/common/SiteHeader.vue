@@ -13,14 +13,14 @@
               </nav-bar>
               <a @click="handleBagClick">
               <div class="shopping-cart-icon fal fa-shopping-bag" aria-hidden="true"></div>
-              <span class="badge open-sans"  v-if="$store.state.badgeNumber>0">{{$store.state.badgeNumber}}</span>
+              <span class="badge open-sans"  v-if="cartModal.badgeNumber > 0">{{cartModal.badgeNumber}}</span>
           </a>
           </div>
         </div>
         <div v-if="$store.state.navLayout === 1">
           <div class="header-logo checkout"></div>
         </div>
-        <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="$store.state.cartModalActive"></cart-modal>
+        <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="true"></cart-modal>
         <contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive"></contact-modal>
         <mobile-nav @close="mobileNav.active = false" :activeItem="nav.active" :active="mobileNav.active"></mobile-nav>
     </div>
@@ -46,6 +46,7 @@ export default {
 			},
 			cartModal: {
 				active: false,
+        badgeNumber: 0,
 			},
     }
   },
@@ -56,11 +57,6 @@ export default {
 		handleBagClick(){
       		this.$router.replace('/bag/')
 		},
-		refreshBadge(){
-			ShopifySvc.checkoutCart((result)=>{
-      		this.badgeNumber = result.lineItems.length
-      	});
-		},
 	},
 	components: {
 		NavBar,
@@ -69,13 +65,14 @@ export default {
     MobileNav,
 	},
 	 watch: {
-	 	badgeNumber: function (newVal) {
-      		return this.$store.state.badgeNumber;
+	 	'$store.state.badgeNumber' (newVal) {
+      console.log('badge changing');
+      this.cartModal.badgeNumber = newVal;
     }
   },
-	 mounted() {
-	 	this.refreshBadge();
-      }
+	mounted() {
+    this.cartModal.badgeNumber = this.$store.state.badgeNumber;
+  }
 }
 </script>
 

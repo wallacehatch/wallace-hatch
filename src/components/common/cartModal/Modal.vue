@@ -29,7 +29,9 @@ export default {
     return {
       dur: 500,
       lActive: false,
+      showNoty: false,
       cart: {
+
         lineItems: [],
       },
     }
@@ -43,10 +45,10 @@ export default {
       ShopifySvc.checkoutCart((result)=>{
       this.cart = result;
       var badgeNumber = 0
-      for (var i = 0; i < result.lineItems.length; i++) { 
+      for (var i = 0; i < result.lineItems.length; i++) {
         badgeNumber = badgeNumber + result.lineItems[i].quantity
         }
-      this.$store.commit('SET_BADGE_NUMBER', badgeNumber)
+      // this.$store.commit('SET_BADGE_NUMBER', badgeNumber)
     });
       return this.cart
     },
@@ -209,7 +211,7 @@ export default {
       padding: 1rem 1rem;
       padding-top: 0;
       @include respond-to(sm) {
-        
+
       }
     }
     .heading {

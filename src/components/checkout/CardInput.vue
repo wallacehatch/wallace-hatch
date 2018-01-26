@@ -7,7 +7,8 @@
       iName="card number"
       :iValue="cardInfo.cardNumber"
       v-model="cardInfo.cardNumber"
-      iValidate="required|credit_card">
+      iValidate="required|credit_card"
+      iMask="#### #### #### ####">
       <div slot="cardIcon" class="card-icon"
         :class="cardInfo.cardType">
       </div>

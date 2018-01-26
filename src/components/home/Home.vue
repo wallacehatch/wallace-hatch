@@ -26,7 +26,6 @@
 <script>
 import ProductTile from './ProductTile';
 import ExperienceSection from './ExperienceSection';
-import ShopifySvc from '@/ShopifyService.js';
 import StripeService from '@/StripeService.js';
 
 export default {
