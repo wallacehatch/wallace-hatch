@@ -49,7 +49,6 @@ function submitOrder(orderForm, bag){
          cvc: '123',
        },
       }
-    const bag = {}
 	return Promise.resolve(axios.post(process.env.API_URL + 'submit-order/', {account: form.account, shipping: form.shipping, cardInfo: form.cardInfo,  }))
 	
 
