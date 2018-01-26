@@ -51,8 +51,8 @@ export default {
     },
 },
 beforeMount() {
-   const tmp = JSON.parse(this.product.variant.title);
-      this.productInfo = tmp; 
+   // const tmp = JSON.parse(this.product.variant.title);
+   //    this.productInfo = tmp;
   },
 
 }
@@ -97,9 +97,9 @@ beforeMount() {
 
     .product-box > * {
         float:left;
-  
+
     }
-    
+
     .product-info{
       text-transform: uppercase;
       display: inline-block;
@@ -127,7 +127,7 @@ beforeMount() {
     }
 
     .product-line-bottom{
-          
+
       .additional-message-cont{
         margin-top: 3rem;
         margin-left: 2rem;
@@ -147,7 +147,7 @@ beforeMount() {
         letter-spacing: 0.2px;
         text-align: left;
         color: #5c5c5c;
-      } 
+      }
     }
     }
     .desktop{
@@ -207,7 +207,7 @@ beforeMount() {
           font-weight: 300;
           letter-spacing: 2.2px;
       }
-      
+
       .increment-button{
         width: 32px;
       height: 32px;
@@ -220,7 +220,7 @@ beforeMount() {
             }
 
       }
-      
+
     }
 }
 

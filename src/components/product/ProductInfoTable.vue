@@ -22,7 +22,7 @@
     </div>
     <div class="product-info-line">
       <span class="item-key">Band</span>
-      <span class="item-value">{{productInfo.band}}</span>
+      <span class="item-value">{{productInfo.bandType}}</span>
     </div>
     <div class="product-info-line">
       <span class="item-key">Strap color</span>

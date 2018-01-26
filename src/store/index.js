@@ -4,15 +4,13 @@ import * as types from './mutationTypes';
 
 Vue.use(Vuex);
 
+
 const state = {
 	mobile: false,
 	navItems: ['Home', 'Watches', 'Our Story', 'Lookbook'],
 	navLayout: 0, // 0 is default, 1 is checkout
 	contactModalActive: false,
 	cartModalActive: false,
-	bag: {
-		items: 5,
-	},
 	badgeNumber: 0
 
 }

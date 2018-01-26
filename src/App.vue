@@ -1,11 +1,8 @@
 <template>
   <div id="app">
-    <!-- <site-header></site-header> -->
-    <!-- <router-view/> -->
-    <button @click="login">LOGIN</button>
-    <button @click="test">TEST</button>
-    <button @click="logout">LOGOUT</button>
-    <!-- <site-footer></site-footer> -->
+    <site-header></site-header>
+    <router-view/>
+    <site-footer></site-footer>
   </div>
 </template>
 

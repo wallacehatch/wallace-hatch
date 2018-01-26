@@ -27,6 +27,8 @@
 import ProductTile from './ProductTile';
 import ExperienceSection from './ExperienceSection';
 import ShopifySvc from '@/ShopifyService.js';
+import StripeService from '@/StripeService.js';
+
 export default {
   components: {
     ExperienceSection,
@@ -43,11 +45,16 @@ export default {
     }
   },
   mounted() {
-    ShopifySvc.collectionByHandle('frontpage', (result) => {
-     this.products = result.products;
+    StripeService.getAllProducts().then((result) => {
+      console.log("calling stripe service")
+      this.products = result.data.filter((product) => {
+
+        return product.metadata.collection === 'frontPage';
+      })
     }, (err) => {
       debugger;
     })
+
   }
 }
 </script>
