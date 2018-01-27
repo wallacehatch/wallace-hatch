@@ -19,6 +19,8 @@
       </div>
     </div>
     <div class="right-cont">
+
+      <checkout-product-tile v-for="(item, i) in bag.items" :key="'cpt' + i" :item="item" ></checkout-product-tile>
       <order-summary buttonText="Place Your Order" class="review" @buttonClick="submitOrder"></order-summary>
       <p class="terms-statement">By placing this order, you agree to the <router-link target="_blank" to="/terms">Terms of Use</router-link> and <router-link target="_blank" to="/privacy">Privacy Policy</router-link>.</p>
     </div>
@@ -29,10 +31,17 @@
 import OrderSummary from './OrderSummary';
 import StripeService from '@/StripeService.js';
 import BagService from '@/BagService.js';
+import CheckoutProductTile from './CheckoutProductTile';
 export default {
   props: ['form'],
   components: {
     OrderSummary,
+    CheckoutProductTile,
+  },
+  data() {
+    return {
+      bag: {items: []},
+    }
   },
   methods: {
     submitOrder() {
@@ -45,6 +54,7 @@ export default {
   },
   mounted() {
     this.$emit('setSection', 1);
+    this.bag = BagService.getBag();
   }
 }
 </script>
@@ -54,6 +64,10 @@ export default {
 .total-summary-cont.review {
   border: none;
   background-color: $wh-white;
+  margin-top: 2rem;
+  @include respond-to(md) {
+    margin-top: 0;
+  }
   hr {
     margin: 3rem 0;
     border: none;
@@ -66,7 +80,7 @@ export default {
   overflow: auto;
   margin: auto;
   @include respond-to(sm) {
-    width: calc(100% - 4rem);
+    width: calc(100% - 2rem);
   }
   .left-cont {
     width: 50%;
@@ -112,12 +126,15 @@ export default {
   .info-cont.shipping {
     border-bottom: 1px solid #d8d8d8;
     padding-bottom: 4rem;
+    @include respond-to(sm) {
+      padding-bottom: 2.95rem;
+    }
   }
   .info-cont.billing {
     padding-top: 4rem;
     @include respond-to(sm) {
       border-bottom: 1px solid #d8d8d8;
-      padding-bottom: 2.95rem;
+      padding: 2.95rem 0;
     }
   }
   .info-cont {
@@ -158,13 +175,22 @@ export default {
       line-height: 1.71;
     }
     .card-icon.review {
+      background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/unknowncard.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      width: 4.7rem;
       clear: both;
       float: left;
       position: initial;
       margin-top: 1.3rem;
       margin-right: 1.5rem;
       height: 4.6rem;
-      background-position: center;
+      &.UNKNOWN {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/unknowncard.svg');}
+      &.AMEX {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/amex.svg');}
+      &.VISA {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/visa.svg');}
+      &.MASTERCARD {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/mastercard.svg');}
+      &.DISCOVER {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/discover.svg');}
     }
     .card-details-cont {
       float: left;

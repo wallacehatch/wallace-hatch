@@ -31,7 +31,6 @@
 import NavBar from './navBar/NavBar';
 import ContactModal from './contactModal/Modal';
 import CartModal from './cartModal/Modal';
-import ShopifySvc from '@/ShopifyService.js';
 import MobileNav from './navBar/MobileNav';
 export default {
   name: 'siteHeader',

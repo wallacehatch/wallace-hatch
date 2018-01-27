@@ -16,7 +16,6 @@ function getProduct(id) {
 }
 
 
-// ex ids = ["prod_CCDIhc5sXnbPmy", "prod_CCDBCRzlKEEp7V"]
 function getProducts(ids) {
 	return Promise.resolve(axios.post(process.env.API_URL + 'get-products/', {product_ids: ids }))
 }
@@ -50,7 +49,7 @@ function submitOrder(orderForm, bag){
        },
       }
 	return Promise.resolve(axios.post(process.env.API_URL + 'submit-order/', {account: form.account, shipping: form.shipping, cardInfo: form.cardInfo,  }))
-	
+
 
 }
 

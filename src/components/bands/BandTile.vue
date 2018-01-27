@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import ShopifySvc from '@/ShopifyService.js';
 export default {
   data () {
     return {
@@ -29,9 +28,6 @@ export default {
       // this.$router.push('/bands/' + this.band.handle)
     },
     handleAddCartClick() {
-      ShopifySvc.addToCheckout(this.band.variants[0].id, 1,(result)=>{
-         this.$store.commit('SET_CART_ACTIVE', true);
-        });
     }
   },
 }
@@ -61,7 +57,7 @@ export default {
       width: 100%;
       height: 6.34rem;
       @include respond-to(md) {height: 4.7rem;}
-     
+
     }
     .band-title {
       @include intro-text;
