@@ -12,15 +12,15 @@
           </div>
         </div>
         <div class="pdp-ur">
-          <p class="size">{{product.metadata.size}}MM</p>
+          <p class="size">{{product.skus.data[currentSkuIndex].attributes.size}}MM</p>
           <hr class="line">
           <p class="title">{{product.name}}</p>
-          <p class="price hide-sm">{{product.skus.data[0].price / 100 | currency }}</p>
+          <p class="price hide-sm">{{product.skus.data[currentSkuIndex].price / 100 | currency }}</p>
           <div class="color-bubble"></div>
           <p class="color-text">Color: {{product.metadata.dialColor}} / {{product.metadata.caseColor}}</p>
           <div class="add-cart-btn pdp" @click="handleAddCartClick">
             <span class="mobile-add" @click="handleAddCartClick">Add to bag</span>
-            <span class="mobile-price">{{product.skus.data[0].price / 100 | currency}}</span></div>
+            <span class="mobile-price">{{product.skus.data[currentSkuIndex].price / 100 | currency}}</span></div>
         </div>
         <hr class="pdp-divider">
       </div>
@@ -44,7 +44,7 @@
         </div>
         <div class="pdp-lr">
           <hr class="line">
-          <product-info-table :productInfo="product.metadata"></product-info-table>
+          <product-info-table :sku="product.skus.data[currentSkuIndex]" :productInfo="product.metadata"></product-info-table>
         </div>
         <hr class="pdp-divider">
       <!-- <band-section></band-section> -->
@@ -67,6 +67,7 @@ export default {
    data () {
     return {
       product: null,
+      currentSkuIndex: null,
       productInfo: null,
       activeImageIndex: 0,
     }
@@ -75,15 +76,15 @@ export default {
     console.log('before mount pdp');
     StripeService.getProduct(this.$route.params.handle).then((result) => {
       console.log(result.data);
+      this.currentSkuIndex = BagService.indexForSku(result.data, this.$route.params.sku);
       this.product = result.data;
-      this.product.metadata.sku = this.product.skus.data[0].id;
     }, (err) => {
       debugger;
     })
   },
   methods: {
     handleAddCartClick() {
-      BagService.addItem(this.product, 1);
+      BagService.addItem(this.product, this.$route.params.sku, 1);
       this.$store.commit('INC_BADGE_NUMBER');
       this.$store.commit('SET_CART_ACTIVE', true);
     }

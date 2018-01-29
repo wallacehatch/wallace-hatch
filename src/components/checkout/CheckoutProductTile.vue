@@ -4,7 +4,7 @@
   <div class="checkout-product-tile-cont">
     <div class="image" :style="{backgroundImage: 'url(' + item.product.images[0] + ')'}"></div>
     <div class="info">
-      <p class="size">{{item.product.metadata.size}}MM</p>
+      <p class="size">{{item.product.skus.data[skuIndex].attributes.size}}MM</p>
       <p class="name">{{item.product.name}}</p>
       <p class="color">COLOR: {{item.product.metadata.dialColor}}/{{item.product.metadata.caseColor}}</p>
       <div class="info-block info-quantity">
@@ -13,7 +13,7 @@
       </div>
       <div class="info-block info-price">
         <p class="label">PRICE</p>
-        <p class="value">{{item.product.skus.data[0].price / 100 | currency}}</p>
+        <p class="value">{{item.product.skus.data[skuIndex].price / 100 | currency}}</p>
       </div>
     </div>
   </div>
@@ -21,9 +21,14 @@
 </template>
 
 <script>
+import BagService from '@/BagService';
 export default {
   props: ['item'],
-
+  data() {
+    return {
+      skuIndex: BagService.indexForSku(this.item.product, this.item.sku),
+    }
+  }
 }
 </script>
 

@@ -42,19 +42,23 @@ export default {
   methods: {
     refreshCart(){
       const bag = BagService.getBag();
+      if (bag === null) return;
       const totals = bag.items.reduce((total, item) => {
         return {
-          price: total.price + item.product.skus.data[0].price * item.quantity / 100,
+          price: total.price + item.product.skus.data[BagService.indexForSku(item.product, item.sku)].price * item.quantity / 100,
           quantity: total.quantity + item.quantity,
         }
       },{price: 0, quantity: 0});
       if (totals.quantity === 0) {
         this.$store.commit('SET_CART_ACTIVE', false);
+        this.$store.commit('SET_BADGE_NUMBER', 0);
       }
       else {
         this.bag = bag;
+        console.log(bag);
         this.bag.totalPrice = totals.price;
         this.bag.totalQuantity = totals.quantity;
+        this.$store.commit('SET_BADGE_NUMBER', totals.quantity);
       }
 
 
