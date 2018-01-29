@@ -27,12 +27,11 @@ name: 'cartNotification',
   	.notification-text{
   		@include text-body;
   		padding: 1.7rem 2.82rem;
-		border: solid 2px #000000;
-		font-weight: 600;
-		// line-height: 1.43;
-		// letter-spacing: 0.2px;
-		text-align: left;
-
+  		border: solid 2px #000000;
+  		font-weight: 600;
+  		// line-height: 1.43;
+  		// letter-spacing: 0.2px;
+  		text-align: left; 
   	}
   }
 

@@ -42,7 +42,6 @@ export default {
   },
   beforeMount() {
     StripeService.getAllProducts().then((result) => {
-      console.log("calling stripe service")
       this.items = result.data.reduce((total, product) => {
         const newItems = product.skus.data.map((sku, ind) => {
           if (sku.attributes.collection === 'frontPage') {
@@ -55,7 +54,6 @@ export default {
         })
         return total.concat(newItems)
       }, [])
-      console.log(this.items);
     }, (err) => {
       debugger;
     })

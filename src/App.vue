@@ -12,6 +12,7 @@ import SiteFooter from '@/components/common/SiteFooter';
 import fetchInstagramPosts from './instagram';
 import axios from 'axios';
 import BagService from '@/BagService';
+import StripeService from '@/StripeService';
 
 export default {
   name: 'app',
@@ -30,6 +31,7 @@ export default {
     if (bag === null) return;
     const bn = bag.items.reduce((total, item) => {return total + item.quantity},0);
     this.$store.commit('SET_BADGE_NUMBER', bn);
+
   }
 }
 </script>

@@ -50,11 +50,13 @@ export default {
       return numArr[numArr.length-1];
     },
     submitOrder() {
-      //  UNCOMMENT TO ACTUALLY SUBMIT THIS BITCH
-      // StripeService.submitOrder(this.form, bag).then((result) => {
-      //   }, (err) => {
-      //     debugger;
-      //   })
+      var bag = BagService.getBag();
+      console.log("bag is ")
+      console.log(bag)
+      StripeService.submitOrder(this.form, bag).then((result) => {
+        }, (err) => {
+          debugger;
+        })
     }
   },
   mounted() {
