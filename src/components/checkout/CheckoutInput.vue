@@ -1,14 +1,14 @@
 <template lang="html">
   <div class="checkout-field-wrapper" :class="{active: fieldState.active}">
-    <div class="checkout-field-cont">
 
+    <div class="checkout-field-cont">
       <input v-if="!iMask"
       @blur="shouldBlurField"
       class="checkout-input"
       :class="[iClass, {active: fieldState.active, valid: fieldState.valid, error: errors.has(iName)}]"
       :id="iId"
       :type="iType || 'text'"
-      :name="iName || ''"
+      :name="iName"
       :value="iValue"
       @input="updateModelValue"
       v-validate="iValidate || ''"
@@ -20,7 +20,7 @@
       :class="[iClass, {active: fieldState.active, valid: fieldState.valid, error: errors.has(iName)}]"
       :id="iId"
       :type="iType || 'text'"
-      :name="iName || ''"
+      :name="iName"
       :value="iValue"
       @input="updateModelValue"
       v-validate="iValidate || ''"
@@ -29,7 +29,7 @@
 
       <label for="" class="placeholder-label">{{iPlaceholder}}</label>
       <slot name="cardIcon"></slot>
-      <div v-if="iValidate" class="status-bubble" :class="{ valid: fields[iName].valid, invalid: errors.has(iName) }"></div>
+      <div v-if="(iValidate) && (typeof fields[iName] !== 'undefined')" class="status-bubble" :class="{ valid: fields[iName].valid, invalid: errors.has(iName) }"></div>
     </div>
     <slot name="cardAuth"></slot>
     <span v-show="errors.has(iName)" class="error-label">{{errors.first(iName)}}</span>
@@ -41,6 +41,7 @@ import {mask} from 'vue-the-mask';
 export default {
   props: ['iValidate', 'iPlaceholder', 'iClass', 'iId', 'iType', 'iName', 'iMask', 'iValue'],
   directives: {mask},
+  inject: ['$validator'],
   data() {
     return {
       fieldState: {
@@ -51,6 +52,13 @@ export default {
     }
   },
   methods: {
+    isValid() {
+      // debugger;
+      if (typeof this.fields[this.iName] === 'undefined') return false;
+      // console.log(this.iName);
+      // console.log(this.fields[this.iName]);
+      return this.fields[this.iName].valid;
+    },
     updateModelValue: function(e) {
       this.$emit('input', e.target.value)
     },

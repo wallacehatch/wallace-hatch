@@ -1,52 +1,54 @@
 <template>
-  <div v-if="product" class="pdp-cont">
-    <div class="pdp-upper-cont">
-      <div class="pdp-ul">
-        <div class="active-image" :style="{backgroundImage: 'url(' + product.images[activeImageIndex] + ')'}"></div>
-        <div class="additional-images-cont">
-          <div v-for="(image, i) in product.images" class="additional-image"
-          :class="{active: activeImageIndex === i}"
-          @click="activeImageIndex = i"
-          :style="{backgroundImage: 'url(' + product.images[i] + ')'}"></div>
+  <div :class="{'load-mask': !product}">
+    <div class="pdp-cont" v-if="product">
+      <div class="pdp-upper-cont">
+        <div class="pdp-ul">
+          <div class="active-image" :style="{backgroundImage: 'url(' + product.images[activeImageIndex] + ')'}"></div>
+          <div class="additional-images-cont">
+            <div v-for="(image, i) in product.images" class="additional-image"
+            :class="{active: activeImageIndex === i}"
+            @click="activeImageIndex = i"
+            :style="{backgroundImage: 'url(' + product.images[i] + ')'}"></div>
+          </div>
         </div>
-      </div>
-      <div class="pdp-ur">
-        <p class="size">{{product.metadata.size}}MM</p>
-        <hr class="line">
-        <p class="title">{{product.name}}</p>
-        <p class="price hide-sm">{{product.skus.data[0].price / 100 | currency }}</p>
-        <div class="color-bubble"></div>
-        <p class="color-text">Color: {{product.metadata.dialColor}} / {{product.metadata.caseColor}}</p>
-        <div class="add-cart-btn pdp" @click="handleAddCartClick">
-          <span class="mobile-add" @click="handleAddCartClick">Add to bag</span>
-          <span class="mobile-price">{{product.skus.data[0].price / 100 | currency}}</span></div>
-      </div>
-      <hr class="pdp-divider">
-    </div>
-    <div class="pdp-lower-cont clearfix">
-      <div class="pdp-ll">
-        <hr class="line">
-        <p class="description">{{product.description}}</p>
-        <hr class="line">
-        <div class="how-to-wear-header">
-          <p class="title">How to wear</p>
-          <p class="hashtag"><i class="fab fa-instagram"></i> #mywally</p>
+        <div class="pdp-ur">
+          <p class="size">{{product.metadata.size}}MM</p>
+          <hr class="line">
+          <p class="title">{{product.name}}</p>
+          <p class="price hide-sm">{{product.skus.data[0].price / 100 | currency }}</p>
+          <div class="color-bubble"></div>
+          <p class="color-text">Color: {{product.metadata.dialColor}} / {{product.metadata.caseColor}}</p>
+          <div class="add-cart-btn pdp" @click="handleAddCartClick">
+            <span class="mobile-add" @click="handleAddCartClick">Add to bag</span>
+            <span class="mobile-price">{{product.skus.data[0].price / 100 | currency}}</span></div>
         </div>
-        <div class="how-to-wear-images-cont">
-          <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
-          <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
-          <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
-          <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
-          <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
-          <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
+        <hr class="pdp-divider">
+      </div>
+      <div class="pdp-lower-cont clearfix">
+        <div class="pdp-ll">
+          <hr class="line">
+          <p class="description">{{product.description}}</p>
+          <hr class="line">
+          <div class="how-to-wear-header">
+            <p class="title">How to wear</p>
+            <p class="hashtag"><i class="fab fa-instagram"></i> #mywally</p>
+          </div>
+          <div class="how-to-wear-images-cont">
+            <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
+            <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
+            <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
+            <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
+            <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
+            <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
+          </div>
         </div>
+        <div class="pdp-lr">
+          <hr class="line">
+          <product-info-table :productInfo="product.metadata"></product-info-table>
+        </div>
+        <hr class="pdp-divider">
+      <!-- <band-section></band-section> -->
       </div>
-      <div class="pdp-lr">
-        <hr class="line">
-        <product-info-table :productInfo="product.metadata"></product-info-table>
-      </div>
-      <hr class="pdp-divider">
-    <!-- <band-section></band-section> -->
     </div>
   </div>
 </template>
@@ -83,6 +85,7 @@ export default {
     handleAddCartClick() {
       BagService.addItem(this.product, 1);
       this.$store.commit('INC_BADGE_NUMBER');
+      this.$store.commit('SET_CART_ACTIVE', true);
     }
   },
 

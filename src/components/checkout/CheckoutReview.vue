@@ -4,24 +4,24 @@
       <div class="info-cont shipping">
         <p class="title">Shipping Address</p>
         <div class="edit-btn">Edit</div>
-        <p class="name">{{form.name || 'Ian Hansborough'}}</p>
-        <p class="address">{{form.steetNumber || '514'}} {{form.streetName || 'Long Cove'}}</p>
-        <p class="address">{{form.city || 'Columbus'}} {{form.state || 'OH'}} {{form.zip || '44012'}}</p>
+        <p class="name">{{form.shipping.name || 'John Doe'}}</p>
+        <p class="address">{{form.shipping.streetNumber || '000'}} {{form.shipping.streetName || 'Some Ave'}}</p>
+        <p class="address">{{form.shipping.city || 'Anytown'}} {{form.shipping.state || 'OH'}} {{form.shipping.zip || '11111'}}</p>
       </div>
       <div class="info-cont billing">
         <p class="title">Payment Method</p>
         <div class="edit-btn">Edit</div>
         <div class="card-icon review" :class="form.billing.cardType"></div>
         <div class="card-details-cont">
-          <p class="address">{{form.steetNumber || '514'}} {{form.streetName || 'Long Cove'}}</p>
-          <p class="address">{{form.city || 'Columbus'}} {{form.state || 'OH'}} {{form.zip || '44012'}}</p>
+          <p class="address">Ending {{ maskedCardNumber() || '9999'}}</p>
+          <p class="address">Expires {{form.billing.exp || '00/00'}}</p>
         </div>
       </div>
     </div>
     <div class="right-cont">
 
-      <checkout-product-tile v-for="(item, i) in bag.items" :key="'cpt' + i" :item="item" ></checkout-product-tile>
-      <order-summary buttonText="Place Your Order" class="review" @buttonClick="submitOrder"></order-summary>
+      <checkout-product-tile v-for="(item, i) in bag.items" v-if="item.quantity > 0" :key="'cpt' + i" :item="item" ></checkout-product-tile>
+      <order-summary :bag="bag" buttonText="Place Your Order" class="review" @buttonClick="submitOrder"></order-summary>
       <p class="terms-statement">By placing this order, you agree to the <router-link target="_blank" to="/terms">Terms of Use</router-link> and <router-link target="_blank" to="/privacy">Privacy Policy</router-link>.</p>
     </div>
   </div>
@@ -30,20 +30,25 @@
 <script>
 import OrderSummary from './OrderSummary';
 import StripeService from '@/StripeService.js';
-import BagService from '@/BagService.js';
+// import BagService from '@/BagService.js';
 import CheckoutProductTile from './CheckoutProductTile';
 export default {
-  props: ['form'],
+  props: ['form', 'bag'],
   components: {
     OrderSummary,
     CheckoutProductTile,
   },
   data() {
     return {
-      bag: {items: []},
+      // bag: {items: []},
     }
   },
   methods: {
+    maskedCardNumber() {
+      if (!this.form.billing.cardNumber) return '0000';
+      const numArr = this.form.billing.cardNumber.split(' ');
+      return numArr[numArr.length-1];
+    },
     submitOrder() {
       //  UNCOMMENT TO ACTUALLY SUBMIT THIS BITCH
       // StripeService.submitOrder(this.form, bag).then((result) => {
@@ -54,7 +59,7 @@ export default {
   },
   mounted() {
     this.$emit('setSection', 1);
-    this.bag = BagService.getBag();
+    // this.bag = BagService.getBag();
   }
 }
 </script>

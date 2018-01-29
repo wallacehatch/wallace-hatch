@@ -44,6 +44,10 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
   }
+  .load-mask {
+    opacity: 0 !important;
+    min-height: 100vh !important;
+  }
   input {
     border-radius: 0px;
     -webkit-appearance: none;

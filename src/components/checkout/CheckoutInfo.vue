@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="checkout-info-cont">
+  <form @submit.prevent="advanceToReview" class="checkout-info-cont">
     <h2 class="info-section-title">Your Details</h2>
     <checkout-input iPlaceholder="First and Last Name"
       iType="text"
@@ -38,7 +38,7 @@
       class="info-field-cont"
       v-model="form.account.acceptTerms"
       :iValue="form.account.acceptTerms"
-      cKey="0">
+      cKey="0" cName="order text">
     </checkout-checkbox>
     <hr class="info-section-divider">
 
@@ -46,7 +46,7 @@
     <checkout-input iPlaceholder="First and Last Name"
       iType="text"
       class="info-field-cont"
-      iName="name"
+      iName="shipping name"
       v-model="form.shipping.name"
       :iValue="form.shipping.name"
       iValidate="required">
@@ -54,7 +54,7 @@
     <checkout-input iPlaceholder="Street Address"
       iType="text"
       class="info-field-cont"
-      iName="address"
+      iName="address_ac"
       v-model="form.shipping.address"
       :iValue="form.shipping.address"
       iClass="address"
@@ -114,8 +114,8 @@
 
     <h2 class="info-section-title">Bill to</h2>
     <card-input v-model="form.billing" class="info-field-cont"></card-input>
-    <order-summary buttonText="Review Your Order"  @buttonClick="$router.push('/checkout/review')"></order-summary>
-  </div>
+    <order-summary :bag="bag" buttonText="Review Your Order"  @buttonClick="advanceToReview"></order-summary>
+  </form>
 </template>
 
 <script>
@@ -124,7 +124,7 @@ import CardInput from './CardInput';
 import CheckoutCheckbox from './CheckoutCheckbox';
 import OrderSummary from './OrderSummary';
 export default {
-  props: ['form'],
+  props: ['form', 'bag'],
   components: {
     CheckoutInput,
     CheckoutCheckbox,
@@ -132,6 +132,30 @@ export default {
     OrderSummary,
   },
   methods: {
+    advanceToReview() {
+      console.log(this.fields);
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.$router.push('/checkout/review');
+        }
+        else {
+          const inputs = document.getElementsByTagName('input');
+          for (var i=0; i < inputs.length; i++) {
+            console.log(inputs[i]);
+            if ((typeof this.fields[inputs[i].name] !== 'undefined') && (this.fields[inputs[i].name].invalid)) {
+              window.scroll({
+                top: inputs[i].getBoundingClientRect().top,
+                left: 0,
+                behavior: 'smooth'
+              });
+              break;
+            }
+          }
+        }
+
+      })
+
+    },
     assignAddressComponent(c) {
       switch (c.types[0]) {
         case 'street_number':
