@@ -17,14 +17,14 @@
       :iValue="form.account.email"
       iValidate="required|email">
     </checkout-input>
-    <checkout-input iPlaceholder="Password"
+  <!--   <checkout-input iPlaceholder="Password"
       iType="password"
       class="info-field-cont"
       iName="password"
       v-model="form.account.password"
       :iValue="form.account.password"
       iValidate="required">
-    </checkout-input>
+    </checkout-input> -->
     <checkout-input iPlaceholder="Phone"
       iType="tel"
       class="info-field-cont"

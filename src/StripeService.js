@@ -45,11 +45,21 @@ function submitOrder(orderForm, bag){
         },
         cardInfo: {
          cardNumber: "4242424242424242",
-         exp: '02/2020',
+         exp: '02/19',
          cvc: '123',
        },
       }
-	return Promise.resolve(axios.post(process.env.API_URL + 'submit-order/', {account: form.account, shipping: form.shipping, cardInfo: form.cardInfo,  }))
+     var bag = {
+     	items: [{
+     		sku: "WR140S",
+     		quantity: 3,
+     	},
+     	{
+     		sku: "BR140P",
+     		quantity: 2,
+     	}]
+	 }
+	return Promise.resolve(axios.post(process.env.API_URL + 'submit-order/', {account: form.account, shipping: form.shipping, cardInfo: form.cardInfo, cart: bag }))
 	
 
 }
