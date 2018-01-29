@@ -5,9 +5,6 @@
 </template>
 
 <script>
-import anime from 'animejs';
-import axios from 'axios';
-import ShopifySvc from '@/ShopifyService.js';
 export default {
 name: 'cartNotification',
   data() {

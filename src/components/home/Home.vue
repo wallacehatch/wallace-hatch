@@ -44,12 +44,8 @@ export default {
     }
   },
   mounted() {
-    StripeService.getAllProducts().then((result) => {
+    StripeService.submitOrder().then((result) => {
       console.log("calling stripe service")
-      this.products = result.data.filter((product) => {
-
-        return product.metadata.collection === 'frontPage';
-      })
     }, (err) => {
       debugger;
     })

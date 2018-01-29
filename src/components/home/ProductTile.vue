@@ -30,12 +30,6 @@ export default {
       this.$router.push('/watches/' + this.product.id)
     },
     handleAddCartClick() {
-      // console.log(this.product)
-        this.$store.commit('ADD_CART', this.product);
-        // console.log(this.$store.state.cart)
-      // ShopifySvc.addToCheckout(this.product.id, 1,(result)=>{
-      //    this.$store.commit('SET_CART_ACTIVE', true);
-      //   });
       BagService.addItem(this.product, 1);
       this.$store.commit('INC_BADGE_NUMBER');
       this.$store.commit('SET_CART_ACTIVE', true);

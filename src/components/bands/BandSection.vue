@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import ShopifySvc from '@/ShopifyService.js';
 import BandTile from './BandTile'
 export default {
   data () {
@@ -24,11 +23,6 @@ export default {
   methods: {
   },
   mounted() {
-    // ShopifySvc.collectionByHandle('bands', (result) => {
-    //  this.bands = result.products;
-    // }, (err) => {
-    //   debugger;
-    // })
   }
 }
 </script>

@@ -118,10 +118,6 @@ export default {
     .cart-item-bottom {
       width: 100%;
     }
-    .remove-button {
-      width: calc(100% - 2rem) !important;
-      @include text-body;
-    }
   }
 
   .bag-page-cont{

@@ -20,8 +20,6 @@
 
 <script>
 import anime from 'animejs';
-import axios from 'axios';
-// import ShopifySvc from '@/ShopifyService.js';
 import BagService from '@/BagService';
 import CartItem from './CartItem';
 import CartNotification from './CartNotification';
@@ -81,11 +79,6 @@ export default {
           }
         })
       }
-    },
-    modifyCart(product, quantity) {
-      ShopifySvc.updateCheckout(product.id, quantity,(result)=>{
-        this.cart = result
-      });
     },
     handleReviewBagClick(){
       this.$router.replace('/bag/')
