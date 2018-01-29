@@ -38,12 +38,10 @@ export default {
   methods: {
     increaseQuantity(){
       BagService.addItem(this.item.product, 1);
-      this.$store.commit('INC_BADGE_NUMBER');
       this.$emit('qtyChange');
     },
     decreaseQuantity(){
       BagService.removeItem(this.item.product, 1);
-       this.$store.commit('DEC_BADGE_NUMBER');
       this.$emit('qtyChange');
     },
     removeItem(){
