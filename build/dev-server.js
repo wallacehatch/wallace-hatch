@@ -7,12 +7,6 @@ if (!process.env.NODE_ENV) {
 }
 
 process.env.API_URL = JSON.parse(config.dev.env.API_URL);
-process.env.SHOPIFY_ACCESS_TOKEN = JSON.parse(config.dev.env.SHOPIFY_ACCESS_TOKEN);
-process.env.SHOPIFY_APP_ID = JSON.parse(config.dev.env.SHOPIFY_APP_ID);
-process.env.SHOPIFY_DOMAIN = JSON.parse(config.dev.env.SHOPIFY_DOMAIN);
-process.env.SHOPIFY_API_URL = JSON.parse(config.dev.env.SHOPIFY_API_URL);
-process.env.STRIPE_API_KEY = JSON.parse(config.dev.env.STRIPE_API_KEY);
-process.env.STRIPE_API_SECRET = JSON.parse(config.dev.env.STRIPE_API_SECRET);
 
 const opn = require('opn')
 const path = require('path')

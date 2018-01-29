@@ -45,7 +45,7 @@ export default {
 			},
 			cartModal: {
 				active: false,
-        badgeNumber: 0,
+        	badgeNumber: 0,
 			},
     }
   },
@@ -65,8 +65,8 @@ export default {
 	},
 	 watch: {
 	 	'$store.state.badgeNumber' (newVal) {
-      console.log('badge changing');
-      this.cartModal.badgeNumber = newVal;
+      	console.log('badge changing');
+      	this.cartModal.badgeNumber = newVal;
     }
   },
 	mounted() {
