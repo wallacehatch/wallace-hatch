@@ -39,17 +39,17 @@ export default {
     }
   },
   methods: {
-    handleShopNowClick(){
-
-    }
   },
-  mounted() {
-    StripeService.submitOrder().then((result) => {
+  beforeMount() {
+    StripeService.getAllProducts().then((result) => {
       console.log("calling stripe service")
+      this.products = result.data.filter((product) => {
+        return product.metadata.collection === 'frontPage';
+      })
+
     }, (err) => {
       debugger;
     })
-
   }
 }
 </script>

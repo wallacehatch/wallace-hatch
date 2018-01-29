@@ -2,12 +2,12 @@
   <div class="total-summary-cont">
     <div class="info-field-cont summary">
       <div class="summary-line">
-        <p class="label">Subtotal (2 items)</p>
-        <p class="amount">{{338 | currency}}</p>
+        <p class="label">Subtotal ({{quantity}} items)</p>
+        <p class="amount">{{subtotal | currency}}</p>
       </div>
       <div class="summary-line">
         <p class="label">Tax</p>
-        <p class="amount">{{0 | currency}}</p>
+        <p class="amount">{{tax | currency}}</p>
       </div>
       <div class="summary-line">
         <p class="label">Shipping</p>
@@ -18,7 +18,7 @@
     <div class="info-field-cont">
       <div class="summary-line">
         <p class="label total">Total</p>
-        <p class="amount total">{{338 | currency}}</p>
+        <p class="amount total">{{total | currency}}</p>
       </div>
       <div @click="$emit('buttonClick')" class="review-btn">{{buttonText}}</div>
     </div>
@@ -26,8 +26,33 @@
 </template>
 
 <script>
+import BagService from '@/BagService';
 export default {
-  props: ['buttonText'],
+  props: ['buttonText', 'bag'],
+  mounted() {
+    this.updateOrderSummary(this.bag);
+  },
+  data() {
+    return {
+      subtotal: 0,
+      quantity: 0,
+      tax: 0,
+      total: 0,
+    }
+  },
+  methods: {
+    updateOrderSummary(bag) {
+      const totals = bag.items.reduce((total, item) => {
+        return {
+          subtotal: total.subtotal + item.product.skus.data[0].price * item.quantity / 100,
+          quantity: total.quantity + item.quantity,
+        }
+      },{subtotal: 0, quantity: 0})
+      this.subtotal = totals.subtotal;
+      this.total = totals.subtotal;
+      this.quantity = totals.quantity;
+    },
+  }
 }
 </script>
 
@@ -91,8 +116,10 @@ export default {
   letter-spacing: 4px;
   text-align: center;
   margin-top: 3rem;
+  transition: 0.2s all linear;
   &:hover {
     cursor: pointer;
+    background-color: #262626;
   }
 }
 </style>

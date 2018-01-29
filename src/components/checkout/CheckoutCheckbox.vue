@@ -1,16 +1,16 @@
 <template lang="html">
   <div class="checkout-checkbox-cont">
-    <input :id="'cb_' + cKey" type="checkbox">
+    <input :name="cName" :id="'cb_' + cKey" type="checkbox">
     <label :for="'cb_' + cKey">
       <i class="fa fa-check"></i>
     </label>
-    <span>Text me updates about my order! And of course, I agree to these terms.</span>
+    <span>Text me updates about my order (standard message & data rates may apply).</span>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['cKey'],
+  props: ['cKey', 'cName'],
 }
 </script>
 

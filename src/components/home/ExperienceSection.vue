@@ -82,6 +82,7 @@ export default {
       background-repeat: no-repeat;
       width: calc(16.66% - 2px);
       font-size: 30rem;
+      background-size: cover;
       float: left;
       margin: 0 0.1rem 0.2rem 0.1rem;
       text-indent: 100%;

@@ -17,7 +17,7 @@
         <cart-item v-if="item.quantity > 0" class="mobile-bag-item" :key="'pTile' + i" :item="item" @qtyChange="refreshCart">
           <p class="additional-message-cont">Includes leather band and tool to use when changing bands.</p>
         </cart-item>
-        <hr class="mobile-bag-divider">
+        <hr v-if="item.quantity > 0" class="mobile-bag-divider">
       </div>
     </div>
     <!-- <band-section v-if="this.cart.items.length > 0"></band-section> -->
@@ -79,6 +79,9 @@ export default {
   }
   .mobile-bag-item {
     text-align: center;
+    .remove-button {
+      width: calc(100% - 2rem) !important;
+    }
     button {
       background-color: #fff;
     }

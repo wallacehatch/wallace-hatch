@@ -1,9 +1,9 @@
 <template lang="html">
   <div class="checkout-cont">
     <div class="section-header-cont">
-      <div v-for="(section, i) in sections" :class="{active: currentSection === i}" class="section-header">{{section}}</div>
+      <div v-for="(section, i) in sections" @click="function() {navigateToSection(i)}" :class="{active: currentSection === i}" class="section-header">{{section}}</div>
     </div>
-    <router-view :form="form" @setSection="setCurrentSection"/>
+    <router-view :bag="bag" :form="form" @setSection="setCurrentSection"/>
     <help-footer></help-footer>
   </div>
 
@@ -11,19 +11,36 @@
 
 <script>
 import HelpFooter from './CheckoutHelpFooter';
+import BagService from '@/BagService';
 export default {
   components: {
     HelpFooter,
   },
   methods: {
+    navigateToSection(i) {
+      this.setCurrentSection(i);
+      switch (i) {
+      case 0:
+      this.$router.replace('/checkout/info');
+      break;
+      case 1:
+      this.$router.replace('/checkout/review');
+      break;
+      }
+
+    },
     setCurrentSection(i) {
       this.currentSection = i
     }
+  },
+  beforeMount() {
+    this.bag = BagService.getBag();
   },
   data() {
     return {
       currentSection: 0,
       sections: ['Information', 'Review'],
+      bag: null,
       form: {
         addressSelected: false,
         account: {

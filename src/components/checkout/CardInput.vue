@@ -40,6 +40,7 @@
 <script>
 import CheckoutInput from './CheckoutInput';
 export default {
+  inject: ['$validator'],
   components: {
     CheckoutInput,
   },

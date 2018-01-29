@@ -17,7 +17,7 @@
            </div>
            <div class="product-line">
               <p class="right-heading">Price</p>
-              <p class="product-line-text">{{item.product.skus.data[0].price / 100 * item.quantity | currency}}</p>
+              <p class="product-line-text price">{{item.product.skus.data[0].price / 100 * item.quantity | currency}}</p>
            </div>
            <div class="product-line-bottom">
              <slot></slot>
@@ -110,6 +110,11 @@ beforeMount() {
         font-size: 18px;
         font-weight: 300;
         letter-spacing: 2.2px;
+        min-width: 3.5rem;
+        box-sizing: border-box;
+        &.price {
+          min-width: 11rem;
+        }
       }
       .right-heading {
         @include text-body;

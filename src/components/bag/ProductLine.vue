@@ -177,7 +177,6 @@ export default {
         display: inline-block;
         padding: 2.5rem 0rem 1rem 0rem;
         min-width: 3rem;
-
       }
       .right-heading{
         @include text-body;
@@ -192,6 +191,7 @@ export default {
         font-size: 18px;
         font-weight: 300;
         letter-spacing: 2.2px;
+        min-width: 10rem;
       }
       .increment-button {
         width: 32px;

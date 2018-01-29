@@ -2,16 +2,16 @@
   <div v-show="lActive">
     <div id="cart_modal_mask" class="cart-modal-mask"></div>
     <div id="cart_modal_cont" @click="$emit('close')" class="cart-modal-cont">
-      <div @click.stop id="cart_modal_inner_cont" class="inner-cont" style="transform: translateX(101%)">
+      <div @click.stop id="cart_modal_inner_cont" class="inner-cont" style="transform: translateY(-101%)">
         <div @click="$emit('close')"  class="close-btn"><i class="fal fa-times"></i></div>
         <div class="cart-body">
           <p class="heading">Added to bag!</p>
           <cart-notification v-if="showNoty"></cart-notification>
 
-          <div v-for="(item, i) in cart.items">
+          <div v-for="(item, i) in bag.items">
             <cart-item v-if="item.quantity > 0" :item="item"  @qtyChange="refreshCart"></cart-item>
           </div>
-          <button  class="cart-btn" @click="handleReviewBagClick">Review Bag<span class="total-price">{{cart.totalPrice | currency}}</span></button>
+          <button  class="cart-btn" @click="handleReviewBagClick">Review Bag<span class="total-price">{{bag.totalPrice | currency}}</span></button>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@ export default {
       dur: 500,
       lActive: false,
       showNoty: false,
-      cart: {
+      bag: {
         items: [],
       },
     }
@@ -41,7 +41,23 @@ export default {
   },
   methods: {
     refreshCart(){
-      this.cart = BagService.getBag();
+      const bag = BagService.getBag();
+      const totals = bag.items.reduce((total, item) => {
+        return {
+          price: total.price + item.product.skus.data[0].price * item.quantity / 100,
+          quantity: total.quantity + item.quantity,
+        }
+      },{price: 0, quantity: 0});
+      if (totals.quantity === 0) {
+        this.$store.commit('SET_CART_ACTIVE', false);
+      }
+      else {
+        this.bag = bag;
+        this.bag.totalPrice = totals.price;
+        this.bag.totalQuantity = totals.quantity;
+      }
+
+
     },
     toggleModal(active) {
       if (active) {
@@ -55,7 +71,7 @@ export default {
           })
           anime({
             targets: '#cart_modal_inner_cont',
-            translateX: 0,
+            translateY: 0,
             duration: this.dur,
             easing: 'easeInOutCubic'
           })
@@ -71,7 +87,7 @@ export default {
         })
         anime({
           targets: '#cart_modal_inner_cont',
-          translateX: '101%',
+          translateY: '-101%',
           duration: this.dur,
           easing: 'easeInOutCubic',
           complete: () => {
@@ -81,7 +97,8 @@ export default {
       }
     },
     handleReviewBagClick(){
-      this.$router.replace('/bag/')
+      this.$router.replace('/bag/');
+      this.$store.commit('SET_CART_ACTIVE', false);
     },
   },
   mounted() {
@@ -170,8 +187,8 @@ export default {
       position: absolute;
       right: 0;
       top: 0;
-      transform: translateX(101%);
-      -webkit-transform: translateX(101%);
+      // transform: translateX(101%);
+      // -webkit-transform: translateX(101%);
       @include respond-to(sm) {
         // width: 94%;
       }
@@ -184,7 +201,7 @@ export default {
       float: left;
       position: relative;
       z-index: 1;
-      margin: 1.4rem 0rem 0rem 1.6rem;
+      margin: 1.4rem 0rem -0.5rem 1.6rem;
       transition: 0.2s all linear;
       &.white {color: $wh-white;}
       &:hover {
@@ -273,7 +290,7 @@ export default {
   .cart-btn {
     background-color: $wh-black;
     padding: 1.6rem 0rem;
-    width:  300px;
+    width: 100%;
     box-shadow: 0 7px 13px 0 rgba(95, 95, 95, 0.5), 0 1px 3px 0 rgba(149, 149, 149, 0.2);
     @include intro-text;
     font-size: 1.4rem;
@@ -284,6 +301,7 @@ export default {
     border-radius: 0;
     outline: none;
     transition: 0.2s all linear;
+    overflow: auto;
     &:hover {
       cursor: pointer;
       background-color: #262626;
@@ -294,7 +312,9 @@ export default {
     }
 
     .total-price{
-      margin-left: 2rem;
+      // margin-left: 2rem;
+      float: right;
+      margin-right: 2.5rem;
       color: white;
       font-weight: 300;
     }
