@@ -43,6 +43,7 @@ export default {
     refreshCart(){
       this.$store.commit('SET_BADGE_NUMBER', this.bag.totalQuantity);
       const bag = BagService.getBag();
+      console.log(bag)
       if (bag === null) return;
       const totals = bag.items.reduce((total, item) => {
         return {

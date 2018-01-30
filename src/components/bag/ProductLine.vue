@@ -71,6 +71,8 @@ export default {
       overflow: auto;
       text-align: center;
     }
+  
+
     .product-image {
         background-position: center;
         background-size: contain;
@@ -80,8 +82,9 @@ export default {
         margin: 0;
       }
       .product-box {
-        display: inline-block;
-        padding: 5.2rem 0;
+        display: block;
+        overflow: auto;
+        padding: 5.2rem 0rem 5.2rem 7rem;
       }
       .product-info-wrapper{
         padding: 5.7rem 0 5.7rem 6rem;
@@ -101,6 +104,7 @@ export default {
       text-align: left;
       line-height: 2rem;
       padding: 0 10.5rem 0 0;
+      min-width: 28rem;
       @include respond-to(md) {padding: 0rem 4.9rem 0 0rem;}
       .product-line-heading{
             @include intro-text;
