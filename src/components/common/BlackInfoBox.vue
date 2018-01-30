@@ -67,10 +67,24 @@ export default {
 	text-transform: uppercase;
 	width: calc(25% - 1px);
 	justify-content: center;
-	border-right: 1px solid #3f3f3f;
+	// border-right: 1px solid #3f3f3f;
 	padding-bottom: 2.5rem;
+	position: relative;
+	&::after {
+		content: "";
+		position: absolute;
+		right: -1px;
+		bottom: 0;
+		width: 1px;
+		border-right: 1px solid #3f3f3f;
+		height: 9rem;
+		@include respond-to(lg) {height: 6.9rem;}
+		@include respond-to(md) {height: 5.5rem;}
+		@include respond-to(sm) {display: none;}
+	}
 	&:last-of-type {
 		border-right: none;
+		&::after {border: none}
 	}
 	@include respond-to(sm) {
 		display: flex;

@@ -48,6 +48,14 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
   }
+  .clearfix:before,
+  .clearfix:after {
+      content: ".";
+      display: block;
+      height: 0;
+      overflow: hidden;
+  }
+  .clearfix:after { clear: both; }
   .load-mask {
     opacity: 0 !important;
     min-height: 100vh !important;

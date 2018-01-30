@@ -13,7 +13,7 @@
       <p class="subtext">We won’t charge you,<br class="sm-only"> until we ship</p>
       <hr class="line">
     </div>
-    <div class="product-showcase-cont">
+    <div class="product-showcase-cont clearfix">
       <product-tile v-for="(item, i) in items" :key="'pTile' + i" :item="item"></product-tile>
     </div>
     <div class="experience-section-cont">
@@ -76,15 +76,23 @@ export default {
   // SITE HERO
   .hero-cont {
     background-color: #222;
-    min-height: 40rem;
+    height: 48.437vw;
+    box-sizing: border-box;
     padding-left: 11rem;
     padding-top: 20rem;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/watch-hero.png");
+    background-size: auto 100%;
+    background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image.jpg");
+    @include respond-to(2x) {
+      background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%402x.jpg");
+    }
+    @include respond-to(3x) {
+      background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%403x.jpg");
+    }
     @include respond-to(lg) { padding-top: 16.6rem; padding-left: 8rem; }
-    @include respond-to(md) { padding-top: 10.6rem; padding-left: 7rem; }
-    @include respond-to(md) { padding-top: 9.2rem; padding-left: 2rem; }
+    @include respond-to(md) { padding-top: 10.6rem; padding-left: 7rem; height: 49.5rem;}
+    @include respond-to(sm) { padding-top: 9rem; padding-left: 2rem; height: 40rem; }
   }
 
   .hero-btn {
@@ -108,7 +116,7 @@ export default {
         background-color: #ffffff;
         box-shadow: 0 27px 20px 0 rgba(0, 0, 0, 0.1), 0 4px 14px 0 rgba(0, 0, 0, 0.2);
         color: #000000;
-
+        cursor: pointer;
       }
 
   }
@@ -117,6 +125,7 @@ export default {
     text-transform: uppercase;
     color: $wh-white;
     padding-bottom: 0.6rem;
+    letter-spacing: 2px;
     @include respond-to(lg) {font-size: 1.4rem;}
   }
   .hero-2 {
@@ -133,6 +142,7 @@ export default {
     text-transform: uppercase;
     font-size: 1.2rem;
     color: $wh-white;
+    letter-spacing: 3px;
   }
 
 

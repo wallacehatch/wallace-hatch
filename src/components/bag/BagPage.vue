@@ -77,7 +77,7 @@ export default {
     margin: auto;
     margin-top: 4rem;
   }
-  
+
   .mobile-bag-item {
 
     text-align: center;
@@ -101,7 +101,7 @@ export default {
     }
     .cart-item-inner-cont {
       display: inline-block;
-      
+
       .cart-item-text {
         padding-top: 1.9rem;
         letter-spacing: 2.9px !important;
@@ -207,7 +207,7 @@ export default {
     }
     @include respond-to(sm) {
       font-size: 1.4rem;
-      width: 100%;
+      // width: 100%;
     }
   	background-color: #ffffff;
 	box-shadow: 0 12px 24px 0 rgba(95, 95, 95, 0.3), 0 2px 6px 0 rgba(149, 149, 149, 0.2);

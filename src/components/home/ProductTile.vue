@@ -5,8 +5,9 @@
     <p class="product-price">{{item.product.skus.data[item.skuInd].price / 100 | currency }}</p>
     <div class="hover-tile-cont">
       <div class="inner-tile">
-        <div class="product-image" :style="{backgroundImage: 'url(' + item.product.images[0] + ')'}"></div>
-        <p class="product-info"><span class="title">{{item.product.name}}</span> <span class="price">{{item.product.skus.data[item.skuInd].price / 100 | currency }}</span></p>
+        <p class="product-info">
+          <span class="title">{{item.product.name}}</span> <span class="price">{{item.product.skus.data[item.skuInd].price / 100 | currency }}</span>
+        </p>
         <div class="add-cart-btn" @click.stop="handleAddCartClick">Add to bag</div>
       </div>
     </div>
@@ -47,18 +48,27 @@ export default {
     padding: 7rem 0.25rem 5.5rem 0.25rem;
     width: 33.33%;
     transition: 0.3s all linear;
+    &:hover {
+      .product-image {
+        z-index: 4;
+        transform: translateY(-2.4rem);
+      }
+      .inner-tile {background-color: $wh-white;}
+    }
     @include respond-to(lg) { padding: 5rem 0.35rem 4rem 0.35rem;}
     @include respond-to(md) { padding: 4.5rem 0.3rem 4rem 0.3rem;}
     @include respond-to(sm) {
-      padding: 4.5rem 0.25rem 3rem 0.25rem;
+      padding: 3rem 0.25rem 3rem 0.25rem;
       width: 100%;
-      margin-top: 0.5rem;
+      margin-top: 1.5rem;
     }
 
     .product-image {
       background-position: center;
       background-size: contain;
       background-repeat: no-repeat;
+      position: relative;
+      transition: 0.35s all cubic-bezier(.69,.16,.32,1);
       width: 100%;
       height: 38.3rem;
     }
@@ -98,7 +108,6 @@ export default {
       margin-top: 3rem;
       color: $wh-white;
       font-weight: bold;
-      // overflow: hidden;
       white-space: nowrap;
       padding: 2.2rem 0;
       transition: 0.3s all cubic-bezier(.28,.56,.32,1);
@@ -106,6 +115,9 @@ export default {
         margin-top: 2rem;
         padding: 1.5rem 0;
         width: 22rem;
+      }
+      @include respond-to(sm) {
+        padding: 1.5rem 5.3rem;
       }
       @include respond-to(md) {width: 18rem;}
       &:hover {
@@ -119,21 +131,10 @@ export default {
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: $wh-white;
       opacity: 0;
       transition: 0.35s all cubic-bezier(.69,.16,.32,1);
-      transition-delay: 0.1s;
-      // padding: 5rem 0;
-      // @include respond-to(lg) {
-      //   padding: 3rem 0;
-      // }
-      // @include respond-to(md) {
-      //   padding: 2.5rem 0;
-      // }
       @include respond-to(sm) {
         opacity: 1.0;
-        // padding-bottom: 3rem;
-        // box-shadow: 0 12px 24px 0 rgba(95, 95, 95, 0.3), 0 2px 6px 0 rgba(149, 149, 149, 0.2);
       }
       .product-info {
         @include intro-text;
@@ -162,6 +163,11 @@ export default {
     }
     .inner-tile {
       padding: 5rem 0;
+      position: absolute;
+      background-color: transparent;
+      bottom: 0;
+      left: 0;
+      right: 0;
       @include respond-to(lg) {
         padding: 3rem 0;
       }
@@ -177,7 +183,6 @@ export default {
           opacity: 1.0;
         }
       }
-
     }
   }
 

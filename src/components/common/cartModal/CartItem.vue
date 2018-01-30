@@ -133,6 +133,7 @@ beforeMount() {
         transition: 0.2s linear;
         &:hover{
           box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+          cursor: pointer;
         }
       }
     }
@@ -143,6 +144,11 @@ beforeMount() {
       margin-top: 1rem;
       width: 100%;
       @include text-body;
+      transition: 0.2s linear;
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+      }
     }
   }
 }

@@ -46,7 +46,7 @@
           <hr class="line">
           <product-info-table :sku="product.skus.data[currentSkuIndex]" :productInfo="product.metadata"></product-info-table>
         </div>
-        <hr class="pdp-divider">
+        <!-- <hr class="pdp-divider"> -->
       <!-- <band-section></band-section> -->
       </div>
     </div>

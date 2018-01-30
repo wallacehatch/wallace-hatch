@@ -63,6 +63,9 @@ export default {
   @import '../../styles/_variables.scss';
 .product-line-cont{
   margin-bottom: 2rem;
+  button {
+    background-color: $wh-white;
+  }
     .product-line-inner-cont{
       max-width: 114rem;
       width: calc(100% - 4rem);
@@ -71,7 +74,7 @@ export default {
       overflow: auto;
       text-align: center;
     }
-  
+
 
     .product-image {
         background-position: center;

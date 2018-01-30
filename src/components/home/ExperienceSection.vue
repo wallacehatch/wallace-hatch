@@ -54,6 +54,7 @@ export default {
       content: "";
       display: block;
       padding-bottom: 33.33%;
+      @include respond-to(sm) {padding-bottom: 0;}
     }
 
     .insta-btn-wrapper {
