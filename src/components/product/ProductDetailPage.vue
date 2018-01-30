@@ -11,16 +11,17 @@
             :style="{backgroundImage: 'url(' + product.images[i] + ')'}"></div>
           </div>
         </div>
-        <div class="pdp-ur">
+        <div class="pdp-ur" :class="{'sticky-space': stickyAddCart}">
           <p class="size">{{product.skus.data[currentSkuIndex].attributes.size}}MM</p>
           <hr class="line">
           <p class="title">{{product.name}}</p>
           <p class="price hide-sm">{{product.skus.data[currentSkuIndex].price / 100 | currency }}</p>
           <div class="color-bubble"></div>
           <p class="color-text">Color: {{product.metadata.dialColor}} / {{product.metadata.caseColor}}</p>
-          <div class="add-cart-btn pdp" @click="handleAddCartClick">
+          <div class="add-cart-btn pdp" id="add_cart_btn_pdp" :class="{'stuck': stickyAddCart}" @click="handleAddCartClick">
             <span class="mobile-add" @click="handleAddCartClick">Add to bag</span>
-            <span class="mobile-price">{{product.skus.data[currentSkuIndex].price / 100 | currency}}</span></div>
+            <span class="mobile-price">{{product.skus.data[currentSkuIndex].price / 100 | currency}}</span>
+          </div>
         </div>
         <hr class="pdp-divider">
       </div>
@@ -69,20 +70,45 @@ export default {
       product: null,
       currentSkuIndex: null,
       productInfo: null,
+      stickyAddCart: false,
+      addCartOffset: null,
       activeImageIndex: 0,
     }
   },
   beforeMount() {
-    console.log('before mount pdp');
     StripeService.getProduct(this.$route.params.handle).then((result) => {
-      console.log(result.data);
       this.currentSkuIndex = BagService.indexForSku(result.data, this.$route.params.sku);
       this.product = result.data;
+      this.stickyAddCart = false;
+      this.setButtonOffset();
     }, (err) => {
       debugger;
     })
   },
+  mounted() {
+  },
+  created() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
+    setButtonOffset() {
+      setTimeout(() => {
+        this.addCartOffset = window.scrollY + document.getElementById('add_cart_btn_pdp').getBoundingClientRect().top - window.innerHeight + 62;
+        // console.log(window.scrollY);
+        // console.log(document.getElementById('add_cart_btn_pdp').getBoundingClientRect().top);
+        // console.log(window.innerHeight);
+        // console.log('the offset is...' + this.addCartOffset);
+        this.handleScroll();
+      })
+
+    },
+    handleScroll() {
+      if (window.innerWidth >= 767) return;
+      this.stickyAddCart = (window.scrollY <= this.addCartOffset);
+    },
     handleAddCartClick() {
       BagService.addItem(this.product, this.$route.params.sku, 1);
       this.$store.commit('INC_BADGE_NUMBER');
@@ -224,7 +250,8 @@ export default {
     font-weight: bold;
     padding: 2.2rem 0;
     margin-top: 3rem;
-    transition: 0.2s all linear;
+    transition: 0.2s background-color linear;
+    transition-property: background-color, box-shadow;
     @include respond-to(md) {width: 18rem;}
     @include respond-to(sm) {
       margin: 2rem 1rem 4rem 1rem;
@@ -245,6 +272,16 @@ export default {
       float: right;
       font-weight: 300;
       @include respond-to(sm) {display: initial;}
+    }
+    &.stuck {
+      margin: 0;
+      position: fixed;
+      bottom: 0rem;
+      left: 0;
+      right: 0;
+      width: 100%;
+      box-sizing: border-box;
+      box-shadow: 0 -9px 24px 0 rgba(95, 95, 95, 0.5), 0 -4px 6px 0 rgba(149, 149, 149, 0.2);
     }
   }
   .pdp-cont {
@@ -328,6 +365,9 @@ export default {
       @include respond-to(sm) {
         width: 100%;
         padding-top: 0;
+      }
+      &.sticky-space {
+        padding-bottom: 10.2rem;
       }
       .size {
         @include intro-text;

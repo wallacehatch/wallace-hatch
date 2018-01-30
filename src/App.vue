@@ -32,6 +32,15 @@ export default {
     const bn = bag.items.reduce((total, item) => {return total + item.quantity},0);
     this.$store.commit('SET_BADGE_NUMBER', bn);
 
+    // Custom Validation Messages for inputs
+    this.$validator.extend('validCvc', {
+      getMessage: field => 'The CVC field you entered is not valid',
+      validate: (value) => {
+        // this is where you put the logic to verify the CVC
+        return false;
+      }
+    })
+
   }
 }
 </script>
