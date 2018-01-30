@@ -22,7 +22,6 @@ function getProducts(ids) {
 
 
 function submitOrder(orderForm, bag){
-
 	// temporary variables for testing only
 	const form =  {
         account: {
