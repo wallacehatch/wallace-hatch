@@ -1,14 +1,14 @@
 <template lang="html">
   <div class="checkout-review-cont">
     <div class="left-cont">
-      <div class="info-cont shipping">
+      <div class="info-cont shipping clearfix">
         <p class="title">Shipping Address</p>
         <div class="edit-btn">Edit</div>
         <p class="name">{{form.shipping.name || 'John Doe'}}</p>
         <p class="address">{{form.shipping.streetNumber || '000'}} {{form.shipping.streetName || 'Some Ave'}}</p>
         <p class="address">{{form.shipping.city || 'Anytown'}} {{form.shipping.state || 'OH'}} {{form.shipping.zip || '11111'}}</p>
       </div>
-      <div class="info-cont billing">
+      <div class="info-cont billing clearfix">
         <p class="title">Payment Method</p>
         <div class="edit-btn">Edit</div>
         <div class="card-icon review" :class="form.billing.cardType"></div>
@@ -90,7 +90,7 @@ export default {
   overflow: auto;
   margin: auto;
   @include respond-to(sm) {
-    width: calc(100% - 2rem);
+    width: calc(100% - 4rem);
   }
   .left-cont {
     width: 50%;
@@ -148,7 +148,7 @@ export default {
     }
   }
   .info-cont {
-    overflow: auto;
+    // overflow: auto;
     .title {
       @include h5;
       letter-spacing: 5px;
@@ -165,8 +165,10 @@ export default {
       padding: 0.4rem 1.3rem;
       border: 1px solid #cccccc;
       border-radius: 4px;
+      transition: 0.2s all linear;
       &:hover {
         cursor: pointer;
+        box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
       }
     }
     .name {

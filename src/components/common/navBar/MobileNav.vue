@@ -7,7 +7,7 @@
         <li @click="handleNavItemClick" v-for="(item, i) in items" :class="{active: activeItem === i}">{{item}}</li>
       </ul>
       <ul class="aux-options-cont">
-        <li>Sign in</li>
+        <!-- <li>Sign in</li> -->
         <li>pre-order list</li>
         <li @click="contactUsClick">contact us</li>
       </ul>
@@ -117,7 +117,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.8);
+    // background-color: rgba(0,0,0,0.8);
     overflow: scroll;
 
   }
@@ -128,7 +128,7 @@ export default {
     width: calc(100% - 2rem);
     max-width: 40rem;
     min-height: 100vh;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.95);
 	  box-shadow: 20px 0 20px 0 rgba(0, 0, 0, 0.2), 10px 0 14px 0 rgba(0, 0, 0, 0.2);
     transform: translateX(-110%);
     padding: 0 2rem;

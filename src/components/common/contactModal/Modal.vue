@@ -327,7 +327,7 @@ export default {
       width: 100%;
       overflow: visible;
       .field-cont {
-        width: calc(100% - 4px);
+        // width: calc(100% - 4px);
         margin-bottom: 1rem;
       }
 

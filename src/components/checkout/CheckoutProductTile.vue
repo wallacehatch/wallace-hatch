@@ -48,6 +48,7 @@ export default {
   align-items: center;
   margin-bottom: 2.9rem;
   clear: both;
+  @include respond-to(sm) {justify-content: space-around;}
   .image {
     float: left;
     width: 18.4rem;
@@ -63,6 +64,8 @@ export default {
     @include respond-to(sm) {margin-top: 2rem;}
   }
   .info {
+    @include respond-to(md) { margin-left: 2.5rem; }
+    @include respond-to(sm) { margin-left: 1.5rem; }
     .size {
       @include intro-text;
       font-size: 1.4rem;

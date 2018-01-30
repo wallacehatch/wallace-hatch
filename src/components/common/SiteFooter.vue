@@ -4,10 +4,10 @@
 		<newsletter-cta v-if="$store.state.navLayout !== 1"></newsletter-cta>
 		<div class="site-footer-cont">
 			<div class="footer-left">
-				<a target="_blank" href="https://www.instagram.com/wallaceHatch/" class="social-link fab fa-instagram"></a>
-				<a target="_blank" href="https://www.facebook.com/WallaceHatch/" class="social-link fab fa-facebook-f"></a>
-				<a target="_blank" href="https://twitter.com/WallaceHatch" class="social-link fab fa-twitter"></a>
-				<a href="mailto:hello@wallacehatch.com?Subject=Checked%20Out%20the%20Site" class="social-link fal fa-envelope"></a>
+				<a target="_blank" href="https://www.instagram.com/wallaceHatch/" class="social-link"><i class="fab fa-instagram"></i></a>
+				<a target="_blank" href="https://www.facebook.com/WallaceHatch/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+				<a target="_blank" href="https://twitter.com/WallaceHatch" class="social-link"><i class="fab fa-twitter"></i></a>
+				<a href="mailto:hello@wallacehatch.com?Subject=Checked%20Out%20the%20Site" class="social-link"><i class="fal fa-envelope"></i></a>
 			</div>
 			<div class="footer-right">
 				  <!-- Desktop Only -->
