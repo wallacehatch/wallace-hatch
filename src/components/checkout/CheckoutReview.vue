@@ -64,7 +64,6 @@ export default {
   },
   mounted() {
     this.$emit('setSection', 1);
-    // this.bag = BagService.getBag();
   }
 }
 </script>

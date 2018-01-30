@@ -68,7 +68,7 @@ export default {
     toggleModal(active) {
       if (active) {
         this.lActive = true;
-        // document.body.style.overflow = 'hidden';
+        if (window.innerWidth < 767) { document.body.style.overflow = 'hidden'; }
         setTimeout(() => {
           anime({
             targets: '#cart_modal_mask',
@@ -84,7 +84,7 @@ export default {
         })
       }
       else {
-        // document.body.style.overflow = 'initial';
+        if (window.innerWidth < 767) { document.body.style.overflow = 'initial'; }
         anime({
           targets: '#cart_modal_mask',
           opacity: 0,
