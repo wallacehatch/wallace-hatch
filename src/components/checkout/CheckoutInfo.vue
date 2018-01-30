@@ -124,6 +124,7 @@ import CheckoutInput from './CheckoutInput';
 import CardInput from './CardInput';
 import CheckoutCheckbox from './CheckoutCheckbox';
 import OrderSummary from './OrderSummary';
+import StripeService from '@/StripeService.js';
 import CheckoutCoupon from './CheckoutCoupon';
 export default {
   props: ['form', 'bag'],
@@ -136,10 +137,15 @@ export default {
   },
   methods: {
     advanceToReview() {
-      console.log(this.fields);
+      var valid
       this.$validator.validateAll().then((result) => {
+        console.log(result)
         if (result) {
-          this.$router.push('/checkout/review');
+          StripeService.createCustomer(this.form).then((result) => {
+              this.$router.push('/checkout/review');
+      }, (err) => {
+        alert(err.response.data.error.message)
+      })
         }
         else {
           const inputs = document.getElementsByTagName('input');

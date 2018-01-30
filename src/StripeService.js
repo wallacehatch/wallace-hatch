@@ -5,6 +5,8 @@ svc.getAllProducts = getAllProducts;
 svc.getProduct = getProduct;
 svc.getProducts = getProducts;
 svc.submitOrder = submitOrder;
+svc.createCustomer = createCustomer;
+svc.validateCoupon = validateCoupon;
 
 function getAllProducts() {
   return  Promise.resolve(axios.get(process.env.API_URL + 'get-all-products/'));
@@ -20,6 +22,45 @@ function getProducts(ids) {
 	return Promise.resolve(axios.post(process.env.API_URL + 'get-products/', {product_ids: ids }))
 }
 
+function validateCoupon(coupon){
+	var tmpCoupon = "TEST_COUPON_SS"
+	return Promise.resolve(axios.get(process.env.API_URL + 'get-coupon/' + String(tmpCoupon)))
+
+
+}
+
+
+function createCustomer(form, coupon) {
+	var tmpForm =  {
+        account: {
+          name: 'Greg Miller',
+          email: 'gregtesting@gmail.com',
+          phone: '4403966613',
+          acceptTerms: true,
+        },
+        shipping: {
+          name: 'Greg Miller',
+          address: '364 East Northwood avenue',
+          streetNumber: 'some street',
+          streetName: 'some street name',
+          aptSuite: 'some apartment suite',
+          company: 'some company',
+          city: 'Columbus',
+          state: 'Ohio',
+          country: 'USA',
+          zip: '43201',
+        },
+        billing: {
+         cardNumber: "4000000000000127",
+         exp: '02/19',
+         cvc: '123',
+       },
+
+      }
+      var tmpCoupon = "TEST_COUPON"
+      return Promise.resolve(axios.post(process.env.API_URL + 'create-customer/', {account: tmpForm.account, shipping: tmpForm.shipping, cardInfo: tmpForm.billing,coupon: tmpCoupon }))
+}
+
 
 function submitOrder(form, bag, coupon){
 
@@ -29,6 +70,7 @@ function submitOrder(form, bag, coupon){
           name: 'Greg Miller',
           email: 'greg711miller@gmail.com',
           phone: '4403966613',
+          acceptTerms: true,
         },
         shipping: {
           name: 'Greg Miller',

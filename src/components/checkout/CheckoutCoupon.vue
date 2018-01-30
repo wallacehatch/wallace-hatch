@@ -10,7 +10,7 @@
                :class="[{submitted: coupon.submitted}, {active: isActive }]"
                :submitted="coupon.submitted"
                :error="coupon.error"
-               @submitForm="handleFieldSubmit"
+               @submitForm="submitCoupon"
                class="coupon-input"
                ></std-input>
   </div>
@@ -18,6 +18,7 @@
 
 <script>
 import StdInput from '@/components/common/StdInput';
+import StripeService from '@/StripeService.js';
 export default {
   inject: ['$validator'],
   components: {
@@ -36,6 +37,15 @@ export default {
      }
    },
    methods: {
+    submitCoupon(){
+      StripeService.validateCoupon(this.coupon.coupon).then((result) => {
+        console.log(result)
+      }, (err) => {
+        console.log("COUPON NOT VALID!!" + err)
+      })
+
+    }
+
    },
    watch: {
      
