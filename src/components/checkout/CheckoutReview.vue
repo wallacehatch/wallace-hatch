@@ -55,9 +55,10 @@ export default {
 
 
       StripeService.submitOrder(this.form, orderItems).then((result) => {
-        debugger;
+        console.log("Called submit order!")
+        console.log(result)
       }, (err) => {
-        debugger;
+        alert(err.response.data.error.message)
       })
     }
   },

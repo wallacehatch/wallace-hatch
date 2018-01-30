@@ -30,7 +30,8 @@
           :iValue="cardInfo.cvc"
           iName="cvc"
           v-model="cardInfo.cvc"
-          iValidate="required">
+          iValidate="required"
+          iMask="####">
         </checkout-input>
       </div>
     </checkout-input>
