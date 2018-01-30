@@ -14,7 +14,7 @@
       <hr class="line">
     </div>
     <div class="product-showcase-cont">
-      <product-tile v-for="(product, i) in products" :key="'pTile' + i" :product="product"></product-tile>
+      <product-tile v-for="(item, i) in items" :key="'pTile' + i" :item="item"></product-tile>
     </div>
     <div class="experience-section-cont">
       <experience-section></experience-section>
@@ -35,18 +35,25 @@ export default {
   },
   data() {
     return {
-      products: null,
+      items: null,
     }
   },
   methods: {
   },
   beforeMount() {
     StripeService.getAllProducts().then((result) => {
-      console.log("calling stripe service")
-      this.products = result.data.filter((product) => {
-        return product.metadata.collection === 'frontPage';
-      })
-
+      this.items = result.data.reduce((total, product) => {
+        const newItems = product.skus.data.map((sku, ind) => {
+          if (sku.attributes.collection === 'frontPage') {
+            return {
+              product,
+              sku: sku.id,
+              skuInd: ind,
+            }
+          }
+        })
+        return total.concat(newItems)
+      }, [])
     }, (err) => {
       debugger;
     })

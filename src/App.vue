@@ -27,7 +27,9 @@ export default {
   methods: {
 },
   beforeMount() {
-    const bn = BagService.getBag().items.reduce((total, item) => {return total + item.quantity},0);
+    const bag = BagService.getBag();
+    if (bag === null) return;
+    const bn = bag.items.reduce((total, item) => {return total + item.quantity},0);
     this.$store.commit('SET_BADGE_NUMBER', bn);
 
   }

@@ -5,7 +5,7 @@
             <div class="product-image" @click="handleImageClick" :style="{backgroundImage: 'url(' + item.product.images[0] + ')'}"></div>
             <div class="product-info-wrapper">
             <div class="product-info">
-                <h4 class="product-line-heading">{{item.product.metadata.size}} MM</h4>
+                <h4 class="product-line-heading">{{item.product.skus.data[skuIndex].attributes.size}} MM</h4>
                 <h4 class="product-line-heading name">{{item.product.name}}</h4>
                 <p>Color: {{item.product.metadata.dialColor}}/{{item.product.metadata.caseColor}}</p>
             </div>
@@ -17,7 +17,7 @@
            </div>
            <div class="product-line-right">
               <p class="right-heading">Price</p>
-              <p class="price">{{item.product.skus.data[0].price / 100 * item.quantity | currency}}</p>
+              <p class="price">{{item.product.skus.data[skuIndex].price / 100 * item.quantity | currency}}</p>
            </div>
            <div class="product-line-bottom">
              <button class="remove-button desktop" @click="removeItem">Remove</button>
@@ -34,22 +34,26 @@
 import BagService from '@/BagService';
 export default {
   props: ['item'],
+  data() {
+    return {
+      skuIndex: BagService.indexForSku(this.item.product, this.item.sku),
+    }
+  },
   methods: {
     increaseQuantity(){
-      BagService.addItem(this.item.product, 1);
+      BagService.addItem(this.item.product, this.item.sku, 1);
       this.$emit('qtyChange');
     },
     decreaseQuantity(){
-      BagService.removeItem(this.item.product, 1);
+      BagService.removeItem(this.item.product, this.item.sku, 1);
       this.$emit('qtyChange');
     },
     removeItem(){
-      BagService.removeItem(this.item.product, this.item.quantity);
+      BagService.removeItem(this.item.product, this.item.sku, this.item.quantity);
       this.$emit('qtyChange');
     },
     handleImageClick() {
-      // var productHandle = this.product.title.replace(/\s+/g, '-').toLowerCase();
-      this.$router.push('/watches/' + this.item.product.id);
+      this.$router.push('/watches/' + this.item.product.id + '/' + this.item.sku);
     },
   },
 }

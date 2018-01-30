@@ -19,7 +19,6 @@
       </div>
     </div>
     <div class="right-cont">
-
       <checkout-product-tile v-for="(item, i) in bag.items" v-if="item.quantity > 0" :key="'cpt' + i" :item="item" ></checkout-product-tile>
       <order-summary :bag="bag" buttonText="Place Your Order" class="review" @buttonClick="submitOrder"></order-summary>
       <p class="terms-statement">By placing this order, you agree to the <router-link target="_blank" to="/terms">Terms of Use</router-link> and <router-link target="_blank" to="/privacy">Privacy Policy</router-link>.</p>
@@ -30,8 +29,8 @@
 <script>
 import OrderSummary from './OrderSummary';
 import StripeService from '@/StripeService.js';
-// import BagService from '@/BagService.js';
 import CheckoutProductTile from './CheckoutProductTile';
+import BagService from '@/BagService';
 export default {
   props: ['form', 'bag'],
   components: {
@@ -50,13 +49,16 @@ export default {
       return numArr[numArr.length-1];
     },
     submitOrder() {
-      var bag = BagService.getBag();
-      console.log("bag is ")
-      console.log(bag)
-      StripeService.submitOrder(this.form, bag).then((result) => {
-        }, (err) => {
-          debugger;
-        })
+      const orderItems = BagService.getBag().items.map((item) => {
+        return {sku: item.sku, quantity: item.quantity};
+      });
+
+
+      StripeService.submitOrder(this.form, orderItems).then((result) => {
+        debugger;
+      }, (err) => {
+        debugger;
+      })
     }
   },
   mounted() {

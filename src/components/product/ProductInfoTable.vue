@@ -2,7 +2,7 @@
   <div class="product-info-table">
     <div class="product-info-line">
       <span class="item-key">SKU</span>
-      <span class="item-value">{{productInfo.sku}}</span>
+      <span class="item-value">{{sku.id}}</span>
     </div>
     <div class="product-info-line">
       <span class="item-key">Case thickness</span>
@@ -18,7 +18,7 @@
     </div>
     <div class="product-info-line">
       <span class="item-key">Band width</span>
-      <span class="item-value">{{productInfo.bandWidth}}mm</span>
+      <span class="item-value">{{sku.attributes.bandWidth}}mm</span>
     </div>
     <div class="product-info-line">
       <span class="item-key">Band</span>
@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  props: ['productInfo'],
+  props: ['productInfo', 'sku'],
 
 }
 </script>

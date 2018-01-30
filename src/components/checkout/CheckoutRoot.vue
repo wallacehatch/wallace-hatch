@@ -6,7 +6,6 @@
     <router-view :bag="bag" :form="form" @setSection="setCurrentSection"/>
     <help-footer></help-footer>
   </div>
-
 </template>
 
 <script>
@@ -27,7 +26,6 @@ export default {
       this.$router.replace('/checkout/review');
       break;
       }
-
     },
     setCurrentSection(i) {
       this.currentSection = i

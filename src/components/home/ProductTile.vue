@@ -1,12 +1,12 @@
 <template lang="html">
   <div @click="handleTileClick" class="product-tile-cont">
-    <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0] + ')'}"></div>
-    <p class="product-title">{{product.name}}</p>
-    <p class="product-price">{{product.skus.data[0].price / 100 | currency }}</p>
+    <div class="product-image" :style="{backgroundImage: 'url(' + item.product.images[0] + ')'}"></div>
+    <p class="product-title">{{item.product.name}}</p>
+    <p class="product-price">{{item.product.skus.data[item.skuInd].price / 100 | currency }}</p>
     <div class="hover-tile-cont">
       <div class="inner-tile">
-        <div class="product-image" :style="{backgroundImage: 'url(' + product.images[0] + ')'}"></div>
-        <p class="product-info"><span class="title">{{product.name}}</span> <span class="price">{{product.skus.data[0].price / 100 | currency }}</span></p>
+        <div class="product-image" :style="{backgroundImage: 'url(' + item.product.images[0] + ')'}"></div>
+        <p class="product-info"><span class="title">{{item.product.name}}</span> <span class="price">{{item.product.skus.data[item.skuInd].price / 100 | currency }}</span></p>
         <div class="add-cart-btn" @click.stop="handleAddCartClick">Add to bag</div>
       </div>
     </div>
@@ -24,13 +24,13 @@ export default {
       },
     }
   },
-  props: ['product'],
+  props: ['item'],
   methods: {
     handleTileClick() {
-      this.$router.push('/watches/' + this.product.id)
+      this.$router.push('/watches/' + this.item.product.id + '/' + this.item.sku);
     },
     handleAddCartClick() {
-      BagService.addItem(this.product, 1);
+      BagService.addItem(this.item.product, this.item.sku,  1);
       this.$store.commit('INC_BADGE_NUMBER');
       this.$store.commit('SET_CART_ACTIVE', true);
     }
