@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="coupon-cont">
     <div class="redeem-coupon-btn" :class="{active: isActive }" v-on:click="isActive = !isActive"><p>Redeem a gift card or promo code</p></div>
-      <std-input
+      <coupon-input
                iName="coupon"
                v-model="coupon"
                :iValue="coupon.coupon"
@@ -12,17 +12,17 @@
                :error="coupon.error"
                @submitForm="submitCoupon"
                class="coupon-input"
-               ></std-input>
+               ></coupon-input>
   </div>
 </template>
 
 <script>
-import StdInput from '@/components/common/StdInput';
+import CouponInput from './CouponInput.vue';
 import StripeService from '@/StripeService.js';
 export default {
   inject: ['$validator'],
   components: {
-    StdInput
+    CouponInput
   },
    data() {
 
@@ -72,31 +72,36 @@ export default {
     
       &:hover {
         cursor: pointer;
-        // background-color: #e6e6e6;
         box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
+        // background-color: #e6e6e6;
+        
       }
     
   }
   .active {
       background-color: #e6e6e6;
+      // box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
 
     }
    .coupon-input {
-        height: 0px;
+        height: 0px !important;
         overflow: hidden;
         margin-top: 1rem;
         width: 100% !important;
+        transition: 0.2s;
+        box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.05), 0 4px 4px 0 rgba(0, 0, 0, 0.05) !important;
         
         .std-input{
                width: 100% !important;
-               // background-color: #ffffff;
-               
+                border: solid 1px #d1d1d1;      
         }
       }
-      .active {
-        height: 100%;      
+     .coupon-input{
+        height: 100% !important;
+        
+      }
       
-    }
+    
 }
 
 </style>

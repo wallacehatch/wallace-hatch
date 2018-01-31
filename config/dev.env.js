@@ -4,6 +4,6 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  API_URL: '"http://localhost:8081/"',
-  // API_URL: '"https://075d62da.ngrok.io/"',
+  // API_URL: '"http://localhost:8081/"',
+  API_URL: '"http://34.207.169.212/"',
 })
