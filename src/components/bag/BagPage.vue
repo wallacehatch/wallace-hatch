@@ -12,6 +12,7 @@
   	<div class="product-section">
       <div class="hide-sm" v-for="(item, i) in cart.items">
         <product-line v-if="item.quantity > 0" :key="'pTile' + i" :item="item" @qtyChange="refreshCart"></product-line>
+         <hr v-if="item.quantity > 0" class="bag-divider">
       </div>
       <div class="sm-only" v-for="(item, i) in cart.items">
         <cart-item v-if="item.quantity > 0" class="mobile-bag-item bag-item" :key="'pTile' + i" :item="item" @qtyChange="refreshCart">
@@ -127,6 +128,14 @@ export default {
   }
 
   .bag-page-cont{
+    .bag-divider {
+    border: none;
+    border-bottom: solid 1px #d8d8d8;
+    width: calc(100% - 4rem);
+    margin: auto;
+    max-width: 1140px;
+  }
+
   	padding: 7rem 0rem 0rem 0rem;
     // max-width: 114rem;
     overflow: auto;
