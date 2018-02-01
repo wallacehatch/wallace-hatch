@@ -21,7 +21,6 @@
         <hr v-if="item.quantity > 0" class="mobile-bag-divider">
       </div>
     </div>
-    <!-- <band-section v-if="this.cart.items.length > 0"></band-section> -->
   </div>
 </template>
 
@@ -30,12 +29,10 @@ import BagService from '@/BagService';
 import StripeService from '@/StripeService';
 import ProductLine from '@/components/bag/ProductLine'
 import CartItem from '@/components/common/cartModal/CartItem';
-import BandSection from '@/components/bands/BandSection';
 export default {
    name: 'BagPage',
    components: {
    	ProductLine,
-    BandSection,
     CartItem,
    },
    data () {
@@ -53,7 +50,9 @@ export default {
   },
   methods: {
     refreshCart(){
-      this.cart = BagService.getBag();
+      if (BagService.getBag()) {
+        this.cart = BagService.getBag();
+      }
       this.totalQuantity = this.cart.items.reduce((total, item) => { return total + item.quantity }, 0);
       this.$store.commit('SET_BADGE_NUMBER', this.totalQuantity);
       switch (this.$store.state.badgeNumber) {
@@ -102,6 +101,7 @@ export default {
     }
     .cart-item-inner-cont {
       display: inline-block;
+
 
       .cart-item-text {
         padding-top: 1.9rem;
