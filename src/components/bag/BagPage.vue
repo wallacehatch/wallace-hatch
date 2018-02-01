@@ -137,11 +137,8 @@ export default {
   }
 
   	padding: 7rem 0rem 0rem 0rem;
-    // max-width: 114rem;
     overflow: auto;
     margin: auto;
-    // @include respond-to(lg) {padding: 7.5rem 4rem 0 4rem; }
-    // @include respond-to(md) {padding: 7.5rem 0rem 0 0rem; }
     @include respond-to(sm) {padding: 4rem 0rem 0 0rem; }
     .bag-upper-cont{
     	padding: 6rem 0 6.6rem 0;
@@ -157,12 +154,21 @@ export default {
         }
       }
     .items-description{
+
     	@include intro-text;
     	text-transform: uppercase;
     	font-size: 14px;
     	margin-top: 1rem;
+
       @include respond-to(sm) {
+        margin-left:  auto;
+        margin-right: auto;
+        font-size: 12px;
+       line-height: 1.5;
+      letter-spacing: 3px;
         font-size: 1.2rem;
+        max-width: 28rem;
+
       }
 
     }
