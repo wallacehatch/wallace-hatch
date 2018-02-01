@@ -76,11 +76,9 @@ export default {
      .product-box {
         display: inline-block;
         overflow: auto;
-        margin: 0rem 0rem 0rem 0rem;
-        @include respond-to(lg) {margin-left: 0rem;}
-        @include respond-to(md) {margin-left: 0rem;}
-
-
+        margin-top: 6.1rem;
+        @include respond-to(lg) {margin-right: 2rem;}
+        @include respond-to(md) {margin-left: 2rem; margin-right: 0rem;}
       }
 
 
@@ -116,7 +114,8 @@ export default {
       text-align: left;
       line-height: 2rem;
       padding: 0 10.5rem 0 0;
-      // @include respond-to(md) {padding: 0rem 4.9rem 0 0rem;}
+      @include respond-to(md) {padding: 0rem 0rem 0rem 0rem;}
+      @include respond-to(sm) {padding: 0rem 0rem 0rem 0rem !important;}
       .product-line-heading{
             @include intro-text;
             font-size: 14px;
@@ -189,6 +188,7 @@ export default {
       vertical-align: top;
       text-align: center;
       display: inline-block;
+       @include respond-to(md) {margin-left: 5rem !important;}
       .quantity{
         display: inline-block;
         padding: 2.5rem 0rem 1rem 0rem;
@@ -227,6 +227,9 @@ export default {
     }
     .price-cont{
         margin-left: 8.4rem;
+        @include respond-to(md) {margin-left: 0rem;}
+       
+
       }
 }
 
