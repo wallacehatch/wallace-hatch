@@ -23,7 +23,7 @@ function getProducts(ids) {
 }
 
 function validateCoupon(coupon){
-	var tmpCoupon = "TEST_COUPON_SS"
+	var tmpCoupon = "TEST_COUPON"
 	return Promise.resolve(axios.get(process.env.API_URL + 'get-coupon/' + String(tmpCoupon)))
 
 
