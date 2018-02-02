@@ -15,7 +15,7 @@
               <p class="quantity">{{item.quantity}}</p>
               <button class="increment-button" @click="increaseQuantity"><i class="fal fa-plus"></i></button>
            </div>
-           <div class="product-line-right">
+           <div class="product-line-right price-cont">
               <p class="right-heading">Price</p>
               <p class="price">{{item.product.skus.data[skuIndex].price / 100 * item.quantity | currency}}</p>
            </div>
@@ -62,7 +62,6 @@ export default {
 <style lang="scss">
   @import '../../styles/_variables.scss';
 .product-line-cont{
-  margin-bottom: 2rem;
   button {
     background-color: $wh-white;
   }
@@ -70,10 +69,17 @@ export default {
       max-width: 114rem;
       width: calc(100% - 4rem);
       margin: auto;
-      border-bottom: solid 1px #d8d8d8;
       overflow: auto;
       text-align: center;
+
     }
+     .product-box {
+        display: inline-block;
+        overflow: auto;
+        margin-top: 6.1rem;
+        @include respond-to(lg) {margin-right: 2rem;}
+        @include respond-to(md) {margin-left: 2rem; margin-right: 0rem;}
+      }
 
 
     .product-image {
@@ -82,18 +88,19 @@ export default {
         background-repeat: no-repeat;
         width: 18.4rem;
         height: 26.3rem;
-        margin: 0;
+        margin-right: 6rem;
+        @include respond-to(lg) {width: 14.4rem; height: 24.7rem; margin-right: 6rem;}
+        @include respond-to(md) {width: 14.4rem; height: 24.7rem; margin-right: 4rem;}
+        
       }
-      .product-box {
-        display: block;
-        overflow: auto;
-        padding: 5.2rem 0rem 5.2rem 7rem;
-      }
+
+     
       .product-info-wrapper{
-        padding: 5.7rem 0 5.7rem 6rem;
-        @include respond-to(lg) {padding: 4rem 0 4rem 3rem;}
-        @include respond-to(md) {padding: 4rem 0rem}
-        @include respond-to(sm) {padding: 0rem 0rem 0rem 0rem;}
+        padding: 5.7rem 0 5.7rem 0rem;
+        display: inline-block;
+        @include respond-to(lg) {padding: 4rem 0 4rem 0rem;}
+        @include respond-to(md) {padding: 4rem 0rem;}
+        // @include respond-to(sm) {padding: 0rem 0rem 0rem 0rem;}
 
       }
 
@@ -107,8 +114,8 @@ export default {
       text-align: left;
       line-height: 2rem;
       padding: 0 10.5rem 0 0;
-      min-width: 28rem;
-      @include respond-to(md) {padding: 0rem 4.9rem 0 0rem;}
+      @include respond-to(md) {padding: 0rem 0rem 0rem 0rem;}
+      @include respond-to(sm) {padding: 0rem 0rem 0rem 0rem !important;}
       .product-line-heading{
             @include intro-text;
             font-size: 14px;
@@ -179,11 +186,9 @@ export default {
 
     .product-line-right{
       vertical-align: top;
-      padding: 0 8.4rem 0 0;
       text-align: center;
       display: inline-block;
-      @include respond-to(md) {padding: 0 5rem 0 0;}
-      @include respond-to(sm) {padding: 0 0rem 0 0;}
+       @include respond-to(md) {margin-left: 5rem !important;}
       .quantity{
         display: inline-block;
         padding: 2.5rem 0rem 1rem 0rem;
@@ -195,7 +200,9 @@ export default {
         font-weight: 300;
         letter-spacing: 2.9px;
         text-transform: uppercase;
+
       }
+
       .price{
         margin-top: 2rem;
         font-weight: 300;
@@ -203,6 +210,7 @@ export default {
         font-weight: 300;
         letter-spacing: 2.2px;
         min-width: 10rem;
+
       }
       .increment-button {
         width: 32px;
@@ -217,6 +225,12 @@ export default {
         }
       }
     }
+    .price-cont{
+        margin-left: 8.4rem;
+        @include respond-to(md) {margin-left: 0rem;}
+       
+
+      }
 }
 
 </style>

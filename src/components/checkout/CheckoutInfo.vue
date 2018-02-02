@@ -114,6 +114,7 @@
 
     <h2 class="info-section-title">Bill to</h2>
     <card-input v-model="form.billing" class="info-field-cont"></card-input>
+    <checkout-coupon class="info-field-cont"></checkout-coupon>
     <order-summary :bag="bag" buttonText="Review Your Order"  @buttonClick="advanceToReview"></order-summary>
   </form>
 </template>
@@ -123,6 +124,8 @@ import CheckoutInput from './CheckoutInput';
 import CardInput from './CardInput';
 import CheckoutCheckbox from './CheckoutCheckbox';
 import OrderSummary from './OrderSummary';
+import StripeService from '@/StripeService.js';
+import CheckoutCoupon from './CheckoutCoupon';
 export default {
   props: ['form', 'bag'],
   components: {
@@ -130,13 +133,19 @@ export default {
     CheckoutCheckbox,
     CardInput,
     OrderSummary,
+    CheckoutCoupon,
   },
   methods: {
     advanceToReview() {
-      console.log(this.fields);
+      var valid
       this.$validator.validateAll().then((result) => {
+        console.log(result)
         if (result) {
-          this.$router.push('/checkout/review');
+          StripeService.createCustomer(this.form).then((result) => {
+              this.$router.push('/checkout/review');
+      }, (err) => {
+        alert(err.response.data.error.message)
+      })
         }
         else {
           const inputs = document.getElementsByTagName('input');

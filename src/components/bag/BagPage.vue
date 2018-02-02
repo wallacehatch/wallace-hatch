@@ -12,6 +12,7 @@
   	<div class="product-section">
       <div class="hide-sm" v-for="(item, i) in cart.items">
         <product-line v-if="item.quantity > 0" :key="'pTile' + i" :item="item" @qtyChange="refreshCart"></product-line>
+         <hr v-if="item.quantity > 0" class="bag-divider">
       </div>
       <div class="sm-only" v-for="(item, i) in cart.items">
         <cart-item v-if="item.quantity > 0" class="mobile-bag-item bag-item" :key="'pTile' + i" :item="item" @qtyChange="refreshCart">
@@ -20,7 +21,6 @@
         <hr v-if="item.quantity > 0" class="mobile-bag-divider">
       </div>
     </div>
-    <!-- <band-section v-if="this.cart.items.length > 0"></band-section> -->
   </div>
 </template>
 
@@ -29,12 +29,10 @@ import BagService from '@/BagService';
 import StripeService from '@/StripeService';
 import ProductLine from '@/components/bag/ProductLine'
 import CartItem from '@/components/common/cartModal/CartItem';
-import BandSection from '@/components/bands/BandSection';
 export default {
    name: 'BagPage',
    components: {
    	ProductLine,
-    BandSection,
     CartItem,
    },
    data () {
@@ -52,7 +50,9 @@ export default {
   },
   methods: {
     refreshCart(){
-      this.cart = BagService.getBag();
+      if (BagService.getBag()) {
+        this.cart = BagService.getBag();
+      }
       this.totalQuantity = this.cart.items.reduce((total, item) => { return total + item.quantity }, 0);
       this.$store.commit('SET_BADGE_NUMBER', this.totalQuantity);
       switch (this.$store.state.badgeNumber) {
@@ -102,6 +102,7 @@ export default {
     .cart-item-inner-cont {
       display: inline-block;
 
+
       .cart-item-text {
         padding-top: 1.9rem;
         letter-spacing: 2.9px !important;
@@ -127,12 +128,17 @@ export default {
   }
 
   .bag-page-cont{
+    .bag-divider {
+    border: none;
+    border-bottom: solid 1px #d8d8d8;
+    width: calc(100% - 4rem);
+    margin: auto;
+    max-width: 1140px;
+  }
+
   	padding: 7rem 0rem 0rem 0rem;
-    // max-width: 114rem;
     overflow: auto;
     margin: auto;
-    // @include respond-to(lg) {padding: 7.5rem 4rem 0 4rem; }
-    // @include respond-to(md) {padding: 7.5rem 0rem 0 0rem; }
     @include respond-to(sm) {padding: 4rem 0rem 0 0rem; }
     .bag-upper-cont{
     	padding: 6rem 0 6.6rem 0;
@@ -148,12 +154,21 @@ export default {
         }
       }
     .items-description{
+
     	@include intro-text;
     	text-transform: uppercase;
     	font-size: 14px;
     	margin-top: 1rem;
+
       @include respond-to(sm) {
+        margin-left:  auto;
+        margin-right: auto;
+        font-size: 12px;
+       line-height: 1.5;
+      letter-spacing: 3px;
         font-size: 1.2rem;
+        max-width: 28rem;
+
       }
 
     }

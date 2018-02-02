@@ -13,7 +13,6 @@ import VueTheMask from 'vue-the-mask'
 
 Vue.config.productionTip = false
 Vue.use(VeeValidate);
-Vue.use(VueApollo);
 Vue.use(VueScrollTo)
 Vue.use(Vue2Filters);
 
@@ -25,27 +24,13 @@ const config = {
 Vue.use(VueTheMask, config);
 
 
-const networkInterface = createNetworkInterface({
-  uri: process.env.SHOPIFY_API_URL,
-  transportBatching: true,
-  mode: 'no-cors',
-  connectToDevTools: true,
-});
 
-const apolloClient = new ApolloClient({
-	networkInterface: networkInterface,
-})
-
-const apolloProvider = new VueApollo({
-	defaultClient: apolloClient,
-})
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
-  apolloProvider,
   template: '<App/>',
   components: { App }
 })

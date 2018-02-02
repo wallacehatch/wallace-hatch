@@ -81,6 +81,7 @@ beforeMount() {
 		.product-info {
 			text-transform: uppercase;
 			padding: 3rem 2rem 2rem 0rem;
+      @include respond-to(sm) {padding: 3rem 0rem 2rem 0rem;}
 			text-align: left;
 			line-height: 2rem;
       p {
