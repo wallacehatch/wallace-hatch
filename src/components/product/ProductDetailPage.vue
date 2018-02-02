@@ -85,8 +85,6 @@ export default {
       debugger;
     })
   },
-  mounted() {
-  },
   created() {
     window.addEventListener('scroll', this.handleScroll);
   },

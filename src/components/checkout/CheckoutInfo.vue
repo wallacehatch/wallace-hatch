@@ -7,7 +7,7 @@
       iName="name"
       v-model="form.account.name"
       :iValue="form.account.name"
-      iValidate="required|validCvc">
+      iValidate="required">
     </checkout-input>
     <checkout-input iPlaceholder="Email"
       iType="text"
