@@ -11,7 +11,8 @@ const state = {
 	navLayout: 0, // 0 is default, 1 is checkout
 	contactModalActive: false,
 	cartModalActive: false,
-	badgeNumber: 0
+	badgeNumber: 0,
+	coupons: [],
 
 }
 const mutations = {
@@ -35,6 +36,14 @@ const mutations = {
 	},
 	[types.DEC_BADGE_NUMBER] (state) {
 		state.badgeNumber -= 1;
+	},
+	[types.ADD_COUPON] (state, coupon) {
+		state.coupons = [coupon];
+	},
+	[types.REMOVE_COUPON] (state, coupon) {
+		state.coupons = state.coupons.filter((item) => {
+			return item.id !== coupon.id
+		});
 	},
 }
 

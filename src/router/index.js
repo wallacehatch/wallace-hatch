@@ -31,7 +31,7 @@ export default new Router({
       name: 'ProductDetailPage',
       component: ProductDetailPage ,
     }, {
-      path: '/bag/',
+      path: '/bag',
       name: 'BagPage',
       component: BagPage ,
     }, {
@@ -39,9 +39,12 @@ export default new Router({
       name: 'Checkout',
       component: CheckoutRoot,
       children: [{
-        path: 'info',
+        path: 'info/:section',
         component: CheckoutInfo,
       }, {
+        path: 'info',
+        component: CheckoutInfo,
+      },{
         path: 'review',
         component: CheckoutReview,
       }]

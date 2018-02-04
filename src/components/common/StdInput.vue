@@ -101,6 +101,7 @@
   display: flex;
   align-items: center;
   background-color: black;
+  font-weight: bold;
   transition: 0.2s transform cubic-bezier(.33,.74,.42,.95);
   &:hover {
     cursor: pointer;

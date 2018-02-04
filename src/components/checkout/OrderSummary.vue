@@ -5,6 +5,10 @@
         <p class="label">Subtotal ({{quantity}} items)</p>
         <p class="amount">{{subtotal | currency}}</p>
       </div>
+      <div v-if="$store.state.coupons.length > 0" class="summary-line">
+        <p class="label">PROMO: {{$store.state.coupons[0].id}}</p>
+        <p class="amount"> - {{discount | currency}}</p>
+      </div>
       <div class="summary-line">
         <p class="label">Tax</p>
         <p class="amount">{{tax | currency}}</p>
@@ -30,18 +34,20 @@ import BagService from '@/BagService';
 export default {
   props: ['buttonText', 'bag'],
   mounted() {
-    this.updateOrderSummary(this.bag);
+    if (this.$store.state.coupons.length > 0) { this.updateOrderSummary(this.bag, this.$store.state.coupons[0]) }
+    else {this.updateOrderSummary(this.bag)}
   },
   data() {
     return {
       subtotal: 0,
       quantity: 0,
+      discount: 0,
       tax: 0,
       total: 0,
     }
   },
   methods: {
-    updateOrderSummary(bag) {
+    updateOrderSummary(bag, coupon) {
       const totals = bag.items.reduce((total, item) => {
         return {
           subtotal: total.subtotal + item.product.skus.data[0].price * item.quantity / 100,
@@ -49,9 +55,19 @@ export default {
         }
       },{subtotal: 0, quantity: 0})
       this.subtotal = totals.subtotal;
-      this.total = totals.subtotal;
       this.quantity = totals.quantity;
+      const percOff = coupon ? coupon.percent_off / 100 : 0;
+      this.discount = coupon ? totals.subtotal * percOff : 0;
+      this.total = coupon ? totals.subtotal - this.discount : this.subtotal;
     },
+  },
+  watch: {
+    '$store.state.coupons' (newCoup) {
+      console.log('COUPONS CHANGED')
+      if (newCoup.length > 0) { this.updateOrderSummary(this.bag, newCoup[0]) }
+      else {this.updateOrderSummary(this.bag)}
+
+    }
   }
 }
 </script>

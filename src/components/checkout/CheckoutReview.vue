@@ -3,14 +3,14 @@
     <div class="left-cont">
       <div class="info-cont shipping clearfix">
         <p class="title">Shipping Address</p>
-        <div class="edit-btn">Edit</div>
+        <div class="edit-btn" @click="$router.push('/checkout/info/ship_to')">Edit</div>
         <p class="name">{{form.shipping.name || 'John Doe'}}</p>
         <p class="address">{{form.shipping.streetNumber || '000'}} {{form.shipping.streetName || 'Some Ave'}}</p>
         <p class="address">{{form.shipping.city || 'Anytown'}} {{form.shipping.state || 'OH'}} {{form.shipping.zip || '11111'}}</p>
       </div>
       <div class="info-cont billing clearfix">
         <p class="title">Payment Method</p>
-        <div class="edit-btn">Edit</div>
+        <div class="edit-btn" @click="$router.push('/checkout/info/bill_to')">Edit</div>
         <div class="card-icon review" :class="form.billing.cardType"></div>
         <div class="card-details-cont">
           <p class="address">Ending {{ maskedCardNumber() || '9999'}}</p>
@@ -52,11 +52,8 @@ export default {
       const orderItems = BagService.getBag().items.map((item) => {
         return {sku: item.sku, quantity: item.quantity};
       });
-
-
       StripeService.submitOrder(this.form, orderItems).then((result) => {
         console.log("Called submit order!")
-        console.log(result)
       }, (err) => {
         alert(err.response.data.error.message)
       })

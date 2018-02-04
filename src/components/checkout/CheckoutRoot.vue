@@ -17,6 +17,7 @@ export default {
   },
   methods: {
     navigateToSection(i) {
+      return ; // don't wnat this functionality at the moment
       this.setCurrentSection(i);
       switch (i) {
       case 0:

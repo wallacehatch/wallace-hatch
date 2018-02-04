@@ -23,42 +23,41 @@ function getProducts(ids) {
 }
 
 function validateCoupon(coupon){
-	var tmpCoupon = "TEST_COUPON_SS"
-	return Promise.resolve(axios.get(process.env.API_URL + 'get-coupon/' + String(tmpCoupon)))
+	return Promise.resolve(axios.get(process.env.API_URL + 'get-coupon/' + String(coupon)))
 
 
 }
 
 
 function createCustomer(form, coupon) {
-	var tmpForm =  {
-        account: {
-          name: 'Greg Miller',
-          email: 'gregtesting@gmail.com',
-          phone: '4403966613',
-          acceptTerms: true,
-        },
-        shipping: {
-          name: 'Greg Miller',
-          address: '364 East Northwood avenue',
-          streetNumber: 'some street',
-          streetName: 'some street name',
-          aptSuite: 'some apartment suite',
-          company: 'some company',
-          city: 'Columbus',
-          state: 'Ohio',
-          country: 'USA',
-          zip: '43201',
-        },
-        billing: {
-         cardNumber: "4000000000000127",
-         exp: '02/19',
-         cvc: '123',
-       },
-
-      }
-      var tmpCoupon = "TEST_COUPON"
-      return Promise.resolve(axios.post(process.env.API_URL + 'create-customer/', {account: tmpForm.account, shipping: tmpForm.shipping, cardInfo: tmpForm.billing,coupon: tmpCoupon }))
+	// var tmpForm =  {
+  //       account: {
+  //         name: 'Greg Miller',
+  //         email: 'gregtesting@gmail.com',
+  //         phone: '4403966613',
+  //         acceptTerms: true,
+  //       },
+  //       shipping: {
+  //         name: 'Greg Miller',
+  //         address: '364 East Northwood avenue',
+  //         streetNumber: 'some street',
+  //         streetName: 'some street name',
+  //         aptSuite: 'some apartment suite',
+  //         company: 'some company',
+  //         city: 'Columbus',
+  //         state: 'Ohio',
+  //         country: 'USA',
+  //         zip: '43201',
+  //       },
+  //       billing: {
+  //        cardNumber: "4000000000000127",
+  //        exp: '02/19',
+  //        cvc: '123',
+  //      },
+  //
+  //     }
+      // var tmpCoupon = "TEST_COUPON"
+      return Promise.resolve(axios.post(process.env.API_URL + 'create-customer/', {account: form.account, shipping: form.shipping, cardInfo: form.billing,coupon: coupon }))
 }
 
 

@@ -1,10 +1,12 @@
 <template lang="html">
   <form @submit.prevent="advanceToReview" class="checkout-info-cont">
     <h2 class="info-section-title">Your Details</h2>
+    {{form.account.acceptTerms}}
     <checkout-input iPlaceholder="First and Last Name"
       iType="text"
       class="info-field-cont"
       iName="name"
+      :hasValue="!!form.account.name"
       v-model="form.account.name"
       :iValue="form.account.name"
       iValidate="required">
@@ -13,6 +15,7 @@
       iType="text"
       class="info-field-cont"
       iName="email"
+      :hasValue="!!form.account.email"
       v-model="form.account.email"
       :iValue="form.account.email"
       iValidate="required|email">
@@ -30,6 +33,7 @@
       class="info-field-cont"
       iName="phone"
       iValidate="required"
+      :hasValue="!!form.account.phone"
       v-model="form.account.phone"
       :iValue="form.account.phone"
       iMask="(###) ###-####">
@@ -42,11 +46,12 @@
     </checkout-checkbox>
     <hr class="info-section-divider">
 
-    <h2 class="info-section-title">Ship to</h2>
+    <h2 id="ship_to" class="info-section-title">Ship to</h2>
     <checkout-input iPlaceholder="First and Last Name"
       iType="text"
       class="info-field-cont"
       iName="shipping name"
+      :hasValue="!!form.shipping.name"
       v-model="form.shipping.name"
       :iValue="form.shipping.name"
       iValidate="required">
@@ -55,6 +60,7 @@
       iType="text"
       class="info-field-cont"
       iName="address_ac"
+      :hasValue="!!form.shipping.address"
       v-model="form.shipping.address"
       :iValue="form.shipping.address"
       iClass="address"
@@ -67,6 +73,7 @@
         iType="text"
         class="info-field-cont col-2"
         iName="aptSuite"
+        :hasValue="!!form.shipping.aptSuite"
         v-model="form.shipping.aptSuite"
         :iValue="form.shipping.aptSuite"
         iValidate="">
@@ -76,6 +83,7 @@
         class="info-field-cont col-2"
         iClass="nbl"
         iName="company"
+        :hasValue="!!form.shipping.company"
         v-model="form.shipping.company"
         :iValue="form.shipping.company"
         iValidate="">
@@ -85,6 +93,7 @@
         class="info-field-cont col-3"
         :iClass="[ {'active': form.shipping.city}]"
         iName="city"
+        :hasValue="!!form.shipping.city"
         v-model="form.shipping.city"
         :iValue="form.shipping.city"
         iValidate="required"
@@ -95,6 +104,7 @@
         class="info-field-cont col-3"
         :iClass="['nbl', {'active': form.shipping.state}]"
         iName="state"
+        :hasValue="!!form.shipping.state"
         v-model="form.shipping.state"
         :iValue="form.shipping.state"
         iValidate="required"
@@ -105,6 +115,7 @@
         class="info-field-cont col-3"
         :iClass="['nbl', {'active': form.shipping.zip}]"
         iName="zip"
+        :hasValue="!!form.shipping.zip"
         v-model="form.shipping.zip"
         :iValue="form.shipping.zip"
         iValidate="required">
@@ -112,8 +123,9 @@
     </div>
     <hr class="info-section-divider">
 
-    <h2 class="info-section-title">Bill to</h2>
-    <card-input v-model="form.billing" class="info-field-cont"></card-input>
+    <h2 id="bill_to" class="info-section-title">Bill to</h2>
+    <card-input v-model="form.billing" :forceError="cardError" class="info-field-cont"></card-input>
+    <p v-if="cardError" class="card-error-label">{{cardError}}</p>
     <checkout-coupon class="info-field-cont"></checkout-coupon>
     <order-summary :bag="bag" buttonText="Review Your Order"  @buttonClick="advanceToReview"></order-summary>
   </form>
@@ -137,15 +149,20 @@ export default {
   },
   methods: {
     advanceToReview() {
-      var valid
+      this.cardError = null;
       this.$validator.validateAll().then((result) => {
         console.log(result)
         if (result) {
           StripeService.createCustomer(this.form).then((result) => {
               this.$router.push('/checkout/review');
-      }, (err) => {
-        alert(err.response.data.error.message)
-      })
+          }, (err) => {
+            this.cardError = err.response.data.error.message;
+            window.scroll({
+              top: document.getElementById('bill_to').getBoundingClientRect().top  + window.scrollY - 80,
+              left: 0,
+              behavior: 'smooth'
+            });
+          })
         }
         else {
           const inputs = document.getElementsByTagName('input');
@@ -153,7 +170,7 @@ export default {
             console.log(inputs[i]);
             if ((typeof this.fields[inputs[i].name] !== 'undefined') && (this.fields[inputs[i].name].invalid)) {
               window.scroll({
-                top: inputs[i].getBoundingClientRect().top,
+                top: inputs[i].getBoundingClientRect().top + window.scrollY,
                 left: 0,
                 behavior: 'smooth'
               });
@@ -190,6 +207,11 @@ export default {
   },
   mounted() {
     this.$emit('setSection', 0);
+    this.$route.params.section && window.scroll({
+      top: document.getElementById(this.$route.params.section).getBoundingClientRect().top + window.scrollY - 80,
+      left: 0,
+      behavior: 'smooth',
+    });
     var input = document.getElementById('address_ac');
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.addListener('place_changed', () => {
@@ -200,7 +222,7 @@ export default {
   },
   data() {
     return {
-
+      cardError: null,
     }
   }
 }
@@ -211,6 +233,19 @@ export default {
   .checkout-info-cont {
     .info-field-cont.summary {
       margin-bottom: 0;
+    }
+    .card-error-label {
+      display: block;
+      @include text-body;
+      font-size: 1.2rem;
+      letter-spacing: 0.2px;
+      padding-bottom: 2rem;
+      clear: both;
+      color: $wh-red;
+      max-width: 50rem;
+      width: calc(100% - 2rem);
+      margin: auto;
+      margin-top: -1rem;
     }
     .info-section-divider {
       padding-top: 3rem;
