@@ -4,7 +4,6 @@ svc.addItem = addItem;
 svc.removeItem = removeItem;
 svc.getBag = getBag;
 svc.indexForSku = indexForSku;
-svc.clearBag = clearBag;
 
 function getBag() {
   return JSON.parse(localStorage.getItem('currentSessionBag'));
