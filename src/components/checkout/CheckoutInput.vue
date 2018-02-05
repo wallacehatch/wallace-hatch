@@ -5,7 +5,7 @@
       <input v-if="!iMask"
       @blur="shouldBlurField"
       class="checkout-input"
-      :class="[iClass, {active: fieldState.active, valid: fieldState.valid, error: errors.has(iName)}]"
+      :class="[iClass, {active: fieldState.active || hasValue, valid: fieldState.valid, error: errors.has(iName) || forceError}]"
       :id="iId"
       :type="iType || 'text'"
       :name="iName"
@@ -17,7 +17,7 @@
       <input v-if="iMask"
       @blur="shouldBlurField"
       class="checkout-input"
-      :class="[iClass, {active: fieldState.active, valid: fieldState.valid, error: errors.has(iName)}]"
+      :class="[iClass, {active: fieldState.active || hasValue, valid: fieldState.valid, error: errors.has(iName) || forceError}]"
       :id="iId"
       :type="iType || 'text'"
       :name="iName"
@@ -39,7 +39,7 @@
 <script>
 import {mask} from 'vue-the-mask';
 export default {
-  props: ['iValidate', 'iPlaceholder', 'iClass', 'iId', 'iType', 'iName', 'iMask', 'iValue'],
+  props: ['iValidate', 'iPlaceholder', 'iClass', 'iId', 'iType', 'iName', 'iMask', 'iValue', 'forceError', 'hasValue'],
   directives: {mask},
   inject: ['$validator'],
   data() {

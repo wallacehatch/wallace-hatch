@@ -8,7 +8,8 @@
       :iValue="cardInfo.cardNumber"
       v-model="cardInfo.cardNumber"
       iValidate="required|credit_card"
-      iMask="#### #### #### ####">
+      iMask="#### #### #### ####"
+      :forceError="forceError">
       <div slot="cardIcon" class="card-icon"
         :class="cardInfo.cardType">
       </div>
@@ -21,7 +22,8 @@
           iName="expiration date"
           iMask="##/##"
           v-model="cardInfo.exp"
-          iValidate="required">
+          iValidate="required"
+          :forceError="forceError">
         </checkout-input>
         <checkout-input iPlaceholder="cvc"
           iType="text"
@@ -31,7 +33,8 @@
           iName="cvc"
           v-model="cardInfo.cvc"
           iValidate="required"
-          iMask="####">
+          iMask="####"
+          :forceError="forceError">
         </checkout-input>
       </div>
     </checkout-input>
@@ -41,6 +44,7 @@
 <script>
 import CheckoutInput from './CheckoutInput';
 export default {
+  props: ['forceError'],
   inject: ['$validator'],
   components: {
     CheckoutInput,

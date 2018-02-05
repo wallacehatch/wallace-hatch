@@ -26,12 +26,10 @@
 </template>
 
 <script>
-import NavBar from  './navBar/NavBar';
 import StdInput from './StdInput';
 export default {
   name: 'NewsletterCta',
 	components: {
-		NavBar,
 		StdInput,
 	},
   data () {
@@ -41,7 +39,6 @@ export default {
 				submitted: false,
 				error: null,
 			},
-			// navItems: ['Home', 'Our Story', 'Pre-order list', 'contact us'],
 			navItems: [{
 				name: 'Home',
 				id: 'home'

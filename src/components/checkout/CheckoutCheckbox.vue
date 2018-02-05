@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="checkout-checkbox-cont">
-    <input :name="cName" :id="'cb_' + cKey" type="checkbox">
+    <input @change="handleCheck" :name="cName" :id="'cb_' + cKey" type="checkbox" :checked="iValue">
     <label :for="'cb_' + cKey">
       <i class="fa fa-check"></i>
     </label>
@@ -10,7 +10,13 @@
 
 <script>
 export default {
-  props: ['cKey', 'cName'],
+  props: ['cKey', 'cName', 'iValue'],
+  methods: {
+    handleCheck(e) {
+      // debugger;
+      this.$emit('input', e.target.checked);
+    }
+  }
 }
 </script>
 

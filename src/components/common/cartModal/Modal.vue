@@ -39,7 +39,17 @@ export default {
     CartItem,
     CartNotification,
   },
+  created() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
+    handleScroll() {
+      if (window.innerWidth >= 767) return;
+      // this.stickyAddCart = (window.scrollY <= this.addCartOffset);
+    },
     refreshCart(){
       this.$store.commit('SET_BADGE_NUMBER', this.bag.totalQuantity);
       const bag = BagService.getBag();

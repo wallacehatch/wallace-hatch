@@ -11,10 +11,21 @@ const state = {
 	navLayout: 0, // 0 is default, 1 is checkout
 	contactModalActive: false,
 	cartModalActive: false,
-	badgeNumber: 0
+	orderSuccessModal: {
+		active: false,
+		orderId: '00000000000123',
+		customerName: 'Ian Hansborough',
+	},
+	badgeNumber: 0,
+	coupons: [],
 
 }
 const mutations = {
+	[types.SET_ORDER_SUCCESS_MODAL_ACTIVE] (state, val) {
+		state.orderSuccessModal.active = val.active ? val.active : false;
+		state.orderSuccessModal.orderId = val.orderId ? val.orderId : state.orderSuccessModal.orderId;
+		state.orderSuccessModal.customerName = val.customerName ? val.customerName : state.orderSuccessModal.customerName;
+	},
 	[types.SET_NAV_LAYOUT] (state, val) {
 		state.navLayout = val;
 	},
@@ -35,6 +46,14 @@ const mutations = {
 	},
 	[types.DEC_BADGE_NUMBER] (state) {
 		state.badgeNumber -= 1;
+	},
+	[types.ADD_COUPON] (state, coupon) {
+		state.coupons = [coupon];
+	},
+	[types.REMOVE_COUPON] (state, coupon) {
+		state.coupons = state.coupons.filter((item) => {
+			return item.id !== coupon.id
+		});
 	},
 }
 
