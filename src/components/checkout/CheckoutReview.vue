@@ -58,7 +58,7 @@ export default {
         console.log("Called submit order!")
         console.log(result)
       }, (err) => {
-        alert(err.response.data.error.message)
+        alert(err.response.data.error_message)
       })
     }
   },
