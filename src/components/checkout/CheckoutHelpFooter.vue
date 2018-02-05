@@ -11,10 +11,10 @@
       <i class="fal fa-mobile icon"></i>
       <p class="label">CALL</p>
     </div>
-    <div class="help-icon-cont">
+    <a class="help-icon-cont" href="mailto:hello@wearevest.com?subject=Request%20For%20Help">
       <i class="fal fa-envelope icon"></i>
       <p class="label">EMAIL</p>
-    </div>
+    </a>
   </div>
 </template>
 
@@ -52,6 +52,8 @@ export default {
   }
   .help-icon-cont {
     display: inline-block;
+    text-decoration: none;
+    color: $wh-black;
     width: 8rem;
     text-align: center;
     margin-top: 3.7rem;

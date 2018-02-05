@@ -54,8 +54,14 @@ export default {
       });
       StripeService.submitOrder(this.form, orderItems).then((result) => {
         console.log("Called submit order!")
+        debugger;
+        this.$router.push('/');
+        this.$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE', {
+          active: true,
+
+        })
       }, (err) => {
-        alert(err.response.data.error.message)
+        debugger;
       })
     }
   },

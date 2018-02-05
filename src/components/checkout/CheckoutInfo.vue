@@ -1,7 +1,6 @@
 <template lang="html">
   <form @submit.prevent="advanceToReview" class="checkout-info-cont">
     <h2 class="info-section-title">Your Details</h2>
-    {{form.account.acceptTerms}}
     <checkout-input iPlaceholder="First and Last Name"
       iType="text"
       class="info-field-cont"

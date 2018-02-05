@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <order-success-modal @close="$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE',{})"></order-success-modal>
     <site-header></site-header>
     <router-view/>
     <site-footer></site-footer>
@@ -9,6 +10,7 @@
 <script>
 import SiteHeader from '@/components/common/SiteHeader';
 import SiteFooter from '@/components/common/SiteFooter';
+import OrderSuccessModal from '@/components/common/orderSuccessModal/Modal';
 import fetchInstagramPosts from './instagram';
 import axios from 'axios';
 import BagService from '@/BagService';
@@ -19,6 +21,7 @@ export default {
   components: {
     SiteHeader,
     SiteFooter,
+    OrderSuccessModal,
   },
   data() {
     return {
