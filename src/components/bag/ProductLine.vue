@@ -77,6 +77,8 @@ export default {
         display: inline-block;
         overflow: auto;
         margin-top: 6.1rem;
+
+
         @include respond-to(lg) {margin-right: 2rem;}
         @include respond-to(md) {margin-left: 2rem; margin-right: 0rem;}
       }
@@ -113,7 +115,7 @@ export default {
       display: inline-block;
       text-align: left;
       line-height: 2rem;
-      padding: 0 10.5rem 0 0;
+      padding: 0 7em 0 0;
       @include respond-to(md) {padding: 0rem 0rem 0rem 0rem;}
       @include respond-to(sm) {padding: 0rem 0rem 0rem 0rem !important;}
       .product-line-heading{
@@ -121,6 +123,8 @@ export default {
             font-size: 14px;
             letter-spacing: 3px;
             font-weight: 500;
+            min-width: 28rem;
+
       }
         .name{
             margin-top: 1rem;
