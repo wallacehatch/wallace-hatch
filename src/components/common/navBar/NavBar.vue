@@ -15,7 +15,7 @@
 		</ul>
 </template>
 <script>
-	import navItem from './navItem';
+	import navItem from './NavItem';
 	import anime from 'animejs'
 	export default {
 		name: 'navBar',
