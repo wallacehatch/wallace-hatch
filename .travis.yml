@@ -35,3 +35,8 @@ after_success:
   - sed -i -e 's|KUBE_USER_NAME|'"${KUBE_USER_NAME}"'|g' kubeconfig
   - sed -i -e 's|KUBE_USER_PASSWORD|'"${KUBE_USER_PASSWORD}"'|g' kubeconfig
   - /usr/local/bin/kubectl --kubeconfig kubeconfig set image deployment/frontend-deployment frontend-container=145054867171.dkr.ecr.us-east-1.amazonaws.com/wallace-hatch-frontend:V_${TRAVIS_BUILD_NUMBER}
+
+
+
+notifications:
+  slack: wallacehatch:RO70Jj8wVv2spm1KDVf0t1P7
