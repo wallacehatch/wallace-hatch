@@ -16,6 +16,7 @@ import axios from 'axios';
 import BagService from '@/BagService';
 import StripeService from '@/StripeService';
 
+
 export default {
   name: 'app',
   components: {
@@ -40,9 +41,11 @@ export default {
     this.$store.commit('SET_BADGE_NUMBER', bn);
 
     // Custom Validation Messages for inputs
-    this.$validator.extend('validCvc', {
-      getMessage: field => 'The CVC field you entered is not valid',
+    this.$validator.extend('validCard', {
+
+      getMessage: field => 'The Card is not valid field you entered is not valid',
       validate: (value) => {
+        console.log("validating")
         // this is where you put the logic to verify the CVC
         return false;
       }

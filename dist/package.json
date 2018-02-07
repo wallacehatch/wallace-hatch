@@ -1,0 +1,17 @@
+{
+  "name": "wallace-hatch-site",
+  "version": "1.0.0",
+  "description": "A Vue.js project for wallace hatch",
+  "author": "gregm711 <miller.7285osu@gmail.com>",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install express",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "vue": "^2.2.2",
+    "vue-router": "^2.2.0",
+    "express": "^4.14.1"
+  }
+}
