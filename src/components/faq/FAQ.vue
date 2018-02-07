@@ -58,7 +58,6 @@ export default {
   }
   .faq-divider{
     border: none;
-    width: calc();
     height: 1px;
     background-color: #d8d8d8;
     width: calc(100% + 3rem);
