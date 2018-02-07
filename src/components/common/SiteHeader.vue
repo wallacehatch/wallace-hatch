@@ -1,6 +1,6 @@
 <template>
     <div class="header-cont">
-        <div v-if="$store.state.navLayout === 0">
+        <div v-if="$store.state.navLayout !== 1">
           <div @click="mobileNav.active = true" class="mobile-header-left sm-only">MENU</div>
           <div class="header-left">
               <router-link style="display:block" to="/">
@@ -9,7 +9,7 @@
               </router-link>
           </div>
           <div class="header-right">
-              <nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm" :items="nav.items" :active="nav.active" navKey="siteNav">
+              <nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm" :items="nav.items" :active="active" navKey="siteNav">
               </nav-bar>
               <a @click="handleBagClick">
               <div class="shopping-cart-icon fal fa-shopping-bag" aria-hidden="true"></div>
@@ -22,7 +22,7 @@
         </div>
         <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="$store.state.cartModalActive"></cart-modal>
         <contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive"></contact-modal>
-        <mobile-nav @close="mobileNav.active = false" :activeItem="nav.active" :active="mobileNav.active"></mobile-nav>
+        <mobile-nav @close="mobileNav.active = false" :activeItem="active" :active="mobileNav.active"></mobile-nav>
     </div>
 </template>
 
@@ -34,11 +34,12 @@ import CartModal from './cartModal/Modal';
 import MobileNav from './navBar/MobileNav';
 export default {
   name: 'siteHeader',
+  props: ['active'],
   data () {
     return {
 			nav: {
 				items: this.$store.state.navItems,
-				active: 0,
+				// active: 0,
 			},
 			mobileNav: {
 				active: false,
@@ -51,7 +52,15 @@ export default {
   },
 	methods: {
 		handleLinkClick(i, dir) {
-
+      this.$emit('setNav', i);
+      switch (i) {
+      case 0:
+      this.$router.push('/');
+      break;
+      case 1:
+      this.$router.push('/our-story');
+      break;
+      }
 		},
 		handleBagClick(){
       		this.$router.replace('/bag/')

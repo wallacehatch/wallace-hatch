@@ -1,6 +1,6 @@
 <template>
 	<div class="total-footer-cont">
-		<black-info-box v-if="$store.state.navLayout !== 1"></black-info-box>
+		<black-info-box v-if="$store.state.navLayout === 0"></black-info-box>
 		<newsletter-cta v-if="$store.state.navLayout !== 1"></newsletter-cta>
 		<div class="site-footer-cont">
 			<div class="footer-left">
