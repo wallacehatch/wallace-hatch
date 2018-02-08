@@ -46,8 +46,8 @@ export default {
 				name: 'Our Story',
 				id: 'ourStory',
 			}, {
-				name: 'Pre-Order list',
-				id: 'preOrderList'
+				name: 'FAQ',
+				id: 'faq'
 			}, {
 				name: 'Contact Us',
 				id: 'contactUs',
@@ -61,10 +61,10 @@ export default {
 				this.$router.push('/');
 			break;
 			case 'ourStory':
-				console.log('our story clicked');
+				this.$router.push('/our-story');
 			break;
-			case 'preOrderList':
-				console.log('pre-order list clicked');
+			case 'faq':
+				this.$router.push('/faq');
 			break;
 			case 'contactUs':
 				console.log('contact us clicked');

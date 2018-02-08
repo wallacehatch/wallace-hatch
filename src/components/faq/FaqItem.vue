@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <hr class="faq-divider ab">
-    <div :id="'cont' + qKey" class="faq-item-cont">
+    <div :id="'cont' + qKey" class="faq-item-cont" @click="handleExpand">
       <div :id="'header' + qKey" class="question-header">
         <h4 class="title">{{question}}</h4>
         <div v-show="!!expanded" @click="handleExpand" class="expand-arrow"><i class="fal fa-angle-up"></i></div>
@@ -58,6 +58,9 @@ export default {
   overflow-y: hidden;
   overflow-x: visible;
   box-sizing: border-box;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .question-header {
   display: flex;
@@ -81,7 +84,7 @@ export default {
   }
 }
 
-.body-info {
+.faq-item-cont .body-info {
   @include text-body;
   padding-bottom: 3rem;
   padding-top: 1rem;

@@ -34,13 +34,37 @@
             <p class="title">How to wear</p>
             <p class="hashtag"><i class="fab fa-instagram"></i> #mywally</p>
           </div>
-          <div class="how-to-wear-images-cont">
-            <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
-            <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
-            <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
-            <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
-            <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
-            <a target="_blank" href="https://instagram.com/p/Bbdd0u3FdB6" class="how-to-wear-image"></a>
+          <div class="how-to-wear-images-cont" v-if="product">
+            <a target="_blank"
+              :href="'https://instagram.com/p/' + product.metadata.howToWear.split(',')[0]"
+              :style="{backgroundImage: 'url(https://instagram.com/p/' + product.metadata.howToWear.split(',')[0] + '/media)'}"
+              class="how-to-wear-image">
+            </a>
+            <a target="_blank"
+              :href="'https://instagram.com/p/' + product.metadata.howToWear.split(',')[1]"
+              :style="{backgroundImage: 'url(https://instagram.com/p/' + product.metadata.howToWear.split(',')[1] + '/media)'}"
+              class="how-to-wear-image">
+            </a>
+            <a target="_blank"
+              :href="'https://instagram.com/p/' + product.metadata.howToWear.split(',')[2]"
+              :style="{backgroundImage: 'url(https://instagram.com/p/' + product.metadata.howToWear.split(',')[2] + '/media)'}"
+              class="how-to-wear-image">
+            </a>
+            <a target="_blank"
+              :href="'https://instagram.com/p/' + product.metadata.howToWear.split(',')[3]"
+              :style="{backgroundImage: 'url(https://instagram.com/p/' + product.metadata.howToWear.split(',')[3] + '/media)'}"
+              class="how-to-wear-image">
+            </a>
+            <a target="_blank"
+              :href="'https://instagram.com/p/' + product.metadata.howToWear.split(',')[4]"
+              :style="{backgroundImage: 'url(https://instagram.com/p/' + product.metadata.howToWear.split(',')[4] + '/media)'}"
+              class="how-to-wear-image">
+            </a>
+            <a target="_blank"
+              :href="'https://instagram.com/p/' + product.metadata.howToWear.split(',')[5]"
+              :style="{backgroundImage: 'url(https://instagram.com/p/' + product.metadata.howToWear.split(',')[5] + '/media)'}"
+              class="how-to-wear-image">
+            </a>
           </div>
         </div>
         <div class="pdp-lr">
@@ -51,6 +75,7 @@
       <!-- <band-section></band-section> -->
       </div>
     </div>
+    <!-- {{JSON.parse(product.metadata.howToWear)}} -->
   </div>
 </template>
 
@@ -130,7 +155,7 @@ export default {
     }
   }
   .how-to-wear-image {
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-image: url('https://instagram.com/p/Bbdd0u3FdB6/media/');

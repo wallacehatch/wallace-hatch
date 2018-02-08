@@ -53,7 +53,7 @@
 		 overflow: auto;
      width: 100%;
 		 padding: 0 2rem;
-		 padding-bottom: 2.2rem;
+		 padding-bottom: 1rem;
 		 box-sizing: border-box;
 		}
 	.footer-left {
