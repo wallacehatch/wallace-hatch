@@ -8,7 +8,7 @@
       https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%402x.jpg 2600w,
       https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%403x.jpg 3900w"
       alt="" class="hero-image lazy">
-      <div class="hero-text">
+      <div class="lazy delay-1" id="home_lazy_1">
         <p class="hero-1">The New</p>
         <h2 class="hero-2">SOHO Hatch</h2>
         <p class="hero-3">Worn by Kendall Jenner</p>
@@ -17,9 +17,11 @@
     </div>
     <!-- PRODUCT SHOWCASE -->
     <div class="section-heading-cont" id="product-showcase">
-      <p class="header">Pre-order now</p>
-      <p class="subtext">We won’t charge you,<br class="sm-only"> until we ship</p>
-      <hr class="line">
+      <div class="lazy delay-1" id="home_lazy_2">
+        <p class="header">Pre-order now</p>
+        <p class="subtext">We won’t charge you,<br class="sm-only"> until we ship</p>
+        <hr class="line">
+      </div>
     </div>
     <div class="product-showcase-cont clearfix">
       <product-tile v-for="(item, i) in items" :key="'pTile' + i" :item="item"></product-tile>
@@ -45,6 +47,12 @@ export default {
     return {
       items: null,
     }
+  },
+  mounted() {
+    this.$Lazyload.$once('loaded', (e) => {
+      document.getElementById('home_lazy_1').setAttribute('lazy', 'loaded')
+      document.getElementById('home_lazy_2').setAttribute('lazy', 'loaded')
+    })
   },
   methods: {
   },
@@ -88,20 +96,6 @@ export default {
   transform: translateX(-50%);
   height: 100%;
   z-index: -1;
-  &+.hero-text {
-    @include lazy-trans;
-    opacity: 0;
-    transition-delay: 0.5s;
-  }
-  &[lazy=error]+.hero-text {
-    opacity: 1;
-  }
-  &[lazy=loaded]+.hero-text {
-    opacity: 1;
-  }
-  &[lazy=loading]+.hero-text {
-    opacity: 0;
-  }
 }
 .hero-cont {
   background-color: transparent;

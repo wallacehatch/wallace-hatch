@@ -27,8 +27,9 @@ $wh-green:             #7fb968;
     color: rgba($color, $opacity);
 }
 
+$lazy-dur: 0.5s;
 @mixin lazy-trans() {
-  transition: 0.5s opacity ease;
+  transition: $lazy-dur opacity ease;
 }
 
 @mixin v-cont() {

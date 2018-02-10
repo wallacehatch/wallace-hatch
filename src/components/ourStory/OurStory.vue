@@ -1,11 +1,18 @@
 <template lang="html">
   <div class="site-cont">
     <div class="story-hero-cont">
-      <h1>Welcome to<br>Wallace Hatch</h1>
-      <p class="handle">@wallacehatch</p>
-      <div class="hr-line white"></div>
+      <img v-lazy="'https://s3.us-east-2.amazonaws.com/wallace-hatch/city-image.jpg'"
+      data-srcset="https://s3.us-east-2.amazonaws.com/wallace-hatch/city-image.jpg 1353w,
+      https://s3.us-east-2.amazonaws.com/wallace-hatch/city-image%402x.jpg 2600w,
+      https://s3.us-east-2.amazonaws.com/wallace-hatch/city-image%403x.jpg 3900w"
+      alt="" class="story-hero-image lazy">
+      <div class="lazy delay-1" id="os_lazy_1">
+        <h1>Welcome to<br>Wallace Hatch</h1>
+        <p class="handle">@wallacehatch</p>
+        <div class="hr-line white"></div>
+      </div>
     </div>
-    <div class="story-intro-cont">
+    <div class="story-intro-cont lazy delay-1" id="os_lazy_2">
       <div class="content-cont">
         <div class="marker"><i class="fal fa-map-marker-alt"></i></div>
         <p class="location">Columbus, OH</p>
@@ -80,6 +87,10 @@ export default {
     LiveInstagramFeed,
   },
   mounted() {
+    this.$Lazyload.$once('loaded', (e) => {
+      document.getElementById('os_lazy_1').setAttribute('lazy', 'loaded')
+      document.getElementById('os_lazy_2').setAttribute('lazy', 'loaded')
+    })
     fetchInstagramPosts((result)=>{
       this.liveInstagramPosts = result.data.user.media.nodes
     });
@@ -344,15 +355,18 @@ export default {
     position: relative;
     z-index: -1;
     padding-top: 15.4rem;
-    background-size: auto 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/city-image.jpg');
-    @include respond-to(2x) {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/city-image%402x.jpg');}
-    @include respond-to(3x) {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/city-image%403x.jpg');}
     @include respond-to(lg) {padding-top: 8.8rem}
     @include respond-to(md) {padding-top: 8rem}
     @include respond-to(sm) {padding-top: 6rem}
+    .story-hero-image {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
+      z-index: -1;
+    }
     h1 {
       text-transform: uppercase;
       color: $wh-white;

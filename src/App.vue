@@ -88,6 +88,9 @@ export default {
     &[lazy=loaded] {
       opacity: 1;
     }
+    &.delay-1 {
+      transition-delay: $lazy-dur;
+    }
   }
 
 
