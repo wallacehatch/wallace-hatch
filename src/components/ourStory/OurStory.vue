@@ -10,25 +10,24 @@
         <div class="marker"><i class="fal fa-map-marker-alt"></i></div>
         <p class="location">Columbus, OH</p>
         <p class="body">
-          The story behind Wallace Hatch is one of collective experience. Our founders have spent years immersed in a world of design, travel, and discovery. This journey led them to develop a sincere appreciation for the avant-garde boroughs they encountered while traveling.<br><br>
-          From candle-lit cocktail bars in SoHo to eclectic bookstores in the SF Mission, our founders saw these neighborhoods as mavens of truly original style.  Struck by the beautiful tenacity of these places and the individuals who inhabited them, our founders set out to create Wallace Hatch.<br><br>
-          The Wallace Hatch brand is, at it’s core, a reflection of this inspired lifestyle. Our watches embody uptown style and simplistic elegance.  Designed to be breath-taking yet versatile, they provide the perfect compliment to an empowered self.
+          We are a team of designers, stylists, photographers, innovators, and risk-takers; brought together by a shared passion for adventure, originality, and elegant design.<br><br>
+          We created Wallace Hatch to embody the idea of empowered living. What is empowered living? It’s the belief that life is short and the world is wide. It’s having the mindset that every day is in and of itself a unique adventure. It’s, above all else, a reminder to take hold of tomorrow’s adventure and live it like only you know how to.<br><br>
+          We believe that this type of empowered lifestyle should be attainable for everyone. Because of this, we’ve created watches that showcase clean, elegant, and premium style at a price point that won’t break the bank<br><br>
+          As our community of adventurers, trend-setters, and risk-takers grows, we invite you to join us; the journey has just begun.
         </p>
       </div>
     </div>
     <div class="story-section-cont mission">
       <h1>Our Mission</h1>
-      <p class="subtext">Some secondary message will go here</p>
+      <p class="subtext">To Be More than just a choice in style</p>
       <div class="hr-line"></div>
       <div class="story-feature-cont clearfix">
         <div class="left hide-sm">
-          <p class="body">The story behind Wallace Hatch is one of collective experience. Our founders have spent years immersed in a world of design, travel, and discovery. This journey led them to develop a sincere appreciation for the avant-garde boroughs they encountered while traveling.<br><br>
-            From candle-lit cocktail bars in SoHo to eclectic bookstores in the SF Mission, our founders saw these neighborhoods as mavens of truly original style.  Struck by the beautiful tenacity of these places and the individuals who inhabited them, our founders set out to create Wallace Hatch.</p>
+          <p class="body">Wallace Hatch was founded on the belief that the watch you wear should represent more than just a choice in style. Our goal is to create products that truly empower you — inspiring you to go further, do more, and make the most of the daily adventure that is your life.</p>
         </div>
         <div class="right image"></div>
         <div class="left sm-only">
-          <p class="body">The story behind Wallace Hatch is one of collective experience. Our founders have spent years immersed in a world of design, travel, and discovery. This journey led them to develop a sincere appreciation for the avant-garde boroughs they encountered while traveling.<br><br>
-            From candle-lit cocktail bars in SoHo to eclectic bookstores in the SF Mission, our founders saw these neighborhoods as mavens of truly original style.  Struck by the beautiful tenacity of these places and the individuals who inhabited them, our founders set out to create Wallace Hatch.</p>
+          <p class="body">Wallace Hatch was founded on the belief that the watch you wear should represent more than just a choice in style. Our goal is to create products that truly empower you — inspiring you to go further, do more, and make the most of the daily adventure that is your life.</p>
         </div>
       </div>
     </div>
@@ -48,23 +47,22 @@
         <div class="iphone"></div>
       </div>
 
-      <p class="body community">MVMT is more than just quality watches and accessories — we’re an active community of 4 million and counting. Follow us on insta for a glimpse of the MVMT lifestyle.</p>
+      <p class="body community">By far the most important part of the Wallace Hatch brand is the ever-growing community  of exceptional humans that have adopted it.
+       Follow along on Insta as our community shares their daily experiences; putting the Wallace Hatch flair on the endless adventure that we call life.</p>
       <p class="tags community">#WallaceHatch	#WHpicoftheday</p>
 
     </div>
 
     <div class="story-section-cont products">
       <h1>Our Products</h1>
-      <p class="subtext">Handcrafted Timepieces</p>
+      <p class="subtext">Clean. elegant. premium. affordable.</p>
       <div class="hr-line"></div>
       <div class="story-feature-cont clearfix">
         <div class="left">
           <live-instagram-feed class="our-products" fourTile="true" :instagramPosts="productInstagramPosts" ></live-instagram-feed>
         </div>
         <div class="right">
-          <p class="body">The story behind Wallace Hatch is one of collective experience. Our founders have spent years immersed in a world of design, travel, and discovery. This journey led them to develop a sincere appreciation for the avant-garde boroughs they encountered while traveling.<br><br>
-            From candle-lit cocktail bars in SoHo to eclectic bookstores in the SF Mission, our founders saw these neighborhoods as mavens of truly original style.  Struck by the beautiful tenacity of these places and the individuals who inhabited them, our founders set out to create Wallace Hatch.
-          </p>
+          <p class="body">The goal of our products is simple. Deliver clean, elegant, and premium style at an exceedingly reasonable price — the perfect companion for tomorrow’s adventure. That’s why we offer a two-year guarantee on all of our products, plus free U.S shipping and returns.</p>
         </div>
       </div>
     </div>

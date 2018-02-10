@@ -2,10 +2,18 @@
   <div class="site-cont">
     <!-- SITE HERO -->
     <div class="hero-cont">
-      <p class="hero-1">The New</p>
-      <h2 class="hero-2">SOHO Hatch</h2>
-      <p class="hero-3">Worn by Kendall Jenner</p>
-      <button class="hero-btn" v-scroll-to="'#product-showcase'">Shop now</button>
+
+      <img v-lazy="'https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image.jpg'"
+      data-srcset="https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image.jpg 1353w,
+      https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%402x.jpg 2600w,
+      https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%403x.jpg 3900w"
+      alt="" class="hero-image lazy">
+      <div class="hero-text">
+        <p class="hero-1">The New</p>
+        <h2 class="hero-2">SOHO Hatch</h2>
+        <p class="hero-3">Worn by Kendall Jenner</p>
+        <button class="hero-btn" v-scroll-to="'#product-showcase'">Shop now</button>
+      </div>
     </div>
     <!-- PRODUCT SHOWCASE -->
     <div class="section-heading-cont" id="product-showcase">
@@ -72,22 +80,47 @@ export default {
   @include respond-to(sm) {padding-top: 3rem}
 }
 // SITE HERO
+.hero-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  z-index: -1;
+  &+.hero-text {
+    @include lazy-trans;
+    opacity: 0;
+    transition-delay: 0.5s;
+  }
+  &[lazy=error]+.hero-text {
+    opacity: 1;
+  }
+  &[lazy=loaded]+.hero-text {
+    opacity: 1;
+  }
+  &[lazy=loading]+.hero-text {
+    opacity: 0;
+  }
+}
 .hero-cont {
-  background-color: #222;
+  background-color: transparent;
   height: 48.437vw;
   box-sizing: border-box;
   padding-left: 11rem;
   padding-top: 20rem;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image.jpg");
-  @include respond-to(2x) {
-    background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%402x.jpg");
-  }
-  @include respond-to(3x) {
-    background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%403x.jpg");
-  }
+  position: relative;
+  overflow: hidden;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-size: auto 100%;
+  // background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image.jpg");
+  // @include respond-to(2x) {
+  //   background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%402x.jpg");
+  // }
+  // @include respond-to(3x) {
+  //   background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%403x.jpg");
+  // }
   @include respond-to(lg) { padding-top: 16.6rem; padding-left: 8rem; }
   @include respond-to(md) { padding-top: 10.6rem; padding-left: 7rem; height: 49.5rem;}
   @include respond-to(sm) { padding-top: 9rem; padding-left: 2rem; height: 40rem; }

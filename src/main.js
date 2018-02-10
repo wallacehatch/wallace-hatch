@@ -10,11 +10,13 @@ import VueApollo from 'vue-apollo'
 import Vue2Filters from 'vue2-filters'
 import VueScrollTo from 'vue-scrollto'
 import VueTheMask from 'vue-the-mask'
+import VueLazyLoad from 'vue-lazyload'
 
 Vue.config.productionTip = false
 Vue.use(VeeValidate);
-Vue.use(VueScrollTo)
+Vue.use(VueScrollTo);
 Vue.use(Vue2Filters);
+Vue.use(VueLazyLoad);
 
 const config = {
   strict: false,
