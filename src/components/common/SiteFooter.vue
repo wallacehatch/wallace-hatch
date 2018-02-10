@@ -1,6 +1,6 @@
 <template>
 	<div class="total-footer-cont">
-		<black-info-box v-if="$store.state.navLayout !== 1"></black-info-box>
+		<black-info-box v-if="$store.state.navLayout === 0"></black-info-box>
 		<newsletter-cta v-if="$store.state.navLayout !== 1"></newsletter-cta>
 		<div class="site-footer-cont">
 			<div class="footer-left">
@@ -53,7 +53,7 @@
 		 overflow: auto;
      width: 100%;
 		 padding: 0 2rem;
-		 padding-bottom: 2.2rem;
+		 padding-bottom: 1rem;
 		 box-sizing: border-box;
 		}
 	.footer-left {

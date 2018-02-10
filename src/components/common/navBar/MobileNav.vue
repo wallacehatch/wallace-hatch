@@ -4,11 +4,11 @@
     <div class="mobile-nav-inner-cont" id="mobile_nav_inner_cont" style="transform: translateX(-101%)">
       <div @click="handleClose" class="close-btn"><i  class="fal fa-times"></i></div>
       <ul class="nav-options-cont">
-        <li @click="handleNavItemClick" v-for="(item, i) in items" :class="{active: activeItem === i}">{{item}}</li>
+        <li @click="function() {handleNavItemClick(i)}" v-for="(item, i) in items" :class="{active: activeItem === i}">{{item}}</li>
       </ul>
       <ul class="aux-options-cont">
         <!-- <li>Sign in</li> -->
-        <li>pre-order list</li>
+        <li @click="faqClick" >FAQ</li>
         <li @click="contactUsClick">contact us</li>
       </ul>
       <ul class="social-items-cont">
@@ -55,11 +55,24 @@ export default {
       this.$store.commit('SET_CONTACT_ACTIVE', true);
       this.$emit('close');
     },
-    handleNavItemClick() {
-
+    faqClick() {
+      this.$router.push('/faq');
+      this.$emit('close');
     },
     handleClose() {
       this.$emit('close');
+    },
+    handleNavItemClick(i) {
+      this.$emit('setNav', i);
+      this.$emit('close');
+      switch (i) {
+      case 0:
+      this.$router.push('/');
+      break;
+      case 1:
+      this.$router.push('/our-story');
+      break;
+      }
     },
     toggleModal(active) {
       if (active) {

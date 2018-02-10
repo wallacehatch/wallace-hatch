@@ -9,7 +9,8 @@ import BagPage from '@/components/bag/BagPage'
 import CheckoutRoot from '@/components/checkout/CheckoutRoot'
 import CheckoutInfo from '@/components/checkout/CheckoutInfo'
 import CheckoutReview from '@/components/checkout/CheckoutReview'
-import FAQ from '@/components/faq/FAQ'
+import Faq from '@/components/faq/FAQ'
+import OurStory from '@/components/ourStory/OurStory';
 
 Vue.use(Router)
 export default new Router({
@@ -24,9 +25,12 @@ export default new Router({
     }, {
       path: '/terms',
       component: Terms,
-    },{
-    path: '/faq',
-      component: FAQ,
+    }, {
+      path: '/faq',
+      component: Faq,
+    }, {
+      path: '/our-story',
+      component: OurStory,
     }, {
       path: '/privacy',
       component: Privacy,
