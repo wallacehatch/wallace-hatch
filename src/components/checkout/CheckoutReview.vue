@@ -55,9 +55,14 @@ export default {
       StripeService.submitOrder(this.form, orderItems).then((result) => {
         console.log("Called submit order -> order is returned:")
         console.log(result)
-        this.$router.push('/');
-        this.$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE', {
+        var name = result.data.shipping.name
+        var orderId = result.data.id.substr(3)
+
+         this.$router.push('/');
+         this.$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE', {
           active: true,
+          customerName: name,
+          orderId: orderId,
         })
       }, (err) => {
         alert(err.response.data.error_message)

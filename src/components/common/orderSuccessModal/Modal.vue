@@ -26,7 +26,7 @@ export default {
     // this.$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE', {
     //   active: true,
     //   customerName: 'Ian Hansborough',
-    //   orderId: '90290259829385',
+    //   orderId: 'asd',
     // })
   },
   methods: {
