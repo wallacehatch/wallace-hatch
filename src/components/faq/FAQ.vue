@@ -1,26 +1,32 @@
 <template lang="html">
   <div class="faq-cont">
     <h3 class="section-title">FAQ</h3>
-    <hr class="faq-divider">
-
-    <h4 class="body-section-title">Terms of Use</h4>
-    <p class="body-info">Maecenas faucibus mollis interdum. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vestibulum id ligula porta felis euismod semper. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Maecenas sed diam eget risus varius blandit sit amet non magna. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-    <hr class="faq-divider">
-
-    <h4 class="body-section-title">Changes To These Terms Or The Services</h4>
-
-
-    <p class="body-info">Cras mattis consectetur purus sit amet fermentum. Curabitur blandit tempus porttitor. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Nullam id dolor id nibh ultricies vehicula ut id elit. Etiam porta sem malesuada magna mollis euismod. Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas faucibus mollis interdum. Donec id elit non mi porta gravida at eget metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit tempus porttitor. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Aenean lacinia bibendum nulla sed consectetur.</p>
-    <hr class="faq-divider">
-    <h4 class="body-section-title">Pellentesque Fermentum Elit</h4>
-    <p class="body-info">Some cookies are vital in order for the website to function properly. The cookies keep track of your settings and make your shopping experience more convenient by e.g. recognizing your device and remembering your preferences and settings.</p>
+    <faq-item v-for="(question, i) in questions" :key="'faq_item_' + i" :qKey="'faq_item_' + i" :question="question.question" :answer="question.answer"></faq-item>
     <hr class="faq-divider">
 
   </div>
 </template>
 
 <script>
+import FaqItem from './FaqItem';
 export default {
+  components: {
+    FaqItem,
+  },
+  data() {
+    return {
+      questions: [{
+        question: 'Test question 1',
+        answer: "Maecenas faucibus mollis interdum. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui."
+      }, {
+        question: 'Test question 2',
+        answer: "Maecenas faucibus mollis interdum. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui."
+      }, {
+        question: 'Test question 3 this is a raelly long question if this was supper long what would you actually do? Test question 3 this is a raelly long question if this was supper long what would you actually do?',
+        answer: "Maecenas faucibus mollis interdum. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui."
+      }]
+    }
+  },
   mounted() {
     window.scrollTo(0,0);
   }
@@ -43,34 +49,19 @@ export default {
     letter-spacing: 6px;
     text-transform: uppercase;
     text-align: center;
-    padding: 8rem 0 1rem 0;
+    padding: 5rem 0 3rem 0;
     @include respond-to(sm) {
-      padding: 3rem 0 0 0;
-      font-size: 2.4rem;
+      padding: 3rem 0;
+      font-size: 1.8rem;
       letter-spacing: 5px;
     }
   }
-  .body-section-title {
-    @include intro-text;
-    letter-spacing: 2.6px !important; 
-
-    font-size: 1.4rem;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    padding-bottom: 1rem;
-    padding-top: 2rem;
-  }
-  .body-info {
-    @include text-body;
-  }
   .faq-divider{
     border: none;
-    width: 103.5%;
-    margin-left:  -1.75%;
-    margin-top: 3rem;
     height: 1px;
     background-color: #d8d8d8;
+    width: calc(100% + 3rem);
+    margin-left: -1.5rem;
   }
 }
 </style>

@@ -1,16 +1,16 @@
 <template lang="html">
   <div class="checkout-help-footer-cont">
     <p class="title">Need Help?</p>
-    <p class="subtext">We’re available by phone 000 000.0000<br>
+    <p class="subtext">We’re available by phone 415 915.0936<br>
       Monday - Friday, 9am - 6pm or by Email every day, 9am - 9pm ET.</p>
     <div class="help-icon-cont">
       <i class="fal fa-bolt icon"></i>
       <p class="label">FAQ</p>
     </div>
-    <div class="help-icon-cont">
+    <a class="help-icon-cont" href="tel:415.915.0936">
       <i class="fal fa-mobile icon"></i>
       <p class="label">CALL</p>
-    </div>
+    </a>
     <a class="help-icon-cont" href="mailto:hello@wearevest.com?subject=Request%20For%20Help">
       <i class="fal fa-envelope icon"></i>
       <p class="label">EMAIL</p>

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <order-success-modal @close="$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE',{})"></order-success-modal>
-    <site-header></site-header>
-    <router-view/>
+    <site-header :active="navActive"></site-header>
+    <router-view @setNav="setNavActive"/>
     <site-footer></site-footer>
   </div>
 </template>
@@ -26,10 +26,14 @@ export default {
   },
   data() {
     return {
+      navActive: 0,
     }
   },
   methods: {
-},
+    setNavActive(i) {
+      this.navActive = i;
+    }
+  },
   beforeMount() {
     const bag = BagService.getBag();
     if (bag === null) return;
@@ -62,6 +66,12 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
+  }
+  .site-cont {
+    margin-top: 7rem;
+    @include respond-to(sm) {
+      margin-top: 5.5rem;
+    }
   }
   .clearfix:before,
   .clearfix:after {

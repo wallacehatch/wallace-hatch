@@ -7,8 +7,8 @@ Vue.use(Vuex);
 
 const state = {
 	mobile: false,
-	navItems: ['Home', 'Our Story', 'Lookbook'],
-	navLayout: 0, // 0 is default, 1 is checkout
+	navItems: ['Home', 'Our Story'],
+	navLayout: 0, // 0 is default, 1 is checkout, 2 is Auxilary Pages
 	contactModalActive: false,
 	cartModalActive: false,
 	orderSuccessModal: {
