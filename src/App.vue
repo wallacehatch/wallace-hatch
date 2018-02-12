@@ -62,6 +62,7 @@ export default {
 
 <style lang='scss'>
   @import './styles/main.scss';
+  @import './styles/_variables.scss';
   #app {
     min-height: 100%;
     background-position: center;
@@ -78,6 +79,26 @@ export default {
       margin-top: 5.5rem;
     }
   }
+
+
+  .lazy {
+    @include lazy-trans;
+    opacity: 0;
+    &[lazy=loading] {
+      opacity: 0;
+    }
+    &[lazy=error] {
+      opacity: 1;
+    }
+    &[lazy=loaded] {
+      opacity: 1;
+    }
+    &.delay-1 {
+      transition-delay: $lazy-dur;
+    }
+  }
+
+
   .clearfix:before,
   .clearfix:after {
       content: ".";

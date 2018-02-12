@@ -27,6 +27,11 @@ $wh-green:             #7fb968;
     color: rgba($color, $opacity);
 }
 
+$lazy-dur: 0.5s;
+@mixin lazy-trans() {
+  transition: $lazy-dur opacity ease;
+}
+
 @mixin v-cont() {
 	padding: 0 3rem;
 	box-sizing: border-box;

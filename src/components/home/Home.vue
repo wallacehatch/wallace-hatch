@@ -2,16 +2,26 @@
   <div class="site-cont">
     <!-- SITE HERO -->
     <div class="hero-cont">
-      <p class="hero-1">The New</p>
-      <h2 class="hero-2">SOHO Hatch</h2>
-      <p class="hero-3">Worn by Kendall Jenner</p>
-      <button class="hero-btn" v-scroll-to="'#product-showcase'">Shop now</button>
+
+      <img v-lazy="'https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image.jpg'"
+      data-srcset="https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image.jpg 1353w,
+      https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%402x.jpg 2600w,
+      https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%403x.jpg 3900w"
+      alt="" class="hero-image lazy">
+      <div class="lazy delay-1" id="home_lazy_1">
+        <p class="hero-1">The New</p>
+        <h2 class="hero-2">SOHO Hatch</h2>
+        <p class="hero-3">Worn by Kendall Jenner</p>
+        <button class="hero-btn" v-scroll-to="'#product-showcase'">Shop now</button>
+      </div>
     </div>
     <!-- PRODUCT SHOWCASE -->
     <div class="section-heading-cont" id="product-showcase">
-      <p class="header">Pre-order now</p>
-      <p class="subtext">We won’t charge you,<br class="sm-only"> until we ship</p>
-      <hr class="line">
+      <div class="lazy delay-1" id="home_lazy_2">
+        <p class="header">Pre-order now</p>
+        <p class="subtext">We won’t charge you,<br class="sm-only"> until we ship</p>
+        <hr class="line">
+      </div>
     </div>
     <div class="product-showcase-cont clearfix">
       <product-tile v-for="(item, i) in items" :key="'pTile' + i" :item="item"></product-tile>
@@ -37,6 +47,12 @@ export default {
     return {
       items: null,
     }
+  },
+  mounted() {
+    this.$Lazyload.$once('loaded', (e) => {
+      document.getElementById('home_lazy_1').setAttribute('lazy', 'loaded')
+      document.getElementById('home_lazy_2').setAttribute('lazy', 'loaded')
+    })
   },
   methods: {
   },
@@ -72,22 +88,33 @@ export default {
   @include respond-to(sm) {padding-top: 3rem}
 }
 // SITE HERO
+.hero-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  z-index: -1;
+}
 .hero-cont {
-  background-color: #222;
+  background-color: transparent;
   height: 48.437vw;
   box-sizing: border-box;
   padding-left: 11rem;
   padding-top: 20rem;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image.jpg");
-  @include respond-to(2x) {
-    background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%402x.jpg");
-  }
-  @include respond-to(3x) {
-    background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%403x.jpg");
-  }
+  position: relative;
+  overflow: hidden;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-size: auto 100%;
+  // background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image.jpg");
+  // @include respond-to(2x) {
+  //   background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%402x.jpg");
+  // }
+  // @include respond-to(3x) {
+  //   background-image: url("https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%403x.jpg");
+  // }
   @include respond-to(lg) { padding-top: 16.6rem; padding-left: 8rem; }
   @include respond-to(md) { padding-top: 10.6rem; padding-left: 7rem; height: 49.5rem;}
   @include respond-to(sm) { padding-top: 9rem; padding-left: 2rem; height: 40rem; }
