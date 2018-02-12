@@ -39,15 +39,20 @@ export default {
     if (bag === null) return;
     const bn = bag.items.reduce((total, item) => {return total + item.quantity},0);
     this.$store.commit('SET_BADGE_NUMBER', bn);
-
-    // Custom Validation Messages for inputs
-    this.$validator.extend('validCard', {
-
-      getMessage: field => 'The Card is not valid field you entered is not valid',
+    
+    this.$validator.extend('validExp', {
+      getMessage: field => 'The Expiration Date you entered is before the current date',
       validate: (value) => {
-        console.log("validating")
-        // this is where you put the logic to verify the CVC
-        return false;
+        if (value.length == 5) {
+          let splits  = value.split("/");
+          let formattedDate = "20" + splits[1] + "-" + splits[0]
+          let now = new Date()
+          let enteredDate  = Date.parse(formattedDate)
+          if (enteredDate < now) {
+            return false
+          }
+        }
+        return true;
       }
     })
 
