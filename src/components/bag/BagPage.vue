@@ -42,7 +42,6 @@ export default {
       },
       totalQuantity: 0,
       message: null,
-
     }
   },
   beforeMount() {
