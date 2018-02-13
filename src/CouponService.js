@@ -4,6 +4,8 @@ const svc = {}
 
 svc.handleCouponActivation = handleCouponActivation;
 svc.triggerCoupon = triggerCoupon;
+svc.setCouponOpenTime = setCouponOpenTime;
+
 const couponKey  = "couponOpenTime"
 const pageKey = "pageOpenTime"
 
@@ -28,7 +30,6 @@ function getCouponOpenTime() {
     return JSON.parse(localStorage.getItem(couponKey));
 }
 
-
 function getPageOpenTime() {
   return JSON.parse(localStorage.getItem(pageKey));
 
@@ -41,13 +42,15 @@ function setPageOpenTime() {
 
 function setCouponOpenTime() {
   let time = new Date();
-  localStorage.setItem(couponKey, JSON.stringify(time.getTime()));
+  // only set time for coupon opening if it hasn't been previously set to keep original opening time
+  if (getCouponOpenTime == null) {
+      localStorage.setItem(couponKey, JSON.stringify(time.getTime()));
+  }
 }
 
 
 function triggerCoupon() {
   store.commit('SET_COUPON_MODAL_ACTIVE', true);
-  setCouponOpenTime();
 }
 
 

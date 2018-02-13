@@ -29,6 +29,7 @@ import anime from 'animejs';
 import Timer from './Timer'
 import StdInput from '@/components/common/StdInput'
 import StripeService from '@/StripeService.js';
+import CouponService from '@/CouponService';
 export default {
   components: {
     Timer,
@@ -51,6 +52,9 @@ export default {
   methods: {
     toggleModal(active) {
       if (active) {
+
+        CouponService.setCouponOpenTime();  // set time of opening so that we now when expiration takes place
+
         this.lActive = true;
         document.body.style.overflow = 'hidden';
         setTimeout(() => {
