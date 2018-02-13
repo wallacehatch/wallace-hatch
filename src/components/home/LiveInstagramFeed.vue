@@ -49,7 +49,7 @@ export default {
     text-transform: uppercase;
     @include intro-text;
     font-size: 1.2rem;
-    padding: 1.2rem 0;
+    padding: 1.6rem 0;
     font-weight: bold;
   }
   .instagram-image {
