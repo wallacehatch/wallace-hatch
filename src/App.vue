@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <order-success-modal @close="$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE',{})"></order-success-modal>
+    <coupon-modal @close="$store.commit('SET_COUPON_MODAL_ACTIVE',false)"></coupon-modal>
     <site-header :active="navActive"></site-header>
     <router-view @setNav="setNavActive"/>
     <site-footer></site-footer>
@@ -11,10 +12,12 @@
 import SiteHeader from '@/components/common/SiteHeader';
 import SiteFooter from '@/components/common/SiteFooter';
 import OrderSuccessModal from '@/components/common/orderSuccessModal/Modal';
+import CouponModal from '@/components/common/couponModal/Modal';
 import fetchInstagramPosts from './instagram';
 import axios from 'axios';
 import BagService from '@/BagService';
 import StripeService from '@/StripeService';
+import CouponService from '@/CouponService';
 
 
 export default {
@@ -23,6 +26,8 @@ export default {
     SiteHeader,
     SiteFooter,
     OrderSuccessModal,
+    CouponModal,
+
   },
   data() {
     return {
@@ -39,7 +44,7 @@ export default {
     if (bag === null) return;
     const bn = bag.items.reduce((total, item) => {return total + item.quantity},0);
     this.$store.commit('SET_BADGE_NUMBER', bn);
-    
+
     this.$validator.extend('validExp', {
       getMessage: field => 'The Expiration Date you entered is before the current date',
       validate: (value) => {
@@ -56,6 +61,9 @@ export default {
       }
     })
 
+  },
+  mounted(){
+    // CouponService.handleCouponActivation();  // Uncomment to trigger coupon service. Coupon will open in 60 seconds if user has not seen coupon before
   }
 }
 </script>
