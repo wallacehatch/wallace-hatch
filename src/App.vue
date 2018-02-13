@@ -102,7 +102,13 @@ export default {
       opacity: 1;
     }
     &.delay-1 {
-      transition-delay: $lazy-dur;
+      transition-delay: $lazy-dur-1;
+    }
+    &.delay-2 {
+      transition-delay: $lazy-dur-2;
+    }
+    &.delay-3 {
+      transition-delay: $lazy-dur-3;
     }
   }
 

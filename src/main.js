@@ -16,15 +16,17 @@ Vue.config.productionTip = false
 Vue.use(VeeValidate);
 Vue.use(VueScrollTo);
 Vue.use(Vue2Filters);
-Vue.use(VueLazyLoad);
 
 const config = {
   strict: false,
   classes: true,
 }
+const loadConfig = {
+  observer: true,
+}
 
 Vue.use(VueTheMask, config);
-
+Vue.use(VueLazyLoad, loadConfig);
 
 
 

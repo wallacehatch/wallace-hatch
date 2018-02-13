@@ -39,7 +39,7 @@ function indexForSku(product, sku) {
 
 function removeItem(product, sku, quantity) {
   var bag = JSON.parse(localStorage.getItem('currentSessionBag'));
-  
+
   bag.items = bag.items.map((item) => {
     if ((item.product.id === product.id) && (item.sku === sku)) {
       item.quantity = Math.max(item.quantity - quantity, 0);

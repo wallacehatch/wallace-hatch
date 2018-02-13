@@ -3,20 +3,21 @@
     <div class="pdp-cont" v-if="product">
       <div class="pdp-upper-cont">
         <div class="pdp-ul">
-          <div class="active-image" :style="{backgroundImage: 'url(' + product.images[activeImageIndex] + ')'}"></div>
+          <div class="active-image lazy" v-lazy:background-image="product.images[activeImageIndex]" ></div>
           <div class="additional-images-cont">
-            <div v-for="(image, i) in product.images" class="additional-image"
-            :class="{active: activeImageIndex === i}"
-            @click="activeImageIndex = i"
-            :style="{backgroundImage: 'url(' + product.images[i] + ')'}"></div>
+            <div v-for="(image, i) in product.images" class="additional-image lazy"
+              :class="{active: activeImageIndex === i}"
+              @click="activeImageIndex = i"
+              v-lazy:background-image="product.images[i]">
+            </div>
           </div>
         </div>
-        <div class="pdp-ur" :class="{'sticky-space': stickyAddCart}">
+        <div class="pdp-ur lazy" id="pdp_lazy_1" :class="{'sticky-space': stickyAddCart}">
           <p class="size">{{product.skus.data[currentSkuIndex].attributes.size}}MM</p>
           <hr class="line">
           <p class="title">{{product.name}}</p>
           <p class="price hide-sm">{{product.skus.data[currentSkuIndex].price / 100 | currency }}</p>
-          <div class="color-bubble"></div>
+          <div class="color-bubble" :style="{backgroundImage: 'url(https://s3.us-east-2.amazonaws.com/wallace-hatch/color-bubble-' + product.skus.data[currentSkuIndex].id + '.jpg)'}" ></div>
           <p class="color-text">Color: {{product.metadata.dialColor}} / {{product.metadata.caseColor}}</p>
           <div class="add-cart-btn pdp" id="add_cart_btn_pdp" :class="{'stuck': stickyAddCart}" @click="handleAddCartClick">
             <span class="mobile-add" @click="handleAddCartClick">Add to bag</span>
@@ -32,7 +33,7 @@
           <hr class="line">
           <div class="how-to-wear-header">
             <p class="title">How to wear</p>
-            <p class="hashtag"><i class="fab fa-instagram"></i> #mywally</p>
+            <p class="hashtag"><i class="fab fa-instagram"></i> #{{product.metadata.hashtag}}</p>
           </div>
           <div class="how-to-wear-images-cont" v-if="product">
             <a target="_blank"
@@ -99,6 +100,11 @@ export default {
       addCartOffset: null,
       activeImageIndex: 0,
     }
+  },
+  mounted() {
+    this.$Lazyload.$once('loaded', (e) => {
+      document.getElementById('pdp_lazy_1').setAttribute('lazy', 'loaded')
+    })
   },
   beforeMount() {
     StripeService.getProduct(this.$route.params.handle).then((result) => {
@@ -431,13 +437,13 @@ export default {
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
-        background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/color-selected.jpg');
-        @include respond-to(2x) {
-          background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/color-selected%402x.jpg');
-        }
-        @include respond-to(3x) {
-          background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/color-selected%403x.jpg');
-        }
+        // background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/color-selected.jpg');
+        // @include respond-to(2x) {
+        //   background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/color-selected%402x.jpg');
+        // }
+        // @include respond-to(3x) {
+        //   background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/color-selected%403x.jpg');
+        // }
       }
       .color-text {
         @include intro-text;
