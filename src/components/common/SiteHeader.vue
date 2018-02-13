@@ -18,7 +18,9 @@
           </div>
         </div>
         <div v-if="$store.state.navLayout === 1">
-          <div class="header-logo checkout"></div>
+          <router-link style="display:block" to="/">
+            <div class="header-logo checkout"></div>
+          </router-link>
         </div>
         <cart-modal @close="$store.commit('SET_CART_ACTIVE', false)" :active="$store.state.cartModalActive"></cart-modal>
         <contact-modal @close="$store.commit('SET_CONTACT_ACTIVE', false)" :active="$store.state.contactModalActive"></contact-modal>

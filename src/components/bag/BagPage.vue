@@ -16,7 +16,7 @@
       </div>
       <div class="sm-only" v-for="(item, i) in cart.items">
         <cart-item v-if="item.quantity > 0" class="mobile-bag-item bag-item" :key="'pTile' + i" :item="item" @qtyChange="refreshCart">
-          <p class="additional-message-cont">Includes leather band and tool to use when changing bands.</p>
+          <p class="additional-message-cont">Includes {{getCleanedBandType(item)}} band and tool to use when changing bands.</p>
         </cart-item>
         <hr v-if="item.quantity > 0" class="mobile-bag-divider">
       </div>
@@ -64,6 +64,16 @@ export default {
       this.message = this.$store.state.badgeNumber + " items in your cart"; break;
       }
     },
+    getCleanedBandType(item) {
+      switch(item.product.metadata.bandType) {
+        case "Stainless mesh":
+          return "stainless mesh"
+          break
+        case "Leather strap":
+          return"leather"
+          break
+      }
+    }
   },
 }
 </script>
