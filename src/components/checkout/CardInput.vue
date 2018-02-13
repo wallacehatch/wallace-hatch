@@ -22,7 +22,7 @@
           iName="expiration date"
           iMask="##/##"
           v-model="cardInfo.exp"
-          iValidate="required"
+          iValidate="required|validExp"
           :forceError="forceError">
         </checkout-input>
         <checkout-input iPlaceholder="cvc"

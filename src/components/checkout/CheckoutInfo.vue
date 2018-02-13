@@ -136,7 +136,8 @@ export default {
           StripeService.createCustomer(this.form).then((result) => {
               this.$router.push('/checkout/review');
       }, (err) => {
-        alert(err.response.data.error.message)
+        var errorObj = JSON.parse(err.response.data.error_message)
+        alert(errorObj.message)
       })
         }
         else {

@@ -7,6 +7,7 @@ svc.getProducts = getProducts;
 svc.submitOrder = submitOrder;
 svc.createCustomer = createCustomer;
 svc.validateCoupon = validateCoupon;
+svc.applyForCoupon = applyForCoupon;
 
 function getAllProducts() {
   return  Promise.resolve(axios.get(process.env.API_URL + 'get-all-products/'));
@@ -25,7 +26,12 @@ function validateCoupon(coupon){
 }
 
 
-function createCustomer(form, coupon) {    
+function applyForCoupon(email) {
+  return Promise.resolve(axios.post(process.env.API_URL + 'apply-for-coupon/', {email: email}))
+}
+
+
+function createCustomer(form, coupon) {
   //       account: {
   //         name: 'Greg Miller',
   //         email: 'gregtesting@gmail.com',

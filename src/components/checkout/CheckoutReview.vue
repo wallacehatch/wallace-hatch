@@ -53,8 +53,6 @@ export default {
         return {sku: item.sku, quantity: item.quantity};
       });
       StripeService.submitOrder(this.form, orderItems).then((result) => {
-        console.log("Called submit order -> order is returned:")
-        console.log(result)
         var name = result.data.shipping.name
         var orderId = result.data.id.substr(3)
 
