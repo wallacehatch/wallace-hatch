@@ -21,7 +21,7 @@
            </div>
            <div class="product-line-bottom">
              <button class="remove-button desktop" @click="removeItem">Remove</button>
-             <div class="additional-message-cont"><p>Includes leather band and tool to use when changing bands.</p></div>
+             <div class="additional-message-cont"><p>Includes {{cleanedBandType}}  band and tool to use when changing bands.</p></div>
              <button class="remove-button mobile sm-only" @click="removeItem">Remove</button>
            </div>
          </div>
@@ -37,6 +37,7 @@ export default {
   data() {
     return {
       skuIndex: BagService.indexForSku(this.item.product, this.item.sku),
+      cleanedBandType: this.getCleanedBandType(),
     }
   },
   methods: {
@@ -55,6 +56,16 @@ export default {
     handleImageClick() {
       this.$router.push('/watches/' + this.item.product.id + '/' + this.item.sku);
     },
+    getCleanedBandType() {
+      switch(this.item.product.metadata.bandType) {
+        case "Stainless mesh":
+          return "stainless mesh"
+          break
+        case "Leather strap":
+          return"leather"
+          break
+      }
+    }
   },
 }
 </script>
@@ -93,10 +104,10 @@ export default {
         margin-right: 6rem;
         @include respond-to(lg) {width: 14.4rem; height: 24.7rem; margin-right: 6rem;}
         @include respond-to(md) {width: 14.4rem; height: 24.7rem; margin-right: 4rem;}
-        
+
       }
 
-     
+
       .product-info-wrapper{
         padding: 5.7rem 0 5.7rem 0rem;
         display: inline-block;
@@ -232,7 +243,7 @@ export default {
     .price-cont{
         margin-left: 8.4rem;
         @include respond-to(md) {margin-left: 0rem;}
-       
+
 
       }
 }
