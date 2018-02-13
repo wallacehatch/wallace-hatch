@@ -10,6 +10,7 @@ const state = {
 	navItems: ['Home', 'Our Story'],
 	navLayout: 0, // 0 is default, 1 is checkout, 2 is Auxilary Pages
 	contactModalActive: false,
+	couponModalActive: true,
 	cartModalActive: false,
 	orderSuccessModal: {
 		active: false,
@@ -25,6 +26,9 @@ const mutations = {
 		state.orderSuccessModal.active = val.active ? val.active : false;
 		state.orderSuccessModal.orderId = val.orderId ? val.orderId : state.orderSuccessModal.orderId;
 		state.orderSuccessModal.customerName = val.customerName ? val.customerName : state.orderSuccessModal.customerName;
+	},
+	[types.SET_COUPON_MODAL_ACTIVE] (state, val) {
+		state.couponModalActive = val;
 	},
 	[types.SET_NAV_LAYOUT] (state, val) {
 		state.navLayout = val;
