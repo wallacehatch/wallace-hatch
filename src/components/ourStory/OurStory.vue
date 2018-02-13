@@ -12,7 +12,7 @@
         <div class="hr-line white"></div>
       </div>
     </div>
-    <div class="story-intro-cont lazy delay-1" id="os_lazy_2">
+    <div class="story-intro-cont lazy delay-2" id="os_lazy_2">
       <div class="content-cont">
         <div class="marker"><i class="fal fa-map-marker-alt"></i></div>
         <p class="location">Columbus, OH</p>
@@ -275,6 +275,12 @@ export default {
         text-align: left;
         padding-top: 3.2rem;
         @include text-body;
+        font-size: 2rem;
+      	font-weight: 300;
+      	line-height: 2.1;
+      	letter-spacing: 0.2px;
+        @include respond-to(lg) {font-size: 1.8rem;}
+        @include respond-to(md) {font-size: 1.6rem;}
         @include respond-to(sm) {
           padding-left: 0 !important;
           padding-right: 0 !important;
