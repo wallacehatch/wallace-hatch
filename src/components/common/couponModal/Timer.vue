@@ -42,7 +42,7 @@ export default {
     },
     mounted() {
       let now = new Date()
-      let diff  = 10
+      let diff  = 20
         var interval = setInterval(() => {
           let nowDate = new Date();
             this.now = Math.trunc(nowDate.getTime() / 1000)

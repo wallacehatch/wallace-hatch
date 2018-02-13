@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <order-success-modal @close="$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE',{})"></order-success-modal>
-    <coupon-modal @close="$store.commit('SET_COUPON_MODAL_ACTIVE',false)" :active="$store.state.couponModalActive"></coupon-modal>
+    <coupon-modal @close="$store.commit('SET_COUPON_MODAL_ACTIVE',false)"></coupon-modal>
     <site-header :active="navActive"></site-header>
     <router-view @setNav="setNavActive"/>
     <site-footer></site-footer>
@@ -17,6 +17,7 @@ import fetchInstagramPosts from './instagram';
 import axios from 'axios';
 import BagService from '@/BagService';
 import StripeService from '@/StripeService';
+import CouponService from '@/CouponService';
 
 
 export default {
@@ -60,6 +61,9 @@ export default {
       }
     })
 
+  },
+  mounted(){
+    // CouponService.handleCouponActivation();  // Uncomment to trigger coupon service. Coupon will open in 60 seconds if user has not seen coupon before
   }
 }
 </script>

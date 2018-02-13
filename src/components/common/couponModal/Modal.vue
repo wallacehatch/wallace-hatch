@@ -28,8 +28,8 @@
 import anime from 'animejs';
 import Timer from './Timer'
 import StdInput from '@/components/common/StdInput'
+import StripeService from '@/StripeService.js';
 export default {
-  props: ['active'],
   components: {
     Timer,
     StdInput,
@@ -43,13 +43,10 @@ export default {
 				submitted: false,
 				error: null,
 			},
-
-
     }
   },
   mounted() {
-    console.log("setting modal")
-    this.toggleModal(true);
+    // this.$store.commit('SET_COUPON_MODAL_ACTIVE', true)  // to toggle coupon modal
   },
   methods: {
     toggleModal(active) {
@@ -79,15 +76,21 @@ export default {
       }
     },
     submitCoupon(){
-      console.log("submitting email for coupon")
+      StripeService.applyForCoupon(this.coupon.email).then((result) => {
+        // We can attach coupon here if we want to, otherwise coupon code will have to be entered by user from email they recieve
+        console.log("result from coupon creation:");
+        console.log(result);
+      }, (err) => {
+        console.log("error from coupon creation. Probably a coupon for this user has already been made");
+        console.log(err);
+        debugger;
+      })
     },
   },
   watch: {
-    'active' (newState) {
-      console.log("watching")
-      console.log(newState)
+    '$store.state.couponModalActive' (newState) {
       this.toggleModal(newState);
-    },
+    }
   },
 
 }

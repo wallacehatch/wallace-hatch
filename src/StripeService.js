@@ -28,7 +28,6 @@ function validateCoupon(coupon){
 
 function applyForCoupon(email) {
   return Promise.resolve(axios.post(process.env.API_URL + 'apply-for-coupon/', {email: email}))
-
 }
 
 

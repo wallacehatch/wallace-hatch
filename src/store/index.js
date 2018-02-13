@@ -10,7 +10,7 @@ const state = {
 	navItems: ['Home', 'Our Story'],
 	navLayout: 0, // 0 is default, 1 is checkout, 2 is Auxilary Pages
 	contactModalActive: false,
-	couponModalActive: true,
+	couponModalActive: false,
 	cartModalActive: false,
 	orderSuccessModal: {
 		active: false,
@@ -19,7 +19,6 @@ const state = {
 	},
 	badgeNumber: 0,
 	coupons: [],
-
 }
 const mutations = {
 	[types.SET_ORDER_SUCCESS_MODAL_ACTIVE] (state, val) {
