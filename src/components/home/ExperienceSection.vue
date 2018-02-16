@@ -27,7 +27,7 @@ export default {
   },
   mounted(){
     fetchInstagramPosts((result)=>{
-      this.instagramPosts = result.data.user.media.nodes
+      this.instagramPosts = result.data.user.media.nodes.slice(0,12);
     });
   }
 }

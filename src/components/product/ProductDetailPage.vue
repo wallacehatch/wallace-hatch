@@ -3,7 +3,10 @@
     <div class="pdp-cont" v-if="product">
       <div class="pdp-upper-cont">
         <div class="pdp-ul">
-          <div class="active-image lazy" v-lazy:background-image="product.images[activeImageIndex]" ></div>
+          <div class="active-image-cont" @click="handleImageZoom" :class="{zoomed: imageZoomed}">
+            <img class="active-image lazy" id="active_image" v-lazy="product.images[activeImageIndex]" alt="">
+            <div class="zoom-tab"></div>
+          </div>
           <div class="additional-images-cont">
             <div v-for="(image, i) in product.images" class="additional-image lazy"
               :class="{active: activeImageIndex === i}"
@@ -94,6 +97,7 @@ export default {
    data () {
     return {
       product: null,
+      imageZoomed: false,
       currentSkuIndex: null,
       productInfo: null,
       stickyAddCart: false,
@@ -123,6 +127,51 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    handleZoomPan() {
+      const el = document.getElementById('active_image');
+      var lastPageY = 0;
+      return (e) => {
+        console.log(lastPageY);
+        console.log(e.pageY);
+        console.log(lastPageY - e.pageY + Number(el.style.top.slice(0,-2)));
+        // debugger;
+
+        el.style.top = lastPageY - e.pageY + Number(el.style.top.slice(0,-2));
+        if (e.pageY < lastPageY) {
+          console.log('moving up');
+        }
+        else {
+          console.log('moving down');
+        }
+        lastPageY = e.pageY;
+      }
+    },
+    handleImageZoom(e) {
+      const el = document.getElementById('active_image');
+      const width  = el.getBoundingClientRect().width;
+      const height = el.getBoundingClientRect().height;
+      console.log(e);
+      // debugger;
+      if (!this.imageZoomed) {
+        console.log('zooming in image');
+        console.log(e.offsetX);
+        console.log(e.offsetY);
+        el.style.top = String(-1 * (e.layerY - (height/4))) + 'px';
+        el.style.left = String(-1.4 * (e.layerX - (width/2))) + 'px';
+        el.style.transform = 'translateX(-50%)';
+        el.addEventListener('mousemove', this.handleZoomPan());
+        this.imageZoomed = true;
+      }
+      else {
+        console.log('zooming out image');
+        el.style.left = '50%';
+        el.style.top = 0;
+        el.style.transform = 'translateX(-50%)';
+        el.removeEventListener('mousemove', this.handleZoomPan);
+        this.imageZoomed = false;
+
+      }
+    },
     setButtonOffset() {
       setTimeout(() => {
         this.addCartOffset = window.scrollY + document.getElementById('add_cart_btn_pdp').getBoundingClientRect().top - window.innerHeight + 62;
@@ -332,11 +381,41 @@ export default {
         width: 100%;
         max-width: 100%;
       }
-      .active-image {
+      .active-image-cont {
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
+        position: relative;
         height: 51.5rem;
+        overflow: hidden;
+        .active-image {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          height: 100%;
+        }
+        .zoom-tab {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 5rem;
+          height: 5rem;
+          background-color: #999;
+          opacity: 0;
+          transition: 0.2s opacity linear;
+        }
+        &:hover {
+          cursor: zoom-in;
+          .zoom-tab { opacity: 1; }
+        }
+        &.zoomed {
+          &:hover {cursor: zoom-out;}
+          .zoom-tab {opacity: 1;}
+          .active-image {
+            height: 200%;
+          }
+        }
         @include respond-to(md) {height: 41.2rem}
         @include respond-to(sm) {height: 28.8rem}
       }

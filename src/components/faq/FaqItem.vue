@@ -7,7 +7,7 @@
         <div v-show="!!expanded" @click="handleExpand" class="expand-arrow"><i class="fal fa-angle-up"></i></div>
         <div v-show="!expanded" @click="handleExpand" class="expand-arrow"><i class="fal fa-angle-down"></i></div>
       </div>
-      <p :id="'answer' + qKey" class="body-info">{{answer}}</p>
+      <p :id="'answer' + qKey" class="body-info" v-html="answer"></p>
     </div>
   </div>
 </template>

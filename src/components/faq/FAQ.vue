@@ -16,14 +16,31 @@ export default {
   data() {
     return {
       questions: [{
-        question: 'Test question 1',
-        answer: "Maecenas faucibus mollis interdum. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui."
+        question: 'WHEN WILL MY ORDER SHIP',
+        answer: "After your payment is verified, it takes up to 24 hours to process and ship your order. This does not include weekends or holidays. Purchases made after 9 am PST will not be shipped out until the next business day. If you order after 9 am PST on a Friday, your order will likely be shipped out on the following Monday."
       }, {
-        question: 'Test question 2',
-        answer: "Maecenas faucibus mollis interdum. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui."
+        question: 'WILL I HAVE TO PAY INTERNATIONAL TAXES & DUTIES?',
+        answer: "Your order may be subject to import duties and taxes, which are levied once a shipment reaches your country. The general amount for the duties and taxes fee is about 20% of the dollar amount of the merchandise. However, this is just a general guideline and may vary depending on \
+        the country to which the order was shipped. You should contact your customs office for specific amounts and percentages.<br><br>Wallace Hatch cannot control and is not responsible for any duties/taxes applied to your package. You will be responsible for paying additional charges for customs \
+        clearance. Customs policies vary widely from country to country; please contact your local customs office for further information. Note, in rare occasions custom agents may delay delivery of some packages."
       }, {
-        question: 'Test question 3 this is a raelly long question if this was supper long what would you actually do? Test question 3 this is a raelly long question if this was supper long what would you actually do?',
-        answer: "Maecenas faucibus mollis interdum. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui."
+        question: 'HOW ARE TAXES AND DUTIES CALCULATED?',
+        answer: "For Duties Delivered Paid (DDP) Orders: Duties and taxes may be included in the price depending on ship to country. If not included in the price, they will be shown at checkout.<br><br>For Duties Delivered Unpaid (DDU) Orders: As the customer, you are liable for all import duties, customs and taxes levied. Payment of these is required to release your order from customs on arrival."
+      }, {
+        question: 'I NEED TO CHANGE SOMETHING ON MY ORDER. HOW CAN I DO THAT?',
+        answer: "If you need to change or cancel your order, please contact us immediately. Once our warehouse has processed your order, we will be unable to make any changes."
+      }, {
+        question: 'What type of movement is used?',
+        answer: "We chose a movement that would be both reliable, efficient, and durable. With this said, we went with a Japanese Miyota GL20 Precision Quartz Movement which is one of the most highly regarded in the industry."
+      }, {
+        question: 'ARE MVMT WATCHES WATERPROOF?',
+        answer: "Our watches have a water resistance of 3 ATM. Please avoid all contact with water, as WATER DAMAGE IS NOT COVERED UNDER WARRANTY."
+      }, {
+        question: 'WHAT TYPE OF LEATHER IS USED?',
+        answer: "Our leather straps are made of genuine cow-hide leather."
+      }, {
+        question: 'Is there a warrenty?',
+        answer: "Wallace Hatch has a limited warranty that covers manufacturer's defects for two years after the original purchase date from an authorized dealer. Basically, if the watch parts or mechanics don't work properly, and it's our fault, we will repair or replace your product for free. However, this does not cover any abuse you might put your watch through on your own. The warranty does not cover water damage, normal wear and tear, batteries, accidental glass damage, scratches, strap damage, or theft. Proof of purchase is required for all warranty claims and service requests, so please keep your receipt. If you've purchased from our site, the order number will suffice; otherwise you will need to send us a copy of the receipt from an authorized Wallace Hatch dealer."
       }]
     }
   },
