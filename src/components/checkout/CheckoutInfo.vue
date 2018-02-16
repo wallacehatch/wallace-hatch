@@ -189,16 +189,7 @@ export default {
       const place = autocomplete.getPlace();
       this.form.googlePlace = place;
       this.form.addressSelected = true;
-      console.log(this.form.googlePlace)
       place.address_components.map(this.assignAddressComponent);
-
-      // StripeService.submitOrder(this.form, null).then((result) => {
-      //
-      //   })
-      // }, (err) => {
-      //   alert(err.response.data.error_message)
-      // })
-
     })
   },
   data() {
