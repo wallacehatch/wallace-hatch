@@ -61,6 +61,7 @@ export default {
           country: '',
           zip: '',
         },
+        googlePlace: null,
         billing: {
         }
       }
