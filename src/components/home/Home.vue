@@ -9,7 +9,7 @@
       https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image%403x.jpg 3900w"
       alt="" class="hero-image lazy">
       <div class="lazy delay-1" id="home_lazy_1">
-        <p class="hero-1">The New</p>
+        <p class="hero-1">The New WTF WTF</p>
         <h2 class="hero-2">SOHO Hatch</h2>
         <p class="hero-3">Worn by Kendall Jenner</p>
         <button class="hero-btn" v-scroll-to="'#product-showcase'">Shop now</button>
