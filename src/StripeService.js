@@ -100,10 +100,10 @@ function submitOrder(form, bag, coupon){
      	}]
 	 }
 	 var tmpCoupon = ""
-	// let bagVals = Object.values(bag)
-	// var formattedBag = {items: bagVals}
-  return Promise.resolve(axios.post(process.env.API_URL + 'submit-order/', {account: tmpForm.account, shipping: tmpForm.shipping,google_place: tmpForm.googlePlace ,cardInfo: tmpForm.billing, cart: tmpBag, coupon: tmpCoupon }))
-	// return Promise.resolve(axios.post(process.env.API_URL + 'submit-order/', {account: form.account, shipping: form.shipping,google_place: form.googlePlace ,cardInfo: form.billing, cart: formattedBag, coupon: coupon }))
+	let bagVals = Object.values(bag)
+	var formattedBag = {items: bagVals}
+  // return Promise.resolve(axios.post(process.env.API_URL + 'submit-order/', {account: tmpForm.account, shipping: tmpForm.shipping,google_place: tmpForm.googlePlace ,cardInfo: tmpForm.billing, cart: tmpBag, coupon: tmpCoupon }))
+	return Promise.resolve(axios.post(process.env.API_URL + 'submit-order/', {account: form.account, shipping: form.shipping,google_place: form.googlePlace ,cardInfo: form.billing, cart: formattedBag, coupon: coupon }))
 
 }
 

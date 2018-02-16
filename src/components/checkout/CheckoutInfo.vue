@@ -192,9 +192,9 @@ export default {
       console.log(this.form.googlePlace)
       place.address_components.map(this.assignAddressComponent);
 
-      StripeService.submitOrder(this.form, null).then((result) => {
-
-        })
+      // StripeService.submitOrder(this.form, null).then((result) => {
+      //
+      //   })
       // }, (err) => {
       //   alert(err.response.data.error_message)
       // })
