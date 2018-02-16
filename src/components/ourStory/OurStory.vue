@@ -92,7 +92,7 @@ export default {
       document.getElementById('os_lazy_2').setAttribute('lazy', 'loaded')
     })
     fetchInstagramPosts((result)=>{
-      this.liveInstagramPosts = result.data.user.media.nodes
+      this.liveInstagramPosts = result.data.user.media.nodes.slice(0,12);
     });
   },
   data() {
