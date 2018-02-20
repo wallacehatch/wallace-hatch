@@ -52,8 +52,12 @@ export default {
       .product-image {
         z-index: 4;
         transform: translateY(-2.4rem);
+        @include respond-to(sm) {transform: none; z-index: 0;}
       }
-      .inner-tile {background-color: $wh-white;}
+      .inner-tile {
+        background-color: $wh-white;
+        @include respond-to(sm) {background-color: rgba(0,0,0,0)}
+      }
     }
     @include respond-to(lg) { padding: 5rem 0.35rem 4rem 0.35rem;}
     @include respond-to(md) { padding: 4.5rem 0.3rem 4rem 0.3rem;}
@@ -71,6 +75,7 @@ export default {
       transition: 0.35s all cubic-bezier(.69,.16,.32,1);
       width: 100%;
       height: 38.3rem;
+      @include respond-to(sm) {height: 27.1rem;}
     }
     .product-title {
       @include intro-text;
@@ -164,7 +169,7 @@ export default {
     .inner-tile {
       padding: 5rem 0;
       position: absolute;
-      background-color: transparent;
+      background-color: rgba(0,0,0,0);
       bottom: 0;
       left: 0;
       right: 0;
