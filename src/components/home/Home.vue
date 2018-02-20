@@ -49,7 +49,6 @@ export default {
     }
   },
   mounted() {
-
     this.$Lazyload.$once('loaded', (e) => {
       document.getElementById('home_lazy_1').setAttribute('lazy', 'loaded')
       document.getElementById('home_lazy_2').setAttribute('lazy', 'loaded')

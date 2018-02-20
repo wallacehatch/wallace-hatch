@@ -56,12 +56,12 @@ export default {
     },
     submitCoupon(){
       StripeService.validateCoupon(this.coupon.coupon).then((result) => {
-        console.log(result)
-        this.coupon.validated = true;
-        this.coupon.coupon = null;
-        this.$store.commit('ADD_COUPON', result.data);
-        document.getElementById('coupon_input').blur();
-
+        if (result.data.valid == true) {
+          this.coupon.validated = true;
+          this.coupon.coupon = null;
+          this.$store.commit('ADD_COUPON', result.data);
+          document.getElementById('coupon_input').blur();
+        }
       }, (err) => {
         console.log("COUPON NOT VALID!!" + err)
         this.coupon.invalid = true;

@@ -63,45 +63,46 @@ function createCustomer(form, coupon) {
 
 
 function submitOrder(form, bag, coupon){
-		var tmpForm =  {
-        account: {
-          name: 'Greg Miller',
-          email: 'greg711miller@gmail.com',
-          phone: '4403966613',
-          acceptTerms: true,
-        },
-        shipping: {
-          name: 'Greg Miller',
-          address: '364 East Northwood avenue',
-          streetNumber: 'some street',
-          streetName: 'some street name',
-          aptSuite: '',
-          company: '',
-          city: 'Columbus',
-          state: 'Ohio',
-          country: 'USA',
-          zip: '43201',
-        },
-        billing: {
-         cardNumber: "4242424242424242",
-         exp: '02/19',
-         cvc: '123',
-       },
-       googlePlace: form.googlePlace,
-      }
-     var tmpBag = {
-     	items: [{
-     		sku: "WR140S",
-     		quantity: 1,
-     	},
-     	{
-     		sku: "BR140P",
-     		quantity: 1,
-     	}]
-	 }
-	 var tmpCoupon = ""
+	// 	var tmpForm =  {
+  //       account: {
+  //         name: 'Greg Miller',
+  //         email: 'greg711miller@gmail.com',
+  //         phone: '4403966613',
+  //         acceptTerms: true,
+  //       },
+  //       shipping: {
+  //         name: 'Greg Miller',
+  //         address: '364 East Northwood avenue',
+  //         streetNumber: 'some street',
+  //         streetName: 'some street name',
+  //         aptSuite: '',
+  //         company: '',
+  //         city: 'Columbus',
+  //         state: 'Ohio',
+  //         country: 'USA',
+  //         zip: '43201',
+  //       },
+  //       billing: {
+  //        cardNumber: "4242424242424242",
+  //        exp: '02/19',
+  //        cvc: '123',
+  //      },
+  //      googlePlace: form.googlePlace,
+  //     }
+  //    var tmpBag = {
+  //    	items: [{
+  //    		sku: "WR140S",
+  //    		quantity: 1,
+  //    	},
+  //    	{
+  //    		sku: "BR140P",
+  //    		quantity: 1,
+  //    	}]
+	//  }
+	//  var tmpCoupon = ""
 	let bagVals = Object.values(bag)
 	var formattedBag = {items: bagVals}
+  console.log(coupon)
   // return Promise.resolve(axios.post(process.env.API_URL + 'submit-order/', {account: tmpForm.account, shipping: tmpForm.shipping,google_place: tmpForm.googlePlace ,cardInfo: tmpForm.billing, cart: tmpBag, coupon: tmpCoupon }))
 	return Promise.resolve(axios.post(process.env.API_URL + 'submit-order/', {account: form.account, shipping: form.shipping,google_place: form.googlePlace ,cardInfo: form.billing, cart: formattedBag, coupon: coupon }))
 

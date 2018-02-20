@@ -4,10 +4,16 @@ svc.addItem = addItem;
 svc.removeItem = removeItem;
 svc.getBag = getBag;
 svc.indexForSku = indexForSku;
+svc.clearBag = clearBag;
 
 function getBag() {
   return JSON.parse(localStorage.getItem('currentSessionBag'));
 }
+
+function clearBag() {
+	localStorage.setItem('currentSessionBag', null);
+}
+
 
 
 function addItem(product, sku, quantity) {
