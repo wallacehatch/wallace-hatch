@@ -63,7 +63,6 @@ export default {
       this.$emit('input', e.target.value)
     },
     shouldBlurField(e) {
-      console.log(e.target.value);
       if (!e.target.value) {this.fieldState.active = false}
     },
   }
