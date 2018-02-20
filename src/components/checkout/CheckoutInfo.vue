@@ -187,6 +187,7 @@ export default {
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
+      this.form.googlePlace = place;
       this.form.addressSelected = true;
       place.address_components.map(this.assignAddressComponent);
     })

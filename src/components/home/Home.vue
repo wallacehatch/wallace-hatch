@@ -137,7 +137,7 @@ export default {
   transition: 0.3s all linear;
   box-sizing: border-box;
   @include respond-to(md) { font-size: 1.2rem;}
-  @include respond-to(sm) { width: calc(100% - 2rem); }
+  @include respond-to(sm) { width: calc(100% - 2rem);}
   &:hover {
       background-color: #ffffff;
       box-shadow: 0 27px 20px 0 rgba(0, 0, 0, 0.1), 0 4px 14px 0 rgba(0, 0, 0, 0.2);
