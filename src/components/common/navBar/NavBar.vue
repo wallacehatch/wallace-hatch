@@ -36,6 +36,7 @@
 			animateActiveBar(pos) {
 				console.log('animate active bar: ' + pos);
 				if (this.$store.state.navLayout === 1) return;
+				if (window.innerWidth < 768) return;
 				setTimeout(() => {
 					var timeline = anime.timeline();
 					timeline.add({
@@ -52,7 +53,7 @@
 						easing: 'linear',
 						offset: '-=0',
 					})
-					console.log(this.keyPoints[pos].startPoint + (16*pos) + 'px');
+					// console.log(this.keyPoints[pos].startPoint + (16*pos) + 'px');
 				})
 			},
 			positionActiveBar() {
@@ -112,7 +113,7 @@
 		}
 	}
 	.active-bar {
-		box-shadow: 0 2px 4px 0 $wh-black, 0 1px 1px 0 rgba(0, 0, 0, 0.3);
+		// box-shadow: 0 2px 4px 0 $wh-black, 0 1px 1px 0 rgba(0, 0, 0, 0.3);
 		border-bottom: solid 2px $wh-black;
 		box-sizing: border-box;
 		height: 2px;

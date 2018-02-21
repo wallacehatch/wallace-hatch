@@ -96,6 +96,10 @@ export default {
 	height: 9rem;
 	max-width: 38rem;
 	width: calc(100%  -4rem);
+	@include respond-to(md) {
+		input  {padding: 1rem 0;}
+		.std-input-label { top: 1.4rem;}
+	}
 }
 .newsletter-cont{
 	text-align: center;
@@ -110,6 +114,8 @@ export default {
 		text-align: center;
 		text-transform: uppercase;
 		margin-bottom: 3rem;
+		@include respond-to(md) {margin-bottom: 2.5rem;}
+		@include respond-to(sm) {margin-bottom: 2rem;}
 	}
 	.logo {
 		margin: 6rem auto 2rem auto;

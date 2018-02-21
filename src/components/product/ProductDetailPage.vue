@@ -448,7 +448,7 @@ export default {
           }
         }
         @include respond-to(md) {height: 41.2rem}
-        @include respond-to(sm) {height: 28.8rem}
+        @include respond-to(sm) {height: 31.3rem}
       }
       .additional-images-cont {
         padding: 6rem 0 8.3rem 0;
