@@ -13,7 +13,7 @@ function handleCouponActivation() {
   setPageOpenTime();
   var interval = setInterval(() => {
     var nowDate = new Date();
-    var time = getPageOpenTime()
+    var time = getPageOpenTime();
     // open coupon modal if page have been open for a minute and user has not seen coupon previously
     if ((nowDate.getTime() - time > 60000) && (getCouponOpenTime() == null)) {
       triggerCoupon();
@@ -21,9 +21,8 @@ function handleCouponActivation() {
   }, 10000)
 }
 
-
 function resetCouponOpenTime() {
-  localStorage.setItem('couponOpenTime', null);
+  localStorage.setItem(couponKey, null);
 }
 
 function getCouponOpenTime() {
@@ -38,7 +37,6 @@ function setPageOpenTime() {
   let time = new Date();
   localStorage.setItem(pageKey, JSON.stringify(time.getTime()));
 }
-
 
 function setCouponOpenTime() {
   let time = new Date();
