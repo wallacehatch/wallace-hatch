@@ -51,6 +51,7 @@ export default {
     font-size: 1.2rem;
     padding: 1.6rem 0;
     font-weight: bold;
+    @include respond-to(md) {padding: 1rem 0}
   }
   .instagram-image {
     display: inline-block;

@@ -41,13 +41,13 @@ function setPageOpenTime() {
 function setCouponOpenTime() {
   let time = new Date();
   // only set time for coupon opening if it hasn't been previously set to keep original opening time
-  if (getCouponOpenTime == null) {
+  if (getCouponOpenTime() == null) {
       localStorage.setItem(couponKey, JSON.stringify(time.getTime()));
   }
 }
 
-
 function triggerCoupon() {
+  setCouponOpenTime();
   store.commit('SET_COUPON_MODAL_ACTIVE', true);
 }
 

@@ -169,7 +169,7 @@ export default {
   }
 
   .story-section-cont {
-    padding-top: 5rem;
+    padding-top: 7rem;
     text-align: center;
     &.mission, &.products {
       @include respond-to(sm) {
@@ -363,7 +363,7 @@ export default {
     padding-top: 15.4rem;
     @include respond-to(lg) {padding-top: 8.8rem}
     @include respond-to(md) {padding-top: 8rem}
-    @include respond-to(sm) {padding-top: 6rem}
+    @include respond-to(sm) {padding-top: 6rem; overflow: hidden;}
     .story-hero-image {
       position: absolute;
       top: 0;
@@ -399,7 +399,7 @@ export default {
     height: 0.4rem;
     background-color: $wh-black;
     width: 3.6rem;
-    border-radius: 10px;
+    border-radius: 0px;
     margin: auto;
     &.white {
       background-color: $wh-white;

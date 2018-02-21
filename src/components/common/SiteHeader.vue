@@ -11,10 +11,10 @@
           <div class="header-right">
               <nav-bar @linkClick="handleLinkClick" class="wh-site-nav hide-sm" :items="nav.items" :active="active" navKey="siteNav">
               </nav-bar>
-              <a @click="handleBagClick">
-              <div class="shopping-cart-icon fal fa-shopping-bag" aria-hidden="true"></div>
-              <span class="badge open-sans"  v-if="cartModal.badgeNumber > 0">{{cartModal.badgeNumber}}</span>
-          </a>
+              <a class="mobile-bag-cont" @click="handleBagClick">
+                <div class="shopping-cart-icon fal fa-shopping-bag" aria-hidden="true"></div>
+                <span class="badge open-sans"  v-if="cartModal.badgeNumber > 0">{{cartModal.badgeNumber}}</span>
+              </a>
           </div>
         </div>
         <div v-if="$store.state.navLayout === 1">

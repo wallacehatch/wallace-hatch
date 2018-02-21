@@ -6,24 +6,26 @@
       <ul class="nav-options-cont">
         <li @click="function() {handleNavItemClick(i)}" v-for="(item, i) in items" :class="{active: activeItem === i}">{{item}}</li>
       </ul>
-      <ul class="aux-options-cont">
-        <!-- <li>Sign in</li> -->
-        <li @click="faqClick" >FAQ</li>
-        <li @click="contactUsClick">contact us</li>
-      </ul>
-      <ul class="social-items-cont">
-        <li><a target="_blank" href="https://www.instagram.com/wallaceHatch/"><i class="fab fa-instagram"></i></a></li>
-        <li><a target="_blank" href="https://www.facebook.com/WallaceHatch/"><i class="fab fa-facebook-f"></i></a></li>
-        <li><a target="_blank" href="https://twitter.com/WallaceHatch"><i class="fab fa-twitter"></i></a></li>
-        <li><a target="_blank" href="mailto:hello@wallacehatch.com?Subject=Checked%20Out%20the%20Site"><i class="fal fa-envelope"></i></a></li>
-      </ul>
-      <ul class="legal-items-cont top">
-        <li @click="termsClick">Terms & Conditions</li>
-        <li @click="privacyClick">Privacy Policy</li>
-      </ul>
-      <ul class="legal-items-cont bottom">
-        <li>© 2017 Wallace Hatch</li>
-      </ul>
+      <div class="secondary-nav-cont">
+        <ul class="aux-options-cont">
+          <!-- <li>Sign in</li> -->
+          <li @click="faqClick" >FAQ</li>
+          <li @click="contactUsClick">contact us</li>
+        </ul>
+        <ul class="social-items-cont">
+          <li><a target="_blank" href="https://www.instagram.com/wallaceHatch/"><i class="fab fa-instagram"></i></a></li>
+          <li><a target="_blank" href="https://www.facebook.com/WallaceHatch/"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a target="_blank" href="https://twitter.com/WallaceHatch"><i class="fab fa-twitter"></i></a></li>
+          <li><a target="_blank" href="mailto:hello@wallacehatch.com?Subject=Checked%20Out%20the%20Site"><i class="fal fa-envelope"></i></a></li>
+        </ul>
+        <ul class="legal-items-cont top">
+          <li @click="termsClick">Terms & Conditions</li>
+          <li @click="privacyClick">Privacy Policy</li>
+        </ul>
+        <ul class="legal-items-cont bottom">
+          <li>© 2017 Wallace Hatch</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -121,8 +123,10 @@ export default {
 
 <style lang="scss">
   @import '../../../styles/_variables.scss';
-  .mobile-nav-cont {
-
+  .secondary-nav-cont {
+    position: absolute;
+    border-top: 1px solid #252525;
+    left: 0; right: 0; bottom: 1.5rem;
   }
   .mobile-nav-mask {
     position: fixed;
@@ -164,7 +168,6 @@ export default {
     .nav-options-cont {
       margin-top: 7.2rem;
       padding-bottom: 2.5rem;
-      border-bottom: 1px solid #252525;
       li {
         @include intro-text;
         color: $wh-white;
