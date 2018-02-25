@@ -52,10 +52,17 @@ export default {
       const orderItems = BagService.getBag().items.map((item) => {
         return {sku: item.sku, quantity: item.quantity};
       });
-      StripeService.submitOrder(this.form, orderItems).then((result) => {
+
+      var couponCode = ""
+      if (this.$store.state.coupons.length > 0) {
+        couponCode = this.$store.state.coupons[0].id
+      }
+
+      StripeService.submitOrder(this.form, orderItems, couponCode).then((result) => {
+        console.log("clearing bag")
+        BagService.clearBag();
         var name = result.data.shipping.name
         var orderId = result.data.id.substr(3)
-
          this.$router.push('/');
          this.$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE', {
           active: true,
