@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div :class="{'load-mask': !loaded}" >
     <hr class="faq-divider ab">
     <div :id="'cont' + qKey" class="faq-item-cont" @click="handleExpand">
       <div :id="'header' + qKey" class="question-header">
@@ -19,15 +19,18 @@ export default {
   data() {
     return {
       expanded: false,
+      loaded: false,
     }
   },
   mounted() {
     setTimeout(() => {
       const cont = document.getElementById('cont' + this.qKey);
       const header = document.getElementById('header' + this.qKey);
+      console.log('Header Height');
       console.log(header.getBoundingClientRect().height);
-      cont.style.height = String(header.getBoundingClientRect().height + 40) + 'px';
-    })
+      cont.style.height = String(header.getBoundingClientRect().height + 20) + 'px';
+      this.loaded = true;
+    },400)
   },
   methods: {
     handleExpand() {
@@ -66,6 +69,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-sizing: border-box;
   padding-top: 2rem;
   .title {
     @include intro-text;

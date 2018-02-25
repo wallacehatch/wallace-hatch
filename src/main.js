@@ -11,11 +11,16 @@ import Vue2Filters from 'vue2-filters'
 import VueScrollTo from 'vue-scrollto'
 import VueTheMask from 'vue-the-mask'
 import VueLazyLoad from 'vue-lazyload'
+import VueTouch from 'vue-touch'
 
 Vue.config.productionTip = false
+VueTouch.config.pan = {
+  threshold: 1
+}
 Vue.use(VeeValidate);
 Vue.use(VueScrollTo);
 Vue.use(Vue2Filters);
+Vue.use(VueTouch);
 
 const config = {
   strict: false,

@@ -62,7 +62,8 @@ export default {
     })
 
   },
-  mounted(){
+  mounted() {
+    this.$store.commit('SET_MOBILE', window.innerWidth < 768)
     // CouponService.handleCouponActivation();  // Uncomment to trigger coupon service. Coupon will open in 60 seconds if user has not seen coupon before
   }
 }
