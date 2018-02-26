@@ -44,7 +44,8 @@ export default {
         })
       }
       else {
-        if (window.innerWidth < 767) { document.body.style.overflow = 'initial'; }
+        // if (window.innerWidth < 767) { document.body.style.overflow = 'initial'; }
+        document.body.style.overflow = 'initial';
         anime({
           targets: '#os_modal_mask',
           opacity: 0,

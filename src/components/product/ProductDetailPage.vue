@@ -3,12 +3,7 @@
     <div class="pdp-cont" v-if="product">
       <div class="pdp-upper-cont">
         <div class="pdp-ul">
-          <div class="image-zoom-mask" @click="handleImageZoom" v-if="imageZoomed"></div>
-          <div class="active-image-cont" id="active_image_cont" @click="handleImageZoom" :class="{zoomed: imageZoomed}">
-            <img class="active-image lazy" id="active_image" v-lazy="product.images[activeImageIndex]" alt="">
-            <div v-show="!imageZoomed" class="zoom-tab hide-sm" :class="{zoomed: imageZoomed}"><i class="fal fa-expand"></i></div>
-            <div v-show="imageZoomed" class="zoom-tab" :class="{zoomed: imageZoomed}"><i class="fal fa-times"></i></div>
-          </div>
+          <product-image :product="product" :activeImageIndex="activeImageIndex"></product-image>
           <div class="additional-images-cont">
             <div v-for="(image, i) in product.images" class="additional-image lazy"
               :class="{active: activeImageIndex === i}"
@@ -81,7 +76,6 @@
       <!-- <band-section></band-section> -->
       </div>
     </div>
-    <!-- {{JSON.parse(product.metadata.howToWear)}} -->
   </div>
 </template>
 
@@ -90,22 +84,24 @@ import BagService from '@/BagService';
 import StripeService from '@/StripeService';
 import ProductInfoTable from './ProductInfoTable';
 import BandSection from '@/components/bands/BandSection';
+import ProductImage from './ProductImage';
 export default {
    name: 'ProductPage',
    components: {
      ProductInfoTable,
-     BandSection
+     BandSection,
+     ProductImage,
    },
    data () {
     return {
       product: null,
-      imageZoomed: false,
       currentSkuIndex: null,
       productInfo: null,
       stickyAddCart: false,
       addCartOffset: null,
+
       activeImageIndex: 0,
-      currentHandleZoomPan: null,
+      lastMobileImageHeight: 0,
     }
   },
   mounted() {
@@ -130,51 +126,6 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
-    panImage(e) {
-      debugger;
-    },
-    snapImage(e) {
-
-    },
-    handleZoomPan(e) {
-      const elCont = document.getElementById('active_image_cont');
-      const el = document.getElementById('active_image');
-      var lastPageY = e.clientY;
-      var lastPageX = e.clientX;
-      return (e) => {
-        const width  = el.getBoundingClientRect().width;
-        const xDiff = el.getBoundingClientRect().width - elCont.getBoundingClientRect().width
-        const yDiff = el.getBoundingClientRect().height - elCont.getBoundingClientRect().height
-        const newPageX = lastPageX - e.clientX + Number(el.style.left.slice(0,-2));
-        const newPageY = lastPageY - e.clientY + Number(el.style.top.slice(0,-2));
-        const adjustedPageX = Math.max(Math.min(width/2, newPageX), width/2 - xDiff);
-        const adjustedPageY = Math.max(Math.min(newPageY, 0), yDiff * -1);
-        el.style.left = String(adjustedPageX) + 'px';
-        el.style.top = String(adjustedPageY) + 'px';
-        lastPageX = e.clientX;
-        lastPageY = e.clientY;
-      }
-    },
-    handleImageZoom(e) {
-      const el = document.getElementById('active_image');
-      const width  = el.getBoundingClientRect().width;
-      const height = el.getBoundingClientRect().height;
-      if (!this.imageZoomed) {
-        el.style.top = String(-1 * (e.layerY - (height/4))) + 'px';
-        el.style.left = String(-1.4 * (e.layerX - (width/2))) + 'px';
-        el.style.transform = 'translateX(-50%)';
-        this.currentHandleZoomPan = this.handleZoomPan(e);
-        document.addEventListener('mousemove', this.currentHandleZoomPan);
-        this.imageZoomed = true;
-      }
-      else {
-        el.style.left = '50%';
-        el.style.top = 0;
-        el.style.transform = 'translateX(-50%)';
-        document.removeEventListener('mousemove', this.currentHandleZoomPan);
-        this.imageZoomed = false;
-      }
-    },
     setButtonOffset() {
       setTimeout(() => {
         this.addCartOffset = window.scrollY + document.getElementById('add_cart_btn_pdp').getBoundingClientRect().top - window.innerHeight + 62;
@@ -384,72 +335,7 @@ export default {
         width: 100%;
         max-width: 100%;
       }
-      .image-zoom-mask {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: transparent;
-      }
-      .active-image-cont {
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-        position: relative;
-        height: 51.5rem;
-        overflow: hidden;
-        .active-image {
-          position: absolute;
-          top: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          height: 100%;
-          transition: 0.2s all ease;
-        }
-        .zoom-tab {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 4.4rem;
-          height: 4.4rem;
-          background-color: #e9eaed;
-          opacity: 0;
-          transition: 0.2s all linear;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          box-sizing: border-box;
-          border-color: #ccc;
-          svg {
-            font-size: 2.8rem;
-            color: $wh-black;
-          }
-          &:hover {
-            box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-	          border: solid 1px #cccccc;
-            cursor: pointer;
-          }
-          &.zoomed {
-            background-color: #000000;
-	          box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
-            svg {font-size: 3.2rem; color: $wh-white;}
-          }
-        }
-        &:hover {
-          cursor: zoom-in;
-          .zoom-tab { opacity: 1; }
-        }
-        &.zoomed {
-          &:hover {cursor: zoom-out;}
-          .zoom-tab {opacity: 1;}
-          .active-image {
-            height: 200%;
-          }
-        }
-        @include respond-to(md) {height: 41.2rem}
-        @include respond-to(sm) {height: 31.3rem}
-      }
+
       .additional-images-cont {
         padding: 6rem 0 8.3rem 0;
         overflow: auto;
