@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="site-cont">
     <!-- SITE HERO -->
-    <div class="hero-cont">
+    <!-- <div class="hero-cont">
 
       <img v-lazy="'https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image.jpg'"
       data-srcset="https://s3.us-east-2.amazonaws.com/wallace-hatch/hero-image.jpg 1353w,
@@ -14,8 +14,10 @@
         <p class="hero-3">Worn by Kendall Jenner</p>
         <button class="hero-btn" v-scroll-to="'#product-showcase'">Shop now</button>
       </div>
-    </div>
+    </div> -->
     <!-- PRODUCT SHOWCASE -->
+    <hero-carousel></hero-carousel>
+    
     <div class="section-heading-cont" id="product-showcase">
       <div class="lazy delay-1" id="home_lazy_2">
         <p class="header">Pre-order now</p>
@@ -37,11 +39,12 @@
 import ProductTile from './ProductTile';
 import ExperienceSection from './ExperienceSection';
 import StripeService from '@/StripeService.js';
-
+import HeroCarousel from './HeroCarousel';
 export default {
   components: {
     ExperienceSection,
     ProductTile,
+    HeroCarousel,
   },
   data() {
     return {

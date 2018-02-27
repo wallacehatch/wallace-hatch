@@ -32,12 +32,11 @@ export default {
   methods: {
 
     startMobileImagePan(e) {
-      // console.log('Starting image pan');
-      console.log('starting mobile pan');
+      // console.log('starting mobile pan');
       this.panMobileImage = this.mobileImagePan();
     },
     mobileImagePan(e) {
-      console.log('panning mobile image');
+      // console.log('panning mobile image');
       const el = document.getElementById('zoom_image_mobile');
       const elCont = document.getElementById('zoom_image_mobile_cont');
       var lastDeltaY = 0;
@@ -66,13 +65,13 @@ export default {
       }
     },
     handleZoomPan(e) {
-      console.log('desktop zoom panning');
+      // console.log('desktop zoom panning');
       const elCont = document.getElementById('active_image_cont');
       const el = document.getElementById('active_image');
       var lastPageY = e.clientY;
       var lastPageX = e.clientX;
       return (e) => {
-        console.log('zoom panning');
+        // console.log('zoom panning');
         const width  = el.getBoundingClientRect().width;
         const xDiff = el.getBoundingClientRect().width - elCont.getBoundingClientRect().width
         const yDiff = el.getBoundingClientRect().height - elCont.getBoundingClientRect().height
@@ -87,7 +86,7 @@ export default {
       }
     },
     handleImageZoom(e) {
-      console.log('desktop image zooming');
+      // console.log('desktop image zooming');
       const el = document.getElementById('active_image');
       const width  = el.getBoundingClientRect().width;
       const height = el.getBoundingClientRect().height;

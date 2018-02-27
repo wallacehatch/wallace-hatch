@@ -5,7 +5,7 @@
       <input v-if="!iMask"
       @blur="shouldBlurField"
       class="checkout-input"
-      :class="[iClass, {active: fieldState.active || hasValue, valid: fieldState.valid, error: errors.has(iName) || forceError}]"
+      :class="[iClass, {active: fieldState.active || hasValue, valid: fieldState.classes.valid, error: errors.has(iName) || forceError}]"
       :id="iId"
       :type="iType || 'text'"
       :name="iName"
@@ -17,7 +17,7 @@
       <input v-if="iMask"
       @blur="shouldBlurField"
       class="checkout-input"
-      :class="[iClass, {active: fieldState.active || hasValue, valid: fieldState.valid, error: errors.has(iName) || forceError}]"
+      :class="[iClass, {active: fieldState.active || hasValue, valid: fieldState.classes.valid, error: errors.has(iName) || forceError}]"
       :id="iId"
       :type="iType || 'text'"
       :name="iName"
@@ -29,7 +29,7 @@
 
       <label for="" class="placeholder-label">{{iPlaceholder}}</label>
       <slot name="cardIcon"></slot>
-      <div v-if="(iValidate) && (typeof fields[iName] !== 'undefined')" class="status-bubble" :class="{ valid: fields[iName].valid, invalid: errors.has(iName) }"></div>
+      <div v-if="(iValidate) && (typeof fields[iName] !== 'undefined')" class="status-bubble" :class="{ valid: fields[iName].classes.valid, invalid: errors.has(iName) }"></div>
     </div>
     <slot name="cardAuth"></slot>
     <span v-show="errors.has(iName)" class="error-label">{{errors.first(iName)}}</span>
@@ -46,7 +46,7 @@ export default {
     return {
       fieldState: {
         active: false,
-        valid: false,
+        classes: {valid: false},
       },
 
     }
@@ -66,6 +66,9 @@ export default {
       console.log(e.target.value);
       if (!e.target.value) {this.fieldState.active = false}
     },
+  },
+  mounted() {
+    this.fieldState.classes = this.fields[this.iName];
   }
 }
 </script>
