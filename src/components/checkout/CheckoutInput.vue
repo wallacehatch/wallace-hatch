@@ -1,11 +1,11 @@
 <template lang="html">
-  <div class="checkout-field-wrapper" :class="{active: fieldState.active}">
+  <div class="checkout-field-wrapper" :class="{active: fieldState.active || hasValue}">
 
     <div class="checkout-field-cont">
       <input v-if="!iMask"
       @blur="shouldBlurField"
       class="checkout-input"
-      :class="[iClass, {active: fieldState.active || hasValue, valid: fieldState.valid, error: errors.has(iName) || forceError}]"
+      :class="[iClass, {active: fieldState.active || hasValue, valid: fieldState.classes.valid, error: errors.has(iName) || forceError}]"
       :id="iId"
       :type="iType || 'text'"
       :name="iName"
@@ -17,7 +17,7 @@
       <input v-if="iMask"
       @blur="shouldBlurField"
       class="checkout-input"
-      :class="[iClass, {active: fieldState.active || hasValue, valid: fieldState.valid, error: errors.has(iName) || forceError}]"
+      :class="[iClass, {active: fieldState.active || hasValue, valid: fieldState.classes.valid, error: errors.has(iName) || forceError}]"
       :id="iId"
       :type="iType || 'text'"
       :name="iName"
@@ -29,7 +29,7 @@
 
       <label for="" class="placeholder-label">{{iPlaceholder}}</label>
       <slot name="cardIcon"></slot>
-      <div v-if="(iValidate) && (typeof fields[iName] !== 'undefined')" class="status-bubble" :class="{ valid: fields[iName].valid, invalid: errors.has(iName) }"></div>
+      <div v-if="(iValidate) && (typeof fields[iName] !== 'undefined')" class="status-bubble" :class="{ valid: fieldState.classes.valid, invalid: errors.has(iName) }"></div>
     </div>
     <slot name="cardAuth"></slot>
     <span v-show="errors.has(iName)" class="error-label">{{errors.first(iName)}}</span>
@@ -46,18 +46,14 @@ export default {
     return {
       fieldState: {
         active: false,
-        valid: false,
+        classes: {valid: false},
       },
 
     }
   },
   methods: {
     isValid() {
-      // debugger;
-      if (typeof this.fields[this.iName] === 'undefined') return false;
-      // console.log(this.iName);
-      // console.log(this.fields[this.iName]);
-      return this.fields[this.iName].valid;
+      return this.fieldState.classes.valid;
     },
     updateModelValue: function(e) {
       this.$emit('input', e.target.value)
@@ -65,6 +61,9 @@ export default {
     shouldBlurField(e) {
       if (!e.target.value) {this.fieldState.active = false}
     },
+  },
+  mounted() {
+    this.fieldState.classes = this.fields[this.iName];
   }
 }
 </script>

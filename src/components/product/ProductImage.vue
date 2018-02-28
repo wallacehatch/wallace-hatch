@@ -32,12 +32,11 @@ export default {
   methods: {
 
     startMobileImagePan(e) {
-      // console.log('Starting image pan');
-      console.log('starting mobile pan');
+      // console.log('starting mobile pan');
       this.panMobileImage = this.mobileImagePan();
     },
     mobileImagePan(e) {
-      console.log('panning mobile image');
+      // console.log('panning mobile image');
       const el = document.getElementById('zoom_image_mobile');
       const elCont = document.getElementById('zoom_image_mobile_cont');
       var lastDeltaY = 0;
@@ -66,13 +65,13 @@ export default {
       }
     },
     handleZoomPan(e) {
-      console.log('desktop zoom panning');
+      // console.log('desktop zoom panning');
       const elCont = document.getElementById('active_image_cont');
       const el = document.getElementById('active_image');
       var lastPageY = e.clientY;
       var lastPageX = e.clientX;
       return (e) => {
-        console.log('zoom panning');
+        // console.log('zoom panning');
         const width  = el.getBoundingClientRect().width;
         const xDiff = el.getBoundingClientRect().width - elCont.getBoundingClientRect().width
         const yDiff = el.getBoundingClientRect().height - elCont.getBoundingClientRect().height
@@ -87,7 +86,7 @@ export default {
       }
     },
     handleImageZoom(e) {
-      console.log('desktop image zooming');
+      // console.log('desktop image zooming');
       const el = document.getElementById('active_image');
       const width  = el.getBoundingClientRect().width;
       const height = el.getBoundingClientRect().height;
@@ -182,7 +181,8 @@ export default {
     }
     &.zoomed {
       background-color: #000000;
-      box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
+      border-color: #000 !important;
+      box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1) !important;
       svg {font-size: 3.2rem; color: $wh-white;}
     }
   }
@@ -204,7 +204,11 @@ export default {
 
     &:hover {
       cursor: zoom-in;
-      .zoom-tab { opacity: 1; }
+      .zoom-tab {
+        opacity: 1;
+        box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+        border: solid 1px #cccccc;
+      }
     }
     &.zoomed {
       &:hover {cursor: zoom-out;}
@@ -214,6 +218,6 @@ export default {
       }
     }
     @include respond-to(md) {height: 41.2rem}
-    @include respond-to(sm) {height: 31.3rem}
+    @include respond-to(sm) {height: 32rem}
   }
 </style>

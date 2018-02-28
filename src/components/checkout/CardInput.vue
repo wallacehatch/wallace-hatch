@@ -7,6 +7,7 @@
       iName="card number"
       :iValue="cardInfo.cardNumber"
       v-model="cardInfo.cardNumber"
+      :hasValue="cardInfo.cardNumber"
       iValidate="required|credit_card"
       iMask="#### #### #### ####"
       :forceError="forceError">
@@ -19,6 +20,7 @@
           class="info-field-cont col-2"
           :iClass="[{'active': cardInfo.exp}]"
           :iValue="cardInfo.exp"
+          :hasValue="cardInfo.exp"
           iName="expiration date"
           iMask="##/##"
           v-model="cardInfo.exp"
@@ -30,6 +32,7 @@
           class="info-field-cont col-2"
           :iClass="['nbl', {'active': cardInfo.cvc}]"
           :iValue="cardInfo.cvc"
+          :hasValue="cardInfo.cvc"
           iName="cvc"
           v-model="cardInfo.cvc"
           iValidate="required"
@@ -44,7 +47,7 @@
 <script>
 import CheckoutInput from './CheckoutInput';
 export default {
-  props: ['forceError'],
+  props: ['forceError', 'iValue'],
   inject: ['$validator'],
   components: {
     CheckoutInput,
@@ -60,10 +63,10 @@ export default {
      return {
        cardTypes,
        cardInfo: {
-         cardNumber: null,
+         cardNumber: this.iValue.cardNumber,
          cardType: cardTypes.UNKNOWN,
-         exp: '',
-         cvc: '',
+         exp: this.iValue.exp,
+         cvc: this.iValue.cvc,
        }
      }
    },

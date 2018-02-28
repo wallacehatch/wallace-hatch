@@ -65,7 +65,7 @@ export default {
       }
 		},
 		handleBagClick(){
-      		this.$router.replace('/bag/')
+      		this.$router.replace('/bag')
 		},
 	},
 	components: {

@@ -75,7 +75,7 @@ export default {
       transition: 0.35s all cubic-bezier(.69,.16,.32,1);
       width: 100%;
       height: 38.3rem;
-      @include respond-to(sm) {height: 27.1rem;}
+      @include respond-to(sm) {height: 32rem;}
     }
     .product-title {
       @include intro-text;

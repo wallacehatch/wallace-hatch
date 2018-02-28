@@ -52,7 +52,10 @@ export default new Router({
       }, {
         path: 'info',
         component: CheckoutInfo,
-      },{
+      }, {
+        path: 'review/:status',
+        component: CheckoutReview,
+      }, {
         path: 'review',
         component: CheckoutReview,
       }]
