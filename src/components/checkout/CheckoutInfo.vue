@@ -192,6 +192,10 @@ export default {
       place.address_components.map(this.assignAddressComponent);
     })
   },
+
+  beforeDestroy(){
+    console.log("about to be destroyed")
+  },
   data() {
     return {
 
