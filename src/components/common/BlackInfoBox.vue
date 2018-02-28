@@ -16,13 +16,13 @@ export default {
   data () {
     return {
 			blurbs: [{
-				text: 'Free Worldwide Shipping on orders over $50',
+				text: 'Free U.S Shipping on orders over $50',
 				icon: 'fal fa-paper-plane'
 			}, {
-				text: 'Free Returns Worldwide on orders over $95',
+				text: 'Free U.S Returns on orders over $95',
 				icon: 'fal fa-undo'
 			}, {
-				text: '24/7 Customer  service support',
+				text: '24/7 Customer service support',
 				icon: 'fal fa-life-ring'
 			}, {
 				text: 'Safe and Secure Checkout',

@@ -63,6 +63,10 @@ export default {
         },
         googlePlace: null,
         billing: {
+          cardNumber: null,
+          cardType: null,
+          exp: '',
+          cvc: '',
         }
       }
     }

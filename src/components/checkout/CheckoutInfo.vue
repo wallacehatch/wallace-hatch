@@ -7,6 +7,7 @@
       iName="name"
       v-model="form.account.name"
       :iValue="form.account.name"
+      :hasValue="!!form.account.name"
       iValidate="required">
     </checkout-input>
     <checkout-input iPlaceholder="Email"
@@ -15,6 +16,7 @@
       iName="email"
       v-model="form.account.email"
       :iValue="form.account.email"
+      :hasValue="!!form.account.email"
       iValidate="required|email">
     </checkout-input>
     <checkout-input iPlaceholder="Phone"
@@ -24,6 +26,7 @@
       iValidate="required"
       v-model="form.account.phone"
       :iValue="form.account.phone"
+      :hasValue="!!form.account.phone"
       iMask="(###) ###-####">
     </checkout-input>
     <checkout-checkbox
@@ -34,13 +37,14 @@
     </checkout-checkbox>
     <hr class="info-section-divider">
 
-    <h2 class="info-section-title">Ship to</h2>
+    <h2 class="info-section-title" id="ship_to" >Ship to</h2>
     <checkout-input iPlaceholder="First and Last Name"
       iType="text"
       class="info-field-cont"
       iName="shipping name"
       v-model="form.shipping.name"
       :iValue="form.shipping.name"
+      :hasValue="!!form.shipping.name"
       iValidate="required">
     </checkout-input>
     <checkout-input iPlaceholder="Street Address"
@@ -49,6 +53,7 @@
       iName="address_ac"
       v-model="form.shipping.address"
       :iValue="form.shipping.address"
+      :hasValue="!!form.shipping.address"
       iClass="address"
       iId="address_ac"
       iValidate="required">
@@ -104,8 +109,8 @@
     </div>
     <hr class="info-section-divider">
 
-    <h2 class="info-section-title">Bill to</h2>
-    <card-input v-model="form.billing" class="info-field-cont"></card-input>
+    <h2 class="info-section-title" id="bill_to">Bill to</h2>
+    <card-input v-model="form.billing"  :iValue="form.billing" class="info-field-cont"></card-input>
     <checkout-coupon class="info-field-cont"></checkout-coupon>
     <order-summary :bag="bag" buttonText="Review Your Order"  @buttonClick="advanceToReview"></order-summary>
   </form>
@@ -183,6 +188,11 @@ export default {
   },
   mounted() {
     this.$emit('setSection', 0);
+    this.$route.params.section && window.scroll({
+      top: document.getElementById(this.$route.params.section).getBoundingClientRect().top - 100,
+      left: 0,
+      behavior: 'smooth'
+    });
     var input = document.getElementById('address_ac');
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.addListener('place_changed', () => {
