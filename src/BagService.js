@@ -1,3 +1,5 @@
+import store from './store';
+
 const svc = {}
 
 svc.addItem = addItem;
@@ -10,11 +12,13 @@ function getBag() {
   return JSON.parse(localStorage.getItem('currentSessionBag'));
 }
 
+
+
+// clear bag and reset badge number
 function clearBag() {
+  store.commit('SET_BADGE_NUMBER', 0);
 	localStorage.setItem('currentSessionBag', null);
 }
-
-
 
 function addItem(product, sku, quantity) {
   var bag = JSON.parse(localStorage.getItem('currentSessionBag'));
@@ -23,7 +27,6 @@ function addItem(product, sku, quantity) {
     bag.items = bag.items.map((item) => {
       if ((item.product.id === product.id) && (item.sku === sku)) {
         item.quantity += quantity;
-        console.log('found this in bag already');
         foundInBag = true
       }
       return item
