@@ -17,7 +17,7 @@
           <hr class="line">
           <p class="title">{{product.name}}</p>
           <p class="price hide-sm">{{product.skus.data[currentSkuIndex].price / 100 | currency }}</p>
-          <div class="color-bubble" :style="{backgroundImage: 'url(https://s3.us-east-2.amazonaws.com/wallace-hatch/color-bubble-' + product.skus.data[currentSkuIndex].id + '.jpg)'}" ></div>
+          <div class="color-bubble" :style="{backgroundImage: 'url(https://d3dty8fv62xana.cloudfront.net/color-bubble-' + product.skus.data[currentSkuIndex].id + '.jpg)'}" ></div>
           <p class="color-text">Color: {{product.metadata.dialColor}} / {{product.metadata.caseColor}}</p>
           <div class="add-cart-btn pdp" id="add_cart_btn_pdp" :class="{'stuck': stickyAddCart}" @click="handleAddCartClick">
             <span class="mobile-add" @click="handleAddCartClick">Add to bag</span>
@@ -433,12 +433,12 @@ export default {
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
-        // background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/color-selected.jpg');
+        // background-image: url('https://d3dty8fv62xana.cloudfront.net/color-selected.jpg');
         // @include respond-to(2x) {
-        //   background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/color-selected%402x.jpg');
+        //   background-image: url('https://d3dty8fv62xana.cloudfront.net/color-selected%402x.jpg');
         // }
         // @include respond-to(3x) {
-        //   background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/color-selected%403x.jpg');
+        //   background-image: url('https://d3dty8fv62xana.cloudfront.net/color-selected%403x.jpg');
         // }
       }
       .color-text {
