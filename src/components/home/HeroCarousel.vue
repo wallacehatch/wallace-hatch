@@ -56,15 +56,19 @@ export default {
   },
   watch: {
     'loaded' (newVal) {
+      console.log(newVal);
+      console.log('starting hero carousel');
       newVal && this.startProgressBar();
     }
   },
   methods: {
     rotateCarousel() {
-      this.rotateAnimation = anime.timeline();
-      const foDur = 750;
-      const fiDur = 500;
-      const gap = 350;
+      console.log('Animations should not be null');
+      console.log(this.rotateAnimation);
+      console.log(this.pbAnimation);
+      const foDur = 450;
+      const fiDur = 300;
+      const gap = 150;
       const nextStage = (this.currentStage+1 === this.stages.length) ? 0 : this.currentStage + 1;
 
       this.rotateAnimation.add({
@@ -107,7 +111,7 @@ export default {
         targets: '#home_lazy_1',
         opacity: 1.0,
         duration: fiDur,
-        offset: foDur + foDur + fiDur + gap,
+        offset: foDur + foDur + fiDur*0.1 + gap,
         easing: this.easing,
       })
       this.rotateAnimation.add({
@@ -129,6 +133,7 @@ export default {
       })
     },
     startProgressBar() {
+      this.rotateAnimation = anime.timeline();
       this.pbAnimation = anime({
         targets: '#pg_pb_' + String(this.currentStage),
         width: '100%',
@@ -144,7 +149,11 @@ export default {
     // this.startProgressBar();
   },
   beforeDestroy() {
+    console.log('Animations should not be null');
+    console.log(this.rotateAnimation);
+    console.log(this.pbAnimation);
     this.rotateAnimation.pause();
+    console.log('paused rotate animation');
     this.pbAnimation.pause();
   }
 }

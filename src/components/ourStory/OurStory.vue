@@ -56,7 +56,7 @@
 
       <p class="body community">By far the most important part of the Wallace Hatch brand is the ever-growing community  of exceptional humans that have adopted it.
        Follow along on Insta as our community shares their daily experiences; putting the Wallace Hatch flair on the endless adventure that we call life.</p>
-      <p class="tags community">#WallaceHatch	#WHpicoftheday</p>
+      <p class="tags community">#WallaceHatch <span>#WHpicoftheday</span></p>
 
     </div>
 
@@ -69,7 +69,7 @@
           <live-instagram-feed class="our-products" fourTile="true" :instagramPosts="productInstagramPosts" ></live-instagram-feed>
         </div>
         <div class="right">
-          <p class="body">The goal of our products is simple. Deliver clean, elegant, and premium style at an exceedingly reasonable price — the perfect companion for tomorrow’s adventure. That’s why we offer a two-year guarantee on all of our products, plus free U.S shipping and returns.</p>
+          <p class="body">The goal of our products is simple. Deliver clean, elegant, and premium style at an exceedingly reasonable price — the perfect companion for tomorrow’s adventure. We back this up with a two-year guarantee on all of our products, plus free U.S shipping and returns.</p>
         </div>
       </div>
     </div>
@@ -191,6 +191,7 @@ export default {
     }
     .tags.community {
       margin-bottom: 13rem;
+      span {padding-left: 5rem;}
       @include respond-to(lg) {margin-bottom: 6.4rem}
       @include respond-to(md) {margin-bottom: 5rem}
       @include respond-to(sm) {margin-bottom: 1rem; text-align: left;}

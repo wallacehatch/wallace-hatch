@@ -12,7 +12,10 @@
       </div>
     </div>
     <div class="product-showcase-cont clearfix">
-      <product-tile v-for="(item, i) in items" :key="'pTile' + i" :item="item"></product-tile>
+      <!-- <product-tile v-for="(item, i) in items" :key="'pTile' + i" :item="item"></product-tile> -->
+      <product-tile key="pTile0" v-if="kallio" :item="kallio"></product-tile>
+      <product-tile key="pTile1" v-if="soho" :item="soho"></product-tile>
+      <product-tile key="pTile2" v-if="palermo" :item="palermo"></product-tile>
     </div>
     <div class="experience-section-cont">
       <experience-section></experience-section>
@@ -35,6 +38,9 @@ export default {
   data() {
     return {
       items: null,
+      kallio: null,
+      palermo: null,
+      soho: null,
       heroLoaded: false,
     }
   },
@@ -55,6 +61,29 @@ export default {
       this.items = result.data.reduce((total, product) => {
         const newItems = product.skus.data.map((sku, ind) => {
           if (sku.attributes.collection === 'frontPage') {
+            switch (sku.id.toUpperCase()) {
+            case 'BR140P':
+            this.soho = {
+              product,
+              sku: sku.id,
+              skuInd: ind,
+            }
+            break;
+            case 'WR140S':
+            this.kallio = {
+              product,
+              sku: sku.id,
+              skuInd: ind,
+            }
+            break;
+            case 'BB140S':
+            this.palermo = {
+              product,
+              sku: sku.id,
+              skuInd: ind,
+            }
+            break;
+            }
             return {
               product,
               sku: sku.id,

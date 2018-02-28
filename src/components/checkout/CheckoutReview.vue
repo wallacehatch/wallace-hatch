@@ -40,6 +40,7 @@ export default {
   data() {
     return {
       // bag: {items: []},
+      successModalData: null,
     }
   },
   methods: {
@@ -61,14 +62,15 @@ export default {
       StripeService.submitOrder(this.form, orderItems, couponCode).then((result) => {
         console.log("clearing bag")
         BagService.clearBag();
+
         var name = result.data.shipping.name
         var orderId = result.data.id.substr(3)
-         this.$router.push('/');
-         this.$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE', {
+        this.successModalData = {
           active: true,
           customerName: name,
           orderId: orderId,
-        })
+        }
+        this.$router.push('/checkout/review/ordersuccess');
       }, (err) => {
         alert(err.response.data.error_message)
       })
@@ -76,7 +78,15 @@ export default {
   },
   mounted() {
     this.$emit('setSection', 1);
-  }
+  },
+  watch: {
+    '$route.params.status' (newStatus) {
+      if (newStatus === 'ordersuccess') {
+        this.$router.push('/');
+        this.$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE', this.successModalData)
+      }
+    }
+  },
 }
 </script>
 

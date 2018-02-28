@@ -181,7 +181,8 @@ export default {
     }
     &.zoomed {
       background-color: #000000;
-      box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
+      border-color: #000 !important;
+      box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1) !important;
       svg {font-size: 3.2rem; color: $wh-white;}
     }
   }
@@ -203,7 +204,11 @@ export default {
 
     &:hover {
       cursor: zoom-in;
-      .zoom-tab { opacity: 1; }
+      .zoom-tab {
+        opacity: 1;
+        box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+        border: solid 1px #cccccc;
+      }
     }
     &.zoomed {
       &:hover {cursor: zoom-out;}
