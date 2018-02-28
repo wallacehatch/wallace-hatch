@@ -113,7 +113,7 @@ export default {
       }
     },
     handleReviewBagClick(){
-      this.$router.replace('/bag/');
+      this.$router.replace('/bag');
       this.$store.commit('SET_CART_ACTIVE', false);
     },
   },
