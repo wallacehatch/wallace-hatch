@@ -29,10 +29,11 @@
       <div class="pdp-lower-cont clearfix">
         <div class="pdp-ll">
           <hr class="line">
+          <p class="pdp-info-title">About The Watch</p>
           <p class="description">{{product.description}}</p>
           <hr class="line">
           <div class="how-to-wear-header">
-            <p class="title">How to wear</p>
+            <p class="pdp-info-title">How to wear</p>
             <p class="hashtag"><i class="fab fa-instagram"></i> #{{product.metadata.hashtag}}</p>
           </div>
           <div class="how-to-wear-images-cont" v-if="product">
@@ -70,6 +71,7 @@
         </div>
         <div class="pdp-lr">
           <hr class="line">
+          <p class="pdp-info-title">Watch Details</p>
           <product-info-table :sku="product.skus.data[currentSkuIndex]" :productInfo="product.metadata"></product-info-table>
         </div>
         <!-- <hr class="pdp-divider"> -->
@@ -155,7 +157,6 @@ export default {
   @import '../../styles/_variables.scss';
   .how-to-wear-images-cont {
     margin: -0.3rem;
-    margin-top: 1.7rem;
     &:after {
       content: "";
       display: block;
@@ -210,14 +211,15 @@ export default {
     @include respond-to(lg) {padding: 8rem 0 0 0;}
     @include respond-to(md) {padding: 6.2rem 4.4rem;}
     @include respond-to(sm) {padding: 4rem 0;}
+    .pdp-info-title {
+      @include intro-text;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      margin-bottom: 1.7rem;
+    }
     .how-to-wear-header {
       overflow: auto;
-      .title {
-        @include intro-text;
-        font-size: 1.4rem;
-        text-transform: uppercase;
-        float: left;
-      }
+      .pdp-info-title {float: left;}
       .hashtag {
         @include text-small;
         float: right;
@@ -253,7 +255,7 @@ export default {
       width: 50%;
       box-sizing: border-box;
       padding: 0 1.3rem 0 5.75rem;
-      .line { margin-left: 1.6rem;}
+      .line, .pdp-info-title { margin-left: 1.6rem;}
       @include respond-to(sm) {
         width: 100%;
         padding: 0 1rem;
