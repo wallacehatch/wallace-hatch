@@ -17,7 +17,7 @@
           <hr class="line">
           <p class="title">{{product.name}}</p>
           <p class="price hide-sm">{{product.skus.data[currentSkuIndex].price / 100 | currency }}</p>
-          <div class="color-bubble" :style="{backgroundImage: 'url(https://d3dty8fv62xana.cloudfront.net/color-bubble-' + product.skus.data[currentSkuIndex].id + '.jpg)'}" ></div>
+          <div class="color-bubble" :style="{backgroundImage: 'url(https://d3dty8fv62xana.cloudfront.net/skucrop-' + product.skus.data[currentSkuIndex].id + '.jpg)'}" ></div>
           <p class="color-text">Color: {{product.metadata.dialColor}} / {{product.metadata.caseColor}}</p>
           <div class="add-cart-btn pdp" id="add_cart_btn_pdp" :class="{'stuck': stickyAddCart}" @click="handleAddCartClick">
             <span class="mobile-add">Add to bag</span>
@@ -429,19 +429,30 @@ export default {
         margin-bottom: 4.5rem;
       }
       .color-bubble {
-        height: 6rem;
-        width: 6rem;
+        height: 3.4rem;
+        width: 3.4rem;
         margin: auto;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
-        // background-image: url('https://d3dty8fv62xana.cloudfront.net/color-selected.jpg');
-        // @include respond-to(2x) {
-        //   background-image: url('https://d3dty8fv62xana.cloudfront.net/color-selected%402x.jpg');
-        // }
-        // @include respond-to(3x) {
-        //   background-image: url('https://d3dty8fv62xana.cloudfront.net/color-selected%403x.jpg');
-        // }
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+        border: solid 3px #ffffff;
+        border-radius: 10rem;
+        transition: 0.2s all linear;
+        position: relative;
+        overflow: visible;
+        &::before {
+          content: "";
+          width: 4.6rem;
+          height: 4.6rem;
+          background-color: #000;
+          position: absolute;
+          left: -0.6rem;
+          top: -0.6rem;
+          border-radius: 10rem;
+          z-index: -1;
+        }
+        &:hover {cursor: pointer;}
       }
       .color-text {
         @include intro-text;

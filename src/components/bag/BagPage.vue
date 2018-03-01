@@ -46,6 +46,7 @@ export default {
   },
   beforeMount() {
   	this.refreshCart()
+    this.$store.commit('SET_NAV_LAYOUT', 0);
   },
   methods: {
     refreshCart(){
