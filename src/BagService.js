@@ -21,6 +21,7 @@ function clearBag() {
 }
 
 function addItem(product, sku, quantity) {
+  console.log("bag service add this" + product + sku + quantity);
   var bag = JSON.parse(localStorage.getItem('currentSessionBag'));
   var foundInBag = false;
   if (bag && bag.items) {
