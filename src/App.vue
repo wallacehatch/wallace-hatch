@@ -18,6 +18,7 @@ import axios from 'axios';
 import BagService from '@/BagService';
 import StripeService from '@/StripeService';
 import CouponService from '@/CouponService';
+import ReviewService from '@/ReviewService';
 
 
 export default {
@@ -38,16 +39,15 @@ export default {
     setNavActive(i) {
       this.navActive = i;
     },
-    pageUnloaded() {
-      if (this.leaving){
-      console.log("bitch is leaving!")
-      }
-    },
+
   },
-  created() {
-    document.addEventListener('beforeunload', this.pageUnloaded())
-  },
+
   beforeMount() {
+    const bag = BagService.getBag();
+    if (bag === null) return;
+    const bn = bag.items.reduce((total, item) => {return total + item.quantity},0);
+    this.$store.commit('SET_BADGE_NUMBER', bn);
+
     this.$validator.extend('validExp', {
       getMessage: field => 'The Expiration Date you entered is before the current date',
       validate: (value) => {
@@ -63,10 +63,7 @@ export default {
         return true;
       }
     })
-    const bag = BagService.getBag();
-    if (bag === null) return;
-    const bn = bag.items.reduce((total, item) => {return total + item.quantity},0);
-    this.$store.commit('SET_BADGE_NUMBER', bn);
+
   },
   mounted() {
     this.$store.commit('SET_MOBILE', window.innerWidth < 768)
