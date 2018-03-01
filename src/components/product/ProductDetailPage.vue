@@ -20,7 +20,7 @@
           <div class="color-bubble" :style="{backgroundImage: 'url(https://d3dty8fv62xana.cloudfront.net/color-bubble-' + product.skus.data[currentSkuIndex].id + '.jpg)'}" ></div>
           <p class="color-text">Color: {{product.metadata.dialColor}} / {{product.metadata.caseColor}}</p>
           <div class="add-cart-btn pdp" id="add_cart_btn_pdp" :class="{'stuck': stickyAddCart}" @click="handleAddCartClick">
-            <span class="mobile-add" @click="handleAddCartClick">Add to bag</span>
+            <span class="mobile-add">Add to bag</span>
             <span class="mobile-price">{{product.skus.data[currentSkuIndex].price / 100 | currency}}</span>
           </div>
         </div>

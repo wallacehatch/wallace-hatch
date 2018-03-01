@@ -67,8 +67,8 @@ export default {
     },
     rotateCarousel(stage) {
       const foDur = 450;
-      const fiDur = 300;
-      const gap = 150;
+      const fiDur = 450;
+      const gap = 350;
       var nextStage = (this.currentStage+1 === this.stages.length) ? 0 : this.currentStage + 1;
       nextStage = stage ? stage : nextStage;
 
