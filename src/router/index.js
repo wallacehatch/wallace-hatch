@@ -11,9 +11,8 @@ import CheckoutInfo from '@/components/checkout/CheckoutInfo'
 import CheckoutReview from '@/components/checkout/CheckoutReview'
 import Faq from '@/components/faq/FAQ'
 import OurStory from '@/components/ourStory/OurStory';
-
 Vue.use(Router)
-export default new Router({
+const router = new Router({
   mode: 'history',
   scrollBehavior: (to, from, savedPosition) => {
     return {x: 0, y: 0};
@@ -61,3 +60,10 @@ export default new Router({
       }]
     }]
 })
+router.beforeEach((to,from,next) => {
+  // console.log(to)
+  // hj('stateChange', to.fullPath);
+  next()
+})
+
+export default router

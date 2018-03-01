@@ -17,7 +17,7 @@
 
     <div class="carousel-pg-cont lazy delay-1" id="home_lazy_3">
       <div v-for="(stage,i) in stages" class="pg-item">
-        <div :id="'pg_img_' + i" :class="{active: currentStage === i}" class="image" :style="{backgroundImage: 'url(' + stage.images[0] + ')'}"></div>
+        <div @click="function() {seekCarousel(i)}" :id="'pg_img_' + i" :class="{active: currentStage === i}" class="image" :style="{backgroundImage: 'url(' + stage.images[0] + ')'}"></div>
         <div class="progress-bar">
           <div :id="'pg_pb_' + i" style="width: 0" class="progress-bar fill"></div>
         </div>
@@ -56,20 +56,21 @@ export default {
   },
   watch: {
     'loaded' (newVal) {
-      console.log(newVal);
-      console.log('starting hero carousel');
       newVal && this.startProgressBar();
     }
   },
   methods: {
-    rotateCarousel() {
-      console.log('Animations should not be null');
-      console.log(this.rotateAnimation);
-      console.log(this.pbAnimation);
+    seekCarousel(stage) {
+      this.pbAnimation.pause();
+      this.rotateCarousel(stage);
+
+    },
+    rotateCarousel(stage) {
       const foDur = 450;
       const fiDur = 300;
       const gap = 150;
-      const nextStage = (this.currentStage+1 === this.stages.length) ? 0 : this.currentStage + 1;
+      var nextStage = (this.currentStage+1 === this.stages.length) ? 0 : this.currentStage + 1;
+      nextStage = stage ? stage : nextStage;
 
       this.rotateAnimation.add({
         targets: '#home_lazy_1',
@@ -149,11 +150,7 @@ export default {
     // this.startProgressBar();
   },
   beforeDestroy() {
-    console.log('Animations should not be null');
-    console.log(this.rotateAnimation);
-    console.log(this.pbAnimation);
     this.rotateAnimation.pause();
-    console.log('paused rotate animation');
     this.pbAnimation.pause();
   }
 }
@@ -181,6 +178,7 @@ export default {
       width: 100%;
       height: 5rem;
       border: 4px solid rgba(0,0,0,0);
+      &:hover {cursor: pointer;}
       &.active {border-color: #fff}
       @include respond-to(md) {
         height: 2.7rem;
