@@ -21,7 +21,7 @@
            </div>
            <div class="product-line-bottom">
              <button class="remove-button desktop" @click="removeItem">Remove</button>
-             <div class="additional-message-cont"><p>Includes {{cleanedBandType}}  band and tool to use when changing bands.</p></div>
+             <div class="additional-message-cont"><p>Includes {{cleanedBandType}}  band with quick release to use when changing bands.</p></div>
              <button class="remove-button mobile sm-only" @click="removeItem">Remove</button>
            </div>
          </div>

@@ -124,7 +124,7 @@ export default {
 		background-repeat: no-repeat;
 		background-size: contain;
 		background-position: center;
-		background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/wh-mark.svg');
+		background-image: url('https://d3dty8fv62xana.cloudfront.net/wh-mark.svg');
 	}
 }
 .footer-site-nav {

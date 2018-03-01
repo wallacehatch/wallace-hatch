@@ -1,10 +1,10 @@
 <template lang="html">
   <div class="site-cont">
     <div class="story-hero-cont">
-      <img v-lazy="'https://s3.us-east-2.amazonaws.com/wallace-hatch/city-image.jpg'"
-      data-srcset="https://s3.us-east-2.amazonaws.com/wallace-hatch/city-image.jpg 1353w,
-      https://s3.us-east-2.amazonaws.com/wallace-hatch/city-image%402x.jpg 2600w,
-      https://s3.us-east-2.amazonaws.com/wallace-hatch/city-image%403x.jpg 3900w"
+      <img v-lazy="'https://d3dty8fv62xana.cloudfront.net/city-image.jpg'"
+      data-srcset="https://d3dty8fv62xana.cloudfront.net/city-image.jpg 1353w,
+      https://d3dty8fv62xana.cloudfront.net/city-image%402x.jpg 2600w,
+      https://d3dty8fv62xana.cloudfront.net/city-image%403x.jpg 3900w"
       alt="" class="story-hero-image lazy">
       <div class="lazy delay-1" id="os_lazy_1">
         <h1>Welcome to<br>Wallace Hatch</h1>
@@ -156,9 +156,9 @@ export default {
       margin: auto;
       top: 0; left: 0; right: 0;
       z-index: 3;
-      background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/iphone-insta%402x.png');
-      @include respond-to(2x) {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/iphone-insta%402x.png');}
-      @include respond-to(3x) {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/iphone-insta%403x.png');}
+      background-image: url('https://d3dty8fv62xana.cloudfront.net/iphone-insta%402x.png');
+      @include respond-to(2x) {background-image: url('https://d3dty8fv62xana.cloudfront.net/iphone-insta%402x.png');}
+      @include respond-to(3x) {background-image: url('https://d3dty8fv62xana.cloudfront.net/iphone-insta%403x.png');}
       @include respond-to(sm) {
         width: 100%;
         height: 130vw;

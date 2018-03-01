@@ -37,7 +37,15 @@ export default {
   methods: {
     setNavActive(i) {
       this.navActive = i;
-    }
+    },
+    pageUnloaded() {
+      if (this.leaving){
+      console.log("bitch is leaving!")
+      }
+    },
+  },
+  created() {
+    document.addEventListener('beforeunload', this.pageUnloaded())
   },
   beforeMount() {
     this.$validator.extend('validExp', {

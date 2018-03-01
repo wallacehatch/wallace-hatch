@@ -129,7 +129,7 @@ export default {
   transition: 0.2s all cubic-bezier(.28,.56,.32,1);
 }
 .card-icon {
-  background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/unknowncard.svg');
+  background-image: url('https://d3dty8fv62xana.cloudfront.net/unknowncard.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -138,10 +138,10 @@ export default {
   position: absolute;
   top: calc(50% - 1.5rem);
   left: 1.5rem;
-  &.UNKNOWN {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/unknowncard.svg');}
-  &.AMEX {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/amex.svg');}
-  &.VISA {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/visa.svg');}
-  &.MASTERCARD {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/mastercard.svg');}
-  &.DISCOVER {background-image: url('https://s3.us-east-2.amazonaws.com/wallace-hatch/discover.svg');}
+  &.UNKNOWN {background-image: url('https://d3dty8fv62xana.cloudfront.net/unknowncard.svg');}
+  &.AMEX {background-image: url('https://d3dty8fv62xana.cloudfront.net/amex.svg');}
+  &.VISA {background-image: url('https://d3dty8fv62xana.cloudfront.net/visa.svg');}
+  &.MASTERCARD {background-image: url('https://d3dty8fv62xana.cloudfront.net/mastercard.svg');}
+  &.DISCOVER {background-image: url('https://d3dty8fv62xana.cloudfront.net/discover.svg');}
 }
 </style>
