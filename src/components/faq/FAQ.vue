@@ -33,7 +33,7 @@ export default {
         question: 'What type of movement is used?',
         answer: "We chose a movement that would be both reliable, efficient, and durable. With this said, we went with a Japanese Miyota GL20 Precision Quartz Movement which is one of the most highly regarded in the industry."
       }, {
-        question: 'ARE MVMT WATCHES WATERPROOF?',
+        question: 'ARE WALLACE HATCH WATCHES WATERPROOF?',
         answer: "Our watches have a water resistance of 3 ATM. Please avoid all contact with water, as WATER DAMAGE IS NOT COVERED UNDER WARRANTY."
       }, {
         question: 'WHAT TYPE OF LEATHER IS USED?',
