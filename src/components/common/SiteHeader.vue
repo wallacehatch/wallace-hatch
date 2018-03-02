@@ -210,10 +210,10 @@ export default {
 		.text-mark {
 			float: left;
 			@include h6;
-			font-size: 1.4rem;
-			letter-spacing: 4px;
+			font-size: 1.8rem;
+			letter-spacing: 6px;
 			line-height: 3.2rem;
-			padding-left: 1.6rem;
+			padding-left: 3rem;
 		}
 	}
 }

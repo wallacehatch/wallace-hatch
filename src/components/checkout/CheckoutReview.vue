@@ -70,7 +70,9 @@ export default {
           customerName: name,
           orderId: orderId,
         }
-        this.$router.push('/checkout/review/ordersuccess');
+        hj('vpv', '/ordersuccess');
+        this.$router.push('/');
+        this.$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE', this.successModalData)
       }, (err) => {
         alert(err.response.data.error_message)
       })
@@ -80,12 +82,12 @@ export default {
     this.$emit('setSection', 1);
   },
   watch: {
-    '$route.params.status' (newStatus) {
-      if (newStatus === 'ordersuccess') {
-        this.$router.push('/');
-        this.$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE', this.successModalData)
-      }
-    }
+    // '$route.params.status' (newStatus) {
+    //   if (newStatus === 'ordersuccess') {
+    //     this.$router.push('/');
+    //     this.$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE', this.successModalData)
+    //   }
+    // }
   },
 }
 </script>
