@@ -36,14 +36,14 @@ export default {
       stages: [{
         heroOne: 'Introducing The',
         heroTwo: 'Soho Hatch',
-        heroThree: 'Worn by Kendall Jenner',
+        heroThree: 'From our flagship collection',
         images: ['https://d3dty8fv62xana.cloudfront.net/hero-image-1.jpg',
                 'https://d3dty8fv62xana.cloudfront.net/hero-image-1.jpg',
                 'https://d3dty8fv62xana.cloudfront.net/hero-image-1.jpg'],
       }, {
         heroOne: 'Introducing The',
         heroTwo: 'Palermo Soul & Kallio Rose',
-        heroThree: 'Worn by Kendall Jenner',
+        heroThree: 'From our flagship collection',
         images: ['https://d3dty8fv62xana.cloudfront.net/hero-image-2.jpg',
                 'https://d3dty8fv62xana.cloudfront.net/hero-image-2.jpg',
                 'https://d3dty8fv62xana.cloudfront.net/hero-image-2.jpg'],
@@ -275,6 +275,7 @@ export default {
   text-transform: uppercase;
   color: $wh-white;
   padding-bottom: 0.6rem;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
   @include respond-to(lg) {font-size: 1.4rem;}
 }
 .hero-2 {
@@ -285,9 +286,10 @@ export default {
   padding-bottom: 1rem;
   text-transform: uppercase;
   font-weight: normal;
-  width: 60rem;
-  @include respond-to(lg) {font-size: 3.6rem; width: 43rem;}
-  @include respond-to(md) {font-size: 3rem; width: 37rem;}
+  width: 56rem;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  @include respond-to(lg) {font-size: 3.6rem; width: 40rem;}
+  @include respond-to(md) {font-size: 3rem; width: 35rem;}
   @include respond-to(sm) {font-size: 2.4rem; width: 30rem;}
 }
 .hero-3 {
@@ -296,5 +298,6 @@ export default {
   font-size: 1.2rem;
   color: $wh-white;
   letter-spacing: 3px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
 }
 </style>
