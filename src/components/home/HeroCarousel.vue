@@ -235,8 +235,7 @@ export default {
   border-radius: 0;
   outline: none;
   background-color: rgba(0, 0, 0, 0.7);
-	// box-shadow: 0 17px 20px 15px rgba(0, 0, 0, 0.5), 0 4px 4px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 17px 20px 0 rgba(0, 0, 0, 0.1), 0 4px 14px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 17px 20px 15px rgba(0, 0, 0, 0.5), 0 4px 4px 0 rgba(0, 0, 0, 0.2);
 	border: solid 2px $wh-white;
   padding: 1.6rem 3.5rem;
   @include intro-text;
@@ -263,12 +262,12 @@ export default {
   text-transform: uppercase;
   color: $wh-white;
   padding-bottom: 0.6rem;
-  letter-spacing: 2px;
   @include respond-to(lg) {font-size: 1.4rem;}
 }
 .hero-2 {
   @include h1;
   font-size: 5.2rem;
+  letter-spacing: 6.4px;
   color: $wh-white;
   padding-bottom: 1rem;
   text-transform: uppercase;
@@ -276,7 +275,7 @@ export default {
   width: 60rem;
   @include respond-to(lg) {font-size: 3.6rem; width: 43rem;}
   @include respond-to(md) {font-size: 3rem; width: 37rem;}
-  @include respond-to(sm) {font-size: 2.4rem; width: 32rem;}
+  @include respond-to(sm) {font-size: 2.4rem; width: 30rem;}
 }
 .hero-3 {
   @include intro-text;

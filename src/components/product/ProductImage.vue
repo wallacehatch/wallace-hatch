@@ -8,7 +8,7 @@
     </v-touch>
     <div v-if="$store.state.mobile" class="active-image-cont" id="active_image_cont">
       <img class="active-image lazy" id="active_image" v-lazy="product.images[activeImageIndex]" alt="">
-      <div @click="mobileZoomPopoverActive = true" class="zoom-tab mobile"><i class="fal fa-search-plus"></i></div>
+      <div @click="mobileZoomPopoverActive = true" class="zoom-tab mobile"><i class="fal fa-expand"></i></div>
     </div>
     <div v-else class="active-image-cont" id="active_image_cont" @click="handleImageZoom" :class="{zoomed: imageZoomed}">
       <img class="active-image lazy" id="active_image" v-lazy="product.images[activeImageIndex]" alt="">
@@ -156,10 +156,10 @@ export default {
     }
     &.mobile {
       opacity: 1;
-      top: initial;
-      left: initial;
-      bottom: 1rem;
+      top: 1rem;
       right: 1rem;
+      // bottom: 1rem;
+      // right: 1rem;
       width: 3.6rem;
       height: 3.6rem;
       svg {font-size: 2rem;}
@@ -218,6 +218,6 @@ export default {
       }
     }
     @include respond-to(md) {height: 41.2rem}
-    @include respond-to(sm) {height: 32rem}
+    @include respond-to(sm) {height: 40rem;}
   }
 </style>

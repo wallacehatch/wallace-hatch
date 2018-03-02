@@ -101,7 +101,7 @@ export default {
     float: none;
     width: 4.7rem;
     height: 4rem;
-    margin: 1.7rem auto;
+    margin: 1.4rem auto 1.6rem auto;
     @include respond-to(sm) {width: 2.9rem; height: 2.5rem;}
   }
   @include respond-to(sm) {

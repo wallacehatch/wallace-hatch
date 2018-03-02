@@ -7,11 +7,11 @@
         <li @click="function() {handleNavItemClick(i)}" v-for="(item, i) in items" :class="{active: activeItem === i}">{{item}}</li>
       </ul>
       <div class="secondary-nav-cont">
-        <ul class="aux-options-cont">
-          <!-- <li>Sign in</li> -->
+        <!-- <ul class="aux-options-cont">
+          <li>Sign in</li>
           <li @click="faqClick" >FAQ</li>
           <li @click="contactUsClick">contact us</li>
-        </ul>
+        </ul> -->
         <ul class="social-items-cont">
           <li><a target="_blank" href="https://www.instagram.com/wallaceHatch/"><i class="fab fa-instagram"></i></a></li>
           <li><a target="_blank" href="https://www.facebook.com/WallaceHatch/"><i class="fab fa-facebook-f"></i></a></li>
@@ -38,7 +38,7 @@ export default {
     return {
       lActive: false,
       dur: 500,
-      items: this.$store.state.navItems,
+      items: this.$store.state.navItems.concat(['Contact Us', 'FAQ']),
     }
   },
   mounted() {
@@ -73,6 +73,12 @@ export default {
       break;
       case 1:
       this.$router.push('/our-story');
+      break;
+      case 2:
+      this.contactUsClick();
+      break;
+      case 3:
+      this.faqClick();
       break;
       }
     },
@@ -166,28 +172,30 @@ export default {
       }
     }
     .nav-options-cont {
-      margin-top: 7.2rem;
+      margin-top: 10rem;
       padding-bottom: 2.5rem;
       li {
         @include intro-text;
+        font-weight: 300;
+        text-transform: uppercase;
         color: $wh-white;
         text-align: center;
         text-transform: uppercase;
-        padding: 1.5rem 0;
+        padding: 2.25rem 0;
         list-style: none;
         &.active {
-          position: relative;
-          font-weight: bold;
-          margin-bottom: 1rem;
-          &:after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: calc(50% - 2rem);
-            height: 1px;
-            width: 4rem;
-            border-bottom: 4px solid $wh-white;
-          }
+          // position: relative;
+          // font-weight: 500;
+          // margin-bottom: 1rem;
+          // &:after {
+          //   content: "";
+          //   position: absolute;
+          //   bottom: 0;
+          //   left: calc(50% - 2rem);
+          //   height: 1px;
+          //   width: 4rem;
+          //   border-bottom: 4px solid $wh-white;
+          // }
         }
       }
     }
@@ -209,7 +217,7 @@ export default {
       list-style: none;
       text-align: center;
       font-size: 2rem;
-      padding: 1.6rem 0;
+      padding: 2.6rem 0;
       border-bottom: 1px solid #252525;
       li {
         display: inline-block;
@@ -227,7 +235,7 @@ export default {
       &.top {padding-top: 0.75rem;}
       li {
         display: inline-block;
-        padding: 0.75rem 1rem;
+        padding: 1.25rem 1rem;
       }
       a {
         text-decoration: none;

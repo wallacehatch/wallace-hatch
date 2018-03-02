@@ -324,7 +324,7 @@ export default {
     margin: auto;
     @include respond-to(lg) {padding: 7.5rem 4rem 0 4rem; }
     @include respond-to(md) {padding: 7.5rem 0rem 0 0rem; }
-    @include respond-to(sm) {padding: 7.5rem 0rem 0 0rem; }
+    @include respond-to(sm) {padding: 5.4rem 0rem 0 0rem; }
   }
   .pdp-upper-cont {
     .pdp-ul {
@@ -333,7 +333,7 @@ export default {
       width: 52.5%;
       padding-top: 5rem;
       @include respond-to(sm) {
-        padding-top: 2rem;
+        padding-top: 0rem;
         width: 100%;
         max-width: 100%;
       }
@@ -346,7 +346,7 @@ export default {
           padding: 6rem 0 5rem 0;
         }
         @include respond-to(sm) {
-          padding: 2rem 0;
+          padding: 0rem 0 2rem 0;
         }
       }
       .additional-image {
@@ -453,6 +453,7 @@ export default {
           z-index: -1;
         }
         &:hover {cursor: pointer;}
+        @include respond-to(sm) {margin: 1rem auto 4rem auto;}
       }
       .color-text {
         @include intro-text;

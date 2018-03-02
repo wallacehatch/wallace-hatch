@@ -207,6 +207,7 @@ export default {
       // -webkit-transform: translateX(101%);
       @include respond-to(sm) {
         // width: 94%;
+        // min-width: 28rem;
       }
     }
     .close-btn {

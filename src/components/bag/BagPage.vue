@@ -128,7 +128,7 @@ export default {
       }
       .product-image {
         width: 6.8rem;
-        height: 11.9rem;
+        height: 10.9rem;
         margin-top: 3rem;
       }
     }
