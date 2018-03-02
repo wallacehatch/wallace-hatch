@@ -178,7 +178,20 @@ export default {
       width: 100%;
       height: 5rem;
       border: 4px solid rgba(0,0,0,0);
-      &:hover {cursor: pointer;}
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: #fff;
+        opacity: 0;
+        z-index: 1;
+        transition: 0.2s opacity linear;
+      }
+      &:hover {
+        cursor: pointer;
+        &::after {opacity: 0.1}
+      }
       &.active {border-color: #fff}
       @include respond-to(md) {
         height: 2.7rem;

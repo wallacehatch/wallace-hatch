@@ -44,10 +44,11 @@ export default {
     .quote-box {
       display: inline-block;
       margin: 0 1rem;
-      max-width: 58.8rem;
+      max-width: 73.6rem;
       border: solid 2.4px #f1f1f1;
       padding: 4rem 8rem;
       box-sizing: border-box;
+      @include respond-to(lg) {max-width: 58.8rem;}
       @include respond-to(sm) {padding: 2.4rem 3rem;}
     }
     .quote-text {
