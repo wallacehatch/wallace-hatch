@@ -37,16 +37,16 @@ export default {
         heroOne: 'Introducing The',
         heroTwo: 'Soho Hatch',
         heroThree: 'From our flagship collection',
-        images: ['https://d3dty8fv62xana.cloudfront.net/hero-image-1.jpg',
-                'https://d3dty8fv62xana.cloudfront.net/hero-image-1.jpg',
-                'https://d3dty8fv62xana.cloudfront.net/hero-image-1.jpg'],
+        images: ['https://d3dty8fv62xana.cloudfront.net/hero-image-1w.jpg',
+                'https://d3dty8fv62xana.cloudfront.net/hero-image-1w.jpg',
+                'https://d3dty8fv62xana.cloudfront.net/hero-image-1w.jpg'],
       }, {
         heroOne: 'Introducing The',
         heroTwo: 'Palermo Soul & Kallio Rose',
         heroThree: 'From our flagship collection',
-        images: ['https://d3dty8fv62xana.cloudfront.net/hero-image-2.jpg',
-                'https://d3dty8fv62xana.cloudfront.net/hero-image-2.jpg',
-                'https://d3dty8fv62xana.cloudfront.net/hero-image-2.jpg'],
+        images: ['https://d3dty8fv62xana.cloudfront.net/hero-image-2w.jpg',
+                'https://d3dty8fv62xana.cloudfront.net/hero-image-2w.jpg',
+                'https://d3dty8fv62xana.cloudfront.net/hero-image-2w.jpg'],
       }],
       currentStage: 0,
       easing: 'easeInOutCubic',
@@ -138,7 +138,7 @@ export default {
       this.pbAnimation = anime({
         targets: '#pg_pb_' + String(this.currentStage),
         width: '100%',
-        duration: 10000,
+        duration: 16000,
         easing: 'linear',
         complete: () => {
           this.rotateCarousel();
@@ -233,7 +233,7 @@ export default {
 }
 .hero-cont {
   background-color: transparent;
-  height: 48.437vw;
+  height: 44.44vw;
   box-sizing: border-box;
   padding-left: 11rem;
   padding-top: 20rem;

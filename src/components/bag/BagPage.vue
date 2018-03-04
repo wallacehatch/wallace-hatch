@@ -59,9 +59,9 @@ export default {
       case 0:
       this.message = "Nothing in your bag, start shopping to fill it up."; break;
       case 1:
-      this.message = this.$store.state.badgeNumber + " item in your cart"; break;
+      this.message = this.$store.state.badgeNumber + " item in your bag"; break;
       default:
-      this.message = this.$store.state.badgeNumber + " items in your cart"; break;
+      this.message = this.$store.state.badgeNumber + " items in your bag"; break;
       }
     },
     getCleanedBandType(item) {

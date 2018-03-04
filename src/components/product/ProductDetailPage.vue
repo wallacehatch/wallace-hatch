@@ -107,19 +107,11 @@ export default {
     }
   },
   mounted() {
-    this.$Lazyload.$once('loaded', (e) => {
-      document.getElementById('pdp_lazy_1').setAttribute('lazy', 'loaded')
-    })
+    this.setLazyLoad();
   },
   beforeMount() {
-    StripeService.getProduct(this.$route.params.handle).then((result) => {
-      this.currentSkuIndex = BagService.indexForSku(result.data, this.$route.params.sku);
-      this.product = result.data;
-      this.stickyAddCart = false;
-      this.setButtonOffset();
-    }, (err) => {
-      debugger;
-    })
+    this.$store.commit('SET_NAV_LAYOUT', 0);
+    this.loadSku(this.$route.params.sku);
   },
   created() {
     window.addEventListener('scroll', this.handleScroll);
@@ -128,6 +120,36 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    setLazyLoad() {
+      this.$Lazyload.$once('loaded', (e) => {
+        document.getElementById('pdp_lazy_1').setAttribute('lazy', 'loaded')
+      })
+    },
+    loadSku(sku) {
+      this.setSkuNav(this.$route.params.sku)
+      StripeService.getProduct(this.$route.params.handle).then((result) => {
+        this.currentSkuIndex = BagService.indexForSku(result.data, sku);
+        this.product = result.data;
+        this.stickyAddCart = false;
+        this.setButtonOffset();
+      }, (err) => {
+        debugger;
+      })
+    },
+    setSkuNav(sku) {
+      switch (sku.toUpperCase()) {
+        case 'WR140S':
+        this.$emit('setNav',1);
+        break;
+        case 'BR140P':
+        this.$emit('setNav',2);
+        break;
+        case 'BB140S':
+        this.$emit('setNav',3);
+        break;
+      }
+
+    },
     setButtonOffset() {
       setTimeout(() => {
         this.addCartOffset = window.scrollY + document.getElementById('add_cart_btn_pdp').getBoundingClientRect().top - window.innerHeight + 62;
@@ -149,7 +171,11 @@ export default {
       this.$store.commit('SET_CART_ACTIVE', true);
     }
   },
-
+  watch: {
+    '$route.params.sku' (newSku) {
+      this.loadSku(newSku);
+    }
+  }
 }
 </script>
 
@@ -331,7 +357,8 @@ export default {
       float: left;
       max-width: 50rem;
       width: 52.5%;
-      padding-top: 5rem;
+      padding-top: 2rem;
+      @include respond-to(md) {padding-top: 1rem}
       @include respond-to(sm) {
         padding-top: 0rem;
         width: 100%;
@@ -339,12 +366,11 @@ export default {
       }
 
       .additional-images-cont {
-        padding: 6rem 0 8.3rem 0;
+        padding: 1rem 0 8rem 0;
         overflow: auto;
         text-align: center;
-        @include respond-to(md) {
-          padding: 6rem 0 5rem 0;
-        }
+        @include respond-to(lg) { padding: 1rem 0 6rem 0; }
+        @include respond-to(md) { padding: 0rem 0 4rem 0; }
         @include respond-to(sm) {
           padding: 0rem 0 2rem 0;
         }
@@ -355,9 +381,9 @@ export default {
         background-position: center;
         background-repeat: no-repeat;
         background-color: $wh-white;
-        width: 6rem;
-        height: 6rem;
-        margin-left: 2rem;
+        width: 4rem;
+        height: 4rem;
+        margin-left: 1.3rem;
         display: inline-block;
         box-shadow: 0 2px 6px 0 rgba(149, 149, 149, 0.2);
         border: solid 2px #d8d8d8;

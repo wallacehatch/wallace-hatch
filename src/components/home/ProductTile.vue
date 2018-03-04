@@ -49,6 +49,7 @@ export default {
     width: 33.33%;
     transition: 0.3s all linear;
     &:hover {
+      cursor: pointer;
       .product-image {
         z-index: 4;
         transform: translateY(-2.4rem);

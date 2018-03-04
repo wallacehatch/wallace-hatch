@@ -38,7 +38,7 @@ export default {
     return {
       lActive: false,
       dur: 500,
-      items: this.$store.state.navItems.concat(['Contact Us', 'FAQ']),
+      items: [this.$store.state.navItems[0], 'Contact Us', 'FAQ', this.$store.state.navItems[this.$store.state.navItems.length-1]],
     }
   },
   mounted() {

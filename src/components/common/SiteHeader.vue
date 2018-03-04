@@ -60,6 +60,15 @@ export default {
       this.$router.push('/');
       break;
       case 1:
+      this.$router.push('/watches/prod_CC3h2K9rkgOwHs/WR140S');
+      break;
+      case 2:
+      this.$router.push('/watches/prod_CCDIhc5sXnbPmy/BR140P');
+      break;
+      case 3:
+      this.$router.push('/watches/prod_CCDBCRzlKEEp7V/BB140S');
+      break;
+      case 4:
       this.$router.push('/our-story');
       break;
       }
