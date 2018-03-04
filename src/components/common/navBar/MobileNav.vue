@@ -7,11 +7,11 @@
         <li @click="function() {handleNavItemClick(i)}" v-for="(item, i) in items" :class="{active: activeItem === i}">{{item}}</li>
       </ul>
       <div class="secondary-nav-cont">
-        <!-- <ul class="aux-options-cont">
-          <li>Sign in</li>
+        <ul class="aux-options-cont">
+          <!-- <li>Sign in</li> -->
           <li @click="faqClick" >FAQ</li>
           <li @click="contactUsClick">contact us</li>
-        </ul> -->
+        </ul>
         <ul class="social-items-cont">
           <li><a target="_blank" href="https://www.instagram.com/wallaceHatch/"><i class="fab fa-instagram"></i></a></li>
           <li><a target="_blank" href="https://www.facebook.com/WallaceHatch/"><i class="fab fa-facebook-f"></i></a></li>
@@ -38,7 +38,8 @@ export default {
     return {
       lActive: false,
       dur: 500,
-      items: [this.$store.state.navItems[0], 'Contact Us', 'FAQ', this.$store.state.navItems[this.$store.state.navItems.length-1]],
+      // items: [this.$store.state.navItems[0], 'Contact Us', 'FAQ', this.$store.state.navItems[this.$store.state.navItems.length-1]],
+      items: this.$store.state.navItems,
     }
   },
   mounted() {
@@ -72,13 +73,16 @@ export default {
       this.$router.push('/');
       break;
       case 1:
-      this.$router.push('/our-story');
+      this.$router.push('/watches/prod_CC3h2K9rkgOwHs/WR140S');
       break;
       case 2:
-      this.contactUsClick();
+      this.$router.push('/watches/prod_CCDIhc5sXnbPmy/BR140P');
       break;
       case 3:
-      this.faqClick();
+      this.$router.push('/watches/prod_CCDBCRzlKEEp7V/BB140S');
+      break;
+      case 4:
+      this.$router.push('/our-story');
       break;
       }
     },
@@ -172,7 +176,7 @@ export default {
       }
     }
     .nav-options-cont {
-      margin-top: 10rem;
+      margin-top: 3rem;
       padding-bottom: 2.5rem;
       li {
         @include intro-text;
@@ -181,7 +185,7 @@ export default {
         color: $wh-white;
         text-align: center;
         text-transform: uppercase;
-        padding: 2.25rem 0;
+        padding: 1.5rem 0;
         list-style: none;
         &.active {
           // position: relative;
@@ -206,8 +210,8 @@ export default {
       list-style: none;
       text-align: center;
       text-transform: uppercase;
-      margin-top: 2rem;
-      padding-bottom: 2rem;
+      margin-top: 1rem;
+      padding-bottom: 1rem;
       border-bottom: 1px solid #252525;
       li {
         padding: 1rem 0;
@@ -217,7 +221,7 @@ export default {
       list-style: none;
       text-align: center;
       font-size: 2rem;
-      padding: 2.6rem 0;
+      padding: 1.8rem 0;
       border-bottom: 1px solid #252525;
       li {
         display: inline-block;
@@ -232,10 +236,10 @@ export default {
       @include text-body;
       color: $wh-white;
       list-style: none;
-      &.top {padding-top: 0.75rem;}
+      &.top {padding-top: 1.25rem;}
       li {
         display: inline-block;
-        padding: 1.25rem 1rem;
+        padding: 0.75rem 1rem;
       }
       a {
         text-decoration: none;
