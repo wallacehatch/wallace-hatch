@@ -60,6 +60,15 @@ export default {
       this.$router.push('/');
       break;
       case 1:
+      this.$router.push('/watches/prod_CC3h2K9rkgOwHs/WR140S');
+      break;
+      case 2:
+      this.$router.push('/watches/prod_CCDIhc5sXnbPmy/BR140P');
+      break;
+      case 3:
+      this.$router.push('/watches/prod_CCDBCRzlKEEp7V/BB140S');
+      break;
+      case 4:
       this.$router.push('/our-story');
       break;
       }
@@ -101,7 +110,7 @@ export default {
     float: none;
     width: 4.7rem;
     height: 4rem;
-    margin: 1.7rem auto;
+    margin: 1.4rem auto 1.6rem auto;
     @include respond-to(sm) {width: 2.9rem; height: 2.5rem;}
   }
   @include respond-to(sm) {
@@ -210,10 +219,10 @@ export default {
 		.text-mark {
 			float: left;
 			@include h6;
-			font-size: 1.4rem;
-			letter-spacing: 4px;
+			font-size: 1.8rem;
+			letter-spacing: 6px;
 			line-height: 3.2rem;
-			padding-left: 1.6rem;
+			padding-left: 3rem;
 		}
 	}
 }

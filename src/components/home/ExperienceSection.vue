@@ -1,15 +1,15 @@
 <template lang="html">
   <div class="experience-section-cont">
-    <div class="quote-box">
-      <p class="quote-text">“You can have anything you want in life if you dress for it.”</p>
-      <p class="quote-source">– Edith Head</p>
-    </div>
     <div class="section-heading-cont">
-      <p class="header">Life Experiences</p>
+      <p class="header">Our Instagram</p>
       <p class="subtext">#WallaceHatch</p>
       <hr class="line">
     </div>
     <live-instagram-feed :instagramPosts="instagramPosts" ></live-instagram-feed>
+    <div class="quote-box">
+      <p class="quote-text">“You can have anything you want in life if you dress for it.”</p>
+      <p class="quote-source">– Edith Head</p>
+    </div>
   </div>
 </template>
 
@@ -43,11 +43,12 @@ export default {
     text-align: center;
     .quote-box {
       display: inline-block;
-      margin: 0 1rem;
-      max-width: 58.8rem;
+      margin: 6rem 1rem 7rem 1rem;
+      max-width: 73.6rem;
       border: solid 2.4px #f1f1f1;
       padding: 4rem 8rem;
       box-sizing: border-box;
+      @include respond-to(lg) {max-width: 58.8rem; margin: 4rem 1rem 5rem 1rem;}
       @include respond-to(sm) {padding: 2.4rem 3rem;}
     }
     .quote-text {

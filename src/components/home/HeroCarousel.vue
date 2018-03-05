@@ -36,17 +36,17 @@ export default {
       stages: [{
         heroOne: 'Introducing The',
         heroTwo: 'Soho Hatch',
-        heroThree: 'Worn by Kendall Jenner',
-        images: ['https://d3dty8fv62xana.cloudfront.net/hero-image-1.jpg',
-                'https://d3dty8fv62xana.cloudfront.net/hero-image-1.jpg',
-                'https://d3dty8fv62xana.cloudfront.net/hero-image-1.jpg'],
+        heroThree: 'From our flagship collection',
+        images: ['https://d3dty8fv62xana.cloudfront.net/hero-image-1w.jpg',
+                'https://d3dty8fv62xana.cloudfront.net/hero-image-1w.jpg',
+                'https://d3dty8fv62xana.cloudfront.net/hero-image-1w.jpg'],
       }, {
         heroOne: 'Introducing The',
         heroTwo: 'Palermo Soul & Kallio Rose',
-        heroThree: 'Worn by Kendall Jenner',
-        images: ['https://d3dty8fv62xana.cloudfront.net/hero-image-2.jpg',
-                'https://d3dty8fv62xana.cloudfront.net/hero-image-2.jpg',
-                'https://d3dty8fv62xana.cloudfront.net/hero-image-2.jpg'],
+        heroThree: 'From our flagship collection',
+        images: ['https://d3dty8fv62xana.cloudfront.net/hero-image-2w.jpg',
+                'https://d3dty8fv62xana.cloudfront.net/hero-image-2w.jpg',
+                'https://d3dty8fv62xana.cloudfront.net/hero-image-2w.jpg'],
       }],
       currentStage: 0,
       easing: 'easeInOutCubic',
@@ -67,8 +67,8 @@ export default {
     },
     rotateCarousel(stage) {
       const foDur = 450;
-      const fiDur = 300;
-      const gap = 150;
+      const fiDur = 450;
+      const gap = 350;
       var nextStage = (this.currentStage+1 === this.stages.length) ? 0 : this.currentStage + 1;
       nextStage = stage ? stage : nextStage;
 
@@ -138,7 +138,7 @@ export default {
       this.pbAnimation = anime({
         targets: '#pg_pb_' + String(this.currentStage),
         width: '100%',
-        duration: 10000,
+        duration: 16000,
         easing: 'linear',
         complete: () => {
           this.rotateCarousel();
@@ -178,7 +178,20 @@ export default {
       width: 100%;
       height: 5rem;
       border: 4px solid rgba(0,0,0,0);
-      &:hover {cursor: pointer;}
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: #fff;
+        opacity: 0;
+        z-index: 1;
+        transition: 0.2s opacity linear;
+      }
+      &:hover {
+        cursor: pointer;
+        &::after {opacity: 0.1}
+      }
       &.active {border-color: #fff}
       @include respond-to(md) {
         height: 2.7rem;
@@ -220,7 +233,7 @@ export default {
 }
 .hero-cont {
   background-color: transparent;
-  height: 48.437vw;
+  height: 44.44vw;
   box-sizing: border-box;
   padding-left: 11rem;
   padding-top: 20rem;
@@ -235,8 +248,7 @@ export default {
   border-radius: 0;
   outline: none;
   background-color: rgba(0, 0, 0, 0.7);
-	// box-shadow: 0 17px 20px 15px rgba(0, 0, 0, 0.5), 0 4px 4px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 17px 20px 0 rgba(0, 0, 0, 0.1), 0 4px 14px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 17px 20px 15px rgba(0, 0, 0, 0.5), 0 4px 4px 0 rgba(0, 0, 0, 0.2);
 	border: solid 2px $wh-white;
   padding: 1.6rem 3.5rem;
   @include intro-text;
@@ -263,20 +275,22 @@ export default {
   text-transform: uppercase;
   color: $wh-white;
   padding-bottom: 0.6rem;
-  letter-spacing: 2px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
   @include respond-to(lg) {font-size: 1.4rem;}
 }
 .hero-2 {
   @include h1;
   font-size: 5.2rem;
+  letter-spacing: 6.4px;
   color: $wh-white;
   padding-bottom: 1rem;
   text-transform: uppercase;
   font-weight: normal;
-  width: 60rem;
-  @include respond-to(lg) {font-size: 3.6rem; width: 43rem;}
-  @include respond-to(md) {font-size: 3rem; width: 37rem;}
-  @include respond-to(sm) {font-size: 2.4rem; width: 32rem;}
+  width: 56rem;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  @include respond-to(lg) {font-size: 3.6rem; width: 40rem;}
+  @include respond-to(md) {font-size: 3rem; width: 35rem;}
+  @include respond-to(sm) {font-size: 2.4rem; width: 30rem;}
 }
 .hero-3 {
   @include intro-text;
@@ -284,5 +298,6 @@ export default {
   font-size: 1.2rem;
   color: $wh-white;
   letter-spacing: 3px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
 }
 </style>

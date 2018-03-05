@@ -200,6 +200,9 @@ export default {
       this.form.googlePlace = place;
       this.form.addressSelected = true;
       place.address_components.map(this.assignAddressComponent);
+      setTimeout(() => {
+        document.getElementById('address_ac').value = place.formatted_address;
+      })
     })
   },
 

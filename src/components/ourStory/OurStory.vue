@@ -114,7 +114,7 @@ export default {
     }
   },
   beforeMount() {
-    this.$emit('setNav',1);
+    this.$emit('setNav',4);
     this.$store.commit('SET_NAV_LAYOUT', 2);
   }
 }

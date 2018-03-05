@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="cart-item-cont">
-        <div class="cart-item-inner-cont">
-            <div class="product-image" @click="handleImageClick" :style="{backgroundImage: 'url(' + item.product.images[0] + ')'}"></div>
+        <div class="cart-item-inner-cont clearfix"  @click="handleImageClick">
+            <div class="product-image" :style="{backgroundImage: 'url(' + item.product.images[0] + ')'}"></div>
             <div class="product-info">
                 <h4 class="cart-item-text">{{item.product.skus.data[skuIndex].attributes.size}} MM</h4>
                 <h4 class="cart-item-heading">{{item.product.name}}</h4>
@@ -50,6 +50,7 @@ export default {
       this.$emit('qtyChange');
     },
     handleImageClick() {
+      this.$store.commit('SET_CART_ACTIVE', false);
       this.$router.push('/watches/' + this.item.product.id + '/' + this.item.sku);
     },
   },

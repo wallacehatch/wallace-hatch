@@ -45,10 +45,11 @@ export default {
     float: left;
     position: relative;
     box-sizing: border-box;
-    padding: 7rem 0.25rem 5.5rem 0.25rem;
+    padding: 4rem 0.25rem 5.5rem 0.25rem;
     width: 33.33%;
     transition: 0.3s all linear;
     &:hover {
+      cursor: pointer;
       .product-image {
         z-index: 4;
         transform: translateY(-2.4rem);
@@ -59,10 +60,10 @@ export default {
         @include respond-to(sm) {background-color: rgba(0,0,0,0)}
       }
     }
-    @include respond-to(lg) { padding: 5rem 0.35rem 4rem 0.35rem;}
-    @include respond-to(md) { padding: 4.5rem 0.3rem 4rem 0.3rem;}
+    @include respond-to(lg) { padding: 1.5rem 0.35rem 4rem 0.35rem;}
+    @include respond-to(md) { padding: 1.4rem 0.3rem 4rem 0.3rem;}
     @include respond-to(sm) {
-      padding: 3rem 0.25rem 3rem 0.25rem;
+      padding: 1rem 0.25rem 3rem 0.25rem;
       width: 100%;
       margin-top: 1.5rem;
     }
@@ -74,7 +75,7 @@ export default {
       position: relative;
       transition: 0.35s all cubic-bezier(.69,.16,.32,1);
       width: 100%;
-      height: 38.3rem;
+      height: 46.3rem;
       @include respond-to(sm) {height: 32rem;}
     }
     .product-title {

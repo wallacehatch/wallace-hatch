@@ -32,7 +32,7 @@
 			color: $wh-black;
 		}
 		&.active {
-			// font-weight: 600;
+			font-weight: 600;
 		}
 	}
 

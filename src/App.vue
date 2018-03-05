@@ -47,7 +47,7 @@ export default {
     if (bag === null) return;
     const bn = bag.items.reduce((total, item) => {return total + item.quantity},0);
     this.$store.commit('SET_BADGE_NUMBER', bn);
-    // for some reason this is not loading correctly.... 
+    // for some reason this is not loading correctly....
     this.$validator.extend('validExp', {
       getMessage: field => 'The Expiration Date you entered is before the current date',
       validate: (value) => {
@@ -63,7 +63,6 @@ export default {
         return true;
       }
     })
-
   },
   mounted() {
     this.$store.commit('SET_MOBILE', window.innerWidth < 768)

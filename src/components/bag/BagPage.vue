@@ -46,6 +46,7 @@ export default {
   },
   beforeMount() {
   	this.refreshCart()
+    this.$store.commit('SET_NAV_LAYOUT', 0);
   },
   methods: {
     refreshCart(){
@@ -58,9 +59,9 @@ export default {
       case 0:
       this.message = "Nothing in your bag, start shopping to fill it up."; break;
       case 1:
-      this.message = this.$store.state.badgeNumber + " item in your cart"; break;
+      this.message = this.$store.state.badgeNumber + " item in your bag"; break;
       default:
-      this.message = this.$store.state.badgeNumber + " items in your cart"; break;
+      this.message = this.$store.state.badgeNumber + " items in your bag"; break;
       }
     },
     getCleanedBandType(item) {
@@ -127,7 +128,7 @@ export default {
       }
       .product-image {
         width: 6.8rem;
-        height: 11.9rem;
+        height: 10.9rem;
         margin-top: 3rem;
       }
     }

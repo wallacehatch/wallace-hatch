@@ -17,10 +17,7 @@
       <product-tile key="pTile1" v-if="soho" :item="soho"></product-tile>
       <product-tile key="pTile2" v-if="palermo" :item="palermo"></product-tile>
     </div>
-    <div class="experience-section-cont">
-      <experience-section></experience-section>
-    </div>
-
+    <experience-section></experience-section>
   </div>
 </template>
 
@@ -105,7 +102,8 @@ export default {
 .experience-section-cont {
   clear: both;
   padding-top: 6rem;
-  @include respond-to(lg) {padding-top: 4rem}
+  @include respond-to(lg) {padding-top: 5rem}
+  @include respond-to(md) {padding-top: 4rem}
   @include respond-to(sm) {padding-top: 3rem}
 }
 
@@ -119,10 +117,10 @@ export default {
 }
 
 .section-heading-cont {
-  padding: 8rem 0 0rem 0;
+  padding: 5rem 0 0rem 0;
   text-align: center;
-  @include respond-to(lg) { padding: 6rem 0 0rem 0;}
-  @include respond-to(md) { padding: 5rem 0 0rem 0;}
+  @include respond-to(lg) { padding: 5rem 0 0rem 0;}
+  @include respond-to(md) { padding: 3rem 0 0rem 0;}
   @include respond-to(sm) { padding: 3rem 0 0rem 0;}
   .header {
     @include h4;
