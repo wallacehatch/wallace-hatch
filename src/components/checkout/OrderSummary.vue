@@ -24,7 +24,7 @@
         <p class="label total">Total</p>
         <p class="amount total">{{total | currency}}</p>
       </div>
-      <div @click="$emit('buttonClick')" class="review-btn">{{buttonText}} <i class="fal fa-spinner"></i></div>
+      <div @click="$emit('buttonClick')" :class="{loading: loading}" class="review-btn">{{buttonText}} <i class="fal fa-spinner"></i></div>
     </div>
   </div>
 </template>
@@ -32,7 +32,7 @@
 <script>
 import BagService from '@/BagService';
 export default {
-  props: ['buttonText', 'bag'],
+  props: ['buttonText', 'bag', 'loading'],
   mounted() {
     if (this.$store.state.coupons.length > 0) { this.updateOrderSummary(this.bag, this.$store.state.coupons[0]) }
     else {this.updateOrderSummary(this.bag)}
@@ -136,14 +136,14 @@ export default {
   position: relative;
   svg {
     position: absolute;
-    top: 50%; left: calc(50% + 12.3rem);
-    transform: translateY(-50%);
+    top: calc(50% - 0.7rem); left: calc(50% + 12rem);
     -webkit-animation: spin 2s linear infinite;
     -moz-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
     animation-play-state: paused;
-    // display: none;
+    opacity: 0;
   }
+  &.loading svg {opacity: 1; animation-play-state: running;}
   &:hover {
     cursor: pointer;
     background-color: #262626;

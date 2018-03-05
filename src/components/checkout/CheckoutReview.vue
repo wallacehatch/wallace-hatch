@@ -20,7 +20,7 @@
     </div>
     <div class="right-cont">
       <checkout-product-tile v-for="(item, i) in bag.items" v-if="item.quantity > 0" :key="'cpt' + i" :item="item" ></checkout-product-tile>
-      <order-summary :bag="bag" buttonText="Place Your Order" class="review" @buttonClick="submitOrder"></order-summary>
+      <order-summary :loading="loading" :bag="bag" buttonText="Place Your Order" class="review" @buttonClick="submitOrder"></order-summary>
       <p class="terms-statement">By placing this order, you agree to the <router-link target="_blank" to="/terms">Terms of Use</router-link> and <router-link target="_blank" to="/privacy">Privacy Policy</router-link>.</p>
     </div>
   </div>
@@ -40,6 +40,7 @@ export default {
   data() {
     return {
       // bag: {items: []},
+      loading: false,
       successModalData: null,
     }
   },
@@ -58,11 +59,10 @@ export default {
       if (this.$store.state.coupons.length > 0) {
         couponCode = this.$store.state.coupons[0].id
       }
-
+      this.loading = true;
       StripeService.submitOrder(this.form, orderItems, couponCode).then((result) => {
-        console.log("clearing bag")
+        this.loading = false;
         BagService.clearBag();
-
         var name = result.data.shipping.name
         var orderId = result.data.id.substr(3)
         this.successModalData = {
@@ -75,7 +75,8 @@ export default {
         this.$router.push('/');
         this.$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE', this.successModalData)
       }, (err) => {
-        alert(err.response.data.error_message)
+        this.loading = false;
+        alert(err.response.data.error_message);
       })
     }
   },
