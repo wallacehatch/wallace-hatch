@@ -24,7 +24,7 @@
         <p class="label total">Total</p>
         <p class="amount total">{{total | currency}}</p>
       </div>
-      <div @click="$emit('buttonClick')" class="review-btn">{{buttonText}}</div>
+      <div @click="$emit('buttonClick')" :class="{loading: loading}" class="review-btn">{{buttonText}} <i class="fal fa-spinner"></i></div>
     </div>
   </div>
 </template>
@@ -32,7 +32,7 @@
 <script>
 import BagService from '@/BagService';
 export default {
-  props: ['buttonText', 'bag'],
+  props: ['buttonText', 'bag', 'loading'],
   mounted() {
     if (this.$store.state.coupons.length > 0) { this.updateOrderSummary(this.bag, this.$store.state.coupons[0]) }
     else {this.updateOrderSummary(this.bag)}
@@ -133,9 +133,23 @@ export default {
   text-align: center;
   margin-top: 3rem;
   transition: 0.2s all linear;
+  position: relative;
+  svg {
+    position: absolute;
+    top: calc(50% - 0.7rem); left: calc(50% + 12rem);
+    -webkit-animation: spin 2s linear infinite;
+    -moz-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    animation-play-state: paused;
+    opacity: 0;
+  }
+  &.loading svg {opacity: 1; animation-play-state: running;}
   &:hover {
     cursor: pointer;
     background-color: #262626;
   }
 }
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 </style>

@@ -112,7 +112,7 @@
     <h2 class="info-section-title" id="bill_to">Bill to</h2>
     <card-input v-model="form.billing"  :iValue="form.billing" class="info-field-cont"></card-input>
     <checkout-coupon class="info-field-cont"></checkout-coupon>
-    <order-summary :bag="bag" buttonText="Review Your Order"  @buttonClick="advanceToReview"></order-summary>
+    <order-summary :loading="loading" :bag="bag" buttonText="Review Your Order"  @buttonClick="advanceToReview"></order-summary>
   </form>
 </template>
 
@@ -138,10 +138,13 @@ export default {
       this.$validator.validateAll().then((result) => {
         console.log(result)
         if (result) {
+          this.loading = true;
           StripeService.createCustomer(this.form).then((result) => {
+              this.loading = false;
               this.$router.push('/checkout/review');
       }, (err) => {
         var errorObj = JSON.parse(err.response.data.error_message)
+        this.loading = false;
         alert(errorObj.message)
       })
         }
@@ -211,7 +214,7 @@ export default {
   },
   data() {
     return {
-
+      loading: false,
     }
   }
 }
