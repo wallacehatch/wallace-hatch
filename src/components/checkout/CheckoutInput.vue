@@ -60,6 +60,7 @@ export default {
     },
     shouldBlurField(e) {
       if (!e.target.value) {this.fieldState.active = false}
+      this.$emit('blur',e);
     },
   },
   mounted() {

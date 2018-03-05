@@ -34,6 +34,7 @@ import NavBar from './navBar/NavBar';
 import ContactModal from './contactModal/Modal';
 import CartModal from './cartModal/Modal';
 import MobileNav from './navBar/MobileNav';
+import StripeService from '@/StripeService.js';
 export default {
   name: 'siteHeader',
   props: ['active'],
@@ -41,6 +42,9 @@ export default {
     return {
 			nav: {
 				items: this.$store.state.navItems,
+        sohoId: null,
+        polermoId: null,
+        kallioId: null,
 				// active: 0,
 			},
 			mobileNav: {
@@ -60,13 +64,13 @@ export default {
       this.$router.push('/');
       break;
       case 1:
-      this.$router.push('/watches/prod_CC3h2K9rkgOwHs/WR140S');
+      this.$router.push('/watches/' + this.nav.kallioId + '/WR140S');
       break;
       case 2:
-      this.$router.push('/watches/prod_CCDIhc5sXnbPmy/BR140P');
+      this.$router.push('/watches/' + this.nav.sohoId + '/BR140P');
       break;
       case 3:
-      this.$router.push('/watches/prod_CCDBCRzlKEEp7V/BB140S');
+      this.$router.push('/watches/' + this.nav.palermoId + '/BB140S');
       break;
       case 4:
       this.$router.push('/our-story');
@@ -88,6 +92,29 @@ export default {
       	console.log('badge changing');
       	this.cartModal.badgeNumber = newVal;
     }
+  },
+  beforeMount() {
+    StripeService.getAllProducts().then((result) => {
+      result.data.map((product) => {
+        const newItems = product.skus.data.map((sku, ind) => {
+          if (sku.attributes.collection === 'frontPage') {
+            switch (sku.id.toUpperCase()) {
+            case 'BR140P':
+            this.nav.sohoId = product.id;
+            break;
+            case 'WR140S':
+            this.nav.kallioId = product.id;
+            break;
+            case 'BB140S':
+            this.nav.palermoId = product.id;
+            break;
+            }
+          }
+        })
+      })
+    }, (err) => {
+      debugger;
+    })
   },
 	mounted() {
     this.cartModal.badgeNumber = this.$store.state.badgeNumber;
