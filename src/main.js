@@ -12,6 +12,7 @@ import VueScrollTo from 'vue-scrollto'
 import VueTheMask from 'vue-the-mask'
 import VueLazyLoad from 'vue-lazyload'
 import VueTouch from 'vue-touch'
+import VueAnalytics from 'vue-analytics'
 
 Vue.config.productionTip = false
 VueTouch.config.pan = {
@@ -29,9 +30,14 @@ const config = {
 const loadConfig = {
   observer: true,
 }
+const analyticsConfig = {
+  id: 'UA-115122323-1',
+  router,
+}
 
 Vue.use(VueTheMask, config);
 Vue.use(VueLazyLoad, loadConfig);
+Vue.use(VueAnalytics, analyticsConfig);
 
 
 
