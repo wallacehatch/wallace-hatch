@@ -22,6 +22,7 @@ script:
 after_success:
   - if [ "$TRAVIS_BRANCH" = "master" ]; then URL_END=; fi
   - if [ "$TRAVIS_BRANCH" = "staging" ]; then URL_END=-staging; fi
+
   - docker --version  # document the version travis is using
   - pip install --user awscli # install aws cli w/o sudo
   - export PATH=$PATH:$HOME/.local/bin # put aws in the path
