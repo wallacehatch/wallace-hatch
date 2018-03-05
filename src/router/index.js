@@ -60,10 +60,9 @@ const router = new Router({
       }]
     }]
 })
-router.beforeEach((to,from,next) => {
-  // console.log(to)
-  // hj('stateChange', to.fullPath);
-  next()
+router.afterEach((to,from,next) => {
+  console.log(to)
+  hj('stateChange', to.fullPath);
 })
 
 export default router

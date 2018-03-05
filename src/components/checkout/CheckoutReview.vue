@@ -70,7 +70,8 @@ export default {
           customerName: name,
           orderId: orderId,
         }
-        hj('vpv', '/ordersuccess');
+        // hj('vpv', '/ordersuccess');
+        hj('stateChange', '/ordersuccess');
         this.$router.push('/');
         this.$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE', this.successModalData)
       }, (err) => {
