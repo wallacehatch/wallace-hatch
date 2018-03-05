@@ -166,7 +166,6 @@ export default {
         }
 
       })
-
     },
     blurAddressField(e) {
       if (e.target.value === '') { this.form.addressSelected = false; return; }
