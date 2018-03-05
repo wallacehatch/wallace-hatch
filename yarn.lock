@@ -4973,6 +4973,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-analytics@^5.9.1:
+  version "5.9.1"
+  resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.9.1.tgz#3ac9810f56dbe54bca4fd1c3ee42354b433d932b"
+
 vue-apollo@^3.0.0-alpha.2:
   version "3.0.0-alpha.2"
   resolved "https://registry.yarnpkg.com/vue-apollo/-/vue-apollo-3.0.0-alpha.2.tgz#7456ac833a9c0e8fde8c7b76fcc1da20b09e7192"
