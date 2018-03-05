@@ -34,7 +34,7 @@ after_success:
   - sed -i -e 's|KUBE_CLIENT_KEY_DATA|'"${KUBE_CLIENT_KEY_DATA}"'|g' kubeconfig
   - sed -i -e 's|KUBE_USER_NAME|'"${KUBE_USER_NAME}"'|g' kubeconfig
   - sed -i -e 's|KUBE_USER_PASSWORD|'"${KUBE_USER_PASSWORD}"'|g' kubeconfig
-  - /usr/local/bin/kubectl --kubeconfig kubeconfig set image deployment/frontend-deployment-staging frontend-container=145054867171.dkr.ecr.us-east-1.amazonaws.com/wallace-hatch-frontend-staging:V_${TRAVIS_BUILD_NUMBER}
+  - /usr/local/bin/kubectl --kubeconfig kubeconfig set image deployment/frontend-deployment-staging frontend-container-staging=145054867171.dkr.ecr.us-east-1.amazonaws.com/wallace-hatch-frontend-staging:V_${TRAVIS_BUILD_NUMBER}
 
 
 
