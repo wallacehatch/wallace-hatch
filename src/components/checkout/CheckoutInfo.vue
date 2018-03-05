@@ -54,6 +54,7 @@
       v-model="form.shipping.address"
       :iValue="form.shipping.address"
       :hasValue="!!form.shipping.address"
+      @blur="blurAddressField"
       iClass="address"
       iId="address_ac"
       iValidate="required">
@@ -113,6 +114,7 @@
     <card-input v-model="form.billing"  :iValue="form.billing" class="info-field-cont"></card-input>
     <checkout-coupon class="info-field-cont"></checkout-coupon>
     <order-summary :loading="loading" :bag="bag" buttonText="Review Your Order"  @buttonClick="advanceToReview"></order-summary>
+    <div id="hidden_ac"></div>
   </form>
 </template>
 
@@ -166,6 +168,22 @@ export default {
       })
 
     },
+    blurAddressField(e) {
+      if (e.target.value === '') { this.form.addressSelected = false; return; }
+      // else if (this.form.addressSelected) {return;}
+      else {
+        this.acService.getQueryPredictions({input: e.target.value}, (result) => {
+          this.placesService.getDetails({placeId: result[0].place_id}, (place, status) => {
+            this.form.googlePlace = place;
+            this.form.addressSelected = true;
+            place.address_components.map(this.assignAddressComponent);
+            setTimeout(() => {
+              document.getElementById('address_ac').value = place.formatted_address;
+            })
+          })
+        })
+      }
+    },
     assignAddressComponent(c) {
       switch (c.types[0]) {
         case 'street_number':
@@ -196,6 +214,9 @@ export default {
       left: 0,
       behavior: 'smooth'
     });
+    const el = document.getElementById('hidden_ac');
+    this.acService = new google.maps.places.AutocompleteService();
+    this.placesService = new google.maps.places.PlacesService(el);
     var input = document.getElementById('address_ac');
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.addListener('place_changed', () => {
@@ -215,6 +236,8 @@ export default {
   data() {
     return {
       loading: false,
+      acService: null,
+      placesService: null,
     }
   }
 }
