@@ -24,7 +24,7 @@
         <p class="label total">Total</p>
         <p class="amount total">{{total | currency}}</p>
       </div>
-      <div @click="$emit('buttonClick')" class="review-btn">{{buttonText}}</div>
+      <div @click="$emit('buttonClick')" class="review-btn">{{buttonText}} <i class="fal fa-spinner"></i></div>
     </div>
   </div>
 </template>
@@ -133,9 +133,23 @@ export default {
   text-align: center;
   margin-top: 3rem;
   transition: 0.2s all linear;
+  position: relative;
+  svg {
+    position: absolute;
+    top: 50%; left: calc(50% + 12.3rem);
+    transform: translateY(-50%);
+    -webkit-animation: spin 2s linear infinite;
+    -moz-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    animation-play-state: paused;
+    // display: none;
+  }
   &:hover {
     cursor: pointer;
     background-color: #262626;
   }
 }
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 </style>
