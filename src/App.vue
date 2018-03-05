@@ -43,6 +43,7 @@ export default {
   },
 
   beforeMount() {
+    console.log('last updated 8:50a');
     const bag = BagService.getBag();
     if (bag === null) return;
     const bn = bag.items.reduce((total, item) => {return total + item.quantity},0);
