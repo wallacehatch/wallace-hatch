@@ -61,7 +61,7 @@ const router = new Router({
     }]
 })
 router.afterEach((to,from,next) => {
-  console.log(to)
+  // console.log(to)
   hj('stateChange', to.fullPath);
 })
 
