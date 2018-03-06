@@ -12,7 +12,8 @@
       :value="iValue"
       @input="updateModelValue"
       v-validate="iValidate || ''"
-      @focus="fieldState.active = true">
+      :disabled="iDisabled"
+      @focus="focusField">
 
       <input v-if="iMask"
       @blur="shouldBlurField"
@@ -24,8 +25,9 @@
       :value="iValue"
       @input="updateModelValue"
       v-validate="iValidate || ''"
+      :disabled="iDisabled"
       v-mask="iMask"
-      @focus="fieldState.active = true">
+      @focus="focusField">
 
       <label for="" class="placeholder-label">{{iPlaceholder}}</label>
       <slot name="cardIcon"></slot>
@@ -39,7 +41,7 @@
 <script>
 import {mask} from 'vue-the-mask';
 export default {
-  props: ['iValidate', 'iPlaceholder', 'iClass', 'iId', 'iType', 'iName', 'iMask', 'iValue', 'forceError', 'hasValue'],
+  props: ['iValidate', 'iDisabled', 'iPlaceholder', 'iClass', 'iId', 'iType', 'iName', 'iMask', 'iValue', 'forceError', 'hasValue'],
   directives: {mask},
   inject: ['$validator'],
   data() {
@@ -60,7 +62,11 @@ export default {
     },
     shouldBlurField(e) {
       if (!e.target.value) {this.fieldState.active = false}
-      this.$emit('blur',e);
+      this.$emit('blur', e);
+    },
+    focusField(e) {
+      this.fieldState.active = true;
+      this.$emit('focus', e);
     },
   },
   mounted() {
