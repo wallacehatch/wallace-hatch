@@ -17,6 +17,7 @@ cache:
 
 script:
   - npm run build
+  - cat config/prod.env.js
 
 
 after_success:
