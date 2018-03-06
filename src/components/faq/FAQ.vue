@@ -39,7 +39,7 @@ export default {
         question: 'WHAT TYPE OF LEATHER IS USED?',
         answer: "Our leather straps are made of genuine cow-hide leather."
       }, {
-        question: 'Is there a warrenty?',
+        question: 'Is there a warranty?',
         answer: "Wallace Hatch has a limited warranty that covers manufacturer's defects for two years after the original purchase date from an authorized dealer. Basically, if the watch parts or mechanics don't work properly, and it's our fault, we will repair or replace your product for free. However, this does not cover any abuse you might put your watch through on your own. The warranty does not cover water damage, normal wear and tear, batteries, accidental glass damage, scratches, strap damage, or theft. Proof of purchase is required for all warranty claims and service requests, so please keep your receipt. If you've purchased from our site, the order number will suffice; otherwise you will need to send us a copy of the receipt from an authorized Wallace Hatch dealer."
       }]
     }
