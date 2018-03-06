@@ -51,7 +51,8 @@ export default {
       currentStage: 0,
       easing: 'easeInOutCubic',
       pbAnimation: null,
-      rotateAnimation: null
+      rotateAnimation: null,
+      seekEnabled: true,
     }
   },
   watch: {
@@ -61,7 +62,10 @@ export default {
   },
   methods: {
     seekCarousel(stage) {
+      if (!this.seekEnabled) return;
       this.pbAnimation.pause();
+      this.rotateAnimation.pause();
+      this.seekEnabled = false;
       this.rotateCarousel(stage);
 
     },
@@ -129,6 +133,7 @@ export default {
         offset: foDur + foDur + gap,
         easing: this.easing,
         complete: () => {
+          this.seekEnabled = true;
           this.startProgressBar()
         }
       })
