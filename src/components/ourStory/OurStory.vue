@@ -81,7 +81,7 @@
 
 <script>
 import LiveInstagramFeed from '@/components/home/LiveInstagramFeed';
-import fetchInstagramPosts from '@/instagram';
+import InstagramService from '@/InstagramService';
 export default {
   components: {
     LiveInstagramFeed,
@@ -91,9 +91,9 @@ export default {
       document.getElementById('os_lazy_1').setAttribute('lazy', 'loaded')
       document.getElementById('os_lazy_2').setAttribute('lazy', 'loaded')
     })
-    fetchInstagramPosts((result)=>{
-      this.liveInstagramPosts = result.data.user.media.nodes.slice(0,12);
-    });
+    InstagramService.getInstagramPosts().then((result) => {
+        this.liveInstagramPosts = result.data.user.media.nodes.slice(0,12);
+    })
   },
   data() {
     return {

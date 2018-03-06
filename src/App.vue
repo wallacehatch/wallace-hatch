@@ -13,7 +13,6 @@ import SiteHeader from '@/components/common/SiteHeader';
 import SiteFooter from '@/components/common/SiteFooter';
 import OrderSuccessModal from '@/components/common/orderSuccessModal/Modal';
 import CouponModal from '@/components/common/couponModal/Modal';
-import fetchInstagramPosts from './instagram';
 import axios from 'axios';
 import BagService from '@/BagService';
 import StripeService from '@/StripeService';
