@@ -15,7 +15,8 @@
 
 <script>
 import LiveInstagramFeed from './LiveInstagramFeed';
-import fetchInstagramPosts from '@/instagram';
+import InstagramService from '@/InstagramService';
+
 export default {
   components: {
     LiveInstagramFeed,
@@ -26,9 +27,9 @@ export default {
     }
   },
   mounted(){
-    fetchInstagramPosts((result)=>{
-      this.instagramPosts = result.data.user.media.nodes.slice(0,12);
-    });
+    InstagramService.getInstagramPosts().then((result) => {
+        this.instagramPosts = result.data.user.media.nodes.slice(0,12);
+    })
   }
 }
 </script>

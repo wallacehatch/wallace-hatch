@@ -1,7 +1,8 @@
 <template lang="html">
   <div class="instagram-feed-cont">
       <a class="instagram-image" :class="{'four-tile': fourTile}" v-for="(post, i) in instagramPosts"
-      target="_blank" :href="'https://www.instagram.com/p/'+ post.code + '/'"
+      @click="clickInstagramMedia(post.code)"
+      target="_blank"
       :style="{ 'background-image': 'url(' + post.display_src + ')' }">
       </a>
     <div class="insta-btn-wrapper" :class="{'four-tile': fourTile}">
@@ -11,8 +12,17 @@
 </template>
 
 <script>
+import InstagramService from '@/InstagramService';
 export default {
   props: ['instagramPosts', 'fourTile'],
+  methods: {
+    clickInstagramMedia(mediaId) {
+      InstagramService.getInstagramMediaInfo(mediaId).then((result) => {
+          console.log("insta media info is");
+          console.log(result);
+      })
+    }
+  }
 }
 </script>
 
