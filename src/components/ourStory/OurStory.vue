@@ -360,6 +360,7 @@ export default {
     width: 100vw;
     height: 48.43vw;
     position: relative;
+    overflow: hidden;
     z-index: -1;
     padding-top: 15.4rem;
     @include respond-to(lg) {padding-top: 8.8rem}

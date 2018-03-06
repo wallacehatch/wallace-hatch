@@ -55,11 +55,11 @@
       :iValue="form.shipping.address"
       :hasValue="!!form.shipping.address"
       @blur="blurAddressField"
+      @focus="focusAddressField"
       iClass="address"
       iId="address_ac"
       iValidate="required">
     </checkout-input>
-
     <div v-if="form.addressSelected" class="address-details-cont">
       <checkout-input iPlaceholder="Apt/Suite"
         iType="text"
@@ -67,6 +67,7 @@
         iName="aptSuite"
         v-model="form.shipping.aptSuite"
         :iValue="form.shipping.aptSuite"
+        :hasValue="!!form.shipping.aptSuite"
         iValidate="">
       </checkout-input>
       <checkout-input iPlaceholder="Company"
@@ -76,6 +77,7 @@
         iName="company"
         v-model="form.shipping.company"
         :iValue="form.shipping.company"
+        :hasValue="!!form.shipping.company"
         iValidate="">
       </checkout-input>
       <checkout-input iPlaceholder="City"
@@ -86,6 +88,7 @@
         v-model="form.shipping.city"
         :iValue="form.shipping.city"
         iValidate="required"
+        iDisabled="true"
         initValidate="true">
       </checkout-input>
       <checkout-input iPlaceholder="State"
@@ -96,6 +99,7 @@
         v-model="form.shipping.state"
         :iValue="form.shipping.state"
         iValidate="required"
+        iDisabled="true"
         initValidate="true">
       </checkout-input>
       <checkout-input iPlaceholder="Zip Code"
@@ -105,6 +109,7 @@
         iName="zip"
         v-model="form.shipping.zip"
         :iValue="form.shipping.zip"
+        iDisabled="true"
         iValidate="required">
       </checkout-input>
     </div>
@@ -114,7 +119,6 @@
     <card-input v-model="form.billing"  :iValue="form.billing" class="info-field-cont"></card-input>
     <checkout-coupon class="info-field-cont"></checkout-coupon>
     <order-summary :loading="loading" :bag="bag" buttonText="Review Your Order"  @buttonClick="advanceToReview"></order-summary>
-    <div id="hidden_ac"></div>
   </form>
 </template>
 
@@ -136,52 +140,44 @@ export default {
   },
   methods: {
     advanceToReview() {
-      var valid
+      if (!this.form.addressSelected) {this.scrollToInputError(); return;}
       this.$validator.validateAll().then((result) => {
         console.log(result)
         if (result) {
           this.loading = true;
           StripeService.createCustomer(this.form).then((result) => {
-              this.loading = false;
-              this.$router.push('/checkout/review');
-      }, (err) => {
-        var errorObj = JSON.parse(err.response.data.error_message)
-        this.loading = false;
-        alert(errorObj.message)
-      })
+            this.loading = false;
+            this.$router.push('/checkout/review');
+          }, (err) => {
+            var errorObj = JSON.parse(err.response.data.error_message)
+            this.loading = false;
+            alert(errorObj.message)
+          })
         }
-        else {
-          const inputs = document.getElementsByTagName('input');
-          for (var i=0; i < inputs.length; i++) {
-            console.log(inputs[i]);
-            if ((typeof this.fields[inputs[i].name] !== 'undefined') && (this.fields[inputs[i].name].invalid)) {
-              window.scroll({
-                top: inputs[i].getBoundingClientRect().top,
-                left: 0,
-                behavior: 'smooth'
-              });
-              break;
-            }
-          }
-        }
-
+        else { this.scrollToInputError() }
       })
     },
-    blurAddressField(e) {
-      if (e.target.value === '') { this.form.addressSelected = false; return; }
-      // else if (this.form.addressSelected) {return;}
-      else {
-        this.acService.getQueryPredictions({input: e.target.value}, (result) => {
-          this.placesService.getDetails({placeId: result[0].place_id}, (place, status) => {
-            this.form.googlePlace = place;
-            this.form.addressSelected = true;
-            place.address_components.map(this.assignAddressComponent);
-            setTimeout(() => {
-              document.getElementById('address_ac').value = place.formatted_address;
-            })
-          })
-        })
+    scrollToInputError() {
+      console.log('getting called');
+      const inputs = document.getElementsByTagName('input');
+      for (var i=0; i < inputs.length; i++) {
+        if ((typeof this.fields[inputs[i].name] !== 'undefined') && (this.errors.has(inputs[i].name))) {
+          window.scroll({
+            top: inputs[i].getBoundingClientRect().top,
+            left: 0,
+            behavior: 'smooth'
+          });
+          break;
+        }
       }
+    },
+    focusAddressField(e) {
+      this.form.addressSelected = false;
+    },
+    blurAddressField(e) {
+      setTimeout(() => {
+        !this.form.addressSelected && this.errors.add({field: 'address_ac', msg: 'Must enter a Google Maps verified address'});
+      },200)
     },
     assignAddressComponent(c) {
       switch (c.types[0]) {
@@ -213,24 +209,18 @@ export default {
       left: 0,
       behavior: 'smooth'
     });
-    const el = document.getElementById('hidden_ac');
-    this.acService = new google.maps.places.AutocompleteService();
-    this.placesService = new google.maps.places.PlacesService(el);
     var input = document.getElementById('address_ac');
     var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.setOptions({types: ['address']})
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
-      this.form.googlePlace = place;
+      this.errors.remove('address_ac');
       this.form.addressSelected = true;
+      this.form.googlePlace = place;
+      this.form.shipping.address = place.formatted_address;
       place.address_components.map(this.assignAddressComponent);
-      setTimeout(() => {
-        document.getElementById('address_ac').value = place.formatted_address;
-      })
+      setTimeout(() => { document.getElementById('address_ac').value = place.formatted_address; })
     })
-  },
-
-  beforeDestroy(){
-    console.log("about to be destroyed")
   },
   data() {
     return {
@@ -238,7 +228,7 @@ export default {
       acService: null,
       placesService: null,
     }
-  }
+  },
 }
 </script>
 

@@ -32,18 +32,45 @@
 
 <script>
 import anime from 'animejs';
+import StripeService from '@/StripeService.js';
 export default {
   props: ['active', 'activeItem'],
   data() {
     return {
       lActive: false,
       dur: 500,
+      nav: {
+        sohoId: null,
+        kallioId: null,
+        palermoId: null,
+      },
       // items: [this.$store.state.navItems[0], 'Contact Us', 'FAQ', this.$store.state.navItems[this.$store.state.navItems.length-1]],
       items: this.$store.state.navItems,
     }
   },
   mounted() {
     // this.toggleModal(true);
+    StripeService.getAllProducts().then((result) => {
+      result.data.map((product) => {
+        const newItems = product.skus.data.map((sku, ind) => {
+          if (sku.attributes.collection === 'frontPage') {
+            switch (sku.id.toUpperCase()) {
+            case 'BR140P':
+            this.nav.sohoId = product.id;
+            break;
+            case 'WR140S':
+            this.nav.kallioId = product.id;
+            break;
+            case 'BB140S':
+            this.nav.palermoId = product.id;
+            break;
+            }
+          }
+        })
+      })
+    }, (err) => {
+      debugger;
+    })
   },
   methods: {
     termsClick() {
@@ -73,13 +100,13 @@ export default {
       this.$router.push('/');
       break;
       case 1:
-      this.$router.push('/watches/prod_CC3h2K9rkgOwHs/WR140S');
+      this.$router.push('/watches/' + this.nav.kallioId + '/WR140S');
       break;
       case 2:
-      this.$router.push('/watches/prod_CCDIhc5sXnbPmy/BR140P');
+      this.$router.push('/watches/' + this.nav.sohoId + '/BR140P');
       break;
       case 3:
-      this.$router.push('/watches/prod_CCDBCRzlKEEp7V/BB140S');
+      this.$router.push('/watches/' + this.nav.palermoId + '/BB140S');
       break;
       case 4:
       this.$router.push('/our-story');
