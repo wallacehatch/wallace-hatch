@@ -27,13 +27,20 @@ export default {
     computed: {
          seconds() {
             var seconds =  (this.date - this.now) % 60;
+            if (seconds < 0) {
+              seconds = 0
+            }
             if (seconds.toString().length == 1){
                 seconds = "0" + seconds.toString()
             }
+
             return seconds.toString()
         },
         minutes() {
             var minutes = Math.trunc((this.date - this.now) / 60) % 60;
+            if (minutes < 0) {
+              minutes = 0
+            }
             if (minutes.toString().length == 1){
                 minutes = "0" + minutes.toString()
             }
@@ -42,7 +49,7 @@ export default {
     },
     mounted() {
       let now = new Date()
-      let diff  = 20
+      let diff  = 20  // initial leangth of time until coupon submission expiration
         var interval = setInterval(() => {
           let nowDate = new Date();
             this.now = Math.trunc(nowDate.getTime() / 1000)
