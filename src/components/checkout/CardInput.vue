@@ -138,6 +138,7 @@ export default {
   position: absolute;
   top: calc(50% - 1.5rem);
   left: 1.5rem;
+  pointer-events: none;
   &.UNKNOWN {background-image: url('https://d3dty8fv62xana.cloudfront.net/unknowncard.svg');}
   &.AMEX {background-image: url('https://d3dty8fv62xana.cloudfront.net/amex.svg');}
   &.VISA {background-image: url('https://d3dty8fv62xana.cloudfront.net/visa.svg');}
