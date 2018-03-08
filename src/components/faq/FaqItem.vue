@@ -85,6 +85,7 @@ export default {
     // float: right;
     display: inline-block;
     font-size: 2.8rem;
+    pointer-events: none;
   }
 }
 

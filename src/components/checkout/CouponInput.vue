@@ -8,28 +8,30 @@
     @input="updateModelValue"
     type="text"
     :name="iName"
-    class="std-input reg-text open-sans"
-    :class="[{error: error, submitted: submitted, active: active}, iClass]">
-    <label v-if="" class="std-input-label open-sans" for="">{{error ? error : iPlaceholder}}</label>
+    class="std-input promo-input reg-text open-sans"
+    :class="[{error: errors.has(iName), submitted: submitted, active: active}, iClass]">
+    <label v-if="" class="std-input-label open-sans" for="">{{iPlaceholder}}</label>
     <div class="side-label-cont">
       <label @click="$emit('submitForm')"
-      :class="{active: active}"
+      :class="{active: active && !errors.has(iName), 'coupon-error': errors.has(iName)}"
       class="side-label">
         <span class="side-label-text uppercase">Apply</span>
       </label>
     </div>
   </div>
+
 </template>
 
 <script>
   export default {
    name: 'CouponInput',
+   inject: ['$validator'],
    data() {
      return {
        active: false,
      }
    },
-   props: ['iName', 'iType', 'iValidate', 'iPlaceholder', 'iClass', 'iMask', 'iValue', 'iMin', 'iMax', 'iStep', 'submitted', 'error'],
+   props: ['iName', 'iType', 'iValidate', 'iPlaceholder', 'iClass', 'iMask', 'iValue', 'iMin', 'iMax', 'iStep', 'submitted'],
    methods: {
     updateModelValue: function(e) {
       this.$emit('input', e.target.value)

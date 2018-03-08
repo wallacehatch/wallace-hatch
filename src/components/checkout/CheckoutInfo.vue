@@ -23,7 +23,6 @@
       iType="tel"
       class="info-field-cont"
       iName="phone"
-      iValidate="required"
       v-model="form.account.phone"
       :iValue="form.account.phone"
       :hasValue="!!form.account.phone"
@@ -141,6 +140,10 @@ export default {
   methods: {
     advanceToReview() {
       if (!this.form.addressSelected) {this.scrollToInputError(); return;}
+      if (this.form.account.acceptTerms && !this.form.account.phone) {
+        this.errors.add({field: 'phone', msg: 'In order to receive text updates, you must enter a phone number.'})
+        this.scrollToInputError(); return;
+      }
       this.$validator.validateAll().then((result) => {
         console.log(result)
         if (result) {
