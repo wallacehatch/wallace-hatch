@@ -62,6 +62,7 @@ export default {
       this.message = this.$store.state.badgeNumber + " item in your bag"; break;
       default:
       this.message = this.$store.state.badgeNumber + " items in your bag"; break;
+
       }
     },
     getCleanedBandType(item) {
@@ -111,8 +112,6 @@ export default {
     }
     .cart-item-inner-cont {
       display: inline-block;
-
-
       .cart-item-text {
         padding-top: 1.9rem;
         letter-spacing: 2.9px !important;
