@@ -27,6 +27,7 @@
 
 <script>
 import StdInput from './StdInput';
+import axios from 'axios';
 export default {
   name: 'NewsletterCta',
 	components: {
@@ -80,7 +81,22 @@ export default {
 			else {
 				this.newsletter.error = '';
 				this.newsletter.submitted = true;
-				//actually submit to DB
+				console.log("about to sub")
+				axios({
+          method: 'post',
+          url: process.env.API_URL + 'newsletter-signup/',
+          data: {
+            email: this.newsletter.email,
+          }
+        })
+        .then((response) => {
+          this.submitSuccess = true;
+          setTimeout(() => {
+            this.$emit('close');
+          }, 2500)
+        }, (error) => {
+          console.log('Submission Error: ', error);
+        })
 			}
 		}
 	}
