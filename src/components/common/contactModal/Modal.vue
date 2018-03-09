@@ -102,16 +102,13 @@ export default {
   methods: {
     validateForm() {
       this.$validator.validateAll().then((result) => {
-        result && axios({
-          method: 'post',
-          url: process.env.API_URL + '/contact-form/',
-          data: {
+        result && axios.post(process.env.API_URL + 'contact-form/',{
             name: this.form.name,
             email: this.form.email,
             company: this.form.company,
             message: this.form.message,
           }
-        })
+        )
         .then((response) => {
           this.submitSuccess = true;
           setTimeout(() => {

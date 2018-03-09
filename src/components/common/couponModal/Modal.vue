@@ -87,7 +87,7 @@ export default {
       }, (err) => {
         console.log("error from coupon creation. Probably a coupon for this user has already been made");
         console.log(err);
-        debugger;
+        // debugger;
       })
     },
   },
@@ -176,6 +176,13 @@ export default {
   .coupon-input-cont{
     display:inline-block;
     margin: 3.5rem auto 0 auto;
+    @include respond-to(sm) {
+      width: 28.5rem;
+      .side-label{
+        width: 10rem;
+      }
+
+  	}
   }
   .continue-btn {
   	background-color: $wh-black;

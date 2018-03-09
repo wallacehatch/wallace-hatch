@@ -32,6 +32,7 @@ function applyForCoupon(email) {
 
 
 function createCustomer(form, coupon) {
+
   //       account: {
   //         name: 'Greg Miller',
   //         email: 'gregtesting@gmail.com',
