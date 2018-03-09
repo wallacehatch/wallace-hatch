@@ -31,7 +31,7 @@ const loadConfig = {
   observer: true,
 }
 const analyticsConfig = {
-  id: ['UA-115122323-1', 'UA-115122323-2'],
+  id: ['UA-115122323-1'],
   router,
 }
 
