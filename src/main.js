@@ -31,7 +31,7 @@ const loadConfig = {
   observer: true,
 }
 const analyticsConfig = {
-  id: ['UA-115122323-1'],
+  id: process.env.GA_ID,
   router,
 }
 
