@@ -72,6 +72,7 @@ export default {
         }
         // hj('vpv', '/ordersuccess');
         hj('stateChange', '/ordersuccess');
+        window.fbq('track', 'Purchase');
         this.$ga.page('/ordersuccess');
         this.$router.push('/');
         this.$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE', this.successModalData)
