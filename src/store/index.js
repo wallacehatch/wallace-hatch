@@ -44,7 +44,7 @@ const mutations = {
 	},
 	[types.SET_INSTAGRAM_MODAL_ACTIVE] (state, val) {
 		state.instagramModal.active = val.active ? val.active : false;
-		state.instagramModal.mediaId = val.mediaId ? val.mediaId : state.instagramModalActive.mediaId;
+		state.instagramModal.mediaId = val.mediaId ? val.mediaId : "";
 	},
 	[types.SET_CART_ACTIVE] (state, val) {
 		state.cartModalActive = val;

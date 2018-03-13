@@ -1,23 +1,56 @@
 <template lang="html">
-  <div v-show="lActive" id="insta_modal_mask" class="insta-modal-mask">
-    <div class="insta-modal-cont">
-      <div class="insta-modal-top">
-      <div class="close-btn" @click="$emit('close')"><i class="fal fa-times"></i></div>
-      <div class="oval"></div>
-    </div>
-    </div>
-  </div>
+   <div v-show="lActive" id="insta_modal_mask" class="insta-modal-mask">
+      <div class="insta-modal-cont">
+         <div class="close-btn" @click="$emit('close')"><i class="fal fa-times"></i></div>
+         <div class="insta-image" :style="{backgroundImage: 'url(' + instagramInfo.picture_url + ')'}"></div>
+         <div class="insta-content-cont">
+            <div class="insta-content-top-cont">
+               <div class="oval">
+                  <div class="logo"></div>
+               </div>
+               <div class="top-text">
+                  <p><strong>wallacehatch</strong></p>
+                  <p>{{instagramInfo.location}}</p>
+               </div>
+               <div class="line"></div>
+            </div>
+            <div class="insta-content-middle">
+              <p><strong>wallacehatch </strong>{{instagramInfo.caption}}</p>
+
+                <div  v-for="(item, i) in instagramInfo.products">
+                  
+                    <product-tile :key="'pTile' + i" :item="item"></product-tile>
+                </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </template>
 
 <script>
 import anime from 'animejs';
 import InstagramService from '@/InstagramService.js';
+import ProductTile from './ProductTile'
 export default {
+  components :{
+    ProductTile,
+  },
   data() {
     return {
       lActive: false,
       dur: 500,
+      instagramInfo: {
+        caption: "some caption",
+        picture_url: "https://scontent.cdninstagram.com/vp/d21ae516c0dc27d3ce317f6b123fe159/5B4881A3/t51.2885-15/sh0.08/e35/p640x640/28430423_807060646171037_1003870849352073216_n.jpg",
+        products: null,
+      },
     }
+  },
+  mounted(){
+    // this.$store.commit('SET_INSTAGRAM_MODAL_ACTIVE', {
+    //   active: true,
+    //   mediaId: "BfRTVYthKl1",
+    // })
   },
   methods: {
     toggleModal(active) {
@@ -43,15 +76,20 @@ export default {
           easing: 'easeInOutCubic',
           complete: () => {
             this.lActive = false;
+            this.instagramInfo = {};
           }
         })
       }
     },
     getInstagramMediaInfo(){
+      console.log("getting instagram media info")
+      if (this.$store.state.instagramModal.mediaId) {
       InstagramService.getInstagramMediaInfo(this.$store.state.instagramModal.mediaId).then((result) => {
-          console.log("insta media info is");
-          console.log(result);
+          this.instagramInfo = result.data
+          console.log("heres data")
+          console.log(this.instagramInfo)
       })
+    }
     },
   },
   watch: {
@@ -66,13 +104,14 @@ export default {
 @import '../../../styles/_variables.scss';
 .insta-modal-mask {
   position: fixed;
+  clear: both;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.8);
-  padding-top: 17rem;
+  padding-top: 8.4rem;
   overflow: scroll;
   opacity: 0;
   @include respond-to(sm) {
@@ -80,54 +119,84 @@ export default {
   }
 }
 .insta-modal-cont {
-  max-width: 65rem;
+  clear: both;
+  max-width: 86rem;
   width: calc(100% - 4rem);
   background-color: #ffffff;
 	box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.05);
   text-align: center;
-  padding-top: 4rem;
-  padding-bottom: 6rem;
   margin: auto;
   position: relative;
-
-  .oval {
-  width: 50px;
-  height: 50px;
-  background-color: #ffffff;
-  border: solid 1px #dbdbdb;
-}
-  .logo {
-    background-image: url('https://d3dty8fv62xana.cloudfront.net/wh-mark.svg');
-    background-size: contain;
+  overflow: auto;
+  .insta-image{
+    clear: both;
+    display: inline-block;
     background-position: center;
     background-repeat: no-repeat;
-    width: 4.74rem;
-    height: 4rem;
-    margin: auto;
-    margin-bottom: 4rem;
+    position: relative;
+    object-fit: cover;
+    float: left;
+    transition: 0.35s all cubic-bezier(.69,.16,.32,1);
+    width: 480px;
+    height: 60rem;
   }
-  h4 {
-    font-size: 24px;
-	  letter-spacing: 7px;
-    text-transform: uppercase;
-    font-weight: 400;
+  .insta-content-cont {
+    display: inline-block;
+    width: 32rem;
+    padding: 3rem;
+
+    .insta-content-top-cont{
+      overflow: auto;
+      .line{
+        overflow: auto;
+        height: 1px;
+        padding-top: 2rem;
+        width: 100%;
+      border-bottom: 1px solid #d8d8d8;
+    }
+      .top-text{
+        margin-left: 2rem;
+        overflow: auto;
+        float: left;
+        display: inline-block;
+
+      }
+    .oval {
+      overflow: auto;
+      display: inline-block;
+      float: left;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    border: solid 1px #dbdbdb;
+    border-radius: 50%;
   }
-  .subtext {
-    @include intro-text;
-    font-size: 1.2rem;
-    letter-spacing: 3.4px;
-    padding: 1rem 0 2rem 0;
-    text-transform: uppercase;
+    .logo {
+      background-image: url('https://d3dty8fv62xana.cloudfront.net/wh-mark.svg');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 24px;
+      height: 21px;
+      object-fit: contain;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      margin: auto;
+    }
   }
-  .body {
-    @include text-body;
-    font-size: 1.2rem;
-    max-width: 40rem;
-    width: calc(100% - 2rem);
-    margin: auto;
-    line-height: 2.0;
-    span {text-decoration: underline;}
+
+  .insta-content-middle{
+    margin-top: 1.5rem;
+    p{
+      font-size: 12px;
+      line-height: 1.67;
+      letter-spacing: 0.2px;
+    }
+    text-align: left;
   }
+}
+
   .close-btn {
     display: inline-block;
     position: absolute;
@@ -140,44 +209,6 @@ export default {
       opacity: 0.5;
     }
 
-
-  }
-  .coupon-input-cont{
-    display:inline-block;
-    margin: 3.5rem auto 0 auto;
-    @include respond-to(sm) {
-      width: 28.5rem;
-      .side-label{
-        width: 10rem;
-      }
-
-  	}
-  }
-  .continue-btn {
-  	background-color: $wh-black;
-    padding: 1.6rem 2.4rem;
-    @include intro-text;
-    font-size: 1.4rem;
-    max-width: 24rem;
-    margin: 4rem auto;
-    margin-bottom: 0;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 0;
-    letter-spacing: 2px;
-    outline: none;
-    transition: 0.2s all linear;
-    background-color: #ffffff;
-  	box-shadow: 0 12px 24px 0 rgba(95, 95, 95, 0.3), 0 2px 6px 0 rgba(149, 149, 149, 0.2);
-  	border: solid 2px #000000;
-    &:hover {
-      cursor: pointer;
-      background-color: #262626;
-      color: $wh-white;
-    }
-    @include respond-to(sm) {
-      font-size: 1.4rem;
-    }
   }
 
 }

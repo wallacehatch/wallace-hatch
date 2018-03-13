@@ -6,8 +6,11 @@
       </a> -->
       <a class="instagram-image" :class="{'four-tile': fourTile}" v-for="(post, i) in instagramPosts"
       @click="clickInstagramMedia(post.code)"
-      :style="{ 'background-image': 'url(' + post.display_src + ')' }">
+      :style="{ 'background-image': 'url(' + post.node.display_url + ')' }">
       </a>
+
+
+
     <div class="insta-btn-wrapper" :class="{'four-tile': fourTile}">
       <a target="_blank" href="https://www.instagram.com/wallaceHatch/" class="view-insta-btn">View Our Instagram</a>
     </div>
@@ -25,7 +28,12 @@ export default {
         mediaId: mediaId,
       })
     }
+  },
+  mounted() {
+    console.log("heres posts")
+    console.log(this.instagramPosts[0].node.display_url)
   }
+
 }
 </script>
 

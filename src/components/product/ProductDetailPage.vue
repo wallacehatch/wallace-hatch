@@ -108,6 +108,7 @@ export default {
   },
   mounted() {
     this.setLazyLoad();
+    window.fbq('track', 'ViewContent');
   },
   beforeMount() {
     this.$store.commit('SET_NAV_LAYOUT', 0);
@@ -167,6 +168,7 @@ export default {
     },
     handleAddCartClick() {
       BagService.addItem(this.product, this.$route.params.sku, 1);
+      window.fbq('track', 'AddToCart');
       this.$store.commit('INC_BADGE_NUMBER');
       this.$store.commit('SET_CART_ACTIVE', true);
     }

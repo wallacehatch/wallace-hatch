@@ -28,7 +28,9 @@ export default {
   },
   mounted(){
     InstagramService.getInstagramPosts().then((result) => {
-        this.instagramPosts = result.data.user.media.nodes.slice(0,12);
+        this.instagramPosts = result.data.graphql.user.edge_owner_to_timeline_media.edges.slice(0,12);
+    },(err) => {
+      debugger;
     })
   }
 }
