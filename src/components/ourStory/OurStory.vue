@@ -92,25 +92,29 @@ export default {
       document.getElementById('os_lazy_2').setAttribute('lazy', 'loaded')
     })
     InstagramService.getInstagramPosts().then((result) => {
-        this.liveInstagramPosts = result.data.user.media.nodes.slice(0,12);
+        this.liveInstagramPosts = result.data.graphql.user.edge_owner_to_timeline_media.edges.slice(0,12);
     })
   },
   data() {
     return {
       liveInstagramPosts: null,
       productInstagramPosts: [{
-        code: 'BeifoHrBxs0',
-        display_src: 'https://www.instagram.com/p/BeifoHrBxs0/media/',
-      }, {
-        code: 'BenquNQBofW',
-        display_src: 'https://www.instagram.com/p/BenquNQBofW/media/',
-      }, {
-        code: 'BelHPVrhnsi',
-        display_src: 'https://www.instagram.com/p/BelHPVrhnsi/media/',
-      }, {
-        code: 'Be3w2gFhLyj',
-        display_src: 'https://www.instagram.com/p/Be3w2gFhLyj/media/',
-      }]
+        node: {
+        shortcode: 'BeifoHrBxs0',
+        display_url: 'https://www.instagram.com/p/BeifoHrBxs0/media/',
+      },}, {
+        node: {
+        shortcode: 'BenquNQBofW',
+        display_url: 'https://www.instagram.com/p/BenquNQBofW/media/',
+      },}, {
+        node: {
+        shortcode: 'BelHPVrhnsi',
+        display_url: 'https://www.instagram.com/p/BelHPVrhnsi/media/',
+      }, },{
+        node: {
+        shortcode: 'Be3w2gFhLyj',
+        display_url: 'https://www.instagram.com/p/Be3w2gFhLyj/media/',
+      },}]
     }
   },
   beforeMount() {
