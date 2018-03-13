@@ -12,6 +12,10 @@ const state = {
 	contactModalActive: false,
 	couponModalActive: false,
 	cartModalActive: false,
+	instagramModal: {
+		active: false,
+		mediaId: "",
+	},
 	orderSuccessModal: {
 		active: false,
 		orderId: '00000000000123',
@@ -37,6 +41,10 @@ const mutations = {
 	},
 	[types.SET_CONTACT_ACTIVE] (state, val) {
 		state.contactModalActive = val;
+	},
+	[types.SET_INSTAGRAM_MODAL_ACTIVE] (state, val) {
+		state.instagramModal.active = val.active ? val.active : false;
+		state.instagramModal.mediaId = val.mediaId ? val.mediaId : state.instagramModalActive.mediaId;
 	},
 	[types.SET_CART_ACTIVE] (state, val) {
 		state.cartModalActive = val;

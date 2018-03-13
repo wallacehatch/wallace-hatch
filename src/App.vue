@@ -2,6 +2,7 @@
   <div id="app">
     <order-success-modal @close="$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE',{})"></order-success-modal>
     <coupon-modal @close="$store.commit('SET_COUPON_MODAL_ACTIVE',false)"></coupon-modal>
+    <instagram-modal @close="$store.commit('SET_INSTAGRAM_MODAL_ACTIVE',{})"></instagram-modal>
     <site-header :active="navActive"></site-header>
     <router-view @setNav="setNavActive"/>
     <site-footer></site-footer>
@@ -13,6 +14,7 @@ import SiteHeader from '@/components/common/SiteHeader';
 import SiteFooter from '@/components/common/SiteFooter';
 import OrderSuccessModal from '@/components/common/orderSuccessModal/Modal';
 import CouponModal from '@/components/common/couponModal/Modal';
+import InstagramModal from '@/components/common/instagramModal/Modal';
 import axios from 'axios';
 import BagService from '@/BagService';
 import StripeService from '@/StripeService';
@@ -27,7 +29,7 @@ export default {
     SiteFooter,
     OrderSuccessModal,
     CouponModal,
-
+    InstagramModal,
   },
   data() {
     return {

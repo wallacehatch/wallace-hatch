@@ -3,7 +3,9 @@
   <head>
     <script defer src="/static/fontawesome-all.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDims8b5LgM2e4c7kLVgkqn3b5MPRgf0_U&libraries=places"></script>
-    <script>
+
+    <!-- Production HotJar Tracking -->
+    <!-- <script>
         (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
             h._hjSettings={hjid:793536,hjsv:6};
@@ -12,8 +14,20 @@
             r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script> -->
+
+    <!-- Staging HotJar Tracking .-->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:793478,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
-    <!-- Facebook Pixel Code -->
+    <!-- Facebook Pixel Code Production onyl -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -30,7 +44,6 @@
     src="https://www.facebook.com/tr?id=175399716434307&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Facebook Pixel Code -->
-
 
     <meta charset="utf-8">
     <!-- Product Meta ================================ -->

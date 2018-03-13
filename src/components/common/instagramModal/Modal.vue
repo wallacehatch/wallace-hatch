@@ -1,24 +1,9 @@
 <template lang="html">
-  <div v-show="lActive" id="cp_modal_mask" class="cp-modal-mask">
-    <div class="cp-modal-cont">
+  <div v-show="lActive" id="insta_modal_mask" class="insta-modal-mask">
+    <div class="insta-modal-cont">
+      <div class="insta-modal-top">
       <div class="close-btn" @click="$emit('close')"><i class="fal fa-times"></i></div>
-      <h4>15 % off</h4>
-      <p class="subtext">Towards your next purchase</p>
-      <p class="body">All we need from you is your email address in order to send you your free 15% Off promo code. This offer only lasts for:
-      </p>
-      <timer></timer>
-      <div class="coupon-input-cont">
-      <std-input
-  		iName="email"
-  		v-model="coupon.email"
-  		:iValue="coupon.email"
-  		iPlaceholder="Enter Your Email Address"
-  		iClass="lg"
-  		:class="{submitted: coupon.submitted}"
-  		:submitted="coupon.submitted"
-  		:error="coupon.error"
-  		@submitForm="submitCoupon"
-  		></std-input>
+      <div class="oval"></div>
     </div>
     </div>
   </div>
@@ -26,38 +11,23 @@
 
 <script>
 import anime from 'animejs';
-import Timer from './Timer'
-import StdInput from '@/components/common/StdInput'
-import StripeService from '@/StripeService.js';
-import CouponService from '@/CouponService';
+import InstagramService from '@/InstagramService.js';
 export default {
-  components: {
-    Timer,
-    StdInput,
-  },
   data() {
     return {
       lActive: false,
       dur: 500,
-      coupon: {
-				email: '',
-				submitted: false,
-				error: null,
-			},
     }
-  },
-  mounted() {
-    // this.$store.commit('SET_COUPON_MODAL_ACTIVE', true)  // to toggle coupon modal
   },
   methods: {
     toggleModal(active) {
       if (active) {
-        CouponService.setCouponOpenTime();  // set time of opening so that we now when expiration takes place
+        this.getInstagramMediaInfo();
         this.lActive = true;
         if (window.innerWidth < 767) { document.body.style.overflow = 'hidden'; }
         setTimeout(() => {
           anime({
-            targets: '#cp_modal_mask',
+            targets: '#insta_modal_mask',
             duration: this.dur,
             opacity: 1.0,
             easing: 'easeInOutCubic'
@@ -67,7 +37,7 @@ export default {
       else {
         if (window.innerWidth < 767) { document.body.style.overflow = 'initial'; }
         anime({
-          targets: '#cp_modal_mask',
+          targets: '#insta_modal_mask',
           opacity: 0,
           duration: this.dur,
           easing: 'easeInOutCubic',
@@ -77,30 +47,24 @@ export default {
         })
       }
     },
-    submitCoupon(){
-      StripeService.applyForCoupon(this.coupon.email).then((result) => {
-        // We can attach coupon here if we want to, otherwise coupon code will have to be entered by user from email they recieve
-        console.log("result from coupon creation:");
-        console.log(result);
-      }, (err) => {
-        console.log("error from coupon creation. Probably a coupon for this user has already been made");
-        console.log(err);
-        // debugger;
+    getInstagramMediaInfo(){
+      InstagramService.getInstagramMediaInfo(this.$store.state.instagramModal.mediaId).then((result) => {
+          console.log("insta media info is");
+          console.log(result);
       })
     },
   },
   watch: {
-    '$store.state.couponModalActive' (newState) {
+    '$store.state.instagramModal.active' (newState) {
       this.toggleModal(newState);
     }
   },
-
 }
 </script>
 
 <style lang="scss">
 @import '../../../styles/_variables.scss';
-.cp-modal-mask {
+.insta-modal-mask {
   position: fixed;
   top: 0;
   left: 0;
@@ -115,7 +79,7 @@ export default {
     padding-top: 8rem;
   }
 }
-.cp-modal-cont {
+.insta-modal-cont {
   max-width: 65rem;
   width: calc(100% - 4rem);
   background-color: #ffffff;
@@ -125,6 +89,13 @@ export default {
   padding-bottom: 6rem;
   margin: auto;
   position: relative;
+
+  .oval {
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+  border: solid 1px #dbdbdb;
+}
   .logo {
     background-image: url('https://d3dty8fv62xana.cloudfront.net/wh-mark.svg');
     background-size: contain;
