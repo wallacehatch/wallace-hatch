@@ -5,12 +5,9 @@
       :style="{ 'background-image': 'url(' + post.display_src + ')' }">
       </a> -->
       <a class="instagram-image" :class="{'four-tile': fourTile}" v-for="(post, i) in instagramPosts"
-      @click="clickInstagramMedia(post.code)"
+      target="_blank" :href="'https://www.instagram.com/p/'+ post.node.shortcode + '/'"
       :style="{ 'background-image': 'url(' + post.node.display_url + ')' }">
       </a>
-
-
-
     <div class="insta-btn-wrapper" :class="{'four-tile': fourTile}">
       <a target="_blank" href="https://www.instagram.com/wallaceHatch/" class="view-insta-btn">View Our Instagram</a>
     </div>
