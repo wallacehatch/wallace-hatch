@@ -6,8 +6,8 @@
     <!-- PRODUCT SHOWCASE -->
     <div class="section-heading-cont" id="product-showcase">
       <div class="lazy delay-1" id="home_lazy_2">
-        <p class="header">Our Flagship</p>
-        <p class="subtext">collection</p>
+        <p class="header">Our Flagship Collection</p>
+        <p class="subtext">Elegant, unisex timepieces</p>
         <hr class="line">
       </div>
     </div>
