@@ -10,15 +10,13 @@
                </div>
                <div class="top-text">
                   <p><strong>wallacehatch</strong></p>
-                  <p>{{instagramInfo.location}}</p>
+                  <p class="caption">{{instagramInfo.location}}</p>
                </div>
                <div class="line"></div>
             </div>
             <div class="insta-content-middle">
-              <p><strong>wallacehatch </strong>{{instagramInfo.caption}}</p>
-
-                <div  v-for="(item, i) in instagramInfo.products">
-                  
+              <p class="caption"><strong>wallacehatch </strong>{{instagramInfo.caption}}</p>
+                <div class="products-cont"  v-for="(item, i) in instagramInfo.products">
                     <product-tile :key="'pTile' + i" :item="item"></product-tile>
                 </div>
             </div>
@@ -82,12 +80,10 @@ export default {
       }
     },
     getInstagramMediaInfo(){
-      console.log("getting instagram media info")
       if (this.$store.state.instagramModal.mediaId) {
       InstagramService.getInstagramMediaInfo(this.$store.state.instagramModal.mediaId).then((result) => {
           this.instagramInfo = result.data
-          console.log("heres data")
-          console.log(this.instagramInfo)
+          this.instagramInfo.caption = result.data.caption.split(".\n.\n")[0]
       })
     }
     },
@@ -121,29 +117,32 @@ export default {
 .insta-modal-cont {
   clear: both;
   max-width: 86rem;
-  width: calc(100% - 4rem);
+  width: 84%;
   background-color: #ffffff;
 	box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.05);
   text-align: center;
   margin: auto;
   position: relative;
   overflow: auto;
+
   .insta-image{
     clear: both;
     display: inline-block;
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
     position: relative;
-    object-fit: cover;
+    overflow: hidden;
     float: left;
     transition: 0.35s all cubic-bezier(.69,.16,.32,1);
-    width: 480px;
+    width: 54%;
     height: 60rem;
   }
   .insta-content-cont {
     display: inline-block;
-    width: 32rem;
+    width: 37.1%;
     padding: 3rem;
+
 
     .insta-content-top-cont{
       overflow: auto;
@@ -152,19 +151,18 @@ export default {
         height: 1px;
         padding-top: 2rem;
         width: 100%;
-      border-bottom: 1px solid #d8d8d8;
+        border-bottom: 1px solid #d8d8d8;
     }
-      .top-text{
+    .top-text{
         margin-left: 2rem;
         overflow: auto;
         float: left;
         display: inline-block;
-
-      }
+    }
     .oval {
-      overflow: auto;
-      display: inline-block;
-      float: left;
+    overflow: auto;
+    display: inline-block;
+    float: left;
     width: 50px;
     height: 50px;
     background-color: #ffffff;
@@ -188,10 +186,13 @@ export default {
 
   .insta-content-middle{
     margin-top: 1.5rem;
-    p{
+    .caption{
       font-size: 12px;
       line-height: 1.67;
       letter-spacing: 0.2px;
+      margin-bottom: 3rem;
+    }
+    .products-cont{
     }
     text-align: left;
   }

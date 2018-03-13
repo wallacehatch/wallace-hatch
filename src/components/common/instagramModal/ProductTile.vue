@@ -1,21 +1,15 @@
 <template lang="html">
 <div class="insta-product-cont">
-  <div class="product-image" :style="{backgroundImage: 'url(' + item.images[0] + ')'}"></div>
+  <div class="product-image" :style="{backgroundImage: 'url(' + item.images[0] + ')'}" @click="handleProductClick"></div>
   <div class="info">
     <p class="size">40 MM</p>
     <p class="name">{{item.name}}</p>
     <p class="color">COLOR: {{item.dialColor}}/{{item.metadata.caseColor}}</p>
-    <div class="info-block info-quantity">
-      <p class="label">QTY</p>
-      <p class="value">{{item.quantity}}</p>
-    </div>
     <div class="info-block info-price">
-      <p class="label">PRICE</p>
-      <p class="value">{{100 | currency}}</p>
+      <p class="value">{{item.skus.data[0].price  / 100 | currency}}</p>
     </div>
   </div>
 </div>
-
 </div>
 </template>
 
@@ -30,7 +24,19 @@ export default {
   mounted() {
     console.log("heres item")
     console.log(this.item)
-  }
+  },
+  methods: {
+    handleProductClick(){
+      this.$store.commit('SET_INSTAGRAM_MODAL_ACTIVE', {
+        active: false,
+        mediaId: "",
+      })
+
+      this.$router.push('/watches/' + this.item.id + '/' + this.item.skus.data[0].id);
+
+    }
+
+  },
 }
 </script>
 
@@ -38,11 +44,10 @@ export default {
 @import '../../../styles/_variables.scss';
 
 .insta-product-cont{
-  width: 320px;
   height: 130px;
   background-color: #ffffff;
   border: solid 1px #dbdbdb;
-
+  margin-bottom: 1rem;
   .product-image{
     display: inline-block;
     background-position: center;
@@ -56,12 +61,11 @@ export default {
     overflow: auto;
   }
   .info {
-    @include respond-to(md) { margin-left: 2.5rem; }
-    @include respond-to(sm) { margin-left: 1.5rem; }
+    margin-top: 2.1rem;
     .size {
       @include intro-text;
-      font-size: 1.4rem;
-      letter-spacing: 4px;
+      font-size: 1.2rem;
+      letter-spacing: 3px;
       @include respond-to(sm) {
         font-size: 1rem;
         letter-spacing: 3px;
@@ -69,8 +73,8 @@ export default {
     }
     .name {
       @include intro-text;
-      font-size: 2rem;
-      letter-spacing: 5px;
+      font-size: 16px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       @include respond-to(sm) {
         font-size: 1.4rem;
@@ -79,10 +83,9 @@ export default {
     }
     .color {
       @include intro-text;
-      font-size: 1.2rem;
-      letter-spacing: 2px;
+      font-size: 1rem;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 2.5rem;
       @include respond-to(md) {margin-bottom: 1.5rem;}
       @include respond-to(sm) {
         margin-bottom: 1rem;
