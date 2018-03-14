@@ -62,35 +62,28 @@ export default {
   }
   .info {
     margin-top: 2.1rem;
+    @include respond-to(md) {p{font-size: 11px !important;}}
     .size {
       @include intro-text;
       font-size: 1.2rem;
       letter-spacing: 3px;
-      @include respond-to(sm) {
-        font-size: 1rem;
-        letter-spacing: 3px;
-      }
+
     }
     .name {
       @include intro-text;
       font-size: 16px;
       letter-spacing: 4px;
       text-transform: uppercase;
-      @include respond-to(sm) {
-        font-size: 1.4rem;
-        letter-spacing: 3px;
-      }
+      @include respond-to(md) {font-size: 12px;}
+
     }
     .color {
       @include intro-text;
       font-size: 1rem;
       letter-spacing: 1px;
       text-transform: uppercase;
-      @include respond-to(md) {margin-bottom: 1.5rem;}
-      @include respond-to(sm) {
-        margin-bottom: 1rem;
-        font-size: 1rem;
-      }
+      @include respond-to(md) {font-size: 12px;}
+
     }
     .info-block {
       display: inline-block;
@@ -102,11 +95,6 @@ export default {
       .value {
         @include intro-text;
         font-weight: 300;
-        @include respond-to(sm) {
-          font-size: 1.4rem;
-          letter-spacing: 2px;
-          line-height: initial !important;
-        }
       }
     }
     .info-quantity .value {

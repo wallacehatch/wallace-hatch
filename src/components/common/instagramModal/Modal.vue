@@ -140,8 +140,10 @@ export default {
   }
   .insta-content-cont {
     display: inline-block;
+
     width: 37.1%;
     padding: 3rem;
+    @include respond-to(md) {width: 35%;}
 
 
     .insta-content-top-cont{
