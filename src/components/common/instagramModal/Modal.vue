@@ -24,6 +24,9 @@
                <div class="line"></div>
             </div>
             <div class="insta-content-middle">
+              <div class="products-cont-mobile sm-only"  v-for="(item, i) in instagramInfo.products">
+                  <mobile-product-tile :key="'pTile' + i" :item="item"></mobile-product-tile>
+              </div>
               <p class="caption"><strong>wallacehatch </strong>{{instagramInfo.caption}}</p>
                 <div class="products-cont hide-sm"  v-for="(item, i) in instagramInfo.products">
                     <product-tile :key="'pTile' + i" :item="item"></product-tile>
@@ -38,9 +41,11 @@
 import anime from 'animejs';
 import InstagramService from '@/InstagramService.js';
 import ProductTile from './ProductTile'
+import MobileProductTile from './MobileProductTile'
 export default {
   components :{
     ProductTile,
+    MobileProductTile,
   },
   data() {
     return {
@@ -52,12 +57,6 @@ export default {
         products: null,
       },
     }
-  },
-  mounted(){
-    // this.$store.commit('SET_INSTAGRAM_MODAL_ACTIVE', {
-    //   active: true,
-    //   mediaId: "BfRTVYthKl1",
-    // })
   },
   methods: {
     toggleModal(active) {
@@ -208,8 +207,8 @@ export default {
     padding: 3rem;
     @include respond-to(md) {width: 35%;}
     @include respond-to(sm) {
-      width: 100%;
-      padding: 1.5rem;
+      width: 100% !important;
+      padding: 0 !important;
       margin: auto;
     }
   }
@@ -262,12 +261,16 @@ export default {
   .insta-content-middle{
     margin-top: 1.5rem;
     .caption{
+      @include respond-to(sm) {
+          padding: 1rem 1.5rem;
+      }
       font-size: 12px;
       line-height: 1.67;
       letter-spacing: 0.2px;
       margin-bottom: 2rem;
     }
-    .products-cont{
+    .products-cont-mobile{
+      border-bottom: solid 1px #dbdbdb;
     }
     text-align: left;
   }

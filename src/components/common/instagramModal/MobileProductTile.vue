@@ -1,5 +1,5 @@
 <template lang="html">
-<div class="insta-product-cont">
+<div class="insta-product-cont-mobile">
   <div class="product-image" :style="{backgroundImage: 'url(' + item.images[0] + ')'}" @click="handleProductClick"></div>
   <div class="info">
     <p class="size">40 MM</p>
@@ -41,10 +41,10 @@ export default {
 <style lang="scss">
 @import '../../../styles/_variables.scss';
 
-.insta-product-cont{
+.insta-product-cont-mobile{
   height: 130px;
   background-color: #ffffff;
-  border: solid 1px #dbdbdb;
+  // border: solid 1px #dbdbdb;
   margin-bottom: 1rem;
   .product-image{
     display: inline-block;
