@@ -42,10 +42,8 @@ export default {
 @import '../../../styles/_variables.scss';
 
 .insta-product-cont-mobile{
-  height: 130px;
-  background-color: #ffffff;
-  // border: solid 1px #dbdbdb;
-  margin-bottom: 1rem;
+   margin: 0 1rem;
+
   .product-image{
     display: inline-block;
     background-position: center;
@@ -54,33 +52,36 @@ export default {
     position: relative;
     float: left;
     transition: 0.35s all cubic-bezier(.69,.16,.32,1);
-    width: 99px;
-    height: 124px;
+    width: 43px;
+    height: 54px;
     overflow: auto;
   }
   .info {
-    margin-top: 2.1rem;
-    @include respond-to(md) {p{font-size: 11px !important;}}
+    margin-left: 0.6rem;
+    text-align: left;
+    float: right;
+    margin-top: 0.5rem;
+
     .size {
       @include intro-text;
-      font-size: 1.2rem;
-      letter-spacing: 3px;
+      font-size: 0.55rem;
+      letter-spacing: 1.4px;;
 
     }
     .name {
       @include intro-text;
-      font-size: 16px;
-      letter-spacing: 4px;
+      font-size: 7.3px;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
-      @include respond-to(md) {font-size: 12px;}
+
 
     }
     .color {
       @include intro-text;
-      font-size: 1rem;
-      letter-spacing: 1px;
+      font-size: 4.6px;
+        letter-spacing: 0.5px;
       text-transform: uppercase;
-      @include respond-to(md) {font-size: 12px;}
+
 
     }
     .info-block {
@@ -89,18 +90,16 @@ export default {
       .label {
         @include text-small;
         letter-spacing: 2.9px;
+
       }
       .value {
         @include intro-text;
         font-weight: 300;
+        margin-top: 5.5px;
+        font-size: 7.3px;
+        margin-bottom: 1rem;
+
       }
-    }
-    .info-quantity .value {
-      font-size: 1.4rem;
-      line-height: 3rem;
-    }
-    .info-quantity {
-      margin-right: 5rem;
     }
   }
 }

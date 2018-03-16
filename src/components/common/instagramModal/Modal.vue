@@ -24,8 +24,12 @@
                <div class="line"></div>
             </div>
             <div class="insta-content-middle">
-              <div class="products-cont-mobile sm-only"  v-for="(item, i) in instagramInfo.products">
+              <div class="products-cont-mobile sm-only">
+                <div  v-for="(item, i) in instagramInfo.products">
                   <mobile-product-tile :key="'pTile' + i" :item="item"></mobile-product-tile>
+                  <!-- {{instagramInfo.products.length}} -->
+                  <div class="divider" v-if="i < instagramInfo.products.length && i > 0"></div>
+                </div>
               </div>
               <p class="caption"><strong>wallacehatch </strong>{{instagramInfo.caption}}</p>
                 <div class="products-cont hide-sm"  v-for="(item, i) in instagramInfo.products">
@@ -52,8 +56,8 @@ export default {
       lActive: false,
       dur: 500,
       instagramInfo: {
-        caption: "some caption",
-        picture_url: "https://scontent.cdninstagram.com/vp/d21ae516c0dc27d3ce317f6b123fe159/5B4881A3/t51.2885-15/sh0.08/e35/p640x640/28430423_807060646171037_1003870849352073216_n.jpg",
+        caption: "",
+        picture_url: "",
         products: null,
       },
     }
@@ -260,9 +264,11 @@ export default {
 
   .insta-content-middle{
     margin-top: 1.5rem;
+    @include respond-to(sm) {margin-top: 0rem;}
     .caption{
       @include respond-to(sm) {
           padding: 1rem 1.5rem;
+
       }
       font-size: 12px;
       line-height: 1.67;
@@ -271,13 +277,22 @@ export default {
     }
     .products-cont-mobile{
 
-        position: relative !important;
-          overflow: auto;
-          border-bottom: solid 1px #dbdbdb;
-          width: 100%;
+      @include respond-to(sm) {
 
+        display: flex !important;
+        justify-content: center;
+        overflow: auto;
+        border-bottom: solid 1px #dbdbdb;
+        width: 100%;
+        margin-bottom: 1rem;
+        .divider{
+          position: relative;
+          background-color: #dbdbdb;
 
-
+          width: 1px;
+          height: 100%;
+        }
+      }
     }
     text-align: left;
   }

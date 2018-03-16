@@ -46,6 +46,7 @@ export default {
   background-color: #ffffff;
   border: solid 1px #dbdbdb;
   margin-bottom: 1rem;
+
   .product-image{
     display: inline-block;
     background-position: center;
@@ -57,6 +58,9 @@ export default {
     width: 99px;
     height: 124px;
     overflow: auto;
+    &:hover {
+      cursor: pointer;
+    }
   }
   .info {
     margin-top: 2.1rem;
