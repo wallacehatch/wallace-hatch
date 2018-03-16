@@ -270,7 +270,14 @@ export default {
       margin-bottom: 2rem;
     }
     .products-cont-mobile{
-      border-bottom: solid 1px #dbdbdb;
+
+        position: relative !important;
+          overflow: auto;
+          border-bottom: solid 1px #dbdbdb;
+          width: 100%;
+
+
+
     }
     text-align: left;
   }
