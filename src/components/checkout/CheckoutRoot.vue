@@ -47,7 +47,7 @@ export default {
           email: '',
           password: '',
           phone: '',
-          acceptTerms: false,
+          acceptTerms: true,
         },
         shipping: {
           name: '',
