@@ -130,6 +130,9 @@ export default {
 .insta-modal-cont {
   clear: both;
   max-width: 86rem;
+    @include respond-to(sm) {
+      width: 90.6%;
+    }
   width: 84%;
   background-color: #ffffff;
 	box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.05);
@@ -284,7 +287,7 @@ export default {
         overflow: auto;
         border-bottom: solid 1px #dbdbdb;
         width: 100%;
-        margin-bottom: 1rem;
+
         .divider{
           position: relative;
           background-color: #dbdbdb;

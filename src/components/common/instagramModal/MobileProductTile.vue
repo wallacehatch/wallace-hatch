@@ -43,7 +43,6 @@ export default {
 
 .insta-product-cont-mobile{
    margin: 0 1rem;
-
   .product-image{
     display: inline-block;
     background-position: center;
