@@ -25,6 +25,7 @@
 import ProductTile from './ProductTile';
 import ExperienceSection from './ExperienceSection';
 import StripeService from '@/StripeService.js';
+import ReviewService from '@/ReviewService.js';
 import HeroCarousel from './HeroCarousel';
 export default {
   components: {
@@ -54,6 +55,7 @@ export default {
   beforeMount() {
     this.$emit('setNav',0);
     this.$store.commit('SET_NAV_LAYOUT', 0);
+    // TODO: Remove redundant calls for all products, this is called 3 separate times across app on mount
     StripeService.getAllProducts().then((result) => {
       this.items = result.data.reduce((total, product) => {
         const newItems = product.skus.data.map((sku, ind) => {

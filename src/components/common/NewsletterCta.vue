@@ -76,12 +76,16 @@ export default {
 			}
 		},
 		handleFieldSubmit() {
+
 			// validate INPUT
 			if (!this.newsletter.email || this.newsletter.submitted) {this.newsletter.error = 'please enter a valid email.'; return;}
 			else {
+				this.$ga.event({
+		      eventCategory: "bottomNewsletterCTA",
+		      eventAction: "signup",
+		    })
 				this.newsletter.error = '';
 				this.newsletter.submitted = true;
-				console.log("about to sub")
 				axios({
           method: 'post',
           url: process.env.API_URL + 'newsletter-signup/',
@@ -94,6 +98,7 @@ export default {
           setTimeout(() => {
             this.$emit('close');
           }, 2500)
+
         }, (error) => {
           console.log('Submission Error: ', error);
         })

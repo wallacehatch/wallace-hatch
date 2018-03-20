@@ -50,6 +50,7 @@ export default {
   },
   mounted() {
     // this.toggleModal(true);
+    // TODO: Remove redundant calls for all products, this is called 3 separate time on mount accross the app
     StripeService.getAllProducts().then((result) => {
       result.data.map((product) => {
         const newItems = product.skus.data.map((sku, ind) => {

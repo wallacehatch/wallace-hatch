@@ -34,6 +34,11 @@ export default {
       BagService.addItem(this.item.product, this.item.sku,  1);
       this.$store.commit('INC_BADGE_NUMBER');
       this.$store.commit('SET_CART_ACTIVE', true);
+      this.$ga.event({
+        eventCategory: "homePageAddToCart",
+        eventAction: "clicked",
+        eventLabel: this.item.product.name,
+      })
     }
   },
 }

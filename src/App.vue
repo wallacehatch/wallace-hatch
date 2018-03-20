@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @mouseleave="mouseLeave">
     <order-success-modal @close="$store.commit('SET_ORDER_SUCCESS_MODAL_ACTIVE',{})"></order-success-modal>
     <coupon-modal @close="$store.commit('SET_COUPON_MODAL_ACTIVE',false)"></coupon-modal>
     <instagram-modal @close="$store.commit('SET_INSTAGRAM_MODAL_ACTIVE',{})"></instagram-modal>
@@ -40,6 +40,11 @@ export default {
     setNavActive(i) {
       this.navActive = i;
     },
+    mouseLeave(){
+      // code for popup here on desktop goes here
+      
+
+    }
 
   },
 
@@ -66,10 +71,11 @@ export default {
       }
     })
   },
+
   mounted() {
     this.$store.commit('SET_MOBILE', window.innerWidth < 768);
     // CouponService.handleCouponActivation();  // Uncomment to trigger coupon service. Coupon will open in 60 seconds if user has not seen coupon before
-  }
+  },
 }
 </script>
 
@@ -85,6 +91,7 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
+
   }
   .site-cont {
     margin-top: 7rem;

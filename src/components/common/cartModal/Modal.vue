@@ -115,6 +115,10 @@ export default {
     handleReviewBagClick(){
       this.$router.replace('/bag');
       this.$store.commit('SET_CART_ACTIVE', false);
+      this.$ga.event({
+        eventCategory: "cartModal",
+        eventAction: "reviewBag",
+      })
     },
   },
   mounted() {

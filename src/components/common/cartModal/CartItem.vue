@@ -38,18 +38,34 @@ export default {
   },
   methods: {
     increaseQuantity(){
+      this.$ga.event({
+        eventCategory: "cartModal",
+        eventAction: "increaseQuantity",
+      })
       BagService.addItem(this.item.product, this.item.sku, 1);
       this.$emit('qtyChange');
     },
     decreaseQuantity(){
+      this.$ga.event({
+        eventCategory: "cartModal",
+        eventAction: "decreaseQuantity",
+      })
       BagService.removeItem(this.item.product, this.item.sku, 1);
       this.$emit('qtyChange');
     },
     removeItem(){
+      this.$ga.event({
+        eventCategory: "cartModal",
+        eventAction: "remove",
+      })
       BagService.removeItem(this.item.product, this.item.sku, this.item.quantity);
       this.$emit('qtyChange');
     },
     handleImageClick() {
+      this.$ga.event({
+        eventCategory: "cartModal",
+        eventAction: "clickedImage",
+      })
       this.$store.commit('SET_CART_ACTIVE', false);
       this.$router.push('/watches/' + this.item.product.id + '/' + this.item.sku);
     },

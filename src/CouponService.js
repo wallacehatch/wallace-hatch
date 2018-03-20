@@ -15,7 +15,7 @@ function handleCouponActivation() {
     var nowDate = new Date();
     var time = getPageOpenTime();
     // open coupon modal if page have been open for a minute and user has not seen coupon previously
-    if ((nowDate.getTime() - time > 5000) && (getCouponOpenTime() == null)) {
+    if ((nowDate.getTime() - time > 500) && (getCouponOpenTime() == null)) {
       triggerCoupon();
     }
   }, 10000)
